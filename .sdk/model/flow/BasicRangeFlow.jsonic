@@ -1,0 +1,32 @@
+# BasicRangeFlow
+
+main: kit: flow: BasicRangeFlow:
+{
+  entity: "range",
+  kind: "basic",
+  name: "BasicRangeFlow",
+  step: [
+    {
+      input: {
+        ref: "range_ref01",
+        srcdatavar: "range_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "range01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-range_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRangeFlow"
+}

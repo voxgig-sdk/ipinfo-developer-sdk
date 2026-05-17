@@ -1,0 +1,74 @@
+{
+  "existing": {
+    "asn": {
+      "ASN00": {
+        "allocated": "s8c",
+        "asn": "s8d",
+        "country": "s8e",
+        "domain": "s8f",
+        "downstream": [],
+        "name": "s91",
+        "num_ip": "s92",
+        "peer": [],
+        "prefix": [],
+        "prefixes6": [],
+        "registry": "s96",
+        "route": "s97",
+        "type": "s98",
+        "upstream": []
+      },
+      "ASN01": {
+        "allocated": "s118",
+        "asn": "s119",
+        "country": "s11a",
+        "domain": "s11b",
+        "downstream": [],
+        "name": "s11d",
+        "num_ip": "s11e",
+        "peer": [],
+        "prefix": [],
+        "prefixes6": [],
+        "registry": "s122",
+        "route": "s123",
+        "type": "s124",
+        "upstream": []
+      },
+      "ASN02": {
+        "allocated": "s1a4",
+        "asn": "s1a5",
+        "country": "s1a6",
+        "domain": "s1a7",
+        "downstream": [],
+        "name": "s1a9",
+        "num_ip": "s1aa",
+        "peer": [],
+        "prefix": [],
+        "prefixes6": [],
+        "registry": "s1ae",
+        "route": "s1af",
+        "type": "s1b0",
+        "upstream": []
+      }
+    }
+  },
+  "new": {
+    "asn": {
+      "asn_ref01": {
+        "allocated": "s230",
+        "asn": "s231",
+        "country": "s232",
+        "domain": "s233",
+        "downstream": [],
+        "name": "s235",
+        "num_ip": "s236",
+        "peer": [],
+        "prefix": [],
+        "prefixes6": [],
+        "registry": "s23a",
+        "route": "s23b",
+        "type": "s23c",
+        "upstream": []
+      }
+    }
+  }
+}

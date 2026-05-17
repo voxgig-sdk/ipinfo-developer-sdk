@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "range": {
+      "RANGE00": {
+        "domain": "s28",
+        "num_range": "s29",
+        "range": [],
+        "redirects_to": "s2b",
+        "id": "RANGE00"
+      },
+      "RANGE01": {
+        "domain": "s50",
+        "num_range": "s51",
+        "range": [],
+        "redirects_to": "s53",
+        "id": "RANGE01"
+      },
+      "RANGE02": {
+        "domain": "s78",
+        "num_range": "s79",
+        "range": [],
+        "redirects_to": "s7b",
+        "id": "RANGE02"
+      }
+    }
+  },
+  "new": {
+    "range": {
+      "range_ref01": {
+        "domain": "sa0",
+        "num_range": "sa1",
+        "range": [],
+        "redirects_to": "sa3"
+      }
+    }
+  }
+}

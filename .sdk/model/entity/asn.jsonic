@@ -1,0 +1,118 @@
+# Entity: asn
+
+main: kit: entity: asn: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "allocated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "asn"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "domain"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "downstream"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "num_ip"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "peer"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "prefix"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "prefixes6"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "registry"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "route"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "upstream"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "asn"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "asn"
+                orig: "asn"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/AS{asn}"
+          parts: [
+            "AS{asn}"
+          ]
+          select: {
+            exist: [
+              "asn"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

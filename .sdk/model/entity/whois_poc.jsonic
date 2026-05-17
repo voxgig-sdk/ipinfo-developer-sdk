@@ -1,0 +1,93 @@
+# Entity: whois_poc
+
+main: kit: entity: whois_poc: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "poc"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "record"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "total"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "whois_poc"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "whoispoc"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "whoissource"
+                orig: "whoissource"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/whois/poc/{whoispoc}"
+          parts: [
+            "whois"
+            "poc"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              whoispoc: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "page"
+              "whoissource"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "men": {
+      "MEN00": {
+        "feature": {},
+        "request": {},
+        "token": "s20",
+        "id": "MEN00"
+      },
+      "MEN01": {
+        "feature": {},
+        "request": {},
+        "token": "s3e",
+        "id": "MEN01"
+      },
+      "MEN02": {
+        "feature": {},
+        "request": {},
+        "token": "s5c",
+        "id": "MEN02"
+      }
+    }
+  },
+  "new": {
+    "men": {
+      "men_ref01": {
+        "feature": {},
+        "request": {},
+        "token": "s7a"
+      }
+    }
+  }
+}

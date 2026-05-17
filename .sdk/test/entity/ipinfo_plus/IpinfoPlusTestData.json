@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "ipinfo_plus": {
+      "IPINFO_PLUS00": {
+        "city": "s1e",
+        "key": "s1f",
+        "region": "s20",
+        "field": "FIELD01",
+        "ip": "IP01",
+        "id": "IPINFO_PLUS00"
+      },
+      "IPINFO_PLUS01": {
+        "city": "s3c",
+        "key": "s3d",
+        "region": "s3e",
+        "field": "FIELD01",
+        "ip": "IP01",
+        "id": "IPINFO_PLUS01"
+      },
+      "IPINFO_PLUS02": {
+        "city": "s5a",
+        "key": "s5b",
+        "region": "s5c",
+        "field": "FIELD01",
+        "ip": "IP01",
+        "id": "IPINFO_PLUS02"
+      }
+    }
+  },
+  "new": {
+    "ipinfo_plus": {
+      "ipinfo_plus_ref01": {
+        "city": "s78",
+        "key": "s79",
+        "region": "s7a"
+      }
+    }
+  }
+}

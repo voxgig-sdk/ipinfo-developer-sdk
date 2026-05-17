@@ -1,0 +1,64 @@
+# Entity: company
+
+main: kit: entity: company: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "company"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}/company"
+          parts: [
+            "{ip}"
+            "company"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

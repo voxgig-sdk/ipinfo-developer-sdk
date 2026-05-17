@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "single": {
+      "SINGLE00": {
+        "ip": "IP01",
+        "id": "SINGLE00"
+      },
+      "SINGLE01": {
+        "ip": "IP01",
+        "id": "SINGLE01"
+      },
+      "SINGLE02": {
+        "ip": "IP01",
+        "id": "SINGLE02"
+      }
+    }
+  },
+  "new": {
+    "single": {
+      "single_ref01": {}
+    }
+  }
+}

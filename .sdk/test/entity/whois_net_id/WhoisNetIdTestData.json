@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "whois_net_id": {
+      "WHOIS_NET_ID00": {
+        "net": "s28",
+        "page": "s29",
+        "record": [],
+        "total": "s2b",
+        "whoisnetid": "WHOISNETID01",
+        "id": "WHOIS_NET_ID00"
+      },
+      "WHOIS_NET_ID01": {
+        "net": "s50",
+        "page": "s51",
+        "record": [],
+        "total": "s53",
+        "whoisnetid": "WHOISNETID01",
+        "id": "WHOIS_NET_ID01"
+      },
+      "WHOIS_NET_ID02": {
+        "net": "s78",
+        "page": "s79",
+        "record": [],
+        "total": "s7b",
+        "whoisnetid": "WHOISNETID01",
+        "id": "WHOIS_NET_ID02"
+      }
+    }
+  },
+  "new": {
+    "whois_net_id": {
+      "whois_net_id_ref01": {
+        "net": "sa0",
+        "page": "sa1",
+        "record": [],
+        "total": "sa3"
+      }
+    }
+  }
+}

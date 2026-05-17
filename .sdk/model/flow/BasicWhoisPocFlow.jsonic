@@ -1,0 +1,32 @@
+# BasicWhoisPocFlow
+
+main: kit: flow: BasicWhoisPocFlow:
+{
+  entity: "whois_poc",
+  kind: "basic",
+  name: "BasicWhoisPocFlow",
+  step: [
+    {
+      input: {
+        ref: "whois_poc_ref01",
+        srcdatavar: "whois_poc_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "whois_poc01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whois_poc_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoisPocFlow"
+}

@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "carrier": {
+      "CARRIER00": {
+        "mcc": "s1e",
+        "mnc": "s1f",
+        "name": "s20",
+        "ip": "IP01",
+        "id": "CARRIER00"
+      },
+      "CARRIER01": {
+        "mcc": "s3c",
+        "mnc": "s3d",
+        "name": "s3e",
+        "ip": "IP01",
+        "id": "CARRIER01"
+      },
+      "CARRIER02": {
+        "mcc": "s5a",
+        "mnc": "s5b",
+        "name": "s5c",
+        "ip": "IP01",
+        "id": "CARRIER02"
+      }
+    }
+  },
+  "new": {
+    "carrier": {
+      "carrier_ref01": {
+        "mcc": "s78",
+        "mnc": "s79",
+        "name": "s7a"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# BasicGetInformationByIpFlow
+
+main: kit: flow: BasicGetInformationByIpFlow:
+{
+  entity: "get_information_by_ip",
+  kind: "basic",
+  name: "BasicGetInformationByIpFlow",
+  step: [
+    {
+      input: {
+        ref: "get_information_by_ip_ref01",
+        srcdatavar: "get_information_by_ip_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "get_information_by_ip01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_information_by_ip_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetInformationByIpFlow"
+}

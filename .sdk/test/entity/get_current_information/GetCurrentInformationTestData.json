@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "get_current_information": {
+      "GET_CURRENT_INFORMATION00": {
+        "asn": {},
+        "bogon": false,
+        "carrier": {},
+        "city": "s99",
+        "company": {},
+        "country": "s9b",
+        "domain": {},
+        "hostname": "s9d",
+        "ip": "s9e",
+        "loc": "s9f",
+        "org": "sa0",
+        "postal": "sa1",
+        "privacy": {},
+        "region": "sa3",
+        "timezone": "sa4",
+        "id": "GET_CURRENT_INFORMATION00"
+      },
+      "GET_CURRENT_INFORMATION01": {
+        "asn": {},
+        "bogon": false,
+        "carrier": {},
+        "city": "s12f",
+        "company": {},
+        "country": "s131",
+        "domain": {},
+        "hostname": "s133",
+        "ip": "s134",
+        "loc": "s135",
+        "org": "s136",
+        "postal": "s137",
+        "privacy": {},
+        "region": "s139",
+        "timezone": "s13a",
+        "id": "GET_CURRENT_INFORMATION01"
+      },
+      "GET_CURRENT_INFORMATION02": {
+        "asn": {},
+        "bogon": false,
+        "carrier": {},
+        "city": "s1c5",
+        "company": {},
+        "country": "s1c7",
+        "domain": {},
+        "hostname": "s1c9",
+        "ip": "s1ca",
+        "loc": "s1cb",
+        "org": "s1cc",
+        "postal": "s1cd",
+        "privacy": {},
+        "region": "s1cf",
+        "timezone": "s1d0",
+        "id": "GET_CURRENT_INFORMATION02"
+      }
+    }
+  },
+  "new": {
+    "get_current_information": {
+      "get_current_information_ref01": {
+        "asn": {},
+        "bogon": false,
+        "carrier": {},
+        "city": "s25b",
+        "company": {},
+        "country": "s25d",
+        "domain": {},
+        "hostname": "s25f",
+        "ip": "s260",
+        "loc": "s261",
+        "org": "s262",
+        "postal": "s263",
+        "privacy": {},
+        "region": "s265",
+        "timezone": "s266"
+      }
+    }
+  }
+}

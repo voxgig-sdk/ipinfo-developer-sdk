@@ -1,0 +1,76 @@
+# Entity: lite
+
+main: kit: entity: lite: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "as_domain"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "as_name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "asn"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "continent"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "continent_code"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "country_code"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "lite"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/lite/me"
+          parts: [
+            "lite"
+            "me"
+          ]
+          select: {
+            "$action": "me"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

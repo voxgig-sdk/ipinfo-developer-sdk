@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "ipinfo_lite": {
+      "IPINFO_LITE00": {
+        "field": "FIELD01",
+        "ip": "IP01",
+        "id": "IPINFO_LITE00"
+      },
+      "IPINFO_LITE01": {
+        "field": "FIELD01",
+        "ip": "IP01",
+        "id": "IPINFO_LITE01"
+      },
+      "IPINFO_LITE02": {
+        "field": "FIELD01",
+        "ip": "IP01",
+        "id": "IPINFO_LITE02"
+      }
+    }
+  },
+  "new": {
+    "ipinfo_lite": {
+      "ipinfo_lite_ref01": {}
+    }
+  }
+}

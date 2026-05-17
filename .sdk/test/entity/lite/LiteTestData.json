@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "lite": {
+      "LITE00": {
+        "as_domain": "s50",
+        "as_name": "s51",
+        "asn": "s52",
+        "continent": "s53",
+        "continent_code": "s54",
+        "country": "s55",
+        "country_code": "s56",
+        "ip": "s57",
+        "id": "LITE00"
+      },
+      "LITE01": {
+        "as_domain": "sa0",
+        "as_name": "sa1",
+        "asn": "sa2",
+        "continent": "sa3",
+        "continent_code": "sa4",
+        "country": "sa5",
+        "country_code": "sa6",
+        "ip": "sa7",
+        "id": "LITE01"
+      },
+      "LITE02": {
+        "as_domain": "sf0",
+        "as_name": "sf1",
+        "asn": "sf2",
+        "continent": "sf3",
+        "continent_code": "sf4",
+        "country": "sf5",
+        "country_code": "sf6",
+        "ip": "sf7",
+        "id": "LITE02"
+      }
+    }
+  },
+  "new": {
+    "lite": {
+      "lite_ref01": {
+        "as_domain": "s140",
+        "as_name": "s141",
+        "asn": "s142",
+        "continent": "s143",
+        "continent_code": "s144",
+        "country": "s145",
+        "country_code": "s146",
+        "ip": "s147"
+      }
+    }
+  }
+}

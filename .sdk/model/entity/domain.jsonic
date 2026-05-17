@@ -1,0 +1,93 @@
+# Entity: domain
+
+main: kit: entity: domain: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "ip"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "domain"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/domains/{ip}"
+          parts: [
+            "domains"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "limit"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

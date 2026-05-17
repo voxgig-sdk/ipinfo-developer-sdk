@@ -1,0 +1,28 @@
+# BasicSingleFlow
+
+main: kit: flow: BasicSingleFlow:
+{
+  entity: "single",
+  kind: "basic",
+  name: "BasicSingleFlow",
+  step: [
+    {
+      input: {
+        ref: "single_ref01",
+        srcdatavar: "single_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-single_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSingleFlow"
+}

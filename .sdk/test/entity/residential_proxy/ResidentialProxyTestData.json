@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "residential_proxy": {
+      "RESIDENTIAL_PROXY00": {
+        "ip": "s28",
+        "last_seen": "s29",
+        "percent_days_seen": "s2a",
+        "service": "s2b",
+        "id": "RESIDENTIAL_PROXY00"
+      },
+      "RESIDENTIAL_PROXY01": {
+        "ip": "s50",
+        "last_seen": "s51",
+        "percent_days_seen": "s52",
+        "service": "s53",
+        "id": "RESIDENTIAL_PROXY01"
+      },
+      "RESIDENTIAL_PROXY02": {
+        "ip": "s78",
+        "last_seen": "s79",
+        "percent_days_seen": "s7a",
+        "service": "s7b",
+        "id": "RESIDENTIAL_PROXY02"
+      }
+    }
+  },
+  "new": {
+    "residential_proxy": {
+      "residential_proxy_ref01": {
+        "ip": "sa0",
+        "last_seen": "sa1",
+        "percent_days_seen": "sa2",
+        "service": "sa3"
+      }
+    }
+  }
+}

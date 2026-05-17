@@ -1,0 +1,26 @@
+# BasicPrivacyExtendedFlow
+
+main: kit: flow: BasicPrivacyExtendedFlow:
+{
+  entity: "privacy_extended",
+  kind: "basic",
+  name: "BasicPrivacyExtendedFlow",
+  step: [
+    {
+      match: {
+        ip: "ip01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "privacy_extended_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPrivacyExtendedFlow"
+}

@@ -1,0 +1,32 @@
+# BasicAbuseFlow
+
+main: kit: flow: BasicAbuseFlow:
+{
+  entity: "abuse",
+  kind: "basic",
+  name: "BasicAbuseFlow",
+  step: [
+    {
+      input: {
+        ref: "abuse_ref01",
+        srcdatavar: "abuse_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "abuse01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-abuse_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAbuseFlow"
+}

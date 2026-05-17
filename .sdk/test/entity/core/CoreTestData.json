@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "core": {
+      "CORE00": {
+        "as": {},
+        "geo": {},
+        "hostname": "s5c",
+        "ip": "s5d",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "id": "CORE00"
+      },
+      "CORE01": {
+        "as": {},
+        "geo": {},
+        "hostname": "sb6",
+        "ip": "sb7",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "id": "CORE01"
+      },
+      "CORE02": {
+        "as": {},
+        "geo": {},
+        "hostname": "s110",
+        "ip": "s111",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "id": "CORE02"
+      }
+    }
+  },
+  "new": {
+    "core": {
+      "core_ref01": {
+        "as": {},
+        "geo": {},
+        "hostname": "s16a",
+        "ip": "s16b",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true
+      }
+    }
+  }
+}

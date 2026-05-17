@@ -1,0 +1,93 @@
+# Entity: whois_org
+
+main: kit: entity: whois_org: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "org"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "record"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "total"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "whois_org"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "whoisorgid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "whoissource"
+                orig: "whoissource"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/whois/org/{whoisorgid}"
+          parts: [
+            "whois"
+            "org"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              whoisorgid: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "page"
+              "whoissource"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

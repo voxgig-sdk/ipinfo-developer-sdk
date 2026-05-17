@@ -1,0 +1,64 @@
+# Entity: carrier
+
+main: kit: entity: carrier: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "mcc"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "mnc"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "carrier"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}/carrier"
+          parts: [
+            "{ip}"
+            "carrier"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

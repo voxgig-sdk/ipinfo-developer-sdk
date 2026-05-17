@@ -1,0 +1,110 @@
+# Entity: general
+
+main: kit: entity: general: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "8_8_8_8"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "8_8_8_8city"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "summary"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "general"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "cli"
+                orig: "cli"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/tools/map"
+          parts: [
+            "tools"
+            "map"
+          ]
+          select: {
+            exist: [
+              "cli"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "cli"
+                orig: "cli"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/tools/summarize-ips"
+          parts: [
+            "tools"
+            "summarize-ips"
+          ]
+          select: {
+            exist: [
+              "cli"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/batch"
+          parts: [
+            "batch"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

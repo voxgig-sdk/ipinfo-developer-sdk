@@ -1,0 +1,28 @@
+# BasicGetCurrentInformationFlow
+
+main: kit: flow: BasicGetCurrentInformationFlow:
+{
+  entity: "get_current_information",
+  kind: "basic",
+  name: "BasicGetCurrentInformationFlow",
+  step: [
+    {
+      input: {
+        ref: "get_current_information_ref01",
+        srcdatavar: "get_current_information_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_current_information_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetCurrentInformationFlow"
+}

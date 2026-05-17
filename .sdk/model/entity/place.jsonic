@@ -1,0 +1,84 @@
+# Entity: place
+
+main: kit: entity: place: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "category"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "latitude"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "longitude"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "ssid"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "place"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/places/{ip}"
+          parts: [
+            "places"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

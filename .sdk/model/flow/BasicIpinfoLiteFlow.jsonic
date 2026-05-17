@@ -1,0 +1,32 @@
+# BasicIpinfoLiteFlow
+
+main: kit: flow: BasicIpinfoLiteFlow:
+{
+  entity: "ipinfo_lite",
+  kind: "basic",
+  name: "BasicIpinfoLiteFlow",
+  step: [
+    {
+      input: {
+        ref: "ipinfo_lite_ref01",
+        srcdatavar: "ipinfo_lite_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "ipinfo_lite01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ipinfo_lite_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIpinfoLiteFlow"
+}

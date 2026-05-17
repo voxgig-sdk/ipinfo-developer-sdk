@@ -1,0 +1,32 @@
+# BasicMaxFlow
+
+main: kit: flow: BasicMaxFlow:
+{
+  entity: "max",
+  kind: "basic",
+  name: "BasicMaxFlow",
+  step: [
+    {
+      input: {
+        ref: "max_ref01",
+        srcdatavar: "max_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "max01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-max_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMaxFlow"
+}

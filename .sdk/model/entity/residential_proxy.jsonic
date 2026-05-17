@@ -1,0 +1,69 @@
+# Entity: residential_proxy
+
+main: kit: entity: residential_proxy: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "last_seen"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "percent_days_seen"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "service"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "residential_proxy"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}/resproxy"
+          parts: [
+            "{ip}"
+            "resproxy"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

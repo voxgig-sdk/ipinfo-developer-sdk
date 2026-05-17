@@ -1,0 +1,128 @@
+# Entity: get_information_by_ip
+
+main: kit: entity: get_information_by_ip: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asn"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "bogon"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "carrier"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "city"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "company"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "domain"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "hostname"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "loc"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "org"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "postal"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "privacy"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "region"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timezone"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_information_by_ip"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

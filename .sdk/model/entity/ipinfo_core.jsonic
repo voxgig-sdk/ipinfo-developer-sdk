@@ -1,0 +1,113 @@
+# Entity: ipinfo_core
+
+main: kit: entity: ipinfo_core: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "city"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "key"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "region"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "ipinfo_core"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "field"
+                orig: "field"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lookup/{ip}/{field}"
+          parts: [
+            "lookup"
+            "{ip}"
+            "{field}"
+          ]
+          select: {
+            exist: [
+              "field"
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "field"
+                orig: "field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lookup/me/{field}"
+          parts: [
+            "lookup"
+            "me"
+            "{field}"
+          ]
+          select: {
+            exist: [
+              "field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "me"
+      ]
+      [
+        "lookup"
+      ]
+    ]
+  }
+
+
+
+}

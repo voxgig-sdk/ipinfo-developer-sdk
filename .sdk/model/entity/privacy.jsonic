@@ -1,0 +1,79 @@
+# Entity: privacy
+
+main: kit: entity: privacy: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "hosting"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "proxy"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "relay"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "service"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tor"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "vpn"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "privacy"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}/privacy"
+          parts: [
+            "{ip}"
+            "privacy"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

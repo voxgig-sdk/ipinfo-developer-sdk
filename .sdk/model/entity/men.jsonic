@@ -1,0 +1,47 @@
+# Entity: men
+
+main: kit: entity: men: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "feature"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "request"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "token"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "men"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/me"
+          parts: [
+            "me"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

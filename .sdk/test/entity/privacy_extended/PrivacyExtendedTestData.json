@@ -1,0 +1,85 @@
+{
+  "existing": {
+    "privacy_extended": {
+      "PRIVACY_EXTENDED00": {
+        "census": true,
+        "census_port": [],
+        "confidence": "sa2",
+        "coverage": 163,
+        "device_activity": true,
+        "first_seen": "sa5",
+        "hosting": true,
+        "inferred": false,
+        "last_seen": "sa8",
+        "proxy": false,
+        "relay": true,
+        "service": "sab",
+        "tor": true,
+        "vpn": false,
+        "vpn_config": true,
+        "whoi": false,
+        "ip": "IP01"
+      },
+      "PRIVACY_EXTENDED01": {
+        "census": true,
+        "census_port": [],
+        "confidence": "s142",
+        "coverage": 323,
+        "device_activity": true,
+        "first_seen": "s145",
+        "hosting": true,
+        "inferred": false,
+        "last_seen": "s148",
+        "proxy": false,
+        "relay": true,
+        "service": "s14b",
+        "tor": true,
+        "vpn": false,
+        "vpn_config": true,
+        "whoi": false,
+        "ip": "IP01"
+      },
+      "PRIVACY_EXTENDED02": {
+        "census": true,
+        "census_port": [],
+        "confidence": "s1e2",
+        "coverage": 483,
+        "device_activity": true,
+        "first_seen": "s1e5",
+        "hosting": true,
+        "inferred": false,
+        "last_seen": "s1e8",
+        "proxy": false,
+        "relay": true,
+        "service": "s1eb",
+        "tor": true,
+        "vpn": false,
+        "vpn_config": true,
+        "whoi": false,
+        "ip": "IP01"
+      }
+    }
+  },
+  "new": {
+    "privacy_extended": {
+      "privacy_extended_ref01": {
+        "census": true,
+        "census_port": [],
+        "confidence": "s282",
+        "coverage": 643,
+        "device_activity": true,
+        "first_seen": "s285",
+        "hosting": true,
+        "inferred": false,
+        "last_seen": "s288",
+        "proxy": false,
+        "relay": true,
+        "service": "s28b",
+        "tor": true,
+        "vpn": false,
+        "vpn_config": true,
+        "whoi": false
+      }
+    }
+  }
+}

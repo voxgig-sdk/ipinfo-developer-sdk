@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "plus": {
+      "PLUS00": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "ip": "s67",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "mobile": {},
+        "id": "PLUS00"
+      },
+      "PLUS01": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "ip": "scb",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "mobile": {},
+        "id": "PLUS01"
+      },
+      "PLUS02": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "ip": "s12f",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "mobile": {},
+        "id": "PLUS02"
+      }
+    }
+  },
+  "new": {
+    "plus": {
+      "plus_ref01": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "ip": "s193",
+        "is_anonymous": true,
+        "is_anycast": false,
+        "is_hosting": true,
+        "is_mobile": false,
+        "is_satellite": true,
+        "mobile": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+# Entity: privacy_extended
+
+main: kit: entity: privacy_extended: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "census"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "census_port"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "confidence"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "coverage"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "device_activity"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "first_seen"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "hosting"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "inferred"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "last_seen"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "proxy"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "relay"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "service"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tor"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "vpn"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "vpn_config"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "whoi"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "privacy_extended"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}/privacy_extended"
+          parts: [
+            "{ip}"
+            "privacy_extended"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

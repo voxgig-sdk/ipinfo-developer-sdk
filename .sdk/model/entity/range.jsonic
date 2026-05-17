@@ -1,0 +1,74 @@
+# Entity: range
+
+main: kit: entity: range: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "num_range"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "range"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "redirects_to"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "range"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ranges/{domain}"
+          parts: [
+            "ranges"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

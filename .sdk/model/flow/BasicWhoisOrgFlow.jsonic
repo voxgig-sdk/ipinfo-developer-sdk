@@ -1,0 +1,32 @@
+# BasicWhoisOrgFlow
+
+main: kit: flow: BasicWhoisOrgFlow:
+{
+  entity: "whois_org",
+  kind: "basic",
+  name: "BasicWhoisOrgFlow",
+  step: [
+    {
+      input: {
+        ref: "whois_org_ref01",
+        srcdatavar: "whois_org_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "whois_org01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whois_org_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoisOrgFlow"
+}

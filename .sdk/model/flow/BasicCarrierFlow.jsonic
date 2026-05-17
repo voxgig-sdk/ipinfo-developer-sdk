@@ -1,0 +1,32 @@
+# BasicCarrierFlow
+
+main: kit: flow: BasicCarrierFlow:
+{
+  entity: "carrier",
+  kind: "basic",
+  name: "BasicCarrierFlow",
+  step: [
+    {
+      input: {
+        ref: "carrier_ref01",
+        srcdatavar: "carrier_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "carrier01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-carrier_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCarrierFlow"
+}

@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "whois_org": {
+      "WHOIS_ORG00": {
+        "org": "s28",
+        "page": "s29",
+        "record": [],
+        "total": "s2b",
+        "id": "WHOIS_ORG00"
+      },
+      "WHOIS_ORG01": {
+        "org": "s50",
+        "page": "s51",
+        "record": [],
+        "total": "s53",
+        "id": "WHOIS_ORG01"
+      },
+      "WHOIS_ORG02": {
+        "org": "s78",
+        "page": "s79",
+        "record": [],
+        "total": "s7b",
+        "id": "WHOIS_ORG02"
+      }
+    }
+  },
+  "new": {
+    "whois_org": {
+      "whois_org_ref01": {
+        "org": "sa0",
+        "page": "sa1",
+        "record": [],
+        "total": "sa3"
+      }
+    }
+  }
+}

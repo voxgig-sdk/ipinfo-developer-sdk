@@ -1,0 +1,4406 @@
+{
+  "name": "ipinfo-developer",
+  "origin": "voxgig-sdk",
+  "def": "ipinfo-developer_0.1.0.yaml",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "email": "support@ipinfo.io",
+          "name": "IPinfo",
+          "url": "https://ipinfo.io/"
+        },
+        "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n",
+        "servers": [
+          {
+            "url": "https://ipinfo.io/"
+          },
+          {
+            "url": "https://v6.ipinfo.io/"
+          },
+          {
+            "url": "https://api.ipinfo.io/"
+          }
+        ],
+        "title": "IPinfo.io OpenAPI Specification",
+        "version": "1.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "abuse": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "address",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "email",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "network",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "phone",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "abuse",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/abuse",
+                  "parts": [
+                    "{ip}",
+                    "abuse"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "asn": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "allocated",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "asn",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "domain",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "downstream",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "num_ip",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "peer",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "prefix",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "prefixes6",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "registry",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "route",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "upstream",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            }
+          ],
+          "name": "asn",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "asn",
+                        "orig": "asn",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/AS{asn}",
+                  "parts": [
+                    "AS{asn}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "asn"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "carrier": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "mcc",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "mnc",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "carrier",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/carrier",
+                  "parts": [
+                    "{ip}",
+                    "carrier"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "company": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "domain",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "company",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/company",
+                  "parts": [
+                    "{ip}",
+                    "company"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "core": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "as",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "geo",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "hostname",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "is_anonymous",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_anycast",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_hosting",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_mobile",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_satellite",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            }
+          ],
+          "name": "core",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/lookup/{ip}",
+                  "parts": [
+                    "lookup",
+                    "{ip}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "method": "GET",
+                  "orig": "/lookup/me",
+                  "parts": [
+                    "lookup",
+                    "me"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "lookup"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "domain": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "domain",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "total",
+              "req": true,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "domain",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": 100,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/domains/{ip}",
+                  "parts": [
+                    "domains",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id",
+                      "limit",
+                      "page"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "general": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "8_8_8_8",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "8_8_8_8city",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "summary",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "value",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            }
+          ],
+          "name": "general",
+          "op": {
+            "create": {
+              "name": "create",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": 1,
+                        "kind": "query",
+                        "name": "cli",
+                        "orig": "cli",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "POST",
+                  "orig": "/tools/map",
+                  "parts": [
+                    "tools",
+                    "map"
+                  ],
+                  "select": {
+                    "exist": [
+                      "cli"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": 1,
+                        "kind": "query",
+                        "name": "cli",
+                        "orig": "cli",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "POST",
+                  "orig": "/tools/summarize-ips",
+                  "parts": [
+                    "tools",
+                    "summarize-ips"
+                  ],
+                  "select": {
+                    "exist": [
+                      "cli"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "method": "POST",
+                  "orig": "/batch",
+                  "parts": [
+                    "batch"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "get_current_information": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "asn",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "bogon",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "carrier",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "city",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "company",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "domain",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "hostname",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "loc",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "org",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "postal",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "privacy",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "region",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timezone",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "get_current_information",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "method": "GET",
+                  "orig": "/",
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "parts": [],
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "get_information_by_ip": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "asn",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "bogon",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "carrier",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "city",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "company",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "domain",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "hostname",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "loc",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "org",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "postal",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "privacy",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "region",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timezone",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "get_information_by_ip",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}",
+                  "parts": [
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ipinfo_core": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "city",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "key",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "region",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "ipinfo_core",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "field",
+                        "orig": "field",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/lookup/{ip}/{field}",
+                  "parts": [
+                    "lookup",
+                    "{ip}",
+                    "{field}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "field",
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "field",
+                        "orig": "field",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/lookup/me/{field}",
+                  "parts": [
+                    "lookup",
+                    "me",
+                    "{field}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "field"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "me"
+              ],
+              [
+                "lookup"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "ipinfo_lite": {
+          "alias": {
+            "field": {}
+          },
+          "name": "ipinfo_lite",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "field",
+                        "orig": "field",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/lite/{ip}/{field}",
+                  "parts": [
+                    "lite",
+                    "{ip}",
+                    "{field}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "field",
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "field",
+                        "orig": "field",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/lite/me/{field}",
+                  "parts": [
+                    "lite",
+                    "me",
+                    "{field}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "field"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/lite/{ip}",
+                  "parts": [
+                    "lite",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "me"
+              ],
+              [
+                "lite"
+              ]
+            ]
+          },
+          "active": true,
+          "fields": []
+        },
+        "ipinfo_plus": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "city",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "key",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "region",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "ipinfo_plus",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "field",
+                        "orig": "field",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/plus/{ip}/{field}",
+                  "parts": [
+                    "plus",
+                    "{ip}",
+                    "{field}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "field",
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "field",
+                        "orig": "field",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/plus/me/{field}",
+                  "parts": [
+                    "plus",
+                    "me",
+                    "{field}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "field"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "me"
+              ],
+              [
+                "plus"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "lite": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "as_domain",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "as_name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "asn",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "continent",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "continent_code",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "country_code",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "lite",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "method": "GET",
+                  "orig": "/lite/me",
+                  "parts": [
+                    "lite",
+                    "me"
+                  ],
+                  "select": {
+                    "$action": "me"
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "max": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "anonymous",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "as",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "geo",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "hostname",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "is_anonymous",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_anycast",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_hosting",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_mobile",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_satellite",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "mobile",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            }
+          ],
+          "name": "max",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/max/{ip}",
+                  "parts": [
+                    "max",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "men": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "feature",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "request",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "token",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "men",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "method": "GET",
+                  "orig": "/me",
+                  "parts": [
+                    "me"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "place": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "category",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "latitude",
+              "req": true,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "longitude",
+              "req": true,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "ssid",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "place",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/places/{ip}",
+                  "parts": [
+                    "places",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "plus": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "anonymous",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "as",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "geo",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "is_anonymous",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_anycast",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_hosting",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_mobile",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "is_satellite",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "mobile",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            }
+          ],
+          "name": "plus",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/plus/{ip}",
+                  "parts": [
+                    "plus",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "method": "GET",
+                  "orig": "/plus/me",
+                  "parts": [
+                    "plus",
+                    "me"
+                  ],
+                  "select": {
+                    "$action": "me"
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "privacy": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "hosting",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "proxy",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "relay",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "service",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "tor",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "vpn",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            }
+          ],
+          "name": "privacy",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/privacy",
+                  "parts": [
+                    "{ip}",
+                    "privacy"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "privacy_extended": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "census",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "census_port",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "confidence",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "coverage",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "device_activity",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "first_seen",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "hosting",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "inferred",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "last_seen",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "proxy",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "relay",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "service",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "tor",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "vpn",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "vpn_config",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "whoi",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            }
+          ],
+          "name": "privacy_extended",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/privacy_extended",
+                  "parts": [
+                    "{ip}",
+                    "privacy_extended"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "range": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "domain",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "num_range",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "range",
+              "req": true,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "redirects_to",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "range",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/ranges/{domain}",
+                  "parts": [
+                    "ranges",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "domain": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "residential_proxy": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "last_seen",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "percent_days_seen",
+              "req": true,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "service",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "residential_proxy",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/resproxy",
+                  "parts": [
+                    "{ip}",
+                    "resproxy"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "single": {
+          "alias": {
+            "field": {}
+          },
+          "name": "single",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/city",
+                  "parts": [
+                    "{ip}",
+                    "city"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/country",
+                  "parts": [
+                    "{ip}",
+                    "country"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/hostname",
+                  "parts": [
+                    "{ip}",
+                    "hostname"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/ip",
+                  "parts": [
+                    "{ip}",
+                    "ip"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/loc",
+                  "parts": [
+                    "{ip}",
+                    "loc"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/org",
+                  "parts": [
+                    "{ip}",
+                    "org"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/postal",
+                  "parts": [
+                    "{ip}",
+                    "postal"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/region",
+                  "parts": [
+                    "{ip}",
+                    "region"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{ip}/timezone",
+                  "parts": [
+                    "{ip}",
+                    "timezone"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "method": "GET",
+                  "orig": "/city",
+                  "parts": [
+                    "city"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/country",
+                  "parts": [
+                    "country"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/hostname",
+                  "parts": [
+                    "hostname"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/ip",
+                  "parts": [
+                    "ip"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/loc",
+                  "parts": [
+                    "loc"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/org",
+                  "parts": [
+                    "org"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/postal",
+                  "parts": [
+                    "postal"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/region",
+                  "parts": [
+                    "region"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                },
+                {
+                  "method": "GET",
+                  "orig": "/timezone",
+                  "parts": [
+                    "timezone"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "whois_asn": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "abuse",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "admin",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "maintainer",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "org",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "range",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "raw",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "source",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "status",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "tech",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "updated",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "whois_asn",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "asn",
+                        "orig": "asn",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "whoissource",
+                        "orig": "whoissource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois/net/AS{asn}",
+                  "parts": [
+                    "whois",
+                    "net",
+                    "AS{asn}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "asn",
+                      "page",
+                      "whoissource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "whois_domain": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "net",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "record",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "total",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "whois_domain",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "whoissource",
+                        "orig": "whoissource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois/net/{domain}",
+                  "parts": [
+                    "whois",
+                    "net",
+                    "{domain}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain",
+                      "page",
+                      "whoissource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "net"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "whois_ip": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "net",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "record",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "total",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "whois_ip",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "whoisip",
+                        "orig": "whoisip",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "whoissource",
+                        "orig": "whoissource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois/net/{whoisip}",
+                  "parts": [
+                    "whois",
+                    "net",
+                    "{whoisip}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "page",
+                      "whoisip",
+                      "whoissource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "net"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "whois_net_id": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "net",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "record",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "total",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "whois_net_id",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "whoisnetid",
+                        "orig": "whoisnetid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "whoissource",
+                        "orig": "whoissource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois/net/{whoisnetid}",
+                  "parts": [
+                    "whois",
+                    "net",
+                    "{whoisnetid}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "page",
+                      "whoisnetid",
+                      "whoissource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "net"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "whois_org": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "org",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "record",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "total",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "whois_org",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "whoisorgid",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "whoissource",
+                        "orig": "whoissource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois/org/{whoisorgid}",
+                  "parts": [
+                    "whois",
+                    "org",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "whoisorgid": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id",
+                      "page",
+                      "whoissource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "whois_poc": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "poc",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "record",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "total",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "whois_poc",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "whoispoc",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "whoissource",
+                        "orig": "whoissource",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois/poc/{whoispoc}",
+                  "parts": [
+                    "whois",
+                    "poc",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "whoispoc": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id",
+                      "page",
+                      "whoissource"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicAbuseFlow": {
+          "entity": "abuse",
+          "kind": "basic",
+          "name": "BasicAbuseFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "abuse_ref01",
+                "srcdatavar": "abuse_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "abuse01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-abuse_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicAbuseFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicAsnFlow": {
+          "entity": "asn",
+          "kind": "basic",
+          "name": "BasicAsnFlow",
+          "step": [
+            {
+              "match": {
+                "asn": "asn01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "asn_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicAsnFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicCarrierFlow": {
+          "entity": "carrier",
+          "kind": "basic",
+          "name": "BasicCarrierFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "carrier_ref01",
+                "srcdatavar": "carrier_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "carrier01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-carrier_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicCarrierFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicCompanyFlow": {
+          "entity": "company",
+          "kind": "basic",
+          "name": "BasicCompanyFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "company_ref01",
+                "srcdatavar": "company_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "company01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-company_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicCompanyFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicCoreFlow": {
+          "entity": "core",
+          "kind": "basic",
+          "name": "BasicCoreFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "core_ref01",
+                "srcdatavar": "core_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-core_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicCoreFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicDomainFlow": {
+          "entity": "domain",
+          "kind": "basic",
+          "name": "BasicDomainFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "domain_ref01",
+                "srcdatavar": "domain_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "domain01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-domain_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicDomainFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicGeneralFlow": {
+          "entity": "general",
+          "kind": "basic",
+          "name": "BasicGeneralFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "general_ref01"
+              },
+              "op": "create",
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": [],
+              "valid": []
+            }
+          ],
+          "key$": "BasicGeneralFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicGetCurrentInformationFlow": {
+          "entity": "get_current_information",
+          "kind": "basic",
+          "name": "BasicGetCurrentInformationFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "get_current_information_ref01",
+                "srcdatavar": "get_current_information_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-get_current_information_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicGetCurrentInformationFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicGetInformationByIpFlow": {
+          "entity": "get_information_by_ip",
+          "kind": "basic",
+          "name": "BasicGetInformationByIpFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "get_information_by_ip_ref01",
+                "srcdatavar": "get_information_by_ip_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "get_information_by_ip01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-get_information_by_ip_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicGetInformationByIpFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicIpinfoCoreFlow": {
+          "entity": "ipinfo_core",
+          "kind": "basic",
+          "name": "BasicIpinfoCoreFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "ipinfo_core_ref01",
+                "srcdatavar": "ipinfo_core_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "ipinfo_core01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ipinfo_core_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicIpinfoCoreFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicIpinfoLiteFlow": {
+          "entity": "ipinfo_lite",
+          "kind": "basic",
+          "name": "BasicIpinfoLiteFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "ipinfo_lite_ref01",
+                "srcdatavar": "ipinfo_lite_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "ipinfo_lite01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ipinfo_lite_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicIpinfoLiteFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicIpinfoPlusFlow": {
+          "entity": "ipinfo_plus",
+          "kind": "basic",
+          "name": "BasicIpinfoPlusFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "ipinfo_plus_ref01",
+                "srcdatavar": "ipinfo_plus_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "ipinfo_plus01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ipinfo_plus_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicIpinfoPlusFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicLiteFlow": {
+          "entity": "lite",
+          "kind": "basic",
+          "name": "BasicLiteFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "lite_ref01",
+                "srcdatavar": "lite_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-lite_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicLiteFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicMaxFlow": {
+          "entity": "max",
+          "kind": "basic",
+          "name": "BasicMaxFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "max_ref01",
+                "srcdatavar": "max_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "max01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-max_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicMaxFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicMenFlow": {
+          "entity": "men",
+          "kind": "basic",
+          "name": "BasicMenFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "men_ref01",
+                "srcdatavar": "men_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-men_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicMenFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicPlaceFlow": {
+          "entity": "place",
+          "kind": "basic",
+          "name": "BasicPlaceFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "place_ref01",
+                "srcdatavar": "place_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "place01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-place_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicPlaceFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicPlusFlow": {
+          "entity": "plus",
+          "kind": "basic",
+          "name": "BasicPlusFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "plus_ref01",
+                "srcdatavar": "plus_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-plus_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicPlusFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicPrivacyExtendedFlow": {
+          "entity": "privacy_extended",
+          "kind": "basic",
+          "name": "BasicPrivacyExtendedFlow",
+          "step": [
+            {
+              "match": {
+                "ip": "ip01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "privacy_extended_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicPrivacyExtendedFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicPrivacyFlow": {
+          "entity": "privacy",
+          "kind": "basic",
+          "name": "BasicPrivacyFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "privacy_ref01",
+                "srcdatavar": "privacy_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "privacy01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-privacy_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicPrivacyFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRangeFlow": {
+          "entity": "range",
+          "kind": "basic",
+          "name": "BasicRangeFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "range_ref01",
+                "srcdatavar": "range_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "range01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-range_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRangeFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicResidentialProxyFlow": {
+          "entity": "residential_proxy",
+          "kind": "basic",
+          "name": "BasicResidentialProxyFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "residential_proxy_ref01",
+                "srcdatavar": "residential_proxy_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "residential_proxy01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-residential_proxy_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicResidentialProxyFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicSingleFlow": {
+          "entity": "single",
+          "kind": "basic",
+          "name": "BasicSingleFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "single_ref01",
+                "srcdatavar": "single_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-single_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicSingleFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWhoisAsnFlow": {
+          "entity": "whois_asn",
+          "kind": "basic",
+          "name": "BasicWhoisAsnFlow",
+          "step": [
+            {
+              "match": {
+                "asn": "asn01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "whois_asn_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWhoisAsnFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWhoisDomainFlow": {
+          "entity": "whois_domain",
+          "kind": "basic",
+          "name": "BasicWhoisDomainFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "whois_domain_ref01",
+                "srcdatavar": "whois_domain_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "whois_domain01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-whois_domain_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWhoisDomainFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWhoisIpFlow": {
+          "entity": "whois_ip",
+          "kind": "basic",
+          "name": "BasicWhoisIpFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "whois_ip_ref01",
+                "srcdatavar": "whois_ip_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "whois_ip01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-whois_ip_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWhoisIpFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWhoisNetIdFlow": {
+          "entity": "whois_net_id",
+          "kind": "basic",
+          "name": "BasicWhoisNetIdFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "whois_net_id_ref01",
+                "srcdatavar": "whois_net_id_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "whois_net_id01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-whois_net_id_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWhoisNetIdFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWhoisOrgFlow": {
+          "entity": "whois_org",
+          "kind": "basic",
+          "name": "BasicWhoisOrgFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "whois_org_ref01",
+                "srcdatavar": "whois_org_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "whois_org01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-whois_org_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWhoisOrgFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWhoisPocFlow": {
+          "entity": "whois_poc",
+          "kind": "basic",
+          "name": "BasicWhoisPocFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "whois_poc_ref01",
+                "srcdatavar": "whois_poc_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "whois_poc01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-whois_poc_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWhoisPocFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "go-cli": {
+          "title": "Go CLI",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "phase": {
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "deps": {},
+          "name": "go-cli",
+          "active": true
+        },
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "ipinfo-developer"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    }
+  }
+}

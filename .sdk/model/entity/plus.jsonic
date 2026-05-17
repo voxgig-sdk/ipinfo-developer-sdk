@@ -1,0 +1,119 @@
+# Entity: plus
+
+main: kit: entity: plus: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "anonymous"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "as"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "geo"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "is_anonymous"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_anycast"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_hosting"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_mobile"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_satellite"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "mobile"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "plus"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/plus/{ip}"
+          parts: [
+            "plus"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/plus/me"
+          parts: [
+            "plus"
+            "me"
+          ]
+          select: {
+            "$action": "me"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

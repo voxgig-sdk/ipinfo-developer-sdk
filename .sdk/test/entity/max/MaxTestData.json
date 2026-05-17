@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "max": {
+      "MAX00": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "hostname": "s71",
+        "ip": "s72",
+        "is_anonymous": false,
+        "is_anycast": true,
+        "is_hosting": false,
+        "is_mobile": true,
+        "is_satellite": false,
+        "mobile": {},
+        "id": "MAX00"
+      },
+      "MAX01": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "hostname": "sdf",
+        "ip": "se0",
+        "is_anonymous": false,
+        "is_anycast": true,
+        "is_hosting": false,
+        "is_mobile": true,
+        "is_satellite": false,
+        "mobile": {},
+        "id": "MAX01"
+      },
+      "MAX02": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "hostname": "s14d",
+        "ip": "s14e",
+        "is_anonymous": false,
+        "is_anycast": true,
+        "is_hosting": false,
+        "is_mobile": true,
+        "is_satellite": false,
+        "mobile": {},
+        "id": "MAX02"
+      }
+    }
+  },
+  "new": {
+    "max": {
+      "max_ref01": {
+        "anonymous": {},
+        "as": {},
+        "geo": {},
+        "hostname": "s1bb",
+        "ip": "s1bc",
+        "is_anonymous": false,
+        "is_anycast": true,
+        "is_hosting": false,
+        "is_mobile": true,
+        "is_satellite": false,
+        "mobile": {}
+      }
+    }
+  }
+}

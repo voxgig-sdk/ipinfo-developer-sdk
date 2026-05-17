@@ -1,0 +1,104 @@
+# Entity: get_current_information
+
+main: kit: entity: get_current_information: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asn"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "bogon"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "carrier"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "city"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "company"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "domain"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "hostname"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "loc"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "org"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "postal"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "privacy"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "region"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timezone"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_current_information"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/"
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

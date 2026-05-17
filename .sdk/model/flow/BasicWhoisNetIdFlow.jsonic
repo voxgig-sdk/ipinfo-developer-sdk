@@ -1,0 +1,32 @@
+# BasicWhoisNetIdFlow
+
+main: kit: flow: BasicWhoisNetIdFlow:
+{
+  entity: "whois_net_id",
+  kind: "basic",
+  name: "BasicWhoisNetIdFlow",
+  step: [
+    {
+      input: {
+        ref: "whois_net_id_ref01",
+        srcdatavar: "whois_net_id_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "whois_net_id01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whois_net_id_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoisNetIdFlow"
+}

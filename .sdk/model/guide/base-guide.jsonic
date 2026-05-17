@@ -1,0 +1,263 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 28
+  metrics: count: path: 53
+  metrics: count: method: 53
+
+  entity: abuse: {
+    path: "/{ip}/abuse": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: asn: {
+    path: "/AS{asn}": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.asn`")|top
+    }
+  }
+
+  entity: carrier: {
+    path: "/{ip}/carrier": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: company: {
+    path: "/{ip}/company": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: core: {
+    path: "/lookup/me": {
+      op: load: method: *GET
+    }
+    path: "/lookup/{ip}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: domain: {
+    path: "/domains/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: general: {
+    path: "/batch": {
+      op: create: method: *POST
+    }
+    path: "/tools/map": {
+      op: create: method: *POST
+    }
+    path: "/tools/summarize-ips": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: get_current_information: {
+    path: "/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_information_by_ip: {
+    path: "/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: ipinfo_core: {
+    path: "/lookup/me/{field}": {
+      op: load: method: *GET
+    }
+    path: "/lookup/{ip}/{field}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ipinfo_lite: {
+    path: "/lite/me/{field}": {
+      op: load: method: *GET
+    }
+    path: "/lite/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+    path: "/lite/{ip}/{field}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ipinfo_plus: {
+    path: "/plus/me/{field}": {
+      op: load: method: *GET
+    }
+    path: "/plus/{ip}/{field}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: lite: {
+    path: "/lite/me": {
+      action: "me": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: max: {
+    path: "/max/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: men: {
+    path: "/me": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: place: {
+    path: "/places/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: plus: {
+    path: "/plus/me": {
+      action: "me": {}
+      op: load: method: *GET
+    }
+    path: "/plus/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: privacy: {
+    path: "/{ip}/privacy": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: privacy_extended: {
+    path: "/{ip}/privacy_extended": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: range: {
+    path: "/ranges/{domain}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: residential_proxy: {
+    path: "/{ip}/resproxy": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: single: {
+    path: "/city": {
+      op: load: method: *GET
+    }
+    path: "/country": {
+      op: load: method: *GET
+    }
+    path: "/hostname": {
+      op: load: method: *GET
+    }
+    path: "/ip": {
+      op: load: method: *GET
+    }
+    path: "/loc": {
+      op: load: method: *GET
+    }
+    path: "/org": {
+      op: load: method: *GET
+    }
+    path: "/postal": {
+      op: load: method: *GET
+    }
+    path: "/region": {
+      op: load: method: *GET
+    }
+    path: "/timezone": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/city": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/country": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/hostname": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/ip": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/loc": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/org": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/postal": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/region": {
+      op: load: method: *GET
+    }
+    path: "/{ip}/timezone": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whois_asn: {
+    path: "/whois/net/AS{asn}": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: whois_domain: {
+    path: "/whois/net/{domain}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whois_ip: {
+    path: "/whois/net/{whoisip}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whois_net_id: {
+    path: "/whois/net/{whoisnetid}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whois_org: {
+    path: "/whois/org/{whoisorgid}": {
+      rename: param: "whoisorgid": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: whois_poc: {
+    path: "/whois/poc/{whoispoc}": {
+      rename: param: "whoispoc": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

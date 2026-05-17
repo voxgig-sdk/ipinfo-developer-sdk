@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "company": {
+      "COMPANY00": {
+        "domain": "s1e",
+        "name": "s1f",
+        "type": "s20",
+        "ip": "IP01",
+        "id": "COMPANY00"
+      },
+      "COMPANY01": {
+        "domain": "s3c",
+        "name": "s3d",
+        "type": "s3e",
+        "ip": "IP01",
+        "id": "COMPANY01"
+      },
+      "COMPANY02": {
+        "domain": "s5a",
+        "name": "s5b",
+        "type": "s5c",
+        "ip": "IP01",
+        "id": "COMPANY02"
+      }
+    }
+  },
+  "new": {
+    "company": {
+      "company_ref01": {
+        "domain": "s78",
+        "name": "s79",
+        "type": "s7a"
+      }
+    }
+  }
+}

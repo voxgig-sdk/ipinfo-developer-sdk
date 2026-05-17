@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "place": {
+      "PLACE00": {
+        "category": "s3c",
+        "ip": "s3d",
+        "latitude": 62,
+        "longitude": 63,
+        "name": "s40",
+        "ssid": "s41",
+        "id": "PLACE00"
+      },
+      "PLACE01": {
+        "category": "s78",
+        "ip": "s79",
+        "latitude": 122,
+        "longitude": 123,
+        "name": "s7c",
+        "ssid": "s7d",
+        "id": "PLACE01"
+      },
+      "PLACE02": {
+        "category": "sb4",
+        "ip": "sb5",
+        "latitude": 182,
+        "longitude": 183,
+        "name": "sb8",
+        "ssid": "sb9",
+        "id": "PLACE02"
+      }
+    }
+  },
+  "new": {
+    "place": {
+      "place_ref01": {
+        "category": "sf0",
+        "ip": "sf1",
+        "latitude": 242,
+        "longitude": 243,
+        "name": "sf4",
+        "ssid": "sf5"
+      }
+    }
+  }
+}

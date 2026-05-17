@@ -1,0 +1,114 @@
+# Entity: core
+
+main: kit: entity: core: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "as"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "geo"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "hostname"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "is_anonymous"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_anycast"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_hosting"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_mobile"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_satellite"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "core"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lookup/{ip}"
+          parts: [
+            "lookup"
+            "{ip}"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/lookup/me"
+          parts: [
+            "lookup"
+            "me"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "lookup"
+      ]
+    ]
+  }
+
+
+
+}

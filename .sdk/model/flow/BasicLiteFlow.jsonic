@@ -1,0 +1,28 @@
+# BasicLiteFlow
+
+main: kit: flow: BasicLiteFlow:
+{
+  entity: "lite",
+  kind: "basic",
+  name: "BasicLiteFlow",
+  step: [
+    {
+      input: {
+        ref: "lite_ref01",
+        srcdatavar: "lite_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-lite_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLiteFlow"
+}

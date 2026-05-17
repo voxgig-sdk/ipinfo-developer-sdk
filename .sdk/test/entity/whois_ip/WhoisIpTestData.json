@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "whois_ip": {
+      "WHOIS_IP00": {
+        "net": "s28",
+        "page": "s29",
+        "record": [],
+        "total": "s2b",
+        "whoisip": "WHOISIP01",
+        "id": "WHOIS_IP00"
+      },
+      "WHOIS_IP01": {
+        "net": "s50",
+        "page": "s51",
+        "record": [],
+        "total": "s53",
+        "whoisip": "WHOISIP01",
+        "id": "WHOIS_IP01"
+      },
+      "WHOIS_IP02": {
+        "net": "s78",
+        "page": "s79",
+        "record": [],
+        "total": "s7b",
+        "whoisip": "WHOISIP01",
+        "id": "WHOIS_IP02"
+      }
+    }
+  },
+  "new": {
+    "whois_ip": {
+      "whois_ip_ref01": {
+        "net": "sa0",
+        "page": "sa1",
+        "record": [],
+        "total": "sa3"
+      }
+    }
+  }
+}

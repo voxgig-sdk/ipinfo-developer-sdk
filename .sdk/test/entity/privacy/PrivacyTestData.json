@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "privacy": {
+      "PRIVACY00": {
+        "hosting": true,
+        "proxy": false,
+        "relay": true,
+        "service": "s3f",
+        "tor": true,
+        "vpn": false,
+        "ip": "IP01",
+        "id": "PRIVACY00"
+      },
+      "PRIVACY01": {
+        "hosting": true,
+        "proxy": false,
+        "relay": true,
+        "service": "s7b",
+        "tor": true,
+        "vpn": false,
+        "ip": "IP01",
+        "id": "PRIVACY01"
+      },
+      "PRIVACY02": {
+        "hosting": true,
+        "proxy": false,
+        "relay": true,
+        "service": "sb7",
+        "tor": true,
+        "vpn": false,
+        "ip": "IP01",
+        "id": "PRIVACY02"
+      }
+    }
+  },
+  "new": {
+    "privacy": {
+      "privacy_ref01": {
+        "hosting": true,
+        "proxy": false,
+        "relay": true,
+        "service": "sf3",
+        "tor": true,
+        "vpn": false
+      }
+    }
+  }
+}

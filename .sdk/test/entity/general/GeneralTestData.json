@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "general": {
+      "GENERAL00": {
+        "8_8_8_8": {},
+        "8_8_8_8city": "s29",
+        "summary": "s2a",
+        "value": {},
+        "id": "GENERAL00"
+      },
+      "GENERAL01": {
+        "8_8_8_8": {},
+        "8_8_8_8city": "s51",
+        "summary": "s52",
+        "value": {},
+        "id": "GENERAL01"
+      },
+      "GENERAL02": {
+        "8_8_8_8": {},
+        "8_8_8_8city": "s79",
+        "summary": "s7a",
+        "value": {},
+        "id": "GENERAL02"
+      }
+    }
+  },
+  "new": {
+    "general": {
+      "general_ref01": {
+        "8_8_8_8": {},
+        "8_8_8_8city": "sa1",
+        "summary": "sa2",
+        "value": {}
+      }
+    }
+  }
+}

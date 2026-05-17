@@ -1,0 +1,109 @@
+# Entity: max
+
+main: kit: entity: max: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "anonymous"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "as"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "geo"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "hostname"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "is_anonymous"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_anycast"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_hosting"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_mobile"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_satellite"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "mobile"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "max"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/max/{ip}"
+          parts: [
+            "max"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

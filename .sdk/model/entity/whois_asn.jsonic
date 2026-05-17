@@ -1,0 +1,138 @@
+# Entity: whois_asn
+
+main: kit: entity: whois_asn: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "abuse"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "admin"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "maintainer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "org"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "range"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "raw"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tech"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "whois_asn"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "asn"
+                orig: "asn"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "whoissource"
+                orig: "whoissource"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/whois/net/AS{asn}"
+          parts: [
+            "whois"
+            "net"
+            "AS{asn}"
+          ]
+          select: {
+            exist: [
+              "asn"
+              "page"
+              "whoissource"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

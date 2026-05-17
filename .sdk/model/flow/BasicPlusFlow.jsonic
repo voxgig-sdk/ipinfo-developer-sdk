@@ -1,0 +1,28 @@
+# BasicPlusFlow
+
+main: kit: flow: BasicPlusFlow:
+{
+  entity: "plus",
+  kind: "basic",
+  name: "BasicPlusFlow",
+  step: [
+    {
+      input: {
+        ref: "plus_ref01",
+        srcdatavar: "plus_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-plus_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPlusFlow"
+}

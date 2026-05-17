@@ -1,0 +1,79 @@
+# Entity: abuse
+
+main: kit: entity: abuse: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "network"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "phone"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "abuse"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ip}/abuse"
+          parts: [
+            "{ip}"
+            "abuse"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

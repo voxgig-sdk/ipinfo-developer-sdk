@@ -1,0 +1,26 @@
+# BasicAsnFlow
+
+main: kit: flow: BasicAsnFlow:
+{
+  entity: "asn",
+  kind: "basic",
+  name: "BasicAsnFlow",
+  step: [
+    {
+      match: {
+        asn: "asn01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "asn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAsnFlow"
+}

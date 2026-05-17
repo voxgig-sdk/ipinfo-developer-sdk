@@ -1,0 +1,96 @@
+# Entity: whois_net_id
+
+main: kit: entity: whois_net_id: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "net"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "record"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "total"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "whois_net_id"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "whoisnetid"
+                orig: "whoisnetid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "whoissource"
+                orig: "whoissource"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/whois/net/{whoisnetid}"
+          parts: [
+            "whois"
+            "net"
+            "{whoisnetid}"
+          ]
+          select: {
+            exist: [
+              "page"
+              "whoisnetid"
+              "whoissource"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "net"
+      ]
+    ]
+  }
+
+
+
+}

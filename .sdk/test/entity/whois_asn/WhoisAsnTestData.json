@@ -1,0 +1,72 @@
+{
+  "existing": {
+    "whois_asn": {
+      "WHOIS_ASN00": {
+        "abuse": "s82",
+        "admin": "s83",
+        "country": "s84",
+        "id": "WHOIS_ASN00",
+        "maintainer": "s86",
+        "name": "s87",
+        "org": "s88",
+        "range": "s89",
+        "raw": "s8a",
+        "source": "s8b",
+        "status": "s8c",
+        "tech": "s8d",
+        "updated": "s8e",
+        "asn": "ASN01"
+      },
+      "WHOIS_ASN01": {
+        "abuse": "s104",
+        "admin": "s105",
+        "country": "s106",
+        "id": "WHOIS_ASN01",
+        "maintainer": "s108",
+        "name": "s109",
+        "org": "s10a",
+        "range": "s10b",
+        "raw": "s10c",
+        "source": "s10d",
+        "status": "s10e",
+        "tech": "s10f",
+        "updated": "s110",
+        "asn": "ASN01"
+      },
+      "WHOIS_ASN02": {
+        "abuse": "s186",
+        "admin": "s187",
+        "country": "s188",
+        "id": "WHOIS_ASN02",
+        "maintainer": "s18a",
+        "name": "s18b",
+        "org": "s18c",
+        "range": "s18d",
+        "raw": "s18e",
+        "source": "s18f",
+        "status": "s190",
+        "tech": "s191",
+        "updated": "s192",
+        "asn": "ASN01"
+      }
+    }
+  },
+  "new": {
+    "whois_asn": {
+      "whois_asn_ref01": {
+        "abuse": "s208",
+        "admin": "s209",
+        "country": "s20a",
+        "maintainer": "s20c",
+        "name": "s20d",
+        "org": "s20e",
+        "range": "s20f",
+        "raw": "s210",
+        "source": "s211",
+        "status": "s212",
+        "tech": "s213",
+        "updated": "s214"
+      }
+    }
+  }
+}

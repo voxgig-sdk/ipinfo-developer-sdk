@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "abuse": {
+      "ABUSE00": {
+        "address": "s3c",
+        "country": "s3d",
+        "email": "s3e",
+        "name": "s3f",
+        "network": "s40",
+        "phone": "s41",
+        "ip": "IP01",
+        "id": "ABUSE00"
+      },
+      "ABUSE01": {
+        "address": "s78",
+        "country": "s79",
+        "email": "s7a",
+        "name": "s7b",
+        "network": "s7c",
+        "phone": "s7d",
+        "ip": "IP01",
+        "id": "ABUSE01"
+      },
+      "ABUSE02": {
+        "address": "sb4",
+        "country": "sb5",
+        "email": "sb6",
+        "name": "sb7",
+        "network": "sb8",
+        "phone": "sb9",
+        "ip": "IP01",
+        "id": "ABUSE02"
+      }
+    }
+  },
+  "new": {
+    "abuse": {
+      "abuse_ref01": {
+        "address": "sf0",
+        "country": "sf1",
+        "email": "sf2",
+        "name": "sf3",
+        "network": "sf4",
+        "phone": "sf5"
+      }
+    }
+  }
+}
