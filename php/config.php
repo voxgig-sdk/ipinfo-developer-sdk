@@ -20,9 +20,6 @@ class IpinfoDeveloperConfig
             ],
             "options" => [
                 "base" => "https://ipinfo.io/",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

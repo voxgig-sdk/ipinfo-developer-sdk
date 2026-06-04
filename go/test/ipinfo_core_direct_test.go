@@ -121,14 +121,12 @@ func ipinfo_coreDirectSetup(mockres any) *ipinfo_coreDirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPINFODEVELOPER_TEST_IPINFO_CORE_ENTID": map[string]any{},
 		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
-		"IPINFODEVELOPER_APIKEY":       "NONE",
 	})
 
 	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPINFODEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 

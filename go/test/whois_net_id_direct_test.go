@@ -117,14 +117,12 @@ func whois_net_idDirectSetup(mockres any) *whois_net_idDirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPINFODEVELOPER_TEST_WHOIS_NET_ID_ENTID": map[string]any{},
 		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
-		"IPINFODEVELOPER_APIKEY":       "NONE",
 	})
 
 	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPINFODEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 

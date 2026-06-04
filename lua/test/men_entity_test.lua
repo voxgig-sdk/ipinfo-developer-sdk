@@ -91,7 +91,6 @@ function men_basic_setup(extra)
     ["IPINFODEVELOPER_TEST_MEN_ENTID"] = idmap,
     ["IPINFODEVELOPER_TEST_LIVE"] = "FALSE",
     ["IPINFODEVELOPER_TEST_EXPLAIN"] = "FALSE",
-    ["IPINFODEVELOPER_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function men_basic_setup(extra)
   if env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["IPINFODEVELOPER_APIKEY"],
       },
       extra or {},
     })

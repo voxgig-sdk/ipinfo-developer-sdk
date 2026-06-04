@@ -117,14 +117,12 @@ func residential_proxyDirectSetup(mockres any) *residential_proxyDirectSetupResu
 	env := envOverride(map[string]any{
 		"IPINFODEVELOPER_TEST_RESIDENTIAL_PROXY_ENTID": map[string]any{},
 		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
-		"IPINFODEVELOPER_APIKEY":       "NONE",
 	})
 
 	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPINFODEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 

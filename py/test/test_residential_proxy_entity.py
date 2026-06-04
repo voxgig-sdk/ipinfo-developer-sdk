@@ -91,7 +91,6 @@ def _residential_proxy_basic_setup(extra):
         "IPINFODEVELOPER_TEST_RESIDENTIAL_PROXY_ENTID": idmap,
         "IPINFODEVELOPER_TEST_LIVE": "FALSE",
         "IPINFODEVELOPER_TEST_EXPLAIN": "FALSE",
-        "IPINFODEVELOPER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _residential_proxy_basic_setup(extra):
     if env.get("IPINFODEVELOPER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPINFODEVELOPER_APIKEY"),
             },
             extra or {},
         ])

@@ -114,7 +114,6 @@ function basicSetup(extra?: any) {
     'IPINFO_DEVELOPER_TEST_PRIVACY_EXTENDED_ENTID': idmap,
     'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
     'IPINFO_DEVELOPER_TEST_EXPLAIN': 'FALSE',
-    'IPINFO_DEVELOPER_APIKEY': 'NONE',
   })
 
   idmap = env['IPINFO_DEVELOPER_TEST_PRIVACY_EXTENDED_ENTID']
@@ -124,7 +123,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new IpinfoDeveloperSDK(merge([
       {
-        apikey: env.IPINFO_DEVELOPER_APIKEY,
       },
       extra
     ]))

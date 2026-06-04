@@ -117,14 +117,12 @@ func get_information_by_ipDirectSetup(mockres any) *get_information_by_ipDirectS
 	env := envOverride(map[string]any{
 		"IPINFODEVELOPER_TEST_GET_INFORMATION_BY_IP_ENTID": map[string]any{},
 		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
-		"IPINFODEVELOPER_APIKEY":       "NONE",
 	})
 
 	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPINFODEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 

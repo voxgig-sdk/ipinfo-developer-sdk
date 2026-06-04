@@ -23,7 +23,44 @@
           }
         ],
         "title": "IPinfo.io OpenAPI Specification",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "IP address intelligence with geolocation, ASN, company, privacy, carrier, and WHOIS data across Lite, Core, and Plus tiers",
+        "homepage": "https://ipinfo.io/",
+        "docs_url": "https://ipinfo.io/developers",
+        "license_short": "Commercial API with a free Lite tier; paid plans for higher-resolution data",
+        "license_md": "- Commercial service operated by [IPinfo](https://ipinfo.io/)\n- Free Lite tier provides country-level geolocation and ASN data with unlimited requests\n- Higher tiers (Core, Plus, Max, Enterprise) unlock city-level geolocation, VPN/proxy detection, carrier, company, and WHOIS data\n- Token-based authentication is required for tier-specific endpoints; check the [pricing page](https://ipinfo.io/pricing) for current terms",
+        "about_md": "[IPinfo](https://ipinfo.io/) is an IP address data provider offering geolocation, network ownership, privacy detection, and related intelligence over a single HTTP API. The service is delivered across tiered product lines (Lite, Core, Plus, Max, Enterprise) with daily data refresh and IPv4/IPv6 coverage.\n\nWhat you can pull from the API:\n\n- Geolocation: city, region, country, coordinates, timezone, postal code\n- Network: ASN, organisation, route/prefix, IP range lookups\n- Privacy signals: VPN, proxy, Tor, relay, hosting, and residential-proxy detection\n- Attribution: company name and domain, hosted domains per IP\n- Carrier: mobile network operator and MCC/MNC where applicable\n- WHOIS: ASN, domain, IP, net, organisation, and POC records\n- Abuse contact details for an IP\n\nRequests authenticate via an API token. The free Lite tier returns a reduced field set; richer attributes (privacy_extended, residential_proxy, carrier, company, etc.) are gated to paid tiers. CORS is enabled, making the API usable directly from browsers.",
+        "entity_desc": {
+          "abuse": "Abuse-contact details (email, address, network) associated with an IP.",
+          "asn": "Autonomous System data: ASN number, name, route/prefix, and registry information.",
+          "carrier": "Mobile carrier attribution including network name and MCC/MNC codes where available.",
+          "company": "Company attribution: name, domain, and ownership type tied to an IP.",
+          "core": "Core-tier response: city-level geolocation plus VPN/proxy detection and expanded network attributes.",
+          "domain": "Hosted-domains data listing domains observed on a given IP.",
+          "general": "Top-level requester lookup returning the basic IP details for the calling client (`GET /json`).",
+          "get_current_information": "Returns intelligence about the caller's own IP address without specifying one.",
+          "get_information_by_ip": "Looks up intelligence for a specific IP address passed in the path.",
+          "ipinfo_core": "Core-tier endpoint variant returning city-level geolocation and basic privacy signals.",
+          "ipinfo_lite": "Lite-tier endpoint variant exposing the free country-level geolocation and ASN fields.",
+          "ipinfo_plus": "Plus-tier endpoint variant returning the extended attribute set with named anonymizers.",
+          "lite": "Free Lite-tier response: country-level geolocation and ASN data with a small attribute set.",
+          "max": "Max-tier response with full anonymisation visibility including residential proxy tracking.",
+          "men": "Mobile/MNO-related grouping covering mobile-network attribution attributes.",
+          "place": "Place-level geographic detail such as city, region, and postal location attached to an IP.",
+          "plus": "Plus-tier response: high-resolution IP data with named anonymizers, geo radius, and change tracking.",
+          "privacy": "Privacy detection fields flagging VPN, proxy, Tor, relay, and hosting use.",
+          "privacy_extended": "Extended privacy signals such as named anonymizer service and richer proxy categorisation.",
+          "range": "IP range lookups returning details about the network block containing an address.",
+          "residential_proxy": "Residential proxy behaviour indicators for an IP address.",
+          "single": "Single-IP lookup variant returning a record for one address.",
+          "whois_asn": "WHOIS record for an autonomous system (ASN).",
+          "whois_domain": "WHOIS record for a domain name.",
+          "whois_ip": "WHOIS record for an IP address.",
+          "whois_net_id": "WHOIS record for a network identifier (net handle).",
+          "whois_org": "WHOIS record for an organisation handle.",
+          "whois_poc": "WHOIS record for a point-of-contact handle."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -31,7 +68,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "abuse": {

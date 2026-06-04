@@ -117,7 +117,6 @@ func get_current_informationBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPINFODEVELOPER_TEST_GET_CURRENT_INFORMATION_ENTID": idmap,
 		"IPINFODEVELOPER_TEST_LIVE":      "FALSE",
 		"IPINFODEVELOPER_TEST_EXPLAIN":   "FALSE",
-		"IPINFODEVELOPER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPINFODEVELOPER_TEST_GET_CURRENT_INFORMATION_ENTID"])
@@ -128,7 +127,6 @@ func get_current_informationBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["IPINFODEVELOPER_APIKEY"],
 			},
 			extra,
 		})
