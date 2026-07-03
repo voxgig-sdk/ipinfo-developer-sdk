@@ -67,12 +67,14 @@ function get_current_information_direct_setup($mockres)
     $env = Runner::env_override([
         "IPINFODEVELOPER_TEST_GET_CURRENT_INFORMATION_ENTID" => [],
         "IPINFODEVELOPER_TEST_LIVE" => "FALSE",
+        "IPINFODEVELOPER_APIKEY" => "NONE",
     ]);
 
     $live = $env["IPINFODEVELOPER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["IPINFODEVELOPER_APIKEY"],
         ];
         $client = new IpinfoDeveloperSDK($merged_opts);
         return [

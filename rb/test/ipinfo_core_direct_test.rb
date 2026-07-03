@@ -72,12 +72,14 @@ def ipinfo_core_direct_setup(mockres)
   env = Runner.env_override({
     "IPINFODEVELOPER_TEST_IPINFO_CORE_ENTID" => {},
     "IPINFODEVELOPER_TEST_LIVE" => "FALSE",
+    "IPINFODEVELOPER_APIKEY" => "NONE",
   })
 
   live = env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["IPINFODEVELOPER_APIKEY"],
     }
     client = IpinfoDeveloperSDK.new(merged_opts)
     return {

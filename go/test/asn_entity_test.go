@@ -121,6 +121,7 @@ func asnBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPINFODEVELOPER_TEST_ASN_ENTID": idmap,
 		"IPINFODEVELOPER_TEST_LIVE":      "FALSE",
 		"IPINFODEVELOPER_TEST_EXPLAIN":   "FALSE",
+		"IPINFODEVELOPER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPINFODEVELOPER_TEST_ASN_ENTID"])
@@ -131,6 +132,7 @@ func asnBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["IPINFODEVELOPER_APIKEY"],
 			},
 			extra,
 		})

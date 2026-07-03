@@ -78,12 +78,14 @@ function ipinfo_lite_direct_setup($mockres)
     $env = Runner::env_override([
         "IPINFODEVELOPER_TEST_IPINFO_LITE_ENTID" => [],
         "IPINFODEVELOPER_TEST_LIVE" => "FALSE",
+        "IPINFODEVELOPER_APIKEY" => "NONE",
     ]);
 
     $live = $env["IPINFODEVELOPER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["IPINFODEVELOPER_APIKEY"],
         ];
         $client = new IpinfoDeveloperSDK($merged_opts);
         return [

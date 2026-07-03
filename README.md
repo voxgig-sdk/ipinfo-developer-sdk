@@ -1,24 +1,8 @@
 # IpinfoDeveloper SDK
 
-IP address intelligence with geolocation, ASN, company, privacy, carrier, and WHOIS data across Lite, Core, and Plus tiers
+IPinfo.io OpenAPI Specification client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About IPinfo.io OpenAPI Specification
-
-[IPinfo](https://ipinfo.io/) is an IP address data provider offering geolocation, network ownership, privacy detection, and related intelligence over a single HTTP API. The service is delivered across tiered product lines (Lite, Core, Plus, Max, Enterprise) with daily data refresh and IPv4/IPv6 coverage.
-
-What you can pull from the API:
-
-- Geolocation: city, region, country, coordinates, timezone, postal code
-- Network: ASN, organisation, route/prefix, IP range lookups
-- Privacy signals: VPN, proxy, Tor, relay, hosting, and residential-proxy detection
-- Attribution: company name and domain, hosted domains per IP
-- Carrier: mobile network operator and MCC/MNC where applicable
-- WHOIS: ASN, domain, IP, net, organisation, and POC records
-- Abuse contact details for an IP
-
-Requests authenticate via an API token. The free Lite tier returns a reduced field set; richer attributes (privacy_extended, residential_proxy, carrier, company, etc.) are gated to paid tiers. CORS is enabled, making the API usable directly from browsers.
 
 ## Try it
 
@@ -52,27 +36,31 @@ gem install ipinfo-developer-sdk
 luarocks install ipinfo-developer-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { IpinfoDeveloperSDK } from 'ipinfo-developer'
 
-const client = new IpinfoDeveloperSDK({})
+const client = new IpinfoDeveloperSDK({
+  apikey: process.env.IPINFO-DEVELOPER_APIKEY,
+})
 
+// Load abuse data
+const abuse = await client.Abuse().load({})
+console.log(abuse.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,34 +90,34 @@ The API exposes 28 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Abuse** | Abuse-contact details (email, address, network) associated with an IP. | `/{ip}/abuse` |
-| **Asn** | Autonomous System data: ASN number, name, route/prefix, and registry information. | `/AS{asn}` |
-| **Carrier** | Mobile carrier attribution including network name and MCC/MNC codes where available. | `/{ip}/carrier` |
-| **Company** | Company attribution: name, domain, and ownership type tied to an IP. | `/{ip}/company` |
-| **Core** | Core-tier response: city-level geolocation plus VPN/proxy detection and expanded network attributes. | `/lookup/{ip}` |
-| **Domain** | Hosted-domains data listing domains observed on a given IP. | `/domains/{ip}` |
-| **General** | Top-level requester lookup returning the basic IP details for the calling client (`GET /json`). | `/tools/map` |
-| **GetCurrentInformation** | Returns intelligence about the caller's own IP address without specifying one. | `/` |
-| **GetInformationByIp** | Looks up intelligence for a specific IP address passed in the path. | `/{ip}` |
-| **IpinfoCore** | Core-tier endpoint variant returning city-level geolocation and basic privacy signals. | `/lookup/{ip}/{field}` |
-| **IpinfoLite** | Lite-tier endpoint variant exposing the free country-level geolocation and ASN fields. | `/lite/{ip}/{field}` |
-| **IpinfoPlus** | Plus-tier endpoint variant returning the extended attribute set with named anonymizers. | `/plus/{ip}/{field}` |
-| **Lite** | Free Lite-tier response: country-level geolocation and ASN data with a small attribute set. | `/lite/me` |
-| **Max** | Max-tier response with full anonymisation visibility including residential proxy tracking. | `/max/{ip}` |
-| **Men** | Mobile/MNO-related grouping covering mobile-network attribution attributes. | `/me` |
-| **Place** | Place-level geographic detail such as city, region, and postal location attached to an IP. | `/places/{ip}` |
-| **Plus** | Plus-tier response: high-resolution IP data with named anonymizers, geo radius, and change tracking. | `/plus/{ip}` |
-| **Privacy** | Privacy detection fields flagging VPN, proxy, Tor, relay, and hosting use. | `/{ip}/privacy` |
-| **PrivacyExtended** | Extended privacy signals such as named anonymizer service and richer proxy categorisation. | `/{ip}/privacy_extended` |
-| **Range** | IP range lookups returning details about the network block containing an address. | `/ranges/{domain}` |
-| **ResidentialProxy** | Residential proxy behaviour indicators for an IP address. | `/{ip}/resproxy` |
-| **Single** | Single-IP lookup variant returning a record for one address. | `/{ip}/city` |
-| **WhoisAsn** | WHOIS record for an autonomous system (ASN). | `/whois/net/AS{asn}` |
-| **WhoisDomain** | WHOIS record for a domain name. | `/whois/net/{domain}` |
-| **WhoisIp** | WHOIS record for an IP address. | `/whois/net/{whoisip}` |
-| **WhoisNetId** | WHOIS record for a network identifier (net handle). | `/whois/net/{whoisnetid}` |
-| **WhoisOrg** | WHOIS record for an organisation handle. | `/whois/org/{whoisorgid}` |
-| **WhoisPoc** | WHOIS record for a point-of-contact handle. | `/whois/poc/{whoispoc}` |
+| **Abuse** |  | `/{ip}/abuse` |
+| **Asn** |  | `/AS{asn}` |
+| **Carrier** |  | `/{ip}/carrier` |
+| **Company** |  | `/{ip}/company` |
+| **Core** |  | `/lookup/{ip}` |
+| **Domain** |  | `/domains/{ip}` |
+| **General** |  | `/tools/map` |
+| **GetCurrentInformation** |  | `/` |
+| **GetInformationByIp** |  | `/{ip}` |
+| **IpinfoCore** |  | `/lookup/{ip}/{field}` |
+| **IpinfoLite** |  | `/lite/{ip}/{field}` |
+| **IpinfoPlus** |  | `/plus/{ip}/{field}` |
+| **Lite** |  | `/lite/me` |
+| **Max** |  | `/max/{ip}` |
+| **Men** |  | `/me` |
+| **Place** |  | `/places/{ip}` |
+| **Plus** |  | `/plus/{ip}` |
+| **Privacy** |  | `/{ip}/privacy` |
+| **PrivacyExtended** |  | `/{ip}/privacy_extended` |
+| **Range** |  | `/ranges/{domain}` |
+| **ResidentialProxy** |  | `/{ip}/resproxy` |
+| **Single** |  | `/{ip}/city` |
+| **WhoisAsn** |  | `/whois/net/AS{asn}` |
+| **WhoisDomain** |  | `/whois/net/{domain}` |
+| **WhoisIp** |  | `/whois/net/{whoisip}` |
+| **WhoisNetId** |  | `/whois/net/{whoisnetid}` |
+| **WhoisOrg** |  | `/whois/org/{whoisorgid}` |
+| **WhoisPoc** |  | `/whois/poc/{whoispoc}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -139,15 +127,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from ipinfodeveloper_sdk import IpinfoDeveloperSDK
 
-client = IpinfoDeveloperSDK({})
+client = IpinfoDeveloperSDK({
+    "apikey": os.environ.get("IPINFO-DEVELOPER_APIKEY"),
+})
 
 
 # Load a specific abuse
-abuse, err = client.Abuse(None).load(
-    {"id": "example_id"}, None
-)
+abuse, err = client.Abuse().load({"id": "example_id"})
+print(abuse)
 ```
 
 ### PHP
@@ -156,13 +146,14 @@ abuse, err = client.Abuse(None).load(
 <?php
 require_once 'ipinfodeveloper_sdk.php';
 
-$client = new IpinfoDeveloperSDK([]);
+$client = new IpinfoDeveloperSDK([
+    "apikey" => getenv("IPINFO-DEVELOPER_APIKEY"),
+]);
 
 
 // Load a specific abuse
-[$abuse, $err] = $client->Abuse(null)->load(
-    ["id" => "example_id"], null
-);
+[$abuse, $err] = $client->Abuse()->load(["id" => "example_id"]);
+print_r($abuse);
 ```
 
 ### Golang
@@ -170,8 +161,13 @@ $client = new IpinfoDeveloperSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/ipinfo-developer-sdk/go"
 
-client := sdk.NewIpinfoDeveloperSDK(map[string]any{})
+client := sdk.NewIpinfoDeveloperSDK(map[string]any{
+    "apikey": os.Getenv("IPINFO-DEVELOPER_APIKEY"),
+})
 
+// Load abuse data
+abuse, err := client.Abuse(nil).Load(map[string]any{}, nil)
+fmt.Println(abuse)
 ```
 
 ### Ruby
@@ -179,13 +175,14 @@ client := sdk.NewIpinfoDeveloperSDK(map[string]any{})
 ```ruby
 require_relative "IpinfoDeveloper_sdk"
 
-client = IpinfoDeveloperSDK.new({})
+client = IpinfoDeveloperSDK.new({
+  "apikey" => ENV["IPINFO-DEVELOPER_APIKEY"],
+})
 
 
 # Load a specific abuse
-abuse, err = client.Abuse(nil).load(
-  { "id" => "example_id" }, nil
-)
+abuse, err = client.Abuse().load({ "id" => "example_id" })
+puts abuse
 ```
 
 ### Lua
@@ -193,13 +190,14 @@ abuse, err = client.Abuse(nil).load(
 ```lua
 local sdk = require("ipinfo-developer_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("IPINFO-DEVELOPER_APIKEY"),
+})
 
 
 -- Load a specific abuse
-local abuse, err = client:Abuse(nil):load(
-  { id = "example_id" }, nil
-)
+local abuse, err = client:Abuse():load({ id = "example_id" })
+print(abuse)
 ```
 
 ## Unit testing in offline mode
@@ -218,25 +216,21 @@ const result = await client.Abuse().load({ id: 'test01' })
 ### Python
 
 ```python
-client = IpinfoDeveloperSDK.test(None, None)
-result, err = client.Abuse(None).load(
-    {"id": "test01"}, None
-)
+client = IpinfoDeveloperSDK.test()
+result, err = client.Abuse().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = IpinfoDeveloperSDK::test(null, null);
-[$result, $err] = $client->Abuse(null)->load(
-    ["id" => "test01"], null
-);
+$client = IpinfoDeveloperSDK::test();
+[$result, $err] = $client->Abuse()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Abuse(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -245,19 +239,15 @@ result, err := client.Abuse(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpinfoDeveloperSDK.test(nil, nil)
-result, err = client.Abuse(nil).load(
-  { "id" => "test01" }, nil
-)
+client = IpinfoDeveloperSDK.test
+result, err = client.Abuse().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Abuse(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Abuse():load({ id = "test01" })
 ```
 
 ## How it works
@@ -361,16 +351,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the IPinfo.io OpenAPI Specification
-
-- Upstream: [https://ipinfo.io/](https://ipinfo.io/)
-- API docs: [https://ipinfo.io/developers](https://ipinfo.io/developers)
-
-- Commercial service operated by [IPinfo](https://ipinfo.io/)
-- Free Lite tier provides country-level geolocation and ASN data with unlimited requests
-- Higher tiers (Core, Plus, Max, Enterprise) unlock city-level geolocation, VPN/proxy detection, carrier, company, and WHOIS data
-- Token-based authentication is required for tier-specific endpoints; check the [pricing page](https://ipinfo.io/pricing) for current terms
 
 ---
 

@@ -117,12 +117,14 @@ func companyDirectSetup(mockres any) *companyDirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPINFODEVELOPER_TEST_COMPANY_ENTID": map[string]any{},
 		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
+		"IPINFODEVELOPER_APIKEY":       "NONE",
 	})
 
 	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["IPINFODEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 

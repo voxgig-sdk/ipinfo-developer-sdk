@@ -94,6 +94,7 @@ def _privacy_extended_basic_setup(extra):
         "IPINFODEVELOPER_TEST_PRIVACY_EXTENDED_ENTID": idmap,
         "IPINFODEVELOPER_TEST_LIVE": "FALSE",
         "IPINFODEVELOPER_TEST_EXPLAIN": "FALSE",
+        "IPINFODEVELOPER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,6 +105,7 @@ def _privacy_extended_basic_setup(extra):
     if env.get("IPINFODEVELOPER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("IPINFODEVELOPER_APIKEY"),
             },
             extra or {},
         ])

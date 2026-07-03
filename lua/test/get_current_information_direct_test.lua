@@ -62,12 +62,14 @@ function get_current_information_direct_setup(mockres)
   local env = runner.env_override({
     ["IPINFODEVELOPER_TEST_GET_CURRENT_INFORMATION_ENTID"] = {},
     ["IPINFODEVELOPER_TEST_LIVE"] = "FALSE",
+    ["IPINFODEVELOPER_APIKEY"] = "NONE",
   })
 
   local live = env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["IPINFODEVELOPER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

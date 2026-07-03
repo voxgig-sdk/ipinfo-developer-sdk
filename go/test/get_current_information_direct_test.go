@@ -99,12 +99,14 @@ func get_current_informationDirectSetup(mockres any) *get_current_informationDir
 	env := envOverride(map[string]any{
 		"IPINFODEVELOPER_TEST_GET_CURRENT_INFORMATION_ENTID": map[string]any{},
 		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
+		"IPINFODEVELOPER_APIKEY":       "NONE",
 	})
 
 	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["IPINFODEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 
