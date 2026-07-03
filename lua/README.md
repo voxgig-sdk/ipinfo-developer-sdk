@@ -10,7 +10,7 @@ The Lua SDK for the IpinfoDeveloper API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install ipinfo-developer-sdk
+luarocks install voxgig-sdk-ipinfo-developer
 ```
 
 If the module is not yet published, add the source directory to

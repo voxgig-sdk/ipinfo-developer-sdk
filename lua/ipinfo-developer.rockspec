@@ -8,12 +8,14 @@ source = {
   dir = "ipinfo-developer-sdk/lua"
 }
 description = {
-  summary = "IpinfoDeveloper SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the IPinfo.io OpenAPI Specification public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/ipinfo-developer-sdk",
+  issues_url = "https://github.com/voxgig-sdk/ipinfo-developer-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "ipinfo-developer" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

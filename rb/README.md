@@ -10,13 +10,13 @@ The Ruby SDK for the IpinfoDeveloper API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install ipinfo-developer-sdk
+gem install voxgig-sdk-ipinfo-developer
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "ipinfo-developer-sdk"
+gem "voxgig-sdk-ipinfo-developer"
 ```
 
 Then run:

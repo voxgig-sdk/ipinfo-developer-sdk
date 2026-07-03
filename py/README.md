@@ -10,7 +10,7 @@ The Python SDK for the IpinfoDeveloper API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install ipinfo-developer-sdk
+pip install voxgig-sdk-ipinfo-developer
 ```
 
 Or install from source:

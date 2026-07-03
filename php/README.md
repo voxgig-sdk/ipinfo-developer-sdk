@@ -10,7 +10,7 @@ The PHP SDK for the IpinfoDeveloper API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/ipinfo-developer-sdk
+composer require voxgig-sdk/ipinfo-developer
 ```
 
 

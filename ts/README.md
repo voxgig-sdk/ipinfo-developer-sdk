@@ -10,7 +10,7 @@ The TypeScript SDK for the IpinfoDeveloper API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install ipinfo-developer
+npm install @voxgig-sdk/ipinfo-developer
 ```
 ## Tutorial: your first API call
 
