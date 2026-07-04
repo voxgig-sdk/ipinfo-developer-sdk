@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AsnListMatch
+---@param ctrl? table
+---@return Asn[]
+---@return string? err
 function AsnEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

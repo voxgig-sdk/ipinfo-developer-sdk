@@ -45,8 +45,7 @@ class AsnEntityTest < Minitest::Test
       "asn" => setup[:idmap]["asn01"],
     }
 
-    asn_ref01_list_result, err = asn_ref01_ent.list(asn_ref01_match, nil)
-    assert_nil err
+    asn_ref01_list_result = asn_ref01_ent.list(asn_ref01_match, nil)
     assert asn_ref01_list_result.is_a?(Array)
 
   end

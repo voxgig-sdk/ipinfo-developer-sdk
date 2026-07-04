@@ -49,8 +49,7 @@ class DomainEntityTest extends TestCase
         // LOAD
         $domain_ref01_ent = $client->Domain(null);
         $domain_ref01_match_dt0 = [];
-        [$domain_ref01_data_dt0_loaded, $err] = $domain_ref01_ent->load($domain_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $domain_ref01_data_dt0_loaded = $domain_ref01_ent->load($domain_ref01_match_dt0, null);
         $this->assertNotNull($domain_ref01_data_dt0_loaded);
 
     }

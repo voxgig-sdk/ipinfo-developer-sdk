@@ -42,8 +42,7 @@ class AbuseEntityTest < Minitest::Test
     # LOAD
     abuse_ref01_ent = client.Abuse(nil)
     abuse_ref01_match_dt0 = {}
-    abuse_ref01_data_dt0_loaded, err = abuse_ref01_ent.load(abuse_ref01_match_dt0, nil)
-    assert_nil err
+    abuse_ref01_data_dt0_loaded = abuse_ref01_ent.load(abuse_ref01_match_dt0, nil)
     assert !abuse_ref01_data_dt0_loaded.nil?
 
   end

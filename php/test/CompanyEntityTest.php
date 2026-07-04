@@ -49,8 +49,7 @@ class CompanyEntityTest extends TestCase
         // LOAD
         $company_ref01_ent = $client->Company(null);
         $company_ref01_match_dt0 = [];
-        [$company_ref01_data_dt0_loaded, $err] = $company_ref01_ent->load($company_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $company_ref01_data_dt0_loaded = $company_ref01_ent->load($company_ref01_match_dt0, null);
         $this->assertNotNull($company_ref01_data_dt0_loaded);
 
     }

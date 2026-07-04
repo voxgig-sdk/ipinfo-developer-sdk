@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetCurrentInformationLoadMatch
+---@param ctrl? table
+---@return GetCurrentInformation
+---@return string? err
 function GetCurrentInformationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

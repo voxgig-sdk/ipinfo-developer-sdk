@@ -45,6 +45,7 @@ class ResidentialProxyEntity
     end
   end
 
+  # @return [ResidentialProxy, Hash] the current ResidentialProxy data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ResidentialProxyEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ResidentialProxy fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single ResidentialProxy.
+  #
+  # @param reqmatch [ResidentialProxyLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [ResidentialProxy, Hash] the loaded ResidentialProxy; raises IpinfoDeveloperError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

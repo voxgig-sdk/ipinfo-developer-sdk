@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch WhoisNetIdLoadMatch
+---@param ctrl? table
+---@return WhoisNetId
+---@return string? err
 function WhoisNetIdEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

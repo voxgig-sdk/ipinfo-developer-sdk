@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AbuseLoadMatch
+---@param ctrl? table
+---@return Abuse
+---@return string? err
 function AbuseEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

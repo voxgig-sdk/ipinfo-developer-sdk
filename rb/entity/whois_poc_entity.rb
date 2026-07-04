@@ -45,6 +45,7 @@ class WhoisPocEntity
     end
   end
 
+  # @return [WhoisPoc, Hash] the current WhoisPoc data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class WhoisPocEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of WhoisPoc fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single WhoisPoc.
+  #
+  # @param reqmatch [WhoisPocLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [WhoisPoc, Hash] the loaded WhoisPoc; raises IpinfoDeveloperError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

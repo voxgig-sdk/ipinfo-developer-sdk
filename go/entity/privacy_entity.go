@@ -85,6 +85,27 @@ func (e *PrivacyEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Privacy; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *PrivacyEntity) DataTyped(data ...Privacy) Privacy {
+	if len(data) > 0 {
+		return typedFrom[Privacy](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Privacy](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Privacy (all fields
+// optional at the wire level).
+func (e *PrivacyEntity) MatchTyped(match ...Privacy) Privacy {
+	if len(match) > 0 {
+		return typedFrom[Privacy](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Privacy](e.Match())
+}
+
 
 func (e *PrivacyEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *PrivacyEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// PrivacyLoadMatch and returns an Privacy. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *PrivacyEntity) LoadTyped(reqmatch PrivacyLoadMatch, ctrl map[string]any) (Privacy, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Privacy{}, err
+	}
+	return typedFrom[Privacy](res), nil
 }
 
 

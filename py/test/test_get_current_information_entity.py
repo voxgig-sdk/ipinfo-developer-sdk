@@ -49,8 +49,7 @@ class TestGetCurrentInformationEntity:
         # LOAD
         get_current_information_ref01_ent = client.GetCurrentInformation(None)
         get_current_information_ref01_match_dt0 = {}
-        get_current_information_ref01_data_dt0_loaded, err = get_current_information_ref01_ent.load(get_current_information_ref01_match_dt0, None)
-        assert err is None
+        get_current_information_ref01_data_dt0_loaded = get_current_information_ref01_ent.load(get_current_information_ref01_match_dt0, None)
         assert get_current_information_ref01_data_dt0_loaded is not None
 
 

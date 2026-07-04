@@ -45,6 +45,7 @@ class GeneralEntity
     end
   end
 
+  # @return [General, Hash] the current General data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GeneralEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of General fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class GeneralEntity
   
 
   
+  # Create a new General.
+  #
+  # @param reqdata [GeneralCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [General, Hash] the created General; raises IpinfoDeveloperError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

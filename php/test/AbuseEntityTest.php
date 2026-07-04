@@ -49,8 +49,7 @@ class AbuseEntityTest extends TestCase
         // LOAD
         $abuse_ref01_ent = $client->Abuse(null);
         $abuse_ref01_match_dt0 = [];
-        [$abuse_ref01_data_dt0_loaded, $err] = $abuse_ref01_ent->load($abuse_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $abuse_ref01_data_dt0_loaded = $abuse_ref01_ent->load($abuse_ref01_match_dt0, null);
         $this->assertNotNull($abuse_ref01_data_dt0_loaded);
 
     }

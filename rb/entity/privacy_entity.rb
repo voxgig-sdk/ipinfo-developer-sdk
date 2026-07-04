@@ -45,6 +45,7 @@ class PrivacyEntity
     end
   end
 
+  # @return [Privacy, Hash] the current Privacy data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PrivacyEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Privacy fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Privacy.
+  #
+  # @param reqmatch [PrivacyLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Privacy, Hash] the loaded Privacy; raises IpinfoDeveloperError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

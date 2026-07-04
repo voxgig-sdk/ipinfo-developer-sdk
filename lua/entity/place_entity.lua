@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PlaceLoadMatch
+---@param ctrl? table
+---@return Place
+---@return string? err
 function PlaceEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

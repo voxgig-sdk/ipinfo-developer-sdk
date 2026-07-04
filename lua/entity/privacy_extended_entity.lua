@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PrivacyExtendedListMatch
+---@param ctrl? table
+---@return PrivacyExtended[]
+---@return string? err
 function PrivacyExtendedEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

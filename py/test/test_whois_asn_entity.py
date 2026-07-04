@@ -52,8 +52,7 @@ class TestWhoisAsnEntity:
             "asn": setup["idmap"]["asn01"],
         }
 
-        whois_asn_ref01_list_result, err = whois_asn_ref01_ent.list(whois_asn_ref01_match, None)
-        assert err is None
+        whois_asn_ref01_list_result = whois_asn_ref01_ent.list(whois_asn_ref01_match, None)
         assert isinstance(whois_asn_ref01_list_result, list)
 
 

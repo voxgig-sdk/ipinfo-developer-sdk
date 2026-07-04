@@ -85,6 +85,27 @@ func (e *WhoisIpEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an WhoisIp; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *WhoisIpEntity) DataTyped(data ...WhoisIp) WhoisIp {
+	if len(data) > 0 {
+		return typedFrom[WhoisIp](e.Data(asMap(data[0])))
+	}
+	return typedFrom[WhoisIp](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through WhoisIp (all fields
+// optional at the wire level).
+func (e *WhoisIpEntity) MatchTyped(match ...WhoisIp) WhoisIp {
+	if len(match) > 0 {
+		return typedFrom[WhoisIp](e.Match(asMap(match[0])))
+	}
+	return typedFrom[WhoisIp](e.Match())
+}
+
 
 func (e *WhoisIpEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *WhoisIpEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// WhoisIpLoadMatch and returns an WhoisIp. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *WhoisIpEntity) LoadTyped(reqmatch WhoisIpLoadMatch, ctrl map[string]any) (WhoisIp, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return WhoisIp{}, err
+	}
+	return typedFrom[WhoisIp](res), nil
 }
 
 

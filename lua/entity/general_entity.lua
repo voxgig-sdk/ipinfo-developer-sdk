@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata GeneralCreateData
+---@param ctrl? table
+---@return General
+---@return string? err
 function GeneralEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

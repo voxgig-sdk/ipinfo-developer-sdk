@@ -49,8 +49,7 @@ class GetInformationByIpEntityTest extends TestCase
         // LOAD
         $get_information_by_ip_ref01_ent = $client->GetInformationByIp(null);
         $get_information_by_ip_ref01_match_dt0 = [];
-        [$get_information_by_ip_ref01_data_dt0_loaded, $err] = $get_information_by_ip_ref01_ent->load($get_information_by_ip_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_information_by_ip_ref01_data_dt0_loaded = $get_information_by_ip_ref01_ent->load($get_information_by_ip_ref01_match_dt0, null);
         $this->assertNotNull($get_information_by_ip_ref01_data_dt0_loaded);
 
     }

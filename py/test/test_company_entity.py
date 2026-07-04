@@ -49,8 +49,7 @@ class TestCompanyEntity:
         # LOAD
         company_ref01_ent = client.Company(None)
         company_ref01_match_dt0 = {}
-        company_ref01_data_dt0_loaded, err = company_ref01_ent.load(company_ref01_match_dt0, None)
-        assert err is None
+        company_ref01_data_dt0_loaded = company_ref01_ent.load(company_ref01_match_dt0, None)
         assert company_ref01_data_dt0_loaded is not None
 
 

@@ -42,8 +42,7 @@ class RangeEntityTest < Minitest::Test
     # LOAD
     range_ref01_ent = client.Range(nil)
     range_ref01_match_dt0 = {}
-    range_ref01_data_dt0_loaded, err = range_ref01_ent.load(range_ref01_match_dt0, nil)
-    assert_nil err
+    range_ref01_data_dt0_loaded = range_ref01_ent.load(range_ref01_match_dt0, nil)
     assert !range_ref01_data_dt0_loaded.nil?
 
   end

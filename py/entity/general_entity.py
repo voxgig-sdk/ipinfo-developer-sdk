@@ -1,7 +1,13 @@
 # IpinfoDeveloper SDK General entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from ipinfodeveloper_types import (
+    General,
+    GeneralCreateData,
+)
 
 
 class GeneralEntity:
@@ -44,7 +50,7 @@ class GeneralEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> General:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,7 +59,7 @@ class GeneralEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> General:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
@@ -62,7 +68,7 @@ class GeneralEntity:
     
 
     
-    def create(self, reqdata, ctrl=None):
+    def create(self, reqdata: GeneralCreateData, ctrl=None) -> General:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "create",

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch WhoisAsnListMatch
+---@param ctrl? table
+---@return WhoisAsn[]
+---@return string? err
 function WhoisAsnEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

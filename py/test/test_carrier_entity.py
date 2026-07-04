@@ -49,8 +49,7 @@ class TestCarrierEntity:
         # LOAD
         carrier_ref01_ent = client.Carrier(None)
         carrier_ref01_match_dt0 = {}
-        carrier_ref01_data_dt0_loaded, err = carrier_ref01_ent.load(carrier_ref01_match_dt0, None)
-        assert err is None
+        carrier_ref01_data_dt0_loaded = carrier_ref01_ent.load(carrier_ref01_match_dt0, None)
         assert carrier_ref01_data_dt0_loaded is not None
 
 

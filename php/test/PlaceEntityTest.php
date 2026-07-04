@@ -49,8 +49,7 @@ class PlaceEntityTest extends TestCase
         // LOAD
         $place_ref01_ent = $client->Place(null);
         $place_ref01_match_dt0 = [];
-        [$place_ref01_data_dt0_loaded, $err] = $place_ref01_ent->load($place_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $place_ref01_data_dt0_loaded = $place_ref01_ent->load($place_ref01_match_dt0, null);
         $this->assertNotNull($place_ref01_data_dt0_loaded);
 
     }

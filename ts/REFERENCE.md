@@ -434,7 +434,7 @@ Alias for `IpinfoDeveloperSDK.test()`.
 ## AbuseEntity
 
 ```ts
-const abuse = client.Abuse()
+const abuse = client.abuse
 ```
 
 ### Fields
@@ -455,7 +455,7 @@ const abuse = client.Abuse()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Abuse().load({ id: 'abuse_id' })
+const result = await client.abuse.load({ id: 'abuse_id' })
 ```
 
 ### Common Methods
@@ -489,7 +489,7 @@ Return a copy of the entity options.
 ## AsnEntity
 
 ```ts
-const asn = client.Asn()
+const asn = client.asn
 ```
 
 ### Fields
@@ -518,7 +518,7 @@ const asn = client.Asn()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Asn().list()
+const results = await client.asn.list()
 ```
 
 ### Common Methods
@@ -552,7 +552,7 @@ Return a copy of the entity options.
 ## CarrierEntity
 
 ```ts
-const carrier = client.Carrier()
+const carrier = client.carrier
 ```
 
 ### Fields
@@ -570,7 +570,7 @@ const carrier = client.Carrier()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Carrier().load({ id: 'carrier_id' })
+const result = await client.carrier.load({ id: 'carrier_id' })
 ```
 
 ### Common Methods
@@ -604,7 +604,7 @@ Return a copy of the entity options.
 ## CompanyEntity
 
 ```ts
-const company = client.Company()
+const company = client.company
 ```
 
 ### Fields
@@ -622,7 +622,7 @@ const company = client.Company()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Company().load({ id: 'company_id' })
+const result = await client.company.load({ id: 'company_id' })
 ```
 
 ### Common Methods
@@ -656,7 +656,7 @@ Return a copy of the entity options.
 ## CoreEntity
 
 ```ts
-const core = client.Core()
+const core = client.core
 ```
 
 ### Fields
@@ -680,7 +680,7 @@ const core = client.Core()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Core().load({ id: 'core_id' })
+const result = await client.core.load({ id: 'core_id' })
 ```
 
 ### Common Methods
@@ -714,7 +714,7 @@ Return a copy of the entity options.
 ## DomainEntity
 
 ```ts
-const domain = client.Domain()
+const domain = client.domain
 ```
 
 ### Fields
@@ -733,7 +733,7 @@ const domain = client.Domain()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Domain().load({ id: 'domain_id' })
+const result = await client.domain.load({ id: 'domain_id' })
 ```
 
 ### Common Methods
@@ -767,7 +767,7 @@ Return a copy of the entity options.
 ## GeneralEntity
 
 ```ts
-const general = client.General()
+const general = client.general
 ```
 
 ### Fields
@@ -786,7 +786,7 @@ const general = client.General()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.General().create({
+const result = await client.general.create({
 })
 ```
 
@@ -821,7 +821,7 @@ Return a copy of the entity options.
 ## GetCurrentInformationEntity
 
 ```ts
-const get_current_information = client.GetCurrentInformation()
+const get_current_information = client.get_current_information
 ```
 
 ### Fields
@@ -851,7 +851,7 @@ const get_current_information = client.GetCurrentInformation()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetCurrentInformation().load({ id: 'get_current_information_id' })
+const result = await client.get_current_information.load({ id: 'get_current_information_id' })
 ```
 
 ### Common Methods
@@ -885,7 +885,7 @@ Return a copy of the entity options.
 ## GetInformationByIpEntity
 
 ```ts
-const get_information_by_ip = client.GetInformationByIp()
+const get_information_by_ip = client.get_information_by_ip
 ```
 
 ### Fields
@@ -915,7 +915,7 @@ const get_information_by_ip = client.GetInformationByIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetInformationByIp().load({ id: 'get_information_by_ip_id' })
+const result = await client.get_information_by_ip.load({ id: 'get_information_by_ip_id' })
 ```
 
 ### Common Methods
@@ -949,7 +949,7 @@ Return a copy of the entity options.
 ## IpinfoCoreEntity
 
 ```ts
-const ipinfo_core = client.IpinfoCore()
+const ipinfo_core = client.ipinfo_core
 ```
 
 ### Fields
@@ -967,7 +967,7 @@ const ipinfo_core = client.IpinfoCore()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoCore().load({ id: 'ipinfo_core_id' })
+const result = await client.ipinfo_core.load({ id: 'ipinfo_core_id' })
 ```
 
 ### Common Methods
@@ -1001,7 +1001,7 @@ Return a copy of the entity options.
 ## IpinfoLiteEntity
 
 ```ts
-const ipinfo_lite = client.IpinfoLite()
+const ipinfo_lite = client.ipinfo_lite
 ```
 
 ### Operations
@@ -1011,7 +1011,7 @@ const ipinfo_lite = client.IpinfoLite()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoLite().load({ id: 'ipinfo_lite_id' })
+const result = await client.ipinfo_lite.load({ id: 'ipinfo_lite_id' })
 ```
 
 ### Common Methods
@@ -1045,7 +1045,7 @@ Return a copy of the entity options.
 ## IpinfoPlusEntity
 
 ```ts
-const ipinfo_plus = client.IpinfoPlus()
+const ipinfo_plus = client.ipinfo_plus
 ```
 
 ### Fields
@@ -1063,7 +1063,7 @@ const ipinfo_plus = client.IpinfoPlus()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoPlus().load({ id: 'ipinfo_plus_id' })
+const result = await client.ipinfo_plus.load({ id: 'ipinfo_plus_id' })
 ```
 
 ### Common Methods
@@ -1097,7 +1097,7 @@ Return a copy of the entity options.
 ## LiteEntity
 
 ```ts
-const lite = client.Lite()
+const lite = client.lite
 ```
 
 ### Fields
@@ -1120,7 +1120,7 @@ const lite = client.Lite()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Lite().load({ id: 'lite_id' })
+const result = await client.lite.load({ id: 'lite_id' })
 ```
 
 ### Common Methods
@@ -1154,7 +1154,7 @@ Return a copy of the entity options.
 ## MaxEntity
 
 ```ts
-const max = client.Max()
+const max = client.max
 ```
 
 ### Fields
@@ -1180,7 +1180,7 @@ const max = client.Max()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Max().load({ id: 'max_id' })
+const result = await client.max.load({ id: 'max_id' })
 ```
 
 ### Common Methods
@@ -1214,7 +1214,7 @@ Return a copy of the entity options.
 ## MenEntity
 
 ```ts
-const men = client.Men()
+const men = client.men
 ```
 
 ### Fields
@@ -1232,7 +1232,7 @@ const men = client.Men()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Men().load({ id: 'men_id' })
+const result = await client.men.load({ id: 'men_id' })
 ```
 
 ### Common Methods
@@ -1266,7 +1266,7 @@ Return a copy of the entity options.
 ## PlaceEntity
 
 ```ts
-const place = client.Place()
+const place = client.place
 ```
 
 ### Fields
@@ -1287,7 +1287,7 @@ const place = client.Place()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Place().load({ id: 'place_id' })
+const result = await client.place.load({ id: 'place_id' })
 ```
 
 ### Common Methods
@@ -1321,7 +1321,7 @@ Return a copy of the entity options.
 ## PlusEntity
 
 ```ts
-const plus = client.Plus()
+const plus = client.plus
 ```
 
 ### Fields
@@ -1346,7 +1346,7 @@ const plus = client.Plus()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Plus().load({ id: 'plus_id' })
+const result = await client.plus.load({ id: 'plus_id' })
 ```
 
 ### Common Methods
@@ -1380,7 +1380,7 @@ Return a copy of the entity options.
 ## PrivacyEntity
 
 ```ts
-const privacy = client.Privacy()
+const privacy = client.privacy
 ```
 
 ### Fields
@@ -1401,7 +1401,7 @@ const privacy = client.Privacy()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Privacy().load({ id: 'privacy_id' })
+const result = await client.privacy.load({ id: 'privacy_id' })
 ```
 
 ### Common Methods
@@ -1435,7 +1435,7 @@ Return a copy of the entity options.
 ## PrivacyExtendedEntity
 
 ```ts
-const privacy_extended = client.PrivacyExtended()
+const privacy_extended = client.privacy_extended
 ```
 
 ### Fields
@@ -1466,7 +1466,7 @@ const privacy_extended = client.PrivacyExtended()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.PrivacyExtended().list()
+const results = await client.privacy_extended.list()
 ```
 
 ### Common Methods
@@ -1500,7 +1500,7 @@ Return a copy of the entity options.
 ## RangeEntity
 
 ```ts
-const range = client.Range()
+const range = client.range
 ```
 
 ### Fields
@@ -1519,7 +1519,7 @@ const range = client.Range()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Range().load({ id: 'range_id' })
+const result = await client.range.load({ id: 'range_id' })
 ```
 
 ### Common Methods
@@ -1553,7 +1553,7 @@ Return a copy of the entity options.
 ## ResidentialProxyEntity
 
 ```ts
-const residential_proxy = client.ResidentialProxy()
+const residential_proxy = client.residential_proxy
 ```
 
 ### Fields
@@ -1572,7 +1572,7 @@ const residential_proxy = client.ResidentialProxy()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ResidentialProxy().load({ id: 'residential_proxy_id' })
+const result = await client.residential_proxy.load({ id: 'residential_proxy_id' })
 ```
 
 ### Common Methods
@@ -1606,7 +1606,7 @@ Return a copy of the entity options.
 ## SingleEntity
 
 ```ts
-const single = client.Single()
+const single = client.single
 ```
 
 ### Operations
@@ -1616,7 +1616,7 @@ const single = client.Single()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Single().load({ id: 'single_id' })
+const result = await client.single.load({ id: 'single_id' })
 ```
 
 ### Common Methods
@@ -1650,7 +1650,7 @@ Return a copy of the entity options.
 ## WhoisAsnEntity
 
 ```ts
-const whois_asn = client.WhoisAsn()
+const whois_asn = client.whois_asn
 ```
 
 ### Fields
@@ -1678,7 +1678,7 @@ const whois_asn = client.WhoisAsn()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.WhoisAsn().list()
+const results = await client.whois_asn.list()
 ```
 
 ### Common Methods
@@ -1712,7 +1712,7 @@ Return a copy of the entity options.
 ## WhoisDomainEntity
 
 ```ts
-const whois_domain = client.WhoisDomain()
+const whois_domain = client.whois_domain
 ```
 
 ### Fields
@@ -1731,7 +1731,7 @@ const whois_domain = client.WhoisDomain()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisDomain().load({ id: 'whois_domain_id' })
+const result = await client.whois_domain.load({ id: 'whois_domain_id' })
 ```
 
 ### Common Methods
@@ -1765,7 +1765,7 @@ Return a copy of the entity options.
 ## WhoisIpEntity
 
 ```ts
-const whois_ip = client.WhoisIp()
+const whois_ip = client.whois_ip
 ```
 
 ### Fields
@@ -1784,7 +1784,7 @@ const whois_ip = client.WhoisIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisIp().load({ id: 'whois_ip_id' })
+const result = await client.whois_ip.load({ id: 'whois_ip_id' })
 ```
 
 ### Common Methods
@@ -1818,7 +1818,7 @@ Return a copy of the entity options.
 ## WhoisNetIdEntity
 
 ```ts
-const whois_net_id = client.WhoisNetId()
+const whois_net_id = client.whois_net_id
 ```
 
 ### Fields
@@ -1837,7 +1837,7 @@ const whois_net_id = client.WhoisNetId()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisNetId().load({ id: 'whois_net_id_id' })
+const result = await client.whois_net_id.load({ id: 'whois_net_id_id' })
 ```
 
 ### Common Methods
@@ -1871,7 +1871,7 @@ Return a copy of the entity options.
 ## WhoisOrgEntity
 
 ```ts
-const whois_org = client.WhoisOrg()
+const whois_org = client.whois_org
 ```
 
 ### Fields
@@ -1890,7 +1890,7 @@ const whois_org = client.WhoisOrg()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisOrg().load({ id: 'whois_org_id' })
+const result = await client.whois_org.load({ id: 'whois_org_id' })
 ```
 
 ### Common Methods
@@ -1924,7 +1924,7 @@ Return a copy of the entity options.
 ## WhoisPocEntity
 
 ```ts
-const whois_poc = client.WhoisPoc()
+const whois_poc = client.whois_poc
 ```
 
 ### Fields
@@ -1943,7 +1943,7 @@ const whois_poc = client.WhoisPoc()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisPoc().load({ id: 'whois_poc_id' })
+const result = await client.whois_poc.load({ id: 'whois_poc_id' })
 ```
 
 ### Common Methods

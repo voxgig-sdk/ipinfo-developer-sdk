@@ -49,8 +49,7 @@ class TestGetInformationByIpEntity:
         # LOAD
         get_information_by_ip_ref01_ent = client.GetInformationByIp(None)
         get_information_by_ip_ref01_match_dt0 = {}
-        get_information_by_ip_ref01_data_dt0_loaded, err = get_information_by_ip_ref01_ent.load(get_information_by_ip_ref01_match_dt0, None)
-        assert err is None
+        get_information_by_ip_ref01_data_dt0_loaded = get_information_by_ip_ref01_ent.load(get_information_by_ip_ref01_match_dt0, None)
         assert get_information_by_ip_ref01_data_dt0_loaded is not None
 
 

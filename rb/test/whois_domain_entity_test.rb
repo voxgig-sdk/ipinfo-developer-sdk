@@ -42,8 +42,7 @@ class WhoisDomainEntityTest < Minitest::Test
     # LOAD
     whois_domain_ref01_ent = client.WhoisDomain(nil)
     whois_domain_ref01_match_dt0 = {}
-    whois_domain_ref01_data_dt0_loaded, err = whois_domain_ref01_ent.load(whois_domain_ref01_match_dt0, nil)
-    assert_nil err
+    whois_domain_ref01_data_dt0_loaded = whois_domain_ref01_ent.load(whois_domain_ref01_match_dt0, nil)
     assert !whois_domain_ref01_data_dt0_loaded.nil?
 
   end

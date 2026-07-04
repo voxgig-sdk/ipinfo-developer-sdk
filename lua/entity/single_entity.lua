@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SingleLoadMatch
+---@param ctrl? table
+---@return Single
+---@return string? err
 function SingleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

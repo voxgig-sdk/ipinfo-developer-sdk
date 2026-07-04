@@ -49,8 +49,7 @@ class ResidentialProxyEntityTest extends TestCase
         // LOAD
         $residential_proxy_ref01_ent = $client->ResidentialProxy(null);
         $residential_proxy_ref01_match_dt0 = [];
-        [$residential_proxy_ref01_data_dt0_loaded, $err] = $residential_proxy_ref01_ent->load($residential_proxy_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $residential_proxy_ref01_data_dt0_loaded = $residential_proxy_ref01_ent->load($residential_proxy_ref01_match_dt0, null);
         $this->assertNotNull($residential_proxy_ref01_data_dt0_loaded);
 
     }

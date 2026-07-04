@@ -49,8 +49,7 @@ class GetCurrentInformationEntityTest extends TestCase
         // LOAD
         $get_current_information_ref01_ent = $client->GetCurrentInformation(null);
         $get_current_information_ref01_match_dt0 = [];
-        [$get_current_information_ref01_data_dt0_loaded, $err] = $get_current_information_ref01_ent->load($get_current_information_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_current_information_ref01_data_dt0_loaded = $get_current_information_ref01_ent->load($get_current_information_ref01_match_dt0, null);
         $this->assertNotNull($get_current_information_ref01_data_dt0_loaded);
 
     }

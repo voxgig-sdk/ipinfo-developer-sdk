@@ -42,8 +42,7 @@ class PrivacyEntityTest < Minitest::Test
     # LOAD
     privacy_ref01_ent = client.Privacy(nil)
     privacy_ref01_match_dt0 = {}
-    privacy_ref01_data_dt0_loaded, err = privacy_ref01_ent.load(privacy_ref01_match_dt0, nil)
-    assert_nil err
+    privacy_ref01_data_dt0_loaded = privacy_ref01_ent.load(privacy_ref01_match_dt0, nil)
     assert !privacy_ref01_data_dt0_loaded.nil?
 
   end

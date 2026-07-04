@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Abuse,
+  AbuseLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class AbuseEntity extends IpinfoDeveloperEntityBase {
+class AbuseEntity extends IpinfoDeveloperEntityBase<Abuse> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class AbuseEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: AbuseLoadMatch, ctrl?: Control): Promise<Abuse> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class AbuseEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Abuse> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

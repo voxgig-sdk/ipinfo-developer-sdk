@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  WhoisOrg,
+  WhoisOrgLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class WhoisOrgEntity extends IpinfoDeveloperEntityBase {
+class WhoisOrgEntity extends IpinfoDeveloperEntityBase<WhoisOrg> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class WhoisOrgEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: WhoisOrgLoadMatch, ctrl?: Control): Promise<WhoisOrg> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class WhoisOrgEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<WhoisOrg> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

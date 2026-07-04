@@ -42,8 +42,7 @@ class WhoisOrgEntityTest < Minitest::Test
     # LOAD
     whois_org_ref01_ent = client.WhoisOrg(nil)
     whois_org_ref01_match_dt0 = {}
-    whois_org_ref01_data_dt0_loaded, err = whois_org_ref01_ent.load(whois_org_ref01_match_dt0, nil)
-    assert_nil err
+    whois_org_ref01_data_dt0_loaded = whois_org_ref01_ent.load(whois_org_ref01_match_dt0, nil)
     assert !whois_org_ref01_data_dt0_loaded.nil?
 
   end

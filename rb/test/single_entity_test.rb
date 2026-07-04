@@ -42,8 +42,7 @@ class SingleEntityTest < Minitest::Test
     # LOAD
     single_ref01_ent = client.Single(nil)
     single_ref01_match_dt0 = {}
-    single_ref01_data_dt0_loaded, err = single_ref01_ent.load(single_ref01_match_dt0, nil)
-    assert_nil err
+    single_ref01_data_dt0_loaded = single_ref01_ent.load(single_ref01_match_dt0, nil)
     assert !single_ref01_data_dt0_loaded.nil?
 
   end

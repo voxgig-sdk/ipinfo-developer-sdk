@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Privacy,
+  PrivacyLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class PrivacyEntity extends IpinfoDeveloperEntityBase {
+class PrivacyEntity extends IpinfoDeveloperEntityBase<Privacy> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class PrivacyEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PrivacyLoadMatch, ctrl?: Control): Promise<Privacy> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class PrivacyEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Privacy> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

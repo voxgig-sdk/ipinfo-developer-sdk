@@ -55,6 +55,9 @@ class WhoisDomainEntity
         return new WhoisDomainEntity($this->_client, $opts);
     }
 
+    /**
+     * @param WhoisDomain|array $args WhoisDomain data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class WhoisDomainEntity
         }
     }
 
+    /**
+     * @return WhoisDomain|array The current WhoisDomain data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of WhoisDomain fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class WhoisDomainEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of WhoisDomain fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class WhoisDomainEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single WhoisDomain.
+     *
+     * @param WhoisDomainLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed WhoisDomainLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return WhoisDomain|array The loaded WhoisDomain as an assoc-array at the
+     *   SDK boundary; throws IpinfoDeveloperError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -117,7 +138,7 @@ class WhoisDomainEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

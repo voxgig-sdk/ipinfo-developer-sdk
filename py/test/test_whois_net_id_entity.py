@@ -49,8 +49,7 @@ class TestWhoisNetIdEntity:
         # LOAD
         whois_net_id_ref01_ent = client.WhoisNetId(None)
         whois_net_id_ref01_match_dt0 = {}
-        whois_net_id_ref01_data_dt0_loaded, err = whois_net_id_ref01_ent.load(whois_net_id_ref01_match_dt0, None)
-        assert err is None
+        whois_net_id_ref01_data_dt0_loaded = whois_net_id_ref01_ent.load(whois_net_id_ref01_match_dt0, None)
         assert whois_net_id_ref01_data_dt0_loaded is not None
 
 

@@ -52,8 +52,7 @@ class TestAsnEntity:
             "asn": setup["idmap"]["asn01"],
         }
 
-        asn_ref01_list_result, err = asn_ref01_ent.list(asn_ref01_match, None)
-        assert err is None
+        asn_ref01_list_result = asn_ref01_ent.list(asn_ref01_match, None)
         assert isinstance(asn_ref01_list_result, list)
 
 

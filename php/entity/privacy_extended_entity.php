@@ -55,6 +55,9 @@ class PrivacyExtendedEntity
         return new PrivacyExtendedEntity($this->_client, $opts);
     }
 
+    /**
+     * @param PrivacyExtended|array $args PrivacyExtended data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class PrivacyExtendedEntity
         }
     }
 
+    /**
+     * @return PrivacyExtended|array The current PrivacyExtended data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of PrivacyExtended fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class PrivacyExtendedEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of PrivacyExtended fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class PrivacyExtendedEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List PrivacyExtended items matching the given filter.
+     *
+     * @param PrivacyExtendedListMatch|array|null $reqmatch Match filter (any subset
+     *   of PrivacyExtended fields) as an assoc-array; PrivacyExtendedListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return PrivacyExtended[]|array A list of PrivacyExtended items as assoc-arrays at
+     *   the SDK boundary; throws IpinfoDeveloperError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class PrivacyExtendedEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

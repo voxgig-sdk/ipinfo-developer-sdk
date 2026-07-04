@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  ResidentialProxy,
+  ResidentialProxyLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class ResidentialProxyEntity extends IpinfoDeveloperEntityBase {
+class ResidentialProxyEntity extends IpinfoDeveloperEntityBase<ResidentialProxy> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ResidentialProxyEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ResidentialProxyLoadMatch, ctrl?: Control): Promise<ResidentialProxy> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ResidentialProxyEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ResidentialProxy> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

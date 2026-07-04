@@ -49,8 +49,7 @@ class PrivacyEntityTest extends TestCase
         // LOAD
         $privacy_ref01_ent = $client->Privacy(null);
         $privacy_ref01_match_dt0 = [];
-        [$privacy_ref01_data_dt0_loaded, $err] = $privacy_ref01_ent->load($privacy_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $privacy_ref01_data_dt0_loaded = $privacy_ref01_ent->load($privacy_ref01_match_dt0, null);
         $this->assertNotNull($privacy_ref01_data_dt0_loaded);
 
     }

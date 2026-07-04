@@ -49,8 +49,7 @@ class IpinfoPlusEntityTest extends TestCase
         // LOAD
         $ipinfo_plus_ref01_ent = $client->IpinfoPlus(null);
         $ipinfo_plus_ref01_match_dt0 = [];
-        [$ipinfo_plus_ref01_data_dt0_loaded, $err] = $ipinfo_plus_ref01_ent->load($ipinfo_plus_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $ipinfo_plus_ref01_data_dt0_loaded = $ipinfo_plus_ref01_ent->load($ipinfo_plus_ref01_match_dt0, null);
         $this->assertNotNull($ipinfo_plus_ref01_data_dt0_loaded);
 
     }

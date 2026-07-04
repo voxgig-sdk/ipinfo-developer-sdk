@@ -45,6 +45,7 @@ class PrivacyExtendedEntity
     end
   end
 
+  # @return [PrivacyExtended, Hash] the current PrivacyExtended data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class PrivacyExtendedEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of PrivacyExtended fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class PrivacyExtendedEntity
   
 
   
+  # List PrivacyExtended items matching the given filter.
+  #
+  # @param reqmatch [PrivacyExtendedListMatch, Hash, nil] match filter (any subset of PrivacyExtended fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<PrivacyExtended>, Array] the matching PrivacyExtended items; raises IpinfoDeveloperError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

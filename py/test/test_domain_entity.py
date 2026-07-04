@@ -49,8 +49,7 @@ class TestDomainEntity:
         # LOAD
         domain_ref01_ent = client.Domain(None)
         domain_ref01_match_dt0 = {}
-        domain_ref01_data_dt0_loaded, err = domain_ref01_ent.load(domain_ref01_match_dt0, None)
-        assert err is None
+        domain_ref01_data_dt0_loaded = domain_ref01_ent.load(domain_ref01_match_dt0, None)
         assert domain_ref01_data_dt0_loaded is not None
 
 

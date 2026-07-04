@@ -42,8 +42,7 @@ class LiteEntityTest < Minitest::Test
     # LOAD
     lite_ref01_ent = client.Lite(nil)
     lite_ref01_match_dt0 = {}
-    lite_ref01_data_dt0_loaded, err = lite_ref01_ent.load(lite_ref01_match_dt0, nil)
-    assert_nil err
+    lite_ref01_data_dt0_loaded = lite_ref01_ent.load(lite_ref01_match_dt0, nil)
     assert !lite_ref01_data_dt0_loaded.nil?
 
   end

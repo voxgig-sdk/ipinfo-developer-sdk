@@ -42,8 +42,7 @@ class IpinfoLiteEntityTest < Minitest::Test
     # LOAD
     ipinfo_lite_ref01_ent = client.IpinfoLite(nil)
     ipinfo_lite_ref01_match_dt0 = {}
-    ipinfo_lite_ref01_data_dt0_loaded, err = ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0, nil)
-    assert_nil err
+    ipinfo_lite_ref01_data_dt0_loaded = ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0, nil)
     assert !ipinfo_lite_ref01_data_dt0_loaded.nil?
 
   end

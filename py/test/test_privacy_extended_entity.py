@@ -52,8 +52,7 @@ class TestPrivacyExtendedEntity:
             "ip": setup["idmap"]["ip01"],
         }
 
-        privacy_extended_ref01_list_result, err = privacy_extended_ref01_ent.list(privacy_extended_ref01_match, None)
-        assert err is None
+        privacy_extended_ref01_list_result = privacy_extended_ref01_ent.list(privacy_extended_ref01_match, None)
         assert isinstance(privacy_extended_ref01_list_result, list)
 
 

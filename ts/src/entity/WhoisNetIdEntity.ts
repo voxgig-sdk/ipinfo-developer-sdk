@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  WhoisNetId,
+  WhoisNetIdLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class WhoisNetIdEntity extends IpinfoDeveloperEntityBase {
+class WhoisNetIdEntity extends IpinfoDeveloperEntityBase<WhoisNetId> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class WhoisNetIdEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: WhoisNetIdLoadMatch, ctrl?: Control): Promise<WhoisNetId> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class WhoisNetIdEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<WhoisNetId> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

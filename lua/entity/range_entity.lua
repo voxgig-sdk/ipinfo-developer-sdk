@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RangeLoadMatch
+---@param ctrl? table
+---@return Range
+---@return string? err
 function RangeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

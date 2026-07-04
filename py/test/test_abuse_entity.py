@@ -49,8 +49,7 @@ class TestAbuseEntity:
         # LOAD
         abuse_ref01_ent = client.Abuse(None)
         abuse_ref01_match_dt0 = {}
-        abuse_ref01_data_dt0_loaded, err = abuse_ref01_ent.load(abuse_ref01_match_dt0, None)
-        assert err is None
+        abuse_ref01_data_dt0_loaded = abuse_ref01_ent.load(abuse_ref01_match_dt0, None)
         assert abuse_ref01_data_dt0_loaded is not None
 
 

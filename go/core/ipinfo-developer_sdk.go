@@ -245,141 +245,225 @@ func (sdk *IpinfoDeveloperSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// Abuse returns a Abuse entity bound to this client.
+// Idiomatic usage: client.Abuse(nil).List(nil, nil) or
+// client.Abuse(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Abuse(data map[string]any) IpinfoDeveloperEntity {
 	return NewAbuseEntityFunc(sdk, data)
 }
 
 
+// Asn returns a Asn entity bound to this client.
+// Idiomatic usage: client.Asn(nil).List(nil, nil) or
+// client.Asn(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Asn(data map[string]any) IpinfoDeveloperEntity {
 	return NewAsnEntityFunc(sdk, data)
 }
 
 
+// Carrier returns a Carrier entity bound to this client.
+// Idiomatic usage: client.Carrier(nil).List(nil, nil) or
+// client.Carrier(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Carrier(data map[string]any) IpinfoDeveloperEntity {
 	return NewCarrierEntityFunc(sdk, data)
 }
 
 
+// Company returns a Company entity bound to this client.
+// Idiomatic usage: client.Company(nil).List(nil, nil) or
+// client.Company(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Company(data map[string]any) IpinfoDeveloperEntity {
 	return NewCompanyEntityFunc(sdk, data)
 }
 
 
+// Core returns a Core entity bound to this client.
+// Idiomatic usage: client.Core(nil).List(nil, nil) or
+// client.Core(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Core(data map[string]any) IpinfoDeveloperEntity {
 	return NewCoreEntityFunc(sdk, data)
 }
 
 
+// Domain returns a Domain entity bound to this client.
+// Idiomatic usage: client.Domain(nil).List(nil, nil) or
+// client.Domain(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Domain(data map[string]any) IpinfoDeveloperEntity {
 	return NewDomainEntityFunc(sdk, data)
 }
 
 
+// General returns a General entity bound to this client.
+// Idiomatic usage: client.General(nil).List(nil, nil) or
+// client.General(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) General(data map[string]any) IpinfoDeveloperEntity {
 	return NewGeneralEntityFunc(sdk, data)
 }
 
 
+// GetCurrentInformation returns a GetCurrentInformation entity bound to this client.
+// Idiomatic usage: client.GetCurrentInformation(nil).List(nil, nil) or
+// client.GetCurrentInformation(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) GetCurrentInformation(data map[string]any) IpinfoDeveloperEntity {
 	return NewGetCurrentInformationEntityFunc(sdk, data)
 }
 
 
+// GetInformationByIp returns a GetInformationByIp entity bound to this client.
+// Idiomatic usage: client.GetInformationByIp(nil).List(nil, nil) or
+// client.GetInformationByIp(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) GetInformationByIp(data map[string]any) IpinfoDeveloperEntity {
 	return NewGetInformationByIpEntityFunc(sdk, data)
 }
 
 
+// IpinfoCore returns a IpinfoCore entity bound to this client.
+// Idiomatic usage: client.IpinfoCore(nil).List(nil, nil) or
+// client.IpinfoCore(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) IpinfoCore(data map[string]any) IpinfoDeveloperEntity {
 	return NewIpinfoCoreEntityFunc(sdk, data)
 }
 
 
+// IpinfoLite returns a IpinfoLite entity bound to this client.
+// Idiomatic usage: client.IpinfoLite(nil).List(nil, nil) or
+// client.IpinfoLite(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) IpinfoLite(data map[string]any) IpinfoDeveloperEntity {
 	return NewIpinfoLiteEntityFunc(sdk, data)
 }
 
 
+// IpinfoPlus returns a IpinfoPlus entity bound to this client.
+// Idiomatic usage: client.IpinfoPlus(nil).List(nil, nil) or
+// client.IpinfoPlus(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) IpinfoPlus(data map[string]any) IpinfoDeveloperEntity {
 	return NewIpinfoPlusEntityFunc(sdk, data)
 }
 
 
+// Lite returns a Lite entity bound to this client.
+// Idiomatic usage: client.Lite(nil).List(nil, nil) or
+// client.Lite(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Lite(data map[string]any) IpinfoDeveloperEntity {
 	return NewLiteEntityFunc(sdk, data)
 }
 
 
+// Max returns a Max entity bound to this client.
+// Idiomatic usage: client.Max(nil).List(nil, nil) or
+// client.Max(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Max(data map[string]any) IpinfoDeveloperEntity {
 	return NewMaxEntityFunc(sdk, data)
 }
 
 
+// Men returns a Men entity bound to this client.
+// Idiomatic usage: client.Men(nil).List(nil, nil) or
+// client.Men(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Men(data map[string]any) IpinfoDeveloperEntity {
 	return NewMenEntityFunc(sdk, data)
 }
 
 
+// Place returns a Place entity bound to this client.
+// Idiomatic usage: client.Place(nil).List(nil, nil) or
+// client.Place(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Place(data map[string]any) IpinfoDeveloperEntity {
 	return NewPlaceEntityFunc(sdk, data)
 }
 
 
+// Plus returns a Plus entity bound to this client.
+// Idiomatic usage: client.Plus(nil).List(nil, nil) or
+// client.Plus(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Plus(data map[string]any) IpinfoDeveloperEntity {
 	return NewPlusEntityFunc(sdk, data)
 }
 
 
+// Privacy returns a Privacy entity bound to this client.
+// Idiomatic usage: client.Privacy(nil).List(nil, nil) or
+// client.Privacy(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Privacy(data map[string]any) IpinfoDeveloperEntity {
 	return NewPrivacyEntityFunc(sdk, data)
 }
 
 
+// PrivacyExtended returns a PrivacyExtended entity bound to this client.
+// Idiomatic usage: client.PrivacyExtended(nil).List(nil, nil) or
+// client.PrivacyExtended(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) PrivacyExtended(data map[string]any) IpinfoDeveloperEntity {
 	return NewPrivacyExtendedEntityFunc(sdk, data)
 }
 
 
+// Range returns a Range entity bound to this client.
+// Idiomatic usage: client.Range(nil).List(nil, nil) or
+// client.Range(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Range(data map[string]any) IpinfoDeveloperEntity {
 	return NewRangeEntityFunc(sdk, data)
 }
 
 
+// ResidentialProxy returns a ResidentialProxy entity bound to this client.
+// Idiomatic usage: client.ResidentialProxy(nil).List(nil, nil) or
+// client.ResidentialProxy(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) ResidentialProxy(data map[string]any) IpinfoDeveloperEntity {
 	return NewResidentialProxyEntityFunc(sdk, data)
 }
 
 
+// Single returns a Single entity bound to this client.
+// Idiomatic usage: client.Single(nil).List(nil, nil) or
+// client.Single(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) Single(data map[string]any) IpinfoDeveloperEntity {
 	return NewSingleEntityFunc(sdk, data)
 }
 
 
+// WhoisAsn returns a WhoisAsn entity bound to this client.
+// Idiomatic usage: client.WhoisAsn(nil).List(nil, nil) or
+// client.WhoisAsn(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) WhoisAsn(data map[string]any) IpinfoDeveloperEntity {
 	return NewWhoisAsnEntityFunc(sdk, data)
 }
 
 
+// WhoisDomain returns a WhoisDomain entity bound to this client.
+// Idiomatic usage: client.WhoisDomain(nil).List(nil, nil) or
+// client.WhoisDomain(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) WhoisDomain(data map[string]any) IpinfoDeveloperEntity {
 	return NewWhoisDomainEntityFunc(sdk, data)
 }
 
 
+// WhoisIp returns a WhoisIp entity bound to this client.
+// Idiomatic usage: client.WhoisIp(nil).List(nil, nil) or
+// client.WhoisIp(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) WhoisIp(data map[string]any) IpinfoDeveloperEntity {
 	return NewWhoisIpEntityFunc(sdk, data)
 }
 
 
+// WhoisNetId returns a WhoisNetId entity bound to this client.
+// Idiomatic usage: client.WhoisNetId(nil).List(nil, nil) or
+// client.WhoisNetId(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) WhoisNetId(data map[string]any) IpinfoDeveloperEntity {
 	return NewWhoisNetIdEntityFunc(sdk, data)
 }
 
 
+// WhoisOrg returns a WhoisOrg entity bound to this client.
+// Idiomatic usage: client.WhoisOrg(nil).List(nil, nil) or
+// client.WhoisOrg(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) WhoisOrg(data map[string]any) IpinfoDeveloperEntity {
 	return NewWhoisOrgEntityFunc(sdk, data)
 }
 
 
+// WhoisPoc returns a WhoisPoc entity bound to this client.
+// Idiomatic usage: client.WhoisPoc(nil).List(nil, nil) or
+// client.WhoisPoc(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpinfoDeveloperSDK) WhoisPoc(data map[string]any) IpinfoDeveloperEntity {
 	return NewWhoisPocEntityFunc(sdk, data)
 }

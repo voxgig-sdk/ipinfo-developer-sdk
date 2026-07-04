@@ -45,8 +45,7 @@ class PrivacyExtendedEntityTest < Minitest::Test
       "ip" => setup[:idmap]["ip01"],
     }
 
-    privacy_extended_ref01_list_result, err = privacy_extended_ref01_ent.list(privacy_extended_ref01_match, nil)
-    assert_nil err
+    privacy_extended_ref01_list_result = privacy_extended_ref01_ent.list(privacy_extended_ref01_match, nil)
     assert privacy_extended_ref01_list_result.is_a?(Array)
 
   end

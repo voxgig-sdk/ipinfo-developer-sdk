@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  IpinfoPlus,
+  IpinfoPlusLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class IpinfoPlusEntity extends IpinfoDeveloperEntityBase {
+class IpinfoPlusEntity extends IpinfoDeveloperEntityBase<IpinfoPlus> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class IpinfoPlusEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: IpinfoPlusLoadMatch, ctrl?: Control): Promise<IpinfoPlus> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class IpinfoPlusEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<IpinfoPlus> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

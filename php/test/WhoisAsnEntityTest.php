@@ -52,8 +52,7 @@ class WhoisAsnEntityTest extends TestCase
             "asn" => $setup["idmap"]["asn01"],
         ];
 
-        [$whois_asn_ref01_list_result, $err] = $whois_asn_ref01_ent->list($whois_asn_ref01_match, null);
-        $this->assertNull($err);
+        $whois_asn_ref01_list_result = $whois_asn_ref01_ent->list($whois_asn_ref01_match, null);
         $this->assertIsArray($whois_asn_ref01_list_result);
 
     }

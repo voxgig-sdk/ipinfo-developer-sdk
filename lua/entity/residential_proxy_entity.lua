@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ResidentialProxyLoadMatch
+---@param ctrl? table
+---@return ResidentialProxy
+---@return string? err
 function ResidentialProxyEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

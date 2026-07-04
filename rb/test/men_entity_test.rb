@@ -42,8 +42,7 @@ class MenEntityTest < Minitest::Test
     # LOAD
     men_ref01_ent = client.Men(nil)
     men_ref01_match_dt0 = {}
-    men_ref01_data_dt0_loaded, err = men_ref01_ent.load(men_ref01_match_dt0, nil)
-    assert_nil err
+    men_ref01_data_dt0_loaded = men_ref01_ent.load(men_ref01_match_dt0, nil)
     assert !men_ref01_data_dt0_loaded.nil?
 
   end

@@ -45,8 +45,7 @@ class WhoisAsnEntityTest < Minitest::Test
       "asn" => setup[:idmap]["asn01"],
     }
 
-    whois_asn_ref01_list_result, err = whois_asn_ref01_ent.list(whois_asn_ref01_match, nil)
-    assert_nil err
+    whois_asn_ref01_list_result = whois_asn_ref01_ent.list(whois_asn_ref01_match, nil)
     assert whois_asn_ref01_list_result.is_a?(Array)
 
   end

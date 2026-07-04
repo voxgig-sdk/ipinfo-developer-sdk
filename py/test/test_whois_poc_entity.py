@@ -49,8 +49,7 @@ class TestWhoisPocEntity:
         # LOAD
         whois_poc_ref01_ent = client.WhoisPoc(None)
         whois_poc_ref01_match_dt0 = {}
-        whois_poc_ref01_data_dt0_loaded, err = whois_poc_ref01_ent.load(whois_poc_ref01_match_dt0, None)
-        assert err is None
+        whois_poc_ref01_data_dt0_loaded = whois_poc_ref01_ent.load(whois_poc_ref01_match_dt0, None)
         assert whois_poc_ref01_data_dt0_loaded is not None
 
 

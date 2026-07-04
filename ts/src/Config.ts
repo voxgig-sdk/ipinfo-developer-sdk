@@ -198,7 +198,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -344,7 +345,8 @@ class Config {
                     "name": "asn",
                     "orig": "asn",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -412,7 +414,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -481,7 +484,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -592,7 +596,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -688,7 +693,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1126,7 +1132,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1199,7 +1206,8 @@ class Config {
                     "name": "field",
                     "orig": "field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -1207,7 +1215,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -1240,7 +1249,8 @@ class Config {
                     "name": "field",
                     "orig": "field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1295,7 +1305,8 @@ class Config {
                     "name": "field",
                     "orig": "field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -1303,7 +1314,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -1336,7 +1348,8 @@ class Config {
                     "name": "field",
                     "orig": "field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1368,7 +1381,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1449,7 +1463,8 @@ class Config {
                     "name": "field",
                     "orig": "field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -1457,7 +1472,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -1490,7 +1506,8 @@ class Config {
                     "name": "field",
                     "orig": "field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1714,7 +1731,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1862,7 +1880,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1985,7 +2004,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2098,7 +2118,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2258,7 +2279,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2334,7 +2356,8 @@ class Config {
                     "name": "id",
                     "orig": "domain",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2415,7 +2438,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2462,7 +2486,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2493,7 +2518,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2524,7 +2550,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2555,7 +2582,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2586,7 +2614,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2617,7 +2646,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2648,7 +2678,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2679,7 +2710,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2710,7 +2742,8 @@ class Config {
                     "name": "ip",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -2984,7 +3017,8 @@ class Config {
                     "name": "asn",
                     "orig": "asn",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3081,7 +3115,8 @@ class Config {
                     "name": "domain",
                     "orig": "domain",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3182,7 +3217,8 @@ class Config {
                     "name": "whoisip",
                     "orig": "whoisip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3283,7 +3319,8 @@ class Config {
                     "name": "whoisnetid",
                     "orig": "whoisnetid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3384,7 +3421,8 @@ class Config {
                     "name": "id",
                     "orig": "whoisorgid",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -3486,7 +3524,8 @@ class Config {
                     "name": "id",
                     "orig": "whoispoc",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

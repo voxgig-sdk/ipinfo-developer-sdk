@@ -49,8 +49,7 @@ class WhoisOrgEntityTest extends TestCase
         // LOAD
         $whois_org_ref01_ent = $client->WhoisOrg(null);
         $whois_org_ref01_match_dt0 = [];
-        [$whois_org_ref01_data_dt0_loaded, $err] = $whois_org_ref01_ent->load($whois_org_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $whois_org_ref01_data_dt0_loaded = $whois_org_ref01_ent->load($whois_org_ref01_match_dt0, null);
         $this->assertNotNull($whois_org_ref01_data_dt0_loaded);
 
     }

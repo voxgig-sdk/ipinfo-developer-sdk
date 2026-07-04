@@ -85,6 +85,27 @@ func (e *GetCurrentInformationEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an GetCurrentInformation; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GetCurrentInformationEntity) DataTyped(data ...GetCurrentInformation) GetCurrentInformation {
+	if len(data) > 0 {
+		return typedFrom[GetCurrentInformation](e.Data(asMap(data[0])))
+	}
+	return typedFrom[GetCurrentInformation](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through GetCurrentInformation (all fields
+// optional at the wire level).
+func (e *GetCurrentInformationEntity) MatchTyped(match ...GetCurrentInformation) GetCurrentInformation {
+	if len(match) > 0 {
+		return typedFrom[GetCurrentInformation](e.Match(asMap(match[0])))
+	}
+	return typedFrom[GetCurrentInformation](e.Match())
+}
+
 
 func (e *GetCurrentInformationEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *GetCurrentInformationEntity) Load(reqmatch map[string]any, ctrl map[str
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// GetCurrentInformationLoadMatch and returns an GetCurrentInformation. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *GetCurrentInformationEntity) LoadTyped(reqmatch GetCurrentInformationLoadMatch, ctrl map[string]any) (GetCurrentInformation, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return GetCurrentInformation{}, err
+	}
+	return typedFrom[GetCurrentInformation](res), nil
 }
 
 

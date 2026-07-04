@@ -45,6 +45,7 @@ class IpinfoPlusEntity
     end
   end
 
+  # @return [IpinfoPlus, Hash] the current IpinfoPlus data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class IpinfoPlusEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of IpinfoPlus fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single IpinfoPlus.
+  #
+  # @param reqmatch [IpinfoPlusLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [IpinfoPlus, Hash] the loaded IpinfoPlus; raises IpinfoDeveloperError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

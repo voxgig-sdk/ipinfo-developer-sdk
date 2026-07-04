@@ -49,8 +49,7 @@ class TestCoreEntity:
         # LOAD
         core_ref01_ent = client.Core(None)
         core_ref01_match_dt0 = {}
-        core_ref01_data_dt0_loaded, err = core_ref01_ent.load(core_ref01_match_dt0, None)
-        assert err is None
+        core_ref01_data_dt0_loaded = core_ref01_ent.load(core_ref01_match_dt0, None)
         assert core_ref01_data_dt0_loaded is not None
 
 

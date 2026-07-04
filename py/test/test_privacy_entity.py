@@ -49,8 +49,7 @@ class TestPrivacyEntity:
         # LOAD
         privacy_ref01_ent = client.Privacy(None)
         privacy_ref01_match_dt0 = {}
-        privacy_ref01_data_dt0_loaded, err = privacy_ref01_ent.load(privacy_ref01_match_dt0, None)
-        assert err is None
+        privacy_ref01_data_dt0_loaded = privacy_ref01_ent.load(privacy_ref01_match_dt0, None)
         assert privacy_ref01_data_dt0_loaded is not None
 
 

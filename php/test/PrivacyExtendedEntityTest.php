@@ -52,8 +52,7 @@ class PrivacyExtendedEntityTest extends TestCase
             "ip" => $setup["idmap"]["ip01"],
         ];
 
-        [$privacy_extended_ref01_list_result, $err] = $privacy_extended_ref01_ent->list($privacy_extended_ref01_match, null);
-        $this->assertNull($err);
+        $privacy_extended_ref01_list_result = $privacy_extended_ref01_ent->list($privacy_extended_ref01_match, null);
         $this->assertIsArray($privacy_extended_ref01_list_result);
 
     }

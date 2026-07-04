@@ -45,6 +45,7 @@ class MenEntity
     end
   end
 
+  # @return [Men, Hash] the current Men data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class MenEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Men fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Men.
+  #
+  # @param reqmatch [MenLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Men, Hash] the loaded Men; raises IpinfoDeveloperError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

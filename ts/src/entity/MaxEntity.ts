@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Max,
+  MaxLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class MaxEntity extends IpinfoDeveloperEntityBase {
+class MaxEntity extends IpinfoDeveloperEntityBase<Max> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class MaxEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: MaxLoadMatch, ctrl?: Control): Promise<Max> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class MaxEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Max> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

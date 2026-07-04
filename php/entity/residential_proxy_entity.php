@@ -55,6 +55,9 @@ class ResidentialProxyEntity
         return new ResidentialProxyEntity($this->_client, $opts);
     }
 
+    /**
+     * @param ResidentialProxy|array $args ResidentialProxy data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ResidentialProxyEntity
         }
     }
 
+    /**
+     * @return ResidentialProxy|array The current ResidentialProxy data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of ResidentialProxy fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ResidentialProxyEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of ResidentialProxy fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ResidentialProxyEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single ResidentialProxy.
+     *
+     * @param ResidentialProxyLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ResidentialProxyLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ResidentialProxy|array The loaded ResidentialProxy as an assoc-array at the
+     *   SDK boundary; throws IpinfoDeveloperError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -117,7 +138,7 @@ class ResidentialProxyEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

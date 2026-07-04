@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Range,
+  RangeLoadMatch,
+} from '../IpinfoDeveloperTypes'
 
 // TODO: needs Entity superclass
-class RangeEntity extends IpinfoDeveloperEntityBase {
+class RangeEntity extends IpinfoDeveloperEntityBase<Range> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class RangeEntity extends IpinfoDeveloperEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: RangeLoadMatch, ctrl?: Control): Promise<Range> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class RangeEntity extends IpinfoDeveloperEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Range> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

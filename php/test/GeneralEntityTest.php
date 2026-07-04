@@ -43,8 +43,7 @@ class GeneralEntityTest extends TestCase
         $general_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.general"), "general_ref01"));
 
-        [$general_ref01_data_result, $err] = $general_ref01_ent->create($general_ref01_data, null);
-        $this->assertNull($err);
+        $general_ref01_data_result = $general_ref01_ent->create($general_ref01_data, null);
         $general_ref01_data = Helpers::to_map($general_ref01_data_result);
         $this->assertNotNull($general_ref01_data);
 

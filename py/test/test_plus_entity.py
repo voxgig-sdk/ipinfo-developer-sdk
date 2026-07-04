@@ -49,8 +49,7 @@ class TestPlusEntity:
         # LOAD
         plus_ref01_ent = client.Plus(None)
         plus_ref01_match_dt0 = {}
-        plus_ref01_data_dt0_loaded, err = plus_ref01_ent.load(plus_ref01_match_dt0, None)
-        assert err is None
+        plus_ref01_data_dt0_loaded = plus_ref01_ent.load(plus_ref01_match_dt0, None)
         assert plus_ref01_data_dt0_loaded is not None
 
 

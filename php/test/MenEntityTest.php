@@ -49,8 +49,7 @@ class MenEntityTest extends TestCase
         // LOAD
         $men_ref01_ent = $client->Men(null);
         $men_ref01_match_dt0 = [];
-        [$men_ref01_data_dt0_loaded, $err] = $men_ref01_ent->load($men_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $men_ref01_data_dt0_loaded = $men_ref01_ent->load($men_ref01_match_dt0, null);
         $this->assertNotNull($men_ref01_data_dt0_loaded);
 
     }

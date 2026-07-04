@@ -49,8 +49,7 @@ class WhoisPocEntityTest extends TestCase
         // LOAD
         $whois_poc_ref01_ent = $client->WhoisPoc(null);
         $whois_poc_ref01_match_dt0 = [];
-        [$whois_poc_ref01_data_dt0_loaded, $err] = $whois_poc_ref01_ent->load($whois_poc_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $whois_poc_ref01_data_dt0_loaded = $whois_poc_ref01_ent->load($whois_poc_ref01_match_dt0, null);
         $this->assertNotNull($whois_poc_ref01_data_dt0_loaded);
 
     }

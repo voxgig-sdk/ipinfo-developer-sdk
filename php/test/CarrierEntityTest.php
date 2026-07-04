@@ -49,8 +49,7 @@ class CarrierEntityTest extends TestCase
         // LOAD
         $carrier_ref01_ent = $client->Carrier(null);
         $carrier_ref01_match_dt0 = [];
-        [$carrier_ref01_data_dt0_loaded, $err] = $carrier_ref01_ent->load($carrier_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $carrier_ref01_data_dt0_loaded = $carrier_ref01_ent->load($carrier_ref01_match_dt0, null);
         $this->assertNotNull($carrier_ref01_data_dt0_loaded);
 
     }

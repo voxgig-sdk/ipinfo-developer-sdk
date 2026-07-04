@@ -49,8 +49,7 @@ class TestResidentialProxyEntity:
         # LOAD
         residential_proxy_ref01_ent = client.ResidentialProxy(None)
         residential_proxy_ref01_match_dt0 = {}
-        residential_proxy_ref01_data_dt0_loaded, err = residential_proxy_ref01_ent.load(residential_proxy_ref01_match_dt0, None)
-        assert err is None
+        residential_proxy_ref01_data_dt0_loaded = residential_proxy_ref01_ent.load(residential_proxy_ref01_match_dt0, None)
         assert residential_proxy_ref01_data_dt0_loaded is not None
 
 

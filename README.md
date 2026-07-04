@@ -10,26 +10,26 @@ This is an unofficial SDK for the IPinfo.io OpenAPI Specification public API, ge
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ipinfo-developer` | `npm install @voxgig-sdk/ipinfo-developer` |
-| Python | `voxgig-sdk-ipinfo-developer` | `pip install voxgig-sdk-ipinfo-developer` |
-| PHP | `voxgig-sdk/ipinfo-developer` | `composer require voxgig-sdk/ipinfo-developer` |
-| Golang | `github.com/voxgig-sdk/ipinfo-developer-sdk/go` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go` |
-| Ruby | `voxgig-sdk-ipinfo-developer` | `gem install voxgig-sdk-ipinfo-developer` |
-| Lua | `voxgig-sdk-ipinfo-developer` | `luarocks install voxgig-sdk-ipinfo-developer` |
+| TypeScript | `@voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| Python | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| PHP | `voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/ipinfo-developer-sdk/go` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go@latest` |
+| Ruby | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| Lua | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { IpinfoDeveloperSDK } from 'ipinfo-developer'
+import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
 
 const client = new IpinfoDeveloperSDK({
-  apikey: process.env.IPINFO-DEVELOPER_APIKEY,
+  apikey: process.env.IPINFO_DEVELOPER_APIKEY,
 })
 
 // Load abuse data
-const abuse = await client.Abuse().load({})
+const abuse = await client.abuse.load({})
 console.log(abuse.data)
 ```
 
@@ -71,34 +71,34 @@ The API exposes 28 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Abuse** |  | `/{ip}/abuse` |
-| **Asn** |  | `/AS{asn}` |
-| **Carrier** |  | `/{ip}/carrier` |
-| **Company** |  | `/{ip}/company` |
-| **Core** |  | `/lookup/{ip}` |
-| **Domain** |  | `/domains/{ip}` |
-| **General** |  | `/tools/map` |
-| **GetCurrentInformation** |  | `/` |
-| **GetInformationByIp** |  | `/{ip}` |
-| **IpinfoCore** |  | `/lookup/{ip}/{field}` |
-| **IpinfoLite** |  | `/lite/{ip}/{field}` |
-| **IpinfoPlus** |  | `/plus/{ip}/{field}` |
-| **Lite** |  | `/lite/me` |
-| **Max** |  | `/max/{ip}` |
-| **Men** |  | `/me` |
-| **Place** |  | `/places/{ip}` |
-| **Plus** |  | `/plus/{ip}` |
-| **Privacy** |  | `/{ip}/privacy` |
-| **PrivacyExtended** |  | `/{ip}/privacy_extended` |
-| **Range** |  | `/ranges/{domain}` |
-| **ResidentialProxy** |  | `/{ip}/resproxy` |
-| **Single** |  | `/{ip}/city` |
-| **WhoisAsn** |  | `/whois/net/AS{asn}` |
-| **WhoisDomain** |  | `/whois/net/{domain}` |
-| **WhoisIp** |  | `/whois/net/{whoisip}` |
-| **WhoisNetId** |  | `/whois/net/{whoisnetid}` |
-| **WhoisOrg** |  | `/whois/org/{whoisorgid}` |
-| **WhoisPoc** |  | `/whois/poc/{whoispoc}` |
+| **Abuse** | The Abuse entity (load). | `/{ip}/abuse` |
+| **Asn** | The Asn entity (list). | `/AS{asn}` |
+| **Carrier** | The Carrier entity (load). | `/{ip}/carrier` |
+| **Company** | The Company entity (load). | `/{ip}/company` |
+| **Core** | The Core entity (load). | `/lookup/{ip}` |
+| **Domain** | The Domain entity (load). | `/domains/{ip}` |
+| **General** | The General entity (create). | `/tools/map` |
+| **GetCurrentInformation** | The GetCurrentInformation entity (load). | `/` |
+| **GetInformationByIp** | The GetInformationByIp entity (load). | `/{ip}` |
+| **IpinfoCore** | The IpinfoCore entity (load). | `/lookup/{ip}/{field}` |
+| **IpinfoLite** | The IpinfoLite entity (load). | `/lite/{ip}/{field}` |
+| **IpinfoPlus** | The IpinfoPlus entity (load). | `/plus/{ip}/{field}` |
+| **Lite** | The Lite entity (load). | `/lite/me` |
+| **Max** | The Max entity (load). | `/max/{ip}` |
+| **Men** | The Men entity (load). | `/me` |
+| **Place** | The Place entity (load). | `/places/{ip}` |
+| **Plus** | The Plus entity (load). | `/plus/{ip}` |
+| **Privacy** | The Privacy entity (load). | `/{ip}/privacy` |
+| **PrivacyExtended** | The PrivacyExtended entity (list). | `/{ip}/privacy_extended` |
+| **Range** | The Range entity (load). | `/ranges/{domain}` |
+| **ResidentialProxy** | The ResidentialProxy entity (load). | `/{ip}/resproxy` |
+| **Single** | The Single entity (load). | `/{ip}/city` |
+| **WhoisAsn** | The WhoisAsn entity (list). | `/whois/net/AS{asn}` |
+| **WhoisDomain** | The WhoisDomain entity (load). | `/whois/net/{domain}` |
+| **WhoisIp** | The WhoisIp entity (load). | `/whois/net/{whoisip}` |
+| **WhoisNetId** | The WhoisNetId entity (load). | `/whois/net/{whoisnetid}` |
+| **WhoisOrg** | The WhoisOrg entity (load). | `/whois/org/{whoisorgid}` |
+| **WhoisPoc** | The WhoisPoc entity (load). | `/whois/poc/{whoispoc}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,12 +112,12 @@ import os
 from ipinfodeveloper_sdk import IpinfoDeveloperSDK
 
 client = IpinfoDeveloperSDK({
-    "apikey": os.environ.get("IPINFO-DEVELOPER_APIKEY"),
+    "apikey": os.environ.get("IPINFO_DEVELOPER_APIKEY"),
 })
 
 
 # Load a specific abuse
-abuse, err = client.Abuse().load({"id": "example_id"})
+abuse = client.abuse.load({"id": "example_id"})
 print(abuse)
 ```
 
@@ -128,12 +128,12 @@ print(abuse)
 require_once 'ipinfodeveloper_sdk.php';
 
 $client = new IpinfoDeveloperSDK([
-    "apikey" => getenv("IPINFO-DEVELOPER_APIKEY"),
+    "apikey" => getenv("IPINFO_DEVELOPER_APIKEY"),
 ]);
 
 
 // Load a specific abuse
-[$abuse, $err] = $client->Abuse()->load(["id" => "example_id"]);
+$abuse = $client->abuse()->load(["id" => "example_id"]);
 print_r($abuse);
 ```
 
@@ -143,7 +143,7 @@ print_r($abuse);
 import sdk "github.com/voxgig-sdk/ipinfo-developer-sdk/go"
 
 client := sdk.NewIpinfoDeveloperSDK(map[string]any{
-    "apikey": os.Getenv("IPINFO-DEVELOPER_APIKEY"),
+    "apikey": os.Getenv("IPINFO_DEVELOPER_APIKEY"),
 })
 
 // Load abuse data
@@ -157,12 +157,12 @@ fmt.Println(abuse)
 require_relative "IpinfoDeveloper_sdk"
 
 client = IpinfoDeveloperSDK.new({
-  "apikey" => ENV["IPINFO-DEVELOPER_APIKEY"],
+  "apikey" => ENV["IPINFO_DEVELOPER_APIKEY"],
 })
 
 
 # Load a specific abuse
-abuse, err = client.Abuse().load({ "id" => "example_id" })
+abuse = client.abuse.load({ "id" => "example_id" })
 puts abuse
 ```
 
@@ -172,12 +172,12 @@ puts abuse
 local sdk = require("ipinfo-developer_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("IPINFO-DEVELOPER_APIKEY"),
+  apikey = os.getenv("IPINFO_DEVELOPER_APIKEY"),
 })
 
 
 -- Load a specific abuse
-local abuse, err = client:Abuse():load({ id = "example_id" })
+local abuse, err = client:abuse():load({ id = "example_id" })
 print(abuse)
 ```
 
@@ -190,7 +190,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = IpinfoDeveloperSDK.test()
-const result = await client.Abuse().load({ id: 'test01' })
+const result = await client.abuse.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -198,14 +198,14 @@ const result = await client.Abuse().load({ id: 'test01' })
 
 ```python
 client = IpinfoDeveloperSDK.test()
-result, err = client.Abuse().load({"id": "test01"})
+result = client.abuse.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = IpinfoDeveloperSDK::test();
-[$result, $err] = $client->Abuse()->load(["id" => "test01"]);
+$result = $client->abuse()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -221,14 +221,14 @@ result, err := client.Abuse(nil).Load(
 
 ```ruby
 client = IpinfoDeveloperSDK.test
-result, err = client.Abuse().load({ "id" => "test01" })
+result = client.abuse.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Abuse():load({ id = "test01" })
+local result, err = client:abuse():load({ id = "test01" })
 ```
 
 ## How it works
@@ -281,7 +281,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -290,7 +290,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -308,7 +308,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

@@ -162,9 +162,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -177,11 +177,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -189,7 +189,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## AbuseEntity
 
 ```python
-abuse = client.Abuse()
+abuse = client.abuse
 ```
 
 ### Fields
@@ -205,12 +205,12 @@ abuse = client.Abuse()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Abuse().load({"id": "abuse_id"})
+result = client.abuse.load({"id": "abuse_id"})
 ```
 
 ### Common Methods
@@ -245,7 +245,7 @@ Return the entity name.
 ## AsnEntity
 
 ```python
-asn = client.Asn()
+asn = client.asn
 ```
 
 ### Fields
@@ -269,12 +269,12 @@ asn = client.Asn()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Asn().list({})
+results = client.asn.list({})
 ```
 
 ### Common Methods
@@ -309,7 +309,7 @@ Return the entity name.
 ## CarrierEntity
 
 ```python
-carrier = client.Carrier()
+carrier = client.carrier
 ```
 
 ### Fields
@@ -322,12 +322,12 @@ carrier = client.Carrier()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Carrier().load({"id": "carrier_id"})
+result = client.carrier.load({"id": "carrier_id"})
 ```
 
 ### Common Methods
@@ -362,7 +362,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```python
-company = client.Company()
+company = client.company
 ```
 
 ### Fields
@@ -375,12 +375,12 @@ company = client.Company()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Company().load({"id": "company_id"})
+result = client.company.load({"id": "company_id"})
 ```
 
 ### Common Methods
@@ -415,7 +415,7 @@ Return the entity name.
 ## CoreEntity
 
 ```python
-core = client.Core()
+core = client.core
 ```
 
 ### Fields
@@ -434,12 +434,12 @@ core = client.Core()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Core().load({"id": "core_id"})
+result = client.core.load({"id": "core_id"})
 ```
 
 ### Common Methods
@@ -474,7 +474,7 @@ Return the entity name.
 ## DomainEntity
 
 ```python
-domain = client.Domain()
+domain = client.domain
 ```
 
 ### Fields
@@ -488,12 +488,12 @@ domain = client.Domain()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Domain().load({"id": "domain_id"})
+result = client.domain.load({"id": "domain_id"})
 ```
 
 ### Common Methods
@@ -528,7 +528,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```python
-general = client.General()
+general = client.general
 ```
 
 ### Fields
@@ -542,12 +542,12 @@ general = client.General()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.General().create({
+result = client.general.create({
 })
 ```
 
@@ -583,7 +583,7 @@ Return the entity name.
 ## GetCurrentInformationEntity
 
 ```python
-get_current_information = client.GetCurrentInformation()
+get_current_information = client.get_current_information
 ```
 
 ### Fields
@@ -608,12 +608,12 @@ get_current_information = client.GetCurrentInformation()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.GetCurrentInformation().load({"id": "get_current_information_id"})
+result = client.get_current_information.load({"id": "get_current_information_id"})
 ```
 
 ### Common Methods
@@ -648,7 +648,7 @@ Return the entity name.
 ## GetInformationByIpEntity
 
 ```python
-get_information_by_ip = client.GetInformationByIp()
+get_information_by_ip = client.get_information_by_ip
 ```
 
 ### Fields
@@ -673,12 +673,12 @@ get_information_by_ip = client.GetInformationByIp()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.GetInformationByIp().load({"id": "get_information_by_ip_id"})
+result = client.get_information_by_ip.load({"id": "get_information_by_ip_id"})
 ```
 
 ### Common Methods
@@ -713,7 +713,7 @@ Return the entity name.
 ## IpinfoCoreEntity
 
 ```python
-ipinfo_core = client.IpinfoCore()
+ipinfo_core = client.ipinfo_core
 ```
 
 ### Fields
@@ -726,12 +726,12 @@ ipinfo_core = client.IpinfoCore()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.IpinfoCore().load({"id": "ipinfo_core_id"})
+result = client.ipinfo_core.load({"id": "ipinfo_core_id"})
 ```
 
 ### Common Methods
@@ -766,17 +766,17 @@ Return the entity name.
 ## IpinfoLiteEntity
 
 ```python
-ipinfo_lite = client.IpinfoLite()
+ipinfo_lite = client.ipinfo_lite
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.IpinfoLite().load({"id": "ipinfo_lite_id"})
+result = client.ipinfo_lite.load({"id": "ipinfo_lite_id"})
 ```
 
 ### Common Methods
@@ -811,7 +811,7 @@ Return the entity name.
 ## IpinfoPlusEntity
 
 ```python
-ipinfo_plus = client.IpinfoPlus()
+ipinfo_plus = client.ipinfo_plus
 ```
 
 ### Fields
@@ -824,12 +824,12 @@ ipinfo_plus = client.IpinfoPlus()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.IpinfoPlus().load({"id": "ipinfo_plus_id"})
+result = client.ipinfo_plus.load({"id": "ipinfo_plus_id"})
 ```
 
 ### Common Methods
@@ -864,7 +864,7 @@ Return the entity name.
 ## LiteEntity
 
 ```python
-lite = client.Lite()
+lite = client.lite
 ```
 
 ### Fields
@@ -882,12 +882,12 @@ lite = client.Lite()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Lite().load({"id": "lite_id"})
+result = client.lite.load({"id": "lite_id"})
 ```
 
 ### Common Methods
@@ -922,7 +922,7 @@ Return the entity name.
 ## MaxEntity
 
 ```python
-max = client.Max()
+max = client.max
 ```
 
 ### Fields
@@ -943,12 +943,12 @@ max = client.Max()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Max().load({"id": "max_id"})
+result = client.max.load({"id": "max_id"})
 ```
 
 ### Common Methods
@@ -983,7 +983,7 @@ Return the entity name.
 ## MenEntity
 
 ```python
-men = client.Men()
+men = client.men
 ```
 
 ### Fields
@@ -996,12 +996,12 @@ men = client.Men()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Men().load({"id": "men_id"})
+result = client.men.load({"id": "men_id"})
 ```
 
 ### Common Methods
@@ -1036,7 +1036,7 @@ Return the entity name.
 ## PlaceEntity
 
 ```python
-place = client.Place()
+place = client.place
 ```
 
 ### Fields
@@ -1052,12 +1052,12 @@ place = client.Place()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Place().load({"id": "place_id"})
+result = client.place.load({"id": "place_id"})
 ```
 
 ### Common Methods
@@ -1092,7 +1092,7 @@ Return the entity name.
 ## PlusEntity
 
 ```python
-plus = client.Plus()
+plus = client.plus
 ```
 
 ### Fields
@@ -1112,12 +1112,12 @@ plus = client.Plus()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Plus().load({"id": "plus_id"})
+result = client.plus.load({"id": "plus_id"})
 ```
 
 ### Common Methods
@@ -1152,7 +1152,7 @@ Return the entity name.
 ## PrivacyEntity
 
 ```python
-privacy = client.Privacy()
+privacy = client.privacy
 ```
 
 ### Fields
@@ -1168,12 +1168,12 @@ privacy = client.Privacy()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Privacy().load({"id": "privacy_id"})
+result = client.privacy.load({"id": "privacy_id"})
 ```
 
 ### Common Methods
@@ -1208,7 +1208,7 @@ Return the entity name.
 ## PrivacyExtendedEntity
 
 ```python
-privacy_extended = client.PrivacyExtended()
+privacy_extended = client.privacy_extended
 ```
 
 ### Fields
@@ -1234,12 +1234,12 @@ privacy_extended = client.PrivacyExtended()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.PrivacyExtended().list({})
+results = client.privacy_extended.list({})
 ```
 
 ### Common Methods
@@ -1274,7 +1274,7 @@ Return the entity name.
 ## RangeEntity
 
 ```python
-range = client.Range()
+range = client.range
 ```
 
 ### Fields
@@ -1288,12 +1288,12 @@ range = client.Range()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Range().load({"id": "range_id"})
+result = client.range.load({"id": "range_id"})
 ```
 
 ### Common Methods
@@ -1328,7 +1328,7 @@ Return the entity name.
 ## ResidentialProxyEntity
 
 ```python
-residential_proxy = client.ResidentialProxy()
+residential_proxy = client.residential_proxy
 ```
 
 ### Fields
@@ -1342,12 +1342,12 @@ residential_proxy = client.ResidentialProxy()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.ResidentialProxy().load({"id": "residential_proxy_id"})
+result = client.residential_proxy.load({"id": "residential_proxy_id"})
 ```
 
 ### Common Methods
@@ -1382,17 +1382,17 @@ Return the entity name.
 ## SingleEntity
 
 ```python
-single = client.Single()
+single = client.single
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Single().load({"id": "single_id"})
+result = client.single.load({"id": "single_id"})
 ```
 
 ### Common Methods
@@ -1427,7 +1427,7 @@ Return the entity name.
 ## WhoisAsnEntity
 
 ```python
-whois_asn = client.WhoisAsn()
+whois_asn = client.whois_asn
 ```
 
 ### Fields
@@ -1450,12 +1450,12 @@ whois_asn = client.WhoisAsn()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.WhoisAsn().list({})
+results = client.whois_asn.list({})
 ```
 
 ### Common Methods
@@ -1490,7 +1490,7 @@ Return the entity name.
 ## WhoisDomainEntity
 
 ```python
-whois_domain = client.WhoisDomain()
+whois_domain = client.whois_domain
 ```
 
 ### Fields
@@ -1504,12 +1504,12 @@ whois_domain = client.WhoisDomain()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.WhoisDomain().load({"id": "whois_domain_id"})
+result = client.whois_domain.load({"id": "whois_domain_id"})
 ```
 
 ### Common Methods
@@ -1544,7 +1544,7 @@ Return the entity name.
 ## WhoisIpEntity
 
 ```python
-whois_ip = client.WhoisIp()
+whois_ip = client.whois_ip
 ```
 
 ### Fields
@@ -1558,12 +1558,12 @@ whois_ip = client.WhoisIp()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.WhoisIp().load({"id": "whois_ip_id"})
+result = client.whois_ip.load({"id": "whois_ip_id"})
 ```
 
 ### Common Methods
@@ -1598,7 +1598,7 @@ Return the entity name.
 ## WhoisNetIdEntity
 
 ```python
-whois_net_id = client.WhoisNetId()
+whois_net_id = client.whois_net_id
 ```
 
 ### Fields
@@ -1612,12 +1612,12 @@ whois_net_id = client.WhoisNetId()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.WhoisNetId().load({"id": "whois_net_id_id"})
+result = client.whois_net_id.load({"id": "whois_net_id_id"})
 ```
 
 ### Common Methods
@@ -1652,7 +1652,7 @@ Return the entity name.
 ## WhoisOrgEntity
 
 ```python
-whois_org = client.WhoisOrg()
+whois_org = client.whois_org
 ```
 
 ### Fields
@@ -1666,12 +1666,12 @@ whois_org = client.WhoisOrg()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.WhoisOrg().load({"id": "whois_org_id"})
+result = client.whois_org.load({"id": "whois_org_id"})
 ```
 
 ### Common Methods
@@ -1706,7 +1706,7 @@ Return the entity name.
 ## WhoisPocEntity
 
 ```python
-whois_poc = client.WhoisPoc()
+whois_poc = client.whois_poc
 ```
 
 ### Fields
@@ -1720,12 +1720,12 @@ whois_poc = client.WhoisPoc()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.WhoisPoc().load({"id": "whois_poc_id"})
+result = client.whois_poc.load({"id": "whois_poc_id"})
 ```
 
 ### Common Methods

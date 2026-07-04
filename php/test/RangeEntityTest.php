@@ -49,8 +49,7 @@ class RangeEntityTest extends TestCase
         // LOAD
         $range_ref01_ent = $client->Range(null);
         $range_ref01_match_dt0 = [];
-        [$range_ref01_data_dt0_loaded, $err] = $range_ref01_ent->load($range_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $range_ref01_data_dt0_loaded = $range_ref01_ent->load($range_ref01_match_dt0, null);
         $this->assertNotNull($range_ref01_data_dt0_loaded);
 
     }

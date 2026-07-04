@@ -49,8 +49,7 @@ class WhoisNetIdEntityTest extends TestCase
         // LOAD
         $whois_net_id_ref01_ent = $client->WhoisNetId(null);
         $whois_net_id_ref01_match_dt0 = [];
-        [$whois_net_id_ref01_data_dt0_loaded, $err] = $whois_net_id_ref01_ent->load($whois_net_id_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $whois_net_id_ref01_data_dt0_loaded = $whois_net_id_ref01_ent->load($whois_net_id_ref01_match_dt0, null);
         $this->assertNotNull($whois_net_id_ref01_data_dt0_loaded);
 
     }

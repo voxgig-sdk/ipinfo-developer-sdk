@@ -45,6 +45,7 @@ class GetCurrentInformationEntity
     end
   end
 
+  # @return [GetCurrentInformation, Hash] the current GetCurrentInformation data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class GetCurrentInformationEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GetCurrentInformation fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single GetCurrentInformation.
+  #
+  # @param reqmatch [GetCurrentInformationLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [GetCurrentInformation, Hash] the loaded GetCurrentInformation; raises IpinfoDeveloperError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

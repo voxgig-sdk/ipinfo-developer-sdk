@@ -49,8 +49,7 @@ class LiteEntityTest extends TestCase
         // LOAD
         $lite_ref01_ent = $client->Lite(null);
         $lite_ref01_match_dt0 = [];
-        [$lite_ref01_data_dt0_loaded, $err] = $lite_ref01_ent->load($lite_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $lite_ref01_data_dt0_loaded = $lite_ref01_ent->load($lite_ref01_match_dt0, null);
         $this->assertNotNull($lite_ref01_data_dt0_loaded);
 
     }

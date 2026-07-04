@@ -44,9 +44,7 @@ class TestGeneralEntity:
         general_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.general"), "general_ref01"))
 
-        general_ref01_data_result, err = general_ref01_ent.create(general_ref01_data, None)
-        assert err is None
-        general_ref01_data = helpers.to_map(general_ref01_data_result)
+        general_ref01_data = helpers.to_map(general_ref01_ent.create(general_ref01_data, None))
         assert general_ref01_data is not None
 
 

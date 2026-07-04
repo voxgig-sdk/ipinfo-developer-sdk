@@ -52,8 +52,7 @@ class AsnEntityTest extends TestCase
             "asn" => $setup["idmap"]["asn01"],
         ];
 
-        [$asn_ref01_list_result, $err] = $asn_ref01_ent->list($asn_ref01_match, null);
-        $this->assertNull($err);
+        $asn_ref01_list_result = $asn_ref01_ent->list($asn_ref01_match, null);
         $this->assertIsArray($asn_ref01_list_result);
 
     }

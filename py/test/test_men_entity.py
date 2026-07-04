@@ -49,8 +49,7 @@ class TestMenEntity:
         # LOAD
         men_ref01_ent = client.Men(None)
         men_ref01_match_dt0 = {}
-        men_ref01_data_dt0_loaded, err = men_ref01_ent.load(men_ref01_match_dt0, None)
-        assert err is None
+        men_ref01_data_dt0_loaded = men_ref01_ent.load(men_ref01_match_dt0, None)
         assert men_ref01_data_dt0_loaded is not None
 
 

@@ -49,8 +49,7 @@ class WhoisDomainEntityTest extends TestCase
         // LOAD
         $whois_domain_ref01_ent = $client->WhoisDomain(null);
         $whois_domain_ref01_match_dt0 = [];
-        [$whois_domain_ref01_data_dt0_loaded, $err] = $whois_domain_ref01_ent->load($whois_domain_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $whois_domain_ref01_data_dt0_loaded = $whois_domain_ref01_ent->load($whois_domain_ref01_match_dt0, null);
         $this->assertNotNull($whois_domain_ref01_data_dt0_loaded);
 
     }

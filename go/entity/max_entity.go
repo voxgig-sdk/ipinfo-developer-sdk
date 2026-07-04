@@ -85,6 +85,27 @@ func (e *MaxEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Max; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *MaxEntity) DataTyped(data ...Max) Max {
+	if len(data) > 0 {
+		return typedFrom[Max](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Max](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Max (all fields
+// optional at the wire level).
+func (e *MaxEntity) MatchTyped(match ...Max) Max {
+	if len(match) > 0 {
+		return typedFrom[Max](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Max](e.Match())
+}
+
 
 func (e *MaxEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *MaxEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, err
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// MaxLoadMatch and returns an Max. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *MaxEntity) LoadTyped(reqmatch MaxLoadMatch, ctrl map[string]any) (Max, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Max{}, err
+	}
+	return typedFrom[Max](res), nil
 }
 
 

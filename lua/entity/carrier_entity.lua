@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CarrierLoadMatch
+---@param ctrl? table
+---@return Carrier
+---@return string? err
 function CarrierEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

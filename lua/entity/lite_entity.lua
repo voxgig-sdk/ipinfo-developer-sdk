@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LiteLoadMatch
+---@param ctrl? table
+---@return Lite
+---@return string? err
 function LiteEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

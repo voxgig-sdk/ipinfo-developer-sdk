@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch IpinfoCoreLoadMatch
+---@param ctrl? table
+---@return IpinfoCore
+---@return string? err
 function IpinfoCoreEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

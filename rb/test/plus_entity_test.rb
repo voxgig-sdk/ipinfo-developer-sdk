@@ -42,8 +42,7 @@ class PlusEntityTest < Minitest::Test
     # LOAD
     plus_ref01_ent = client.Plus(nil)
     plus_ref01_match_dt0 = {}
-    plus_ref01_data_dt0_loaded, err = plus_ref01_ent.load(plus_ref01_match_dt0, nil)
-    assert_nil err
+    plus_ref01_data_dt0_loaded = plus_ref01_ent.load(plus_ref01_match_dt0, nil)
     assert !plus_ref01_data_dt0_loaded.nil?
 
   end

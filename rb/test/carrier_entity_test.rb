@@ -42,8 +42,7 @@ class CarrierEntityTest < Minitest::Test
     # LOAD
     carrier_ref01_ent = client.Carrier(nil)
     carrier_ref01_match_dt0 = {}
-    carrier_ref01_data_dt0_loaded, err = carrier_ref01_ent.load(carrier_ref01_match_dt0, nil)
-    assert_nil err
+    carrier_ref01_data_dt0_loaded = carrier_ref01_ent.load(carrier_ref01_match_dt0, nil)
     assert !carrier_ref01_data_dt0_loaded.nil?
 
   end

@@ -49,8 +49,7 @@ class TestWhoisIpEntity:
         # LOAD
         whois_ip_ref01_ent = client.WhoisIp(None)
         whois_ip_ref01_match_dt0 = {}
-        whois_ip_ref01_data_dt0_loaded, err = whois_ip_ref01_ent.load(whois_ip_ref01_match_dt0, None)
-        assert err is None
+        whois_ip_ref01_data_dt0_loaded = whois_ip_ref01_ent.load(whois_ip_ref01_match_dt0, None)
         assert whois_ip_ref01_data_dt0_loaded is not None
 
 

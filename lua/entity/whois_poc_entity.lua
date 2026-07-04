@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch WhoisPocLoadMatch
+---@param ctrl? table
+---@return WhoisPoc
+---@return string? err
 function WhoisPocEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

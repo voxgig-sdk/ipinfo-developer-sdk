@@ -49,8 +49,7 @@ class TestIpinfoLiteEntity:
         # LOAD
         ipinfo_lite_ref01_ent = client.IpinfoLite(None)
         ipinfo_lite_ref01_match_dt0 = {}
-        ipinfo_lite_ref01_data_dt0_loaded, err = ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0, None)
-        assert err is None
+        ipinfo_lite_ref01_data_dt0_loaded = ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0, None)
         assert ipinfo_lite_ref01_data_dt0_loaded is not None
 
 

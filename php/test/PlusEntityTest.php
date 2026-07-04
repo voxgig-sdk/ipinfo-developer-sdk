@@ -49,8 +49,7 @@ class PlusEntityTest extends TestCase
         // LOAD
         $plus_ref01_ent = $client->Plus(null);
         $plus_ref01_match_dt0 = [];
-        [$plus_ref01_data_dt0_loaded, $err] = $plus_ref01_ent->load($plus_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $plus_ref01_data_dt0_loaded = $plus_ref01_ent->load($plus_ref01_match_dt0, null);
         $this->assertNotNull($plus_ref01_data_dt0_loaded);
 
     }

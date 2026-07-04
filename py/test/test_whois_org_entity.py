@@ -49,8 +49,7 @@ class TestWhoisOrgEntity:
         # LOAD
         whois_org_ref01_ent = client.WhoisOrg(None)
         whois_org_ref01_match_dt0 = {}
-        whois_org_ref01_data_dt0_loaded, err = whois_org_ref01_ent.load(whois_org_ref01_match_dt0, None)
-        assert err is None
+        whois_org_ref01_data_dt0_loaded = whois_org_ref01_ent.load(whois_org_ref01_match_dt0, None)
         assert whois_org_ref01_data_dt0_loaded is not None
 
 

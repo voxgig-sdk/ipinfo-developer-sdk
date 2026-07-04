@@ -42,8 +42,7 @@ class CoreEntityTest < Minitest::Test
     # LOAD
     core_ref01_ent = client.Core(nil)
     core_ref01_match_dt0 = {}
-    core_ref01_data_dt0_loaded, err = core_ref01_ent.load(core_ref01_match_dt0, nil)
-    assert_nil err
+    core_ref01_data_dt0_loaded = core_ref01_ent.load(core_ref01_match_dt0, nil)
     assert !core_ref01_data_dt0_loaded.nil?
 
   end

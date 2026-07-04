@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch MaxLoadMatch
+---@param ctrl? table
+---@return Max
+---@return string? err
 function MaxEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

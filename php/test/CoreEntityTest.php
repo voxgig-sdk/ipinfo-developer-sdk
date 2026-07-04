@@ -49,8 +49,7 @@ class CoreEntityTest extends TestCase
         // LOAD
         $core_ref01_ent = $client->Core(null);
         $core_ref01_match_dt0 = [];
-        [$core_ref01_data_dt0_loaded, $err] = $core_ref01_ent->load($core_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $core_ref01_data_dt0_loaded = $core_ref01_ent->load($core_ref01_match_dt0, null);
         $this->assertNotNull($core_ref01_data_dt0_loaded);
 
     }

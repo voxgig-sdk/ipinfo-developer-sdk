@@ -42,8 +42,7 @@ class MaxEntityTest < Minitest::Test
     # LOAD
     max_ref01_ent = client.Max(nil)
     max_ref01_match_dt0 = {}
-    max_ref01_data_dt0_loaded, err = max_ref01_ent.load(max_ref01_match_dt0, nil)
-    assert_nil err
+    max_ref01_data_dt0_loaded = max_ref01_ent.load(max_ref01_match_dt0, nil)
     assert !max_ref01_data_dt0_loaded.nil?
 
   end

@@ -49,8 +49,7 @@ class TestRangeEntity:
         # LOAD
         range_ref01_ent = client.Range(None)
         range_ref01_match_dt0 = {}
-        range_ref01_data_dt0_loaded, err = range_ref01_ent.load(range_ref01_match_dt0, None)
-        assert err is None
+        range_ref01_data_dt0_loaded = range_ref01_ent.load(range_ref01_match_dt0, None)
         assert range_ref01_data_dt0_loaded is not None
 
 

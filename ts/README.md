@@ -9,9 +9,12 @@ The TypeScript SDK for the IpinfoDeveloper API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/ipinfo-developer
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpinfoDeveloperSDK } from 'ipinfo-developer'
+import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
 
 const client = new IpinfoDeveloperSDK({
-  apikey: process.env.IPINFO-DEVELOPER_APIKEY,
+  apikey: process.env.IPINFO_DEVELOPER_APIKEY,
 })
 ```
 
-### 3. Load a abuse
+### 3. Load an abuse
 
 ```ts
-const result = await client.Abuse().load({ id: 'example_id' })
+const result = await client.abuse.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpinfoDeveloperSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.abuse.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.abuse
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new IpinfoDeveloperSDK({
 Create a `.env.local` file at the project root:
 
 ```
-IPINFO-DEVELOPER_TEST_LIVE=TRUE
-IPINFO-DEVELOPER_APIKEY=<your-key>
+IPINFO_DEVELOPER_TEST_LIVE=TRUE
+IPINFO_DEVELOPER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -715,7 +718,7 @@ API path: `/whois/poc/{whoispoc}`
 
 ### Abuse
 
-Create an instance: `const abuse = client.Abuse()`
+Create an instance: `const abuse = client.abuse`
 
 #### Operations
 
@@ -737,13 +740,13 @@ Create an instance: `const abuse = client.Abuse()`
 #### Example: Load
 
 ```ts
-const abuse = await client.Abuse().load({ id: 'abuse_id' })
+const abuse = await client.abuse.load({ id: 'abuse_id' })
 ```
 
 
 ### Asn
 
-Create an instance: `const asn = client.Asn()`
+Create an instance: `const asn = client.asn`
 
 #### Operations
 
@@ -773,13 +776,13 @@ Create an instance: `const asn = client.Asn()`
 #### Example: List
 
 ```ts
-const asns = await client.Asn().list()
+const asns = await client.asn.list()
 ```
 
 
 ### Carrier
 
-Create an instance: `const carrier = client.Carrier()`
+Create an instance: `const carrier = client.carrier`
 
 #### Operations
 
@@ -798,13 +801,13 @@ Create an instance: `const carrier = client.Carrier()`
 #### Example: Load
 
 ```ts
-const carrier = await client.Carrier().load({ id: 'carrier_id' })
+const carrier = await client.carrier.load({ id: 'carrier_id' })
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.Company()`
+Create an instance: `const company = client.company`
 
 #### Operations
 
@@ -823,13 +826,13 @@ Create an instance: `const company = client.Company()`
 #### Example: Load
 
 ```ts
-const company = await client.Company().load({ id: 'company_id' })
+const company = await client.company.load({ id: 'company_id' })
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.Core()`
+Create an instance: `const core = client.core`
 
 #### Operations
 
@@ -854,13 +857,13 @@ Create an instance: `const core = client.Core()`
 #### Example: Load
 
 ```ts
-const core = await client.Core().load({ id: 'core_id' })
+const core = await client.core.load({ id: 'core_id' })
 ```
 
 
 ### Domain
 
-Create an instance: `const domain = client.Domain()`
+Create an instance: `const domain = client.domain`
 
 #### Operations
 
@@ -880,13 +883,13 @@ Create an instance: `const domain = client.Domain()`
 #### Example: Load
 
 ```ts
-const domain = await client.Domain().load({ id: 'domain_id' })
+const domain = await client.domain.load({ id: 'domain_id' })
 ```
 
 
 ### General
 
-Create an instance: `const general = client.General()`
+Create an instance: `const general = client.general`
 
 #### Operations
 
@@ -906,14 +909,14 @@ Create an instance: `const general = client.General()`
 #### Example: Create
 
 ```ts
-const general = await client.General().create({
+const general = await client.general.create({
 })
 ```
 
 
 ### GetCurrentInformation
 
-Create an instance: `const get_current_information = client.GetCurrentInformation()`
+Create an instance: `const get_current_information = client.get_current_information`
 
 #### Operations
 
@@ -944,13 +947,13 @@ Create an instance: `const get_current_information = client.GetCurrentInformatio
 #### Example: Load
 
 ```ts
-const get_current_information = await client.GetCurrentInformation().load({ id: 'get_current_information_id' })
+const get_current_information = await client.get_current_information.load({ id: 'get_current_information_id' })
 ```
 
 
 ### GetInformationByIp
 
-Create an instance: `const get_information_by_ip = client.GetInformationByIp()`
+Create an instance: `const get_information_by_ip = client.get_information_by_ip`
 
 #### Operations
 
@@ -981,13 +984,13 @@ Create an instance: `const get_information_by_ip = client.GetInformationByIp()`
 #### Example: Load
 
 ```ts
-const get_information_by_ip = await client.GetInformationByIp().load({ id: 'get_information_by_ip_id' })
+const get_information_by_ip = await client.get_information_by_ip.load({ id: 'get_information_by_ip_id' })
 ```
 
 
 ### IpinfoCore
 
-Create an instance: `const ipinfo_core = client.IpinfoCore()`
+Create an instance: `const ipinfo_core = client.ipinfo_core`
 
 #### Operations
 
@@ -1006,13 +1009,13 @@ Create an instance: `const ipinfo_core = client.IpinfoCore()`
 #### Example: Load
 
 ```ts
-const ipinfo_core = await client.IpinfoCore().load({ id: 'ipinfo_core_id' })
+const ipinfo_core = await client.ipinfo_core.load({ id: 'ipinfo_core_id' })
 ```
 
 
 ### IpinfoLite
 
-Create an instance: `const ipinfo_lite = client.IpinfoLite()`
+Create an instance: `const ipinfo_lite = client.ipinfo_lite`
 
 #### Operations
 
@@ -1023,13 +1026,13 @@ Create an instance: `const ipinfo_lite = client.IpinfoLite()`
 #### Example: Load
 
 ```ts
-const ipinfo_lite = await client.IpinfoLite().load({ id: 'ipinfo_lite_id' })
+const ipinfo_lite = await client.ipinfo_lite.load({ id: 'ipinfo_lite_id' })
 ```
 
 
 ### IpinfoPlus
 
-Create an instance: `const ipinfo_plus = client.IpinfoPlus()`
+Create an instance: `const ipinfo_plus = client.ipinfo_plus`
 
 #### Operations
 
@@ -1048,13 +1051,13 @@ Create an instance: `const ipinfo_plus = client.IpinfoPlus()`
 #### Example: Load
 
 ```ts
-const ipinfo_plus = await client.IpinfoPlus().load({ id: 'ipinfo_plus_id' })
+const ipinfo_plus = await client.ipinfo_plus.load({ id: 'ipinfo_plus_id' })
 ```
 
 
 ### Lite
 
-Create an instance: `const lite = client.Lite()`
+Create an instance: `const lite = client.lite`
 
 #### Operations
 
@@ -1078,13 +1081,13 @@ Create an instance: `const lite = client.Lite()`
 #### Example: Load
 
 ```ts
-const lite = await client.Lite().load({ id: 'lite_id' })
+const lite = await client.lite.load({ id: 'lite_id' })
 ```
 
 
 ### Max
 
-Create an instance: `const max = client.Max()`
+Create an instance: `const max = client.max`
 
 #### Operations
 
@@ -1111,13 +1114,13 @@ Create an instance: `const max = client.Max()`
 #### Example: Load
 
 ```ts
-const max = await client.Max().load({ id: 'max_id' })
+const max = await client.max.load({ id: 'max_id' })
 ```
 
 
 ### Men
 
-Create an instance: `const men = client.Men()`
+Create an instance: `const men = client.men`
 
 #### Operations
 
@@ -1136,13 +1139,13 @@ Create an instance: `const men = client.Men()`
 #### Example: Load
 
 ```ts
-const men = await client.Men().load({ id: 'men_id' })
+const men = await client.men.load({ id: 'men_id' })
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.Place()`
+Create an instance: `const place = client.place`
 
 #### Operations
 
@@ -1164,13 +1167,13 @@ Create an instance: `const place = client.Place()`
 #### Example: Load
 
 ```ts
-const place = await client.Place().load({ id: 'place_id' })
+const place = await client.place.load({ id: 'place_id' })
 ```
 
 
 ### Plus
 
-Create an instance: `const plus = client.Plus()`
+Create an instance: `const plus = client.plus`
 
 #### Operations
 
@@ -1196,13 +1199,13 @@ Create an instance: `const plus = client.Plus()`
 #### Example: Load
 
 ```ts
-const plus = await client.Plus().load({ id: 'plus_id' })
+const plus = await client.plus.load({ id: 'plus_id' })
 ```
 
 
 ### Privacy
 
-Create an instance: `const privacy = client.Privacy()`
+Create an instance: `const privacy = client.privacy`
 
 #### Operations
 
@@ -1224,13 +1227,13 @@ Create an instance: `const privacy = client.Privacy()`
 #### Example: Load
 
 ```ts
-const privacy = await client.Privacy().load({ id: 'privacy_id' })
+const privacy = await client.privacy.load({ id: 'privacy_id' })
 ```
 
 
 ### PrivacyExtended
 
-Create an instance: `const privacy_extended = client.PrivacyExtended()`
+Create an instance: `const privacy_extended = client.privacy_extended`
 
 #### Operations
 
@@ -1262,13 +1265,13 @@ Create an instance: `const privacy_extended = client.PrivacyExtended()`
 #### Example: List
 
 ```ts
-const privacy_extendeds = await client.PrivacyExtended().list()
+const privacy_extendeds = await client.privacy_extended.list()
 ```
 
 
 ### Range
 
-Create an instance: `const range = client.Range()`
+Create an instance: `const range = client.range`
 
 #### Operations
 
@@ -1288,13 +1291,13 @@ Create an instance: `const range = client.Range()`
 #### Example: Load
 
 ```ts
-const range = await client.Range().load({ id: 'range_id' })
+const range = await client.range.load({ id: 'range_id' })
 ```
 
 
 ### ResidentialProxy
 
-Create an instance: `const residential_proxy = client.ResidentialProxy()`
+Create an instance: `const residential_proxy = client.residential_proxy`
 
 #### Operations
 
@@ -1314,13 +1317,13 @@ Create an instance: `const residential_proxy = client.ResidentialProxy()`
 #### Example: Load
 
 ```ts
-const residential_proxy = await client.ResidentialProxy().load({ id: 'residential_proxy_id' })
+const residential_proxy = await client.residential_proxy.load({ id: 'residential_proxy_id' })
 ```
 
 
 ### Single
 
-Create an instance: `const single = client.Single()`
+Create an instance: `const single = client.single`
 
 #### Operations
 
@@ -1331,13 +1334,13 @@ Create an instance: `const single = client.Single()`
 #### Example: Load
 
 ```ts
-const single = await client.Single().load({ id: 'single_id' })
+const single = await client.single.load({ id: 'single_id' })
 ```
 
 
 ### WhoisAsn
 
-Create an instance: `const whois_asn = client.WhoisAsn()`
+Create an instance: `const whois_asn = client.whois_asn`
 
 #### Operations
 
@@ -1366,13 +1369,13 @@ Create an instance: `const whois_asn = client.WhoisAsn()`
 #### Example: List
 
 ```ts
-const whois_asns = await client.WhoisAsn().list()
+const whois_asns = await client.whois_asn.list()
 ```
 
 
 ### WhoisDomain
 
-Create an instance: `const whois_domain = client.WhoisDomain()`
+Create an instance: `const whois_domain = client.whois_domain`
 
 #### Operations
 
@@ -1392,13 +1395,13 @@ Create an instance: `const whois_domain = client.WhoisDomain()`
 #### Example: Load
 
 ```ts
-const whois_domain = await client.WhoisDomain().load({ id: 'whois_domain_id' })
+const whois_domain = await client.whois_domain.load({ id: 'whois_domain_id' })
 ```
 
 
 ### WhoisIp
 
-Create an instance: `const whois_ip = client.WhoisIp()`
+Create an instance: `const whois_ip = client.whois_ip`
 
 #### Operations
 
@@ -1418,13 +1421,13 @@ Create an instance: `const whois_ip = client.WhoisIp()`
 #### Example: Load
 
 ```ts
-const whois_ip = await client.WhoisIp().load({ id: 'whois_ip_id' })
+const whois_ip = await client.whois_ip.load({ id: 'whois_ip_id' })
 ```
 
 
 ### WhoisNetId
 
-Create an instance: `const whois_net_id = client.WhoisNetId()`
+Create an instance: `const whois_net_id = client.whois_net_id`
 
 #### Operations
 
@@ -1444,13 +1447,13 @@ Create an instance: `const whois_net_id = client.WhoisNetId()`
 #### Example: Load
 
 ```ts
-const whois_net_id = await client.WhoisNetId().load({ id: 'whois_net_id_id' })
+const whois_net_id = await client.whois_net_id.load({ id: 'whois_net_id_id' })
 ```
 
 
 ### WhoisOrg
 
-Create an instance: `const whois_org = client.WhoisOrg()`
+Create an instance: `const whois_org = client.whois_org`
 
 #### Operations
 
@@ -1470,13 +1473,13 @@ Create an instance: `const whois_org = client.WhoisOrg()`
 #### Example: Load
 
 ```ts
-const whois_org = await client.WhoisOrg().load({ id: 'whois_org_id' })
+const whois_org = await client.whois_org.load({ id: 'whois_org_id' })
 ```
 
 
 ### WhoisPoc
 
-Create an instance: `const whois_poc = client.WhoisPoc()`
+Create an instance: `const whois_poc = client.whois_poc`
 
 #### Operations
 
@@ -1496,7 +1499,7 @@ Create an instance: `const whois_poc = client.WhoisPoc()`
 #### Example: Load
 
 ```ts
-const whois_poc = await client.WhoisPoc().load({ id: 'whois_poc_id' })
+const whois_poc = await client.whois_poc.load({ id: 'whois_poc_id' })
 ```
 
 
@@ -1557,7 +1560,7 @@ ipinfo-developer/
 Import the SDK from the package root:
 
 ```ts
-import { IpinfoDeveloperSDK } from 'ipinfo-developer'
+import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
 ```
 
 ### Entity state
@@ -1567,11 +1570,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const abuse = client.abuse
+await abuse.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// abuse.data() now returns the loaded abuse data
+// abuse.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

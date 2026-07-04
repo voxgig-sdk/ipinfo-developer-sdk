@@ -42,8 +42,7 @@ class WhoisNetIdEntityTest < Minitest::Test
     # LOAD
     whois_net_id_ref01_ent = client.WhoisNetId(nil)
     whois_net_id_ref01_match_dt0 = {}
-    whois_net_id_ref01_data_dt0_loaded, err = whois_net_id_ref01_ent.load(whois_net_id_ref01_match_dt0, nil)
-    assert_nil err
+    whois_net_id_ref01_data_dt0_loaded = whois_net_id_ref01_ent.load(whois_net_id_ref01_match_dt0, nil)
     assert !whois_net_id_ref01_data_dt0_loaded.nil?
 
   end
