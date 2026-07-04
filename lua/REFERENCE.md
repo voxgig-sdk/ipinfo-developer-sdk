@@ -192,7 +192,7 @@ same parameters as `direct()`.
 ## AbuseEntity
 
 ```lua
-local abuse = client:abuse(nil)
+local abuse = client:Abuse(nil)
 ```
 
 ### Fields
@@ -213,7 +213,7 @@ local abuse = client:abuse(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:abuse():load({ id = "abuse_id" })
+local result, err = client:Abuse():load({ id = "abuse_id" })
 ```
 
 ### Common Methods
@@ -249,7 +249,7 @@ Return the entity name.
 ## AsnEntity
 
 ```lua
-local asn = client:asn(nil)
+local asn = client:Asn(nil)
 ```
 
 ### Fields
@@ -278,7 +278,7 @@ local asn = client:asn(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:asn():list()
+local results, err = client:Asn():list()
 ```
 
 ### Common Methods
@@ -314,7 +314,7 @@ Return the entity name.
 ## CarrierEntity
 
 ```lua
-local carrier = client:carrier(nil)
+local carrier = client:Carrier(nil)
 ```
 
 ### Fields
@@ -332,7 +332,7 @@ local carrier = client:carrier(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:carrier():load({ id = "carrier_id" })
+local result, err = client:Carrier():load({ id = "carrier_id" })
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```lua
-local company = client:company(nil)
+local company = client:Company(nil)
 ```
 
 ### Fields
@@ -386,7 +386,7 @@ local company = client:company(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:company():load({ id = "company_id" })
+local result, err = client:Company():load({ id = "company_id" })
 ```
 
 ### Common Methods
@@ -422,7 +422,7 @@ Return the entity name.
 ## CoreEntity
 
 ```lua
-local core = client:core(nil)
+local core = client:Core(nil)
 ```
 
 ### Fields
@@ -446,7 +446,7 @@ local core = client:core(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:core():load({ id = "core_id" })
+local result, err = client:Core():load({ id = "core_id" })
 ```
 
 ### Common Methods
@@ -482,7 +482,7 @@ Return the entity name.
 ## DomainEntity
 
 ```lua
-local domain = client:domain(nil)
+local domain = client:Domain(nil)
 ```
 
 ### Fields
@@ -501,7 +501,7 @@ local domain = client:domain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:domain():load({ id = "domain_id" })
+local result, err = client:Domain():load({ id = "domain_id" })
 ```
 
 ### Common Methods
@@ -537,7 +537,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```lua
-local general = client:general(nil)
+local general = client:General(nil)
 ```
 
 ### Fields
@@ -556,7 +556,7 @@ local general = client:general(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:general():create({
+local result, err = client:General():create({
 })
 ```
 
@@ -593,7 +593,7 @@ Return the entity name.
 ## GetCurrentInformationEntity
 
 ```lua
-local get_current_information = client:get_current_information(nil)
+local get_current_information = client:GetCurrentInformation(nil)
 ```
 
 ### Fields
@@ -623,7 +623,7 @@ local get_current_information = client:get_current_information(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_current_information():load({ id = "get_current_information_id" })
+local result, err = client:GetCurrentInformation():load({ id = "get_current_information_id" })
 ```
 
 ### Common Methods
@@ -659,7 +659,7 @@ Return the entity name.
 ## GetInformationByIpEntity
 
 ```lua
-local get_information_by_ip = client:get_information_by_ip(nil)
+local get_information_by_ip = client:GetInformationByIp(nil)
 ```
 
 ### Fields
@@ -689,7 +689,7 @@ local get_information_by_ip = client:get_information_by_ip(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_information_by_ip():load({ id = "get_information_by_ip_id" })
+local result, err = client:GetInformationByIp():load({ id = "get_information_by_ip_id" })
 ```
 
 ### Common Methods
@@ -725,7 +725,7 @@ Return the entity name.
 ## IpinfoCoreEntity
 
 ```lua
-local ipinfo_core = client:ipinfo_core(nil)
+local ipinfo_core = client:IpinfoCore(nil)
 ```
 
 ### Fields
@@ -743,7 +743,7 @@ local ipinfo_core = client:ipinfo_core(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ipinfo_core():load({ id = "ipinfo_core_id" })
+local result, err = client:IpinfoCore():load({ id = "ipinfo_core_id" })
 ```
 
 ### Common Methods
@@ -779,7 +779,7 @@ Return the entity name.
 ## IpinfoLiteEntity
 
 ```lua
-local ipinfo_lite = client:ipinfo_lite(nil)
+local ipinfo_lite = client:IpinfoLite(nil)
 ```
 
 ### Operations
@@ -789,7 +789,7 @@ local ipinfo_lite = client:ipinfo_lite(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ipinfo_lite():load({ id = "ipinfo_lite_id" })
+local result, err = client:IpinfoLite():load({ id = "ipinfo_lite_id" })
 ```
 
 ### Common Methods
@@ -825,7 +825,7 @@ Return the entity name.
 ## IpinfoPlusEntity
 
 ```lua
-local ipinfo_plus = client:ipinfo_plus(nil)
+local ipinfo_plus = client:IpinfoPlus(nil)
 ```
 
 ### Fields
@@ -843,7 +843,7 @@ local ipinfo_plus = client:ipinfo_plus(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ipinfo_plus():load({ id = "ipinfo_plus_id" })
+local result, err = client:IpinfoPlus():load({ id = "ipinfo_plus_id" })
 ```
 
 ### Common Methods
@@ -879,7 +879,7 @@ Return the entity name.
 ## LiteEntity
 
 ```lua
-local lite = client:lite(nil)
+local lite = client:Lite(nil)
 ```
 
 ### Fields
@@ -902,7 +902,7 @@ local lite = client:lite(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:lite():load({ id = "lite_id" })
+local result, err = client:Lite():load({ id = "lite_id" })
 ```
 
 ### Common Methods
@@ -938,7 +938,7 @@ Return the entity name.
 ## MaxEntity
 
 ```lua
-local max = client:max(nil)
+local max = client:Max(nil)
 ```
 
 ### Fields
@@ -964,7 +964,7 @@ local max = client:max(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:max():load({ id = "max_id" })
+local result, err = client:Max():load({ id = "max_id" })
 ```
 
 ### Common Methods
@@ -1000,7 +1000,7 @@ Return the entity name.
 ## MenEntity
 
 ```lua
-local men = client:men(nil)
+local men = client:Men(nil)
 ```
 
 ### Fields
@@ -1018,7 +1018,7 @@ local men = client:men(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:men():load({ id = "men_id" })
+local result, err = client:Men():load({ id = "men_id" })
 ```
 
 ### Common Methods
@@ -1054,7 +1054,7 @@ Return the entity name.
 ## PlaceEntity
 
 ```lua
-local place = client:place(nil)
+local place = client:Place(nil)
 ```
 
 ### Fields
@@ -1075,7 +1075,7 @@ local place = client:place(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:place():load({ id = "place_id" })
+local result, err = client:Place():load({ id = "place_id" })
 ```
 
 ### Common Methods
@@ -1111,7 +1111,7 @@ Return the entity name.
 ## PlusEntity
 
 ```lua
-local plus = client:plus(nil)
+local plus = client:Plus(nil)
 ```
 
 ### Fields
@@ -1136,7 +1136,7 @@ local plus = client:plus(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:plus():load({ id = "plus_id" })
+local result, err = client:Plus():load({ id = "plus_id" })
 ```
 
 ### Common Methods
@@ -1172,7 +1172,7 @@ Return the entity name.
 ## PrivacyEntity
 
 ```lua
-local privacy = client:privacy(nil)
+local privacy = client:Privacy(nil)
 ```
 
 ### Fields
@@ -1193,7 +1193,7 @@ local privacy = client:privacy(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:privacy():load({ id = "privacy_id" })
+local result, err = client:Privacy():load({ id = "privacy_id" })
 ```
 
 ### Common Methods
@@ -1229,7 +1229,7 @@ Return the entity name.
 ## PrivacyExtendedEntity
 
 ```lua
-local privacy_extended = client:privacy_extended(nil)
+local privacy_extended = client:PrivacyExtended(nil)
 ```
 
 ### Fields
@@ -1260,7 +1260,7 @@ local privacy_extended = client:privacy_extended(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:privacy_extended():list()
+local results, err = client:PrivacyExtended():list()
 ```
 
 ### Common Methods
@@ -1296,7 +1296,7 @@ Return the entity name.
 ## RangeEntity
 
 ```lua
-local range = client:range(nil)
+local range = client:Range(nil)
 ```
 
 ### Fields
@@ -1315,7 +1315,7 @@ local range = client:range(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:range():load({ id = "range_id" })
+local result, err = client:Range():load({ id = "range_id" })
 ```
 
 ### Common Methods
@@ -1351,7 +1351,7 @@ Return the entity name.
 ## ResidentialProxyEntity
 
 ```lua
-local residential_proxy = client:residential_proxy(nil)
+local residential_proxy = client:ResidentialProxy(nil)
 ```
 
 ### Fields
@@ -1370,7 +1370,7 @@ local residential_proxy = client:residential_proxy(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:residential_proxy():load({ id = "residential_proxy_id" })
+local result, err = client:ResidentialProxy():load({ id = "residential_proxy_id" })
 ```
 
 ### Common Methods
@@ -1406,7 +1406,7 @@ Return the entity name.
 ## SingleEntity
 
 ```lua
-local single = client:single(nil)
+local single = client:Single(nil)
 ```
 
 ### Operations
@@ -1416,7 +1416,7 @@ local single = client:single(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:single():load({ id = "single_id" })
+local result, err = client:Single():load({ id = "single_id" })
 ```
 
 ### Common Methods
@@ -1452,7 +1452,7 @@ Return the entity name.
 ## WhoisAsnEntity
 
 ```lua
-local whois_asn = client:whois_asn(nil)
+local whois_asn = client:WhoisAsn(nil)
 ```
 
 ### Fields
@@ -1480,7 +1480,7 @@ local whois_asn = client:whois_asn(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:whois_asn():list()
+local results, err = client:WhoisAsn():list()
 ```
 
 ### Common Methods
@@ -1516,7 +1516,7 @@ Return the entity name.
 ## WhoisDomainEntity
 
 ```lua
-local whois_domain = client:whois_domain(nil)
+local whois_domain = client:WhoisDomain(nil)
 ```
 
 ### Fields
@@ -1535,7 +1535,7 @@ local whois_domain = client:whois_domain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:whois_domain():load({ id = "whois_domain_id" })
+local result, err = client:WhoisDomain():load({ id = "whois_domain_id" })
 ```
 
 ### Common Methods
@@ -1571,7 +1571,7 @@ Return the entity name.
 ## WhoisIpEntity
 
 ```lua
-local whois_ip = client:whois_ip(nil)
+local whois_ip = client:WhoisIp(nil)
 ```
 
 ### Fields
@@ -1590,7 +1590,7 @@ local whois_ip = client:whois_ip(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:whois_ip():load({ id = "whois_ip_id" })
+local result, err = client:WhoisIp():load({ id = "whois_ip_id" })
 ```
 
 ### Common Methods
@@ -1626,7 +1626,7 @@ Return the entity name.
 ## WhoisNetIdEntity
 
 ```lua
-local whois_net_id = client:whois_net_id(nil)
+local whois_net_id = client:WhoisNetId(nil)
 ```
 
 ### Fields
@@ -1645,7 +1645,7 @@ local whois_net_id = client:whois_net_id(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:whois_net_id():load({ id = "whois_net_id_id" })
+local result, err = client:WhoisNetId():load({ id = "whois_net_id_id" })
 ```
 
 ### Common Methods
@@ -1681,7 +1681,7 @@ Return the entity name.
 ## WhoisOrgEntity
 
 ```lua
-local whois_org = client:whois_org(nil)
+local whois_org = client:WhoisOrg(nil)
 ```
 
 ### Fields
@@ -1700,7 +1700,7 @@ local whois_org = client:whois_org(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:whois_org():load({ id = "whois_org_id" })
+local result, err = client:WhoisOrg():load({ id = "whois_org_id" })
 ```
 
 ### Common Methods
@@ -1736,7 +1736,7 @@ Return the entity name.
 ## WhoisPocEntity
 
 ```lua
-local whois_poc = client:whois_poc(nil)
+local whois_poc = client:WhoisPoc(nil)
 ```
 
 ### Fields
@@ -1755,7 +1755,7 @@ local whois_poc = client:whois_poc(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:whois_poc():load({ id = "whois_poc_id" })
+local result, err = client:WhoisPoc():load({ id = "whois_poc_id" })
 ```
 
 ### Common Methods

@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/ipinfo-developer-sdk/go=../ipinfo-dev
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,31 +43,20 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/ipinfo-developer-sdk/go"
-    "github.com/voxgig-sdk/ipinfo-developer-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewIpinfoDeveloperSDK(map[string]any{
         "apikey": os.Getenv("IPINFO_DEVELOPER_APIKEY"),
     })
-```
 
-### 3. Load an abuse
-
-```go
-    result, err = client.Abuse(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single abuse — the value is the loaded record.
+    abuse, err := client.Abuse(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(abuse)
 }
 ```
 
@@ -113,10 +107,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Abuse(nil).Load(
+abuse, err := client.Abuse(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(abuse) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -195,8 +192,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Abuse` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Abuse entity instance. |
-| `Asn` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Asn entity instance. |
+| `Abuse` | `(data map[string]any) IpinfoDeveloperEntity` | Create an Abuse entity instance. |
+| `Asn` | `(data map[string]any) IpinfoDeveloperEntity` | Create an Asn entity instance. |
 | `Carrier` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Carrier entity instance. |
 | `Company` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Company entity instance. |
 | `Core` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Core entity instance. |
@@ -204,9 +201,9 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `General` | `(data map[string]any) IpinfoDeveloperEntity` | Create a General entity instance. |
 | `GetCurrentInformation` | `(data map[string]any) IpinfoDeveloperEntity` | Create a GetCurrentInformation entity instance. |
 | `GetInformationByIp` | `(data map[string]any) IpinfoDeveloperEntity` | Create a GetInformationByIp entity instance. |
-| `IpinfoCore` | `(data map[string]any) IpinfoDeveloperEntity` | Create a IpinfoCore entity instance. |
-| `IpinfoLite` | `(data map[string]any) IpinfoDeveloperEntity` | Create a IpinfoLite entity instance. |
-| `IpinfoPlus` | `(data map[string]any) IpinfoDeveloperEntity` | Create a IpinfoPlus entity instance. |
+| `IpinfoCore` | `(data map[string]any) IpinfoDeveloperEntity` | Create an IpinfoCore entity instance. |
+| `IpinfoLite` | `(data map[string]any) IpinfoDeveloperEntity` | Create an IpinfoLite entity instance. |
+| `IpinfoPlus` | `(data map[string]any) IpinfoDeveloperEntity` | Create an IpinfoPlus entity instance. |
 | `Lite` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Lite entity instance. |
 | `Max` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Max entity instance. |
 | `Men` | `(data map[string]any) IpinfoDeveloperEntity` | Create a Men entity instance. |
@@ -242,17 +239,24 @@ All entities implement the `IpinfoDeveloperEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    abuse, err := client.Abuse(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // abuse is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -717,7 +721,11 @@ Create an instance: `abuse := client.Abuse(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Abuse(nil).Load(map[string]any{"id": "abuse_id"}, nil)
+abuse, err := client.Abuse(nil).Load(map[string]any{"id": "abuse_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(abuse) // the loaded record
 ```
 
 
@@ -753,7 +761,11 @@ Create an instance: `asn := client.Asn(nil)`
 #### Example: List
 
 ```go
-results, err := client.Asn(nil).List(nil, nil)
+asns, err := client.Asn(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(asns) // the array of records
 ```
 
 
@@ -778,7 +790,11 @@ Create an instance: `carrier := client.Carrier(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Carrier(nil).Load(map[string]any{"id": "carrier_id"}, nil)
+carrier, err := client.Carrier(nil).Load(map[string]any{"id": "carrier_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(carrier) // the loaded record
 ```
 
 
@@ -803,7 +819,11 @@ Create an instance: `company := client.Company(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+company, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(company) // the loaded record
 ```
 
 
@@ -834,7 +854,11 @@ Create an instance: `core := client.Core(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
+core, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(core) // the loaded record
 ```
 
 
@@ -860,7 +884,11 @@ Create an instance: `domain := client.Domain(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Domain(nil).Load(map[string]any{"id": "domain_id"}, nil)
+domain, err := client.Domain(nil).Load(map[string]any{"id": "domain_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(domain) // the loaded record
 ```
 
 
@@ -924,7 +952,11 @@ Create an instance: `get_current_information := client.GetCurrentInformation(nil
 #### Example: Load
 
 ```go
-result, err := client.GetCurrentInformation(nil).Load(map[string]any{"id": "get_current_information_id"}, nil)
+get_current_information, err := client.GetCurrentInformation(nil).Load(map[string]any{"id": "get_current_information_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_current_information) // the loaded record
 ```
 
 
@@ -961,7 +993,11 @@ Create an instance: `get_information_by_ip := client.GetInformationByIp(nil)`
 #### Example: Load
 
 ```go
-result, err := client.GetInformationByIp(nil).Load(map[string]any{"id": "get_information_by_ip_id"}, nil)
+get_information_by_ip, err := client.GetInformationByIp(nil).Load(map[string]any{"id": "get_information_by_ip_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_information_by_ip) // the loaded record
 ```
 
 
@@ -986,7 +1022,11 @@ Create an instance: `ipinfo_core := client.IpinfoCore(nil)`
 #### Example: Load
 
 ```go
-result, err := client.IpinfoCore(nil).Load(map[string]any{"id": "ipinfo_core_id"}, nil)
+ipinfo_core, err := client.IpinfoCore(nil).Load(map[string]any{"id": "ipinfo_core_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ipinfo_core) // the loaded record
 ```
 
 
@@ -1003,7 +1043,11 @@ Create an instance: `ipinfo_lite := client.IpinfoLite(nil)`
 #### Example: Load
 
 ```go
-result, err := client.IpinfoLite(nil).Load(map[string]any{"id": "ipinfo_lite_id"}, nil)
+ipinfo_lite, err := client.IpinfoLite(nil).Load(map[string]any{"id": "ipinfo_lite_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ipinfo_lite) // the loaded record
 ```
 
 
@@ -1028,7 +1072,11 @@ Create an instance: `ipinfo_plus := client.IpinfoPlus(nil)`
 #### Example: Load
 
 ```go
-result, err := client.IpinfoPlus(nil).Load(map[string]any{"id": "ipinfo_plus_id"}, nil)
+ipinfo_plus, err := client.IpinfoPlus(nil).Load(map[string]any{"id": "ipinfo_plus_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ipinfo_plus) // the loaded record
 ```
 
 
@@ -1058,7 +1106,11 @@ Create an instance: `lite := client.Lite(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Lite(nil).Load(map[string]any{"id": "lite_id"}, nil)
+lite, err := client.Lite(nil).Load(map[string]any{"id": "lite_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(lite) // the loaded record
 ```
 
 
@@ -1091,7 +1143,11 @@ Create an instance: `max := client.Max(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Max(nil).Load(map[string]any{"id": "max_id"}, nil)
+max, err := client.Max(nil).Load(map[string]any{"id": "max_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(max) // the loaded record
 ```
 
 
@@ -1116,7 +1172,11 @@ Create an instance: `men := client.Men(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Men(nil).Load(map[string]any{"id": "men_id"}, nil)
+men, err := client.Men(nil).Load(map[string]any{"id": "men_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(men) // the loaded record
 ```
 
 
@@ -1144,7 +1204,11 @@ Create an instance: `place := client.Place(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Place(nil).Load(map[string]any{"id": "place_id"}, nil)
+place, err := client.Place(nil).Load(map[string]any{"id": "place_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(place) // the loaded record
 ```
 
 
@@ -1176,7 +1240,11 @@ Create an instance: `plus := client.Plus(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Plus(nil).Load(map[string]any{"id": "plus_id"}, nil)
+plus, err := client.Plus(nil).Load(map[string]any{"id": "plus_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(plus) // the loaded record
 ```
 
 
@@ -1204,7 +1272,11 @@ Create an instance: `privacy := client.Privacy(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Privacy(nil).Load(map[string]any{"id": "privacy_id"}, nil)
+privacy, err := client.Privacy(nil).Load(map[string]any{"id": "privacy_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(privacy) // the loaded record
 ```
 
 
@@ -1242,7 +1314,11 @@ Create an instance: `privacy_extended := client.PrivacyExtended(nil)`
 #### Example: List
 
 ```go
-results, err := client.PrivacyExtended(nil).List(nil, nil)
+privacy_extendeds, err := client.PrivacyExtended(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(privacy_extendeds) // the array of records
 ```
 
 
@@ -1268,7 +1344,11 @@ Create an instance: `range := client.Range(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Range(nil).Load(map[string]any{"id": "range_id"}, nil)
+range, err := client.Range(nil).Load(map[string]any{"id": "range_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(range) // the loaded record
 ```
 
 
@@ -1294,7 +1374,11 @@ Create an instance: `residential_proxy := client.ResidentialProxy(nil)`
 #### Example: Load
 
 ```go
-result, err := client.ResidentialProxy(nil).Load(map[string]any{"id": "residential_proxy_id"}, nil)
+residential_proxy, err := client.ResidentialProxy(nil).Load(map[string]any{"id": "residential_proxy_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(residential_proxy) // the loaded record
 ```
 
 
@@ -1311,7 +1395,11 @@ Create an instance: `single := client.Single(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Single(nil).Load(map[string]any{"id": "single_id"}, nil)
+single, err := client.Single(nil).Load(map[string]any{"id": "single_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(single) // the loaded record
 ```
 
 
@@ -1346,7 +1434,11 @@ Create an instance: `whois_asn := client.WhoisAsn(nil)`
 #### Example: List
 
 ```go
-results, err := client.WhoisAsn(nil).List(nil, nil)
+whois_asns, err := client.WhoisAsn(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(whois_asns) // the array of records
 ```
 
 
@@ -1372,7 +1464,11 @@ Create an instance: `whois_domain := client.WhoisDomain(nil)`
 #### Example: Load
 
 ```go
-result, err := client.WhoisDomain(nil).Load(map[string]any{"id": "whois_domain_id"}, nil)
+whois_domain, err := client.WhoisDomain(nil).Load(map[string]any{"id": "whois_domain_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(whois_domain) // the loaded record
 ```
 
 
@@ -1398,7 +1494,11 @@ Create an instance: `whois_ip := client.WhoisIp(nil)`
 #### Example: Load
 
 ```go
-result, err := client.WhoisIp(nil).Load(map[string]any{"id": "whois_ip_id"}, nil)
+whois_ip, err := client.WhoisIp(nil).Load(map[string]any{"id": "whois_ip_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(whois_ip) // the loaded record
 ```
 
 
@@ -1424,7 +1524,11 @@ Create an instance: `whois_net_id := client.WhoisNetId(nil)`
 #### Example: Load
 
 ```go
-result, err := client.WhoisNetId(nil).Load(map[string]any{"id": "whois_net_id_id"}, nil)
+whois_net_id, err := client.WhoisNetId(nil).Load(map[string]any{"id": "whois_net_id_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(whois_net_id) // the loaded record
 ```
 
 
@@ -1450,7 +1554,11 @@ Create an instance: `whois_org := client.WhoisOrg(nil)`
 #### Example: Load
 
 ```go
-result, err := client.WhoisOrg(nil).Load(map[string]any{"id": "whois_org_id"}, nil)
+whois_org, err := client.WhoisOrg(nil).Load(map[string]any{"id": "whois_org_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(whois_org) // the loaded record
 ```
 
 
@@ -1476,7 +1584,11 @@ Create an instance: `whois_poc := client.WhoisPoc(nil)`
 #### Example: Load
 
 ```go
-result, err := client.WhoisPoc(nil).Load(map[string]any{"id": "whois_poc_id"}, nil)
+whois_poc, err := client.WhoisPoc(nil).Load(map[string]any{"id": "whois_poc_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(whois_poc) // the loaded record
 ```
 
 

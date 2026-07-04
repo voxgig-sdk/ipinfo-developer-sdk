@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:abuse():list() / client:abuse():load({ id = ... })
-function IpinfoDeveloperSDK:abuse(data)
+-- Idiomatic facade: client:Abuse():list() / client:Abuse():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Abuse(data)
   local EntityMod = require("entity.abuse_entity")
   if data == nil then
     if self._abuse == nil then
@@ -256,15 +257,10 @@ function IpinfoDeveloperSDK:abuse(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:abuse() instead.
-function IpinfoDeveloperSDK:Abuse(data)
-  local EntityMod = require("entity.abuse_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:asn():list() / client:asn():load({ id = ... })
-function IpinfoDeveloperSDK:asn(data)
+-- Idiomatic facade: client:Asn():list() / client:Asn():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Asn(data)
   local EntityMod = require("entity.asn_entity")
   if data == nil then
     if self._asn == nil then
@@ -275,15 +271,10 @@ function IpinfoDeveloperSDK:asn(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:asn() instead.
-function IpinfoDeveloperSDK:Asn(data)
-  local EntityMod = require("entity.asn_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:carrier():list() / client:carrier():load({ id = ... })
-function IpinfoDeveloperSDK:carrier(data)
+-- Idiomatic facade: client:Carrier():list() / client:Carrier():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Carrier(data)
   local EntityMod = require("entity.carrier_entity")
   if data == nil then
     if self._carrier == nil then
@@ -294,15 +285,10 @@ function IpinfoDeveloperSDK:carrier(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:carrier() instead.
-function IpinfoDeveloperSDK:Carrier(data)
-  local EntityMod = require("entity.carrier_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:company():list() / client:company():load({ id = ... })
-function IpinfoDeveloperSDK:company(data)
+-- Idiomatic facade: client:Company():list() / client:Company():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Company(data)
   local EntityMod = require("entity.company_entity")
   if data == nil then
     if self._company == nil then
@@ -313,15 +299,10 @@ function IpinfoDeveloperSDK:company(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:company() instead.
-function IpinfoDeveloperSDK:Company(data)
-  local EntityMod = require("entity.company_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:core():list() / client:core():load({ id = ... })
-function IpinfoDeveloperSDK:core(data)
+-- Idiomatic facade: client:Core():list() / client:Core():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Core(data)
   local EntityMod = require("entity.core_entity")
   if data == nil then
     if self._core == nil then
@@ -332,15 +313,10 @@ function IpinfoDeveloperSDK:core(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:core() instead.
-function IpinfoDeveloperSDK:Core(data)
-  local EntityMod = require("entity.core_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:domain():list() / client:domain():load({ id = ... })
-function IpinfoDeveloperSDK:domain(data)
+-- Idiomatic facade: client:Domain():list() / client:Domain():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Domain(data)
   local EntityMod = require("entity.domain_entity")
   if data == nil then
     if self._domain == nil then
@@ -351,15 +327,10 @@ function IpinfoDeveloperSDK:domain(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:domain() instead.
-function IpinfoDeveloperSDK:Domain(data)
-  local EntityMod = require("entity.domain_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:general():list() / client:general():load({ id = ... })
-function IpinfoDeveloperSDK:general(data)
+-- Idiomatic facade: client:General():list() / client:General():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:General(data)
   local EntityMod = require("entity.general_entity")
   if data == nil then
     if self._general == nil then
@@ -370,15 +341,10 @@ function IpinfoDeveloperSDK:general(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:general() instead.
-function IpinfoDeveloperSDK:General(data)
-  local EntityMod = require("entity.general_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_current_information():list() / client:get_current_information():load({ id = ... })
-function IpinfoDeveloperSDK:get_current_information(data)
+-- Idiomatic facade: client:GetCurrentInformation():list() / client:GetCurrentInformation():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:GetCurrentInformation(data)
   local EntityMod = require("entity.get_current_information_entity")
   if data == nil then
     if self._get_current_information == nil then
@@ -389,15 +355,10 @@ function IpinfoDeveloperSDK:get_current_information(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_current_information() instead.
-function IpinfoDeveloperSDK:GetCurrentInformation(data)
-  local EntityMod = require("entity.get_current_information_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_information_by_ip():list() / client:get_information_by_ip():load({ id = ... })
-function IpinfoDeveloperSDK:get_information_by_ip(data)
+-- Idiomatic facade: client:GetInformationByIp():list() / client:GetInformationByIp():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:GetInformationByIp(data)
   local EntityMod = require("entity.get_information_by_ip_entity")
   if data == nil then
     if self._get_information_by_ip == nil then
@@ -408,15 +369,10 @@ function IpinfoDeveloperSDK:get_information_by_ip(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_information_by_ip() instead.
-function IpinfoDeveloperSDK:GetInformationByIp(data)
-  local EntityMod = require("entity.get_information_by_ip_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ipinfo_core():list() / client:ipinfo_core():load({ id = ... })
-function IpinfoDeveloperSDK:ipinfo_core(data)
+-- Idiomatic facade: client:IpinfoCore():list() / client:IpinfoCore():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:IpinfoCore(data)
   local EntityMod = require("entity.ipinfo_core_entity")
   if data == nil then
     if self._ipinfo_core == nil then
@@ -427,15 +383,10 @@ function IpinfoDeveloperSDK:ipinfo_core(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ipinfo_core() instead.
-function IpinfoDeveloperSDK:IpinfoCore(data)
-  local EntityMod = require("entity.ipinfo_core_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ipinfo_lite():list() / client:ipinfo_lite():load({ id = ... })
-function IpinfoDeveloperSDK:ipinfo_lite(data)
+-- Idiomatic facade: client:IpinfoLite():list() / client:IpinfoLite():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:IpinfoLite(data)
   local EntityMod = require("entity.ipinfo_lite_entity")
   if data == nil then
     if self._ipinfo_lite == nil then
@@ -446,15 +397,10 @@ function IpinfoDeveloperSDK:ipinfo_lite(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ipinfo_lite() instead.
-function IpinfoDeveloperSDK:IpinfoLite(data)
-  local EntityMod = require("entity.ipinfo_lite_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ipinfo_plus():list() / client:ipinfo_plus():load({ id = ... })
-function IpinfoDeveloperSDK:ipinfo_plus(data)
+-- Idiomatic facade: client:IpinfoPlus():list() / client:IpinfoPlus():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:IpinfoPlus(data)
   local EntityMod = require("entity.ipinfo_plus_entity")
   if data == nil then
     if self._ipinfo_plus == nil then
@@ -465,15 +411,10 @@ function IpinfoDeveloperSDK:ipinfo_plus(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ipinfo_plus() instead.
-function IpinfoDeveloperSDK:IpinfoPlus(data)
-  local EntityMod = require("entity.ipinfo_plus_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:lite():list() / client:lite():load({ id = ... })
-function IpinfoDeveloperSDK:lite(data)
+-- Idiomatic facade: client:Lite():list() / client:Lite():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Lite(data)
   local EntityMod = require("entity.lite_entity")
   if data == nil then
     if self._lite == nil then
@@ -484,15 +425,10 @@ function IpinfoDeveloperSDK:lite(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:lite() instead.
-function IpinfoDeveloperSDK:Lite(data)
-  local EntityMod = require("entity.lite_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:max():list() / client:max():load({ id = ... })
-function IpinfoDeveloperSDK:max(data)
+-- Idiomatic facade: client:Max():list() / client:Max():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Max(data)
   local EntityMod = require("entity.max_entity")
   if data == nil then
     if self._max == nil then
@@ -503,15 +439,10 @@ function IpinfoDeveloperSDK:max(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:max() instead.
-function IpinfoDeveloperSDK:Max(data)
-  local EntityMod = require("entity.max_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:men():list() / client:men():load({ id = ... })
-function IpinfoDeveloperSDK:men(data)
+-- Idiomatic facade: client:Men():list() / client:Men():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Men(data)
   local EntityMod = require("entity.men_entity")
   if data == nil then
     if self._men == nil then
@@ -522,15 +453,10 @@ function IpinfoDeveloperSDK:men(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:men() instead.
-function IpinfoDeveloperSDK:Men(data)
-  local EntityMod = require("entity.men_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:place():list() / client:place():load({ id = ... })
-function IpinfoDeveloperSDK:place(data)
+-- Idiomatic facade: client:Place():list() / client:Place():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Place(data)
   local EntityMod = require("entity.place_entity")
   if data == nil then
     if self._place == nil then
@@ -541,15 +467,10 @@ function IpinfoDeveloperSDK:place(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:place() instead.
-function IpinfoDeveloperSDK:Place(data)
-  local EntityMod = require("entity.place_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:plus():list() / client:plus():load({ id = ... })
-function IpinfoDeveloperSDK:plus(data)
+-- Idiomatic facade: client:Plus():list() / client:Plus():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Plus(data)
   local EntityMod = require("entity.plus_entity")
   if data == nil then
     if self._plus == nil then
@@ -560,15 +481,10 @@ function IpinfoDeveloperSDK:plus(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:plus() instead.
-function IpinfoDeveloperSDK:Plus(data)
-  local EntityMod = require("entity.plus_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:privacy():list() / client:privacy():load({ id = ... })
-function IpinfoDeveloperSDK:privacy(data)
+-- Idiomatic facade: client:Privacy():list() / client:Privacy():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Privacy(data)
   local EntityMod = require("entity.privacy_entity")
   if data == nil then
     if self._privacy == nil then
@@ -579,15 +495,10 @@ function IpinfoDeveloperSDK:privacy(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:privacy() instead.
-function IpinfoDeveloperSDK:Privacy(data)
-  local EntityMod = require("entity.privacy_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:privacy_extended():list() / client:privacy_extended():load({ id = ... })
-function IpinfoDeveloperSDK:privacy_extended(data)
+-- Idiomatic facade: client:PrivacyExtended():list() / client:PrivacyExtended():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:PrivacyExtended(data)
   local EntityMod = require("entity.privacy_extended_entity")
   if data == nil then
     if self._privacy_extended == nil then
@@ -598,15 +509,10 @@ function IpinfoDeveloperSDK:privacy_extended(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:privacy_extended() instead.
-function IpinfoDeveloperSDK:PrivacyExtended(data)
-  local EntityMod = require("entity.privacy_extended_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:range():list() / client:range():load({ id = ... })
-function IpinfoDeveloperSDK:range(data)
+-- Idiomatic facade: client:Range():list() / client:Range():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Range(data)
   local EntityMod = require("entity.range_entity")
   if data == nil then
     if self._range == nil then
@@ -617,15 +523,10 @@ function IpinfoDeveloperSDK:range(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:range() instead.
-function IpinfoDeveloperSDK:Range(data)
-  local EntityMod = require("entity.range_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:residential_proxy():list() / client:residential_proxy():load({ id = ... })
-function IpinfoDeveloperSDK:residential_proxy(data)
+-- Idiomatic facade: client:ResidentialProxy():list() / client:ResidentialProxy():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:ResidentialProxy(data)
   local EntityMod = require("entity.residential_proxy_entity")
   if data == nil then
     if self._residential_proxy == nil then
@@ -636,15 +537,10 @@ function IpinfoDeveloperSDK:residential_proxy(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:residential_proxy() instead.
-function IpinfoDeveloperSDK:ResidentialProxy(data)
-  local EntityMod = require("entity.residential_proxy_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:single():list() / client:single():load({ id = ... })
-function IpinfoDeveloperSDK:single(data)
+-- Idiomatic facade: client:Single():list() / client:Single():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:Single(data)
   local EntityMod = require("entity.single_entity")
   if data == nil then
     if self._single == nil then
@@ -655,15 +551,10 @@ function IpinfoDeveloperSDK:single(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:single() instead.
-function IpinfoDeveloperSDK:Single(data)
-  local EntityMod = require("entity.single_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:whois_asn():list() / client:whois_asn():load({ id = ... })
-function IpinfoDeveloperSDK:whois_asn(data)
+-- Idiomatic facade: client:WhoisAsn():list() / client:WhoisAsn():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:WhoisAsn(data)
   local EntityMod = require("entity.whois_asn_entity")
   if data == nil then
     if self._whois_asn == nil then
@@ -674,15 +565,10 @@ function IpinfoDeveloperSDK:whois_asn(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:whois_asn() instead.
-function IpinfoDeveloperSDK:WhoisAsn(data)
-  local EntityMod = require("entity.whois_asn_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:whois_domain():list() / client:whois_domain():load({ id = ... })
-function IpinfoDeveloperSDK:whois_domain(data)
+-- Idiomatic facade: client:WhoisDomain():list() / client:WhoisDomain():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:WhoisDomain(data)
   local EntityMod = require("entity.whois_domain_entity")
   if data == nil then
     if self._whois_domain == nil then
@@ -693,15 +579,10 @@ function IpinfoDeveloperSDK:whois_domain(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:whois_domain() instead.
-function IpinfoDeveloperSDK:WhoisDomain(data)
-  local EntityMod = require("entity.whois_domain_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:whois_ip():list() / client:whois_ip():load({ id = ... })
-function IpinfoDeveloperSDK:whois_ip(data)
+-- Idiomatic facade: client:WhoisIp():list() / client:WhoisIp():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:WhoisIp(data)
   local EntityMod = require("entity.whois_ip_entity")
   if data == nil then
     if self._whois_ip == nil then
@@ -712,15 +593,10 @@ function IpinfoDeveloperSDK:whois_ip(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:whois_ip() instead.
-function IpinfoDeveloperSDK:WhoisIp(data)
-  local EntityMod = require("entity.whois_ip_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:whois_net_id():list() / client:whois_net_id():load({ id = ... })
-function IpinfoDeveloperSDK:whois_net_id(data)
+-- Idiomatic facade: client:WhoisNetId():list() / client:WhoisNetId():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:WhoisNetId(data)
   local EntityMod = require("entity.whois_net_id_entity")
   if data == nil then
     if self._whois_net_id == nil then
@@ -731,15 +607,10 @@ function IpinfoDeveloperSDK:whois_net_id(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:whois_net_id() instead.
-function IpinfoDeveloperSDK:WhoisNetId(data)
-  local EntityMod = require("entity.whois_net_id_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:whois_org():list() / client:whois_org():load({ id = ... })
-function IpinfoDeveloperSDK:whois_org(data)
+-- Idiomatic facade: client:WhoisOrg():list() / client:WhoisOrg():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:WhoisOrg(data)
   local EntityMod = require("entity.whois_org_entity")
   if data == nil then
     if self._whois_org == nil then
@@ -750,15 +621,10 @@ function IpinfoDeveloperSDK:whois_org(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:whois_org() instead.
-function IpinfoDeveloperSDK:WhoisOrg(data)
-  local EntityMod = require("entity.whois_org_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:whois_poc():list() / client:whois_poc():load({ id = ... })
-function IpinfoDeveloperSDK:whois_poc(data)
+-- Idiomatic facade: client:WhoisPoc():list() / client:WhoisPoc():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpinfoDeveloperSDK:WhoisPoc(data)
   local EntityMod = require("entity.whois_poc_entity")
   if data == nil then
     if self._whois_poc == nil then
@@ -766,12 +632,6 @@ function IpinfoDeveloperSDK:whois_poc(data)
     end
     return self._whois_poc
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:whois_poc() instead.
-function IpinfoDeveloperSDK:WhoisPoc(data)
-  local EntityMod = require("entity.whois_poc_entity")
   return EntityMod.new(self, data)
 end
 

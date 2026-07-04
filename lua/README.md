@@ -36,9 +36,9 @@ local client = sdk.new({
 ### 3. Load an abuse
 
 ```lua
-local result, err = client:abuse():load({ id = "example_id" })
+local abuse, err = client:Abuse():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(abuse)
 ```
 
 
@@ -84,8 +84,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:abuse():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Abuse():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -165,8 +165,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Abuse` | `(data) -> AbuseEntity` | Create a Abuse entity instance. |
-| `Asn` | `(data) -> AsnEntity` | Create a Asn entity instance. |
+| `Abuse` | `(data) -> AbuseEntity` | Create an Abuse entity instance. |
+| `Asn` | `(data) -> AsnEntity` | Create an Asn entity instance. |
 | `Carrier` | `(data) -> CarrierEntity` | Create a Carrier entity instance. |
 | `Company` | `(data) -> CompanyEntity` | Create a Company entity instance. |
 | `Core` | `(data) -> CoreEntity` | Create a Core entity instance. |
@@ -174,9 +174,9 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `General` | `(data) -> GeneralEntity` | Create a General entity instance. |
 | `GetCurrentInformation` | `(data) -> GetCurrentInformationEntity` | Create a GetCurrentInformation entity instance. |
 | `GetInformationByIp` | `(data) -> GetInformationByIpEntity` | Create a GetInformationByIp entity instance. |
-| `IpinfoCore` | `(data) -> IpinfoCoreEntity` | Create a IpinfoCore entity instance. |
-| `IpinfoLite` | `(data) -> IpinfoLiteEntity` | Create a IpinfoLite entity instance. |
-| `IpinfoPlus` | `(data) -> IpinfoPlusEntity` | Create a IpinfoPlus entity instance. |
+| `IpinfoCore` | `(data) -> IpinfoCoreEntity` | Create an IpinfoCore entity instance. |
+| `IpinfoLite` | `(data) -> IpinfoLiteEntity` | Create an IpinfoLite entity instance. |
+| `IpinfoPlus` | `(data) -> IpinfoPlusEntity` | Create an IpinfoPlus entity instance. |
 | `Lite` | `(data) -> LiteEntity` | Create a Lite entity instance. |
 | `Max` | `(data) -> MaxEntity` | Create a Max entity instance. |
 | `Men` | `(data) -> MenEntity` | Create a Men entity instance. |
@@ -214,17 +214,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local abuse, err = client:Abuse():load({ id = "example_id" })
+    if err then error(err) end
+    -- abuse is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -667,7 +672,7 @@ API path: `/whois/poc/{whoispoc}`
 
 ### Abuse
 
-Create an instance: `const abuse = client.abuse`
+Create an instance: `local abuse = client:Abuse(nil)`
 
 #### Operations
 
@@ -688,14 +693,14 @@ Create an instance: `const abuse = client.abuse`
 
 #### Example: Load
 
-```ts
-const abuse = await client.abuse.load({ id: 'abuse_id' })
+```lua
+local abuse, err = client:Abuse():load({ id = "abuse_id" })
 ```
 
 
 ### Asn
 
-Create an instance: `const asn = client.asn`
+Create an instance: `local asn = client:Asn(nil)`
 
 #### Operations
 
@@ -724,14 +729,14 @@ Create an instance: `const asn = client.asn`
 
 #### Example: List
 
-```ts
-const asns = await client.asn.list()
+```lua
+local asns, err = client:Asn():list()
 ```
 
 
 ### Carrier
 
-Create an instance: `const carrier = client.carrier`
+Create an instance: `local carrier = client:Carrier(nil)`
 
 #### Operations
 
@@ -749,14 +754,14 @@ Create an instance: `const carrier = client.carrier`
 
 #### Example: Load
 
-```ts
-const carrier = await client.carrier.load({ id: 'carrier_id' })
+```lua
+local carrier, err = client:Carrier():load({ id = "carrier_id" })
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.company`
+Create an instance: `local company = client:Company(nil)`
 
 #### Operations
 
@@ -774,14 +779,14 @@ Create an instance: `const company = client.company`
 
 #### Example: Load
 
-```ts
-const company = await client.company.load({ id: 'company_id' })
+```lua
+local company, err = client:Company():load({ id = "company_id" })
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.core`
+Create an instance: `local core = client:Core(nil)`
 
 #### Operations
 
@@ -805,14 +810,14 @@ Create an instance: `const core = client.core`
 
 #### Example: Load
 
-```ts
-const core = await client.core.load({ id: 'core_id' })
+```lua
+local core, err = client:Core():load({ id = "core_id" })
 ```
 
 
 ### Domain
 
-Create an instance: `const domain = client.domain`
+Create an instance: `local domain = client:Domain(nil)`
 
 #### Operations
 
@@ -831,14 +836,14 @@ Create an instance: `const domain = client.domain`
 
 #### Example: Load
 
-```ts
-const domain = await client.domain.load({ id: 'domain_id' })
+```lua
+local domain, err = client:Domain():load({ id = "domain_id" })
 ```
 
 
 ### General
 
-Create an instance: `const general = client.general`
+Create an instance: `local general = client:General(nil)`
 
 #### Operations
 
@@ -857,15 +862,15 @@ Create an instance: `const general = client.general`
 
 #### Example: Create
 
-```ts
-const general = await client.general.create({
+```lua
+local general, err = client:General():create({
 })
 ```
 
 
 ### GetCurrentInformation
 
-Create an instance: `const get_current_information = client.get_current_information`
+Create an instance: `local get_current_information = client:GetCurrentInformation(nil)`
 
 #### Operations
 
@@ -895,14 +900,14 @@ Create an instance: `const get_current_information = client.get_current_informat
 
 #### Example: Load
 
-```ts
-const get_current_information = await client.get_current_information.load({ id: 'get_current_information_id' })
+```lua
+local get_current_information, err = client:GetCurrentInformation():load({ id = "get_current_information_id" })
 ```
 
 
 ### GetInformationByIp
 
-Create an instance: `const get_information_by_ip = client.get_information_by_ip`
+Create an instance: `local get_information_by_ip = client:GetInformationByIp(nil)`
 
 #### Operations
 
@@ -932,14 +937,14 @@ Create an instance: `const get_information_by_ip = client.get_information_by_ip`
 
 #### Example: Load
 
-```ts
-const get_information_by_ip = await client.get_information_by_ip.load({ id: 'get_information_by_ip_id' })
+```lua
+local get_information_by_ip, err = client:GetInformationByIp():load({ id = "get_information_by_ip_id" })
 ```
 
 
 ### IpinfoCore
 
-Create an instance: `const ipinfo_core = client.ipinfo_core`
+Create an instance: `local ipinfo_core = client:IpinfoCore(nil)`
 
 #### Operations
 
@@ -957,14 +962,14 @@ Create an instance: `const ipinfo_core = client.ipinfo_core`
 
 #### Example: Load
 
-```ts
-const ipinfo_core = await client.ipinfo_core.load({ id: 'ipinfo_core_id' })
+```lua
+local ipinfo_core, err = client:IpinfoCore():load({ id = "ipinfo_core_id" })
 ```
 
 
 ### IpinfoLite
 
-Create an instance: `const ipinfo_lite = client.ipinfo_lite`
+Create an instance: `local ipinfo_lite = client:IpinfoLite(nil)`
 
 #### Operations
 
@@ -974,14 +979,14 @@ Create an instance: `const ipinfo_lite = client.ipinfo_lite`
 
 #### Example: Load
 
-```ts
-const ipinfo_lite = await client.ipinfo_lite.load({ id: 'ipinfo_lite_id' })
+```lua
+local ipinfo_lite, err = client:IpinfoLite():load({ id = "ipinfo_lite_id" })
 ```
 
 
 ### IpinfoPlus
 
-Create an instance: `const ipinfo_plus = client.ipinfo_plus`
+Create an instance: `local ipinfo_plus = client:IpinfoPlus(nil)`
 
 #### Operations
 
@@ -999,14 +1004,14 @@ Create an instance: `const ipinfo_plus = client.ipinfo_plus`
 
 #### Example: Load
 
-```ts
-const ipinfo_plus = await client.ipinfo_plus.load({ id: 'ipinfo_plus_id' })
+```lua
+local ipinfo_plus, err = client:IpinfoPlus():load({ id = "ipinfo_plus_id" })
 ```
 
 
 ### Lite
 
-Create an instance: `const lite = client.lite`
+Create an instance: `local lite = client:Lite(nil)`
 
 #### Operations
 
@@ -1029,14 +1034,14 @@ Create an instance: `const lite = client.lite`
 
 #### Example: Load
 
-```ts
-const lite = await client.lite.load({ id: 'lite_id' })
+```lua
+local lite, err = client:Lite():load({ id = "lite_id" })
 ```
 
 
 ### Max
 
-Create an instance: `const max = client.max`
+Create an instance: `local max = client:Max(nil)`
 
 #### Operations
 
@@ -1062,14 +1067,14 @@ Create an instance: `const max = client.max`
 
 #### Example: Load
 
-```ts
-const max = await client.max.load({ id: 'max_id' })
+```lua
+local max, err = client:Max():load({ id = "max_id" })
 ```
 
 
 ### Men
 
-Create an instance: `const men = client.men`
+Create an instance: `local men = client:Men(nil)`
 
 #### Operations
 
@@ -1087,14 +1092,14 @@ Create an instance: `const men = client.men`
 
 #### Example: Load
 
-```ts
-const men = await client.men.load({ id: 'men_id' })
+```lua
+local men, err = client:Men():load({ id = "men_id" })
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `local place = client:Place(nil)`
 
 #### Operations
 
@@ -1115,14 +1120,14 @@ Create an instance: `const place = client.place`
 
 #### Example: Load
 
-```ts
-const place = await client.place.load({ id: 'place_id' })
+```lua
+local place, err = client:Place():load({ id = "place_id" })
 ```
 
 
 ### Plus
 
-Create an instance: `const plus = client.plus`
+Create an instance: `local plus = client:Plus(nil)`
 
 #### Operations
 
@@ -1147,14 +1152,14 @@ Create an instance: `const plus = client.plus`
 
 #### Example: Load
 
-```ts
-const plus = await client.plus.load({ id: 'plus_id' })
+```lua
+local plus, err = client:Plus():load({ id = "plus_id" })
 ```
 
 
 ### Privacy
 
-Create an instance: `const privacy = client.privacy`
+Create an instance: `local privacy = client:Privacy(nil)`
 
 #### Operations
 
@@ -1175,14 +1180,14 @@ Create an instance: `const privacy = client.privacy`
 
 #### Example: Load
 
-```ts
-const privacy = await client.privacy.load({ id: 'privacy_id' })
+```lua
+local privacy, err = client:Privacy():load({ id = "privacy_id" })
 ```
 
 
 ### PrivacyExtended
 
-Create an instance: `const privacy_extended = client.privacy_extended`
+Create an instance: `local privacy_extended = client:PrivacyExtended(nil)`
 
 #### Operations
 
@@ -1213,14 +1218,14 @@ Create an instance: `const privacy_extended = client.privacy_extended`
 
 #### Example: List
 
-```ts
-const privacy_extendeds = await client.privacy_extended.list()
+```lua
+local privacy_extendeds, err = client:PrivacyExtended():list()
 ```
 
 
 ### Range
 
-Create an instance: `const range = client.range`
+Create an instance: `local range = client:Range(nil)`
 
 #### Operations
 
@@ -1239,14 +1244,14 @@ Create an instance: `const range = client.range`
 
 #### Example: Load
 
-```ts
-const range = await client.range.load({ id: 'range_id' })
+```lua
+local range, err = client:Range():load({ id = "range_id" })
 ```
 
 
 ### ResidentialProxy
 
-Create an instance: `const residential_proxy = client.residential_proxy`
+Create an instance: `local residential_proxy = client:ResidentialProxy(nil)`
 
 #### Operations
 
@@ -1265,14 +1270,14 @@ Create an instance: `const residential_proxy = client.residential_proxy`
 
 #### Example: Load
 
-```ts
-const residential_proxy = await client.residential_proxy.load({ id: 'residential_proxy_id' })
+```lua
+local residential_proxy, err = client:ResidentialProxy():load({ id = "residential_proxy_id" })
 ```
 
 
 ### Single
 
-Create an instance: `const single = client.single`
+Create an instance: `local single = client:Single(nil)`
 
 #### Operations
 
@@ -1282,14 +1287,14 @@ Create an instance: `const single = client.single`
 
 #### Example: Load
 
-```ts
-const single = await client.single.load({ id: 'single_id' })
+```lua
+local single, err = client:Single():load({ id = "single_id" })
 ```
 
 
 ### WhoisAsn
 
-Create an instance: `const whois_asn = client.whois_asn`
+Create an instance: `local whois_asn = client:WhoisAsn(nil)`
 
 #### Operations
 
@@ -1317,14 +1322,14 @@ Create an instance: `const whois_asn = client.whois_asn`
 
 #### Example: List
 
-```ts
-const whois_asns = await client.whois_asn.list()
+```lua
+local whois_asns, err = client:WhoisAsn():list()
 ```
 
 
 ### WhoisDomain
 
-Create an instance: `const whois_domain = client.whois_domain`
+Create an instance: `local whois_domain = client:WhoisDomain(nil)`
 
 #### Operations
 
@@ -1343,14 +1348,14 @@ Create an instance: `const whois_domain = client.whois_domain`
 
 #### Example: Load
 
-```ts
-const whois_domain = await client.whois_domain.load({ id: 'whois_domain_id' })
+```lua
+local whois_domain, err = client:WhoisDomain():load({ id = "whois_domain_id" })
 ```
 
 
 ### WhoisIp
 
-Create an instance: `const whois_ip = client.whois_ip`
+Create an instance: `local whois_ip = client:WhoisIp(nil)`
 
 #### Operations
 
@@ -1369,14 +1374,14 @@ Create an instance: `const whois_ip = client.whois_ip`
 
 #### Example: Load
 
-```ts
-const whois_ip = await client.whois_ip.load({ id: 'whois_ip_id' })
+```lua
+local whois_ip, err = client:WhoisIp():load({ id = "whois_ip_id" })
 ```
 
 
 ### WhoisNetId
 
-Create an instance: `const whois_net_id = client.whois_net_id`
+Create an instance: `local whois_net_id = client:WhoisNetId(nil)`
 
 #### Operations
 
@@ -1395,14 +1400,14 @@ Create an instance: `const whois_net_id = client.whois_net_id`
 
 #### Example: Load
 
-```ts
-const whois_net_id = await client.whois_net_id.load({ id: 'whois_net_id_id' })
+```lua
+local whois_net_id, err = client:WhoisNetId():load({ id = "whois_net_id_id" })
 ```
 
 
 ### WhoisOrg
 
-Create an instance: `const whois_org = client.whois_org`
+Create an instance: `local whois_org = client:WhoisOrg(nil)`
 
 #### Operations
 
@@ -1421,14 +1426,14 @@ Create an instance: `const whois_org = client.whois_org`
 
 #### Example: Load
 
-```ts
-const whois_org = await client.whois_org.load({ id: 'whois_org_id' })
+```lua
+local whois_org, err = client:WhoisOrg():load({ id = "whois_org_id" })
 ```
 
 
 ### WhoisPoc
 
-Create an instance: `const whois_poc = client.whois_poc`
+Create an instance: `local whois_poc = client:WhoisPoc(nil)`
 
 #### Operations
 
@@ -1447,8 +1452,8 @@ Create an instance: `const whois_poc = client.whois_poc`
 
 #### Example: Load
 
-```ts
-const whois_poc = await client.whois_poc.load({ id: 'whois_poc_id' })
+```lua
+local whois_poc, err = client:WhoisPoc():load({ id = "whois_poc_id" })
 ```
 
 
@@ -1523,7 +1528,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local abuse = client:abuse()
+local abuse = client:Abuse()
 abuse:load({ id = "example_id" })
 
 -- abuse:data_get() now returns the loaded abuse data

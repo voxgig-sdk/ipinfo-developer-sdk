@@ -231,7 +231,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body.asn`"
+                    "res": "`body`"
                   }
                 }
               ]

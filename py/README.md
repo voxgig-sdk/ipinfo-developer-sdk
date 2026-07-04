@@ -36,10 +36,12 @@ client = IpinfoDeveloperSDK({
 
 ### 3. Load an abuse
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.abuse.load({"id": "example_id"})
-    print(result)
+    abuse = client.Abuse().load({"id": "example_id"})
+    print(abuse)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpinfoDeveloperSDK.test()
 
-result = client.abuse.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+abuse = client.Abuse().load({"id": "test01"})
+# abuse contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -166,8 +169,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Abuse` | `(data) -> AbuseEntity` | Create a Abuse entity instance. |
-| `Asn` | `(data) -> AsnEntity` | Create a Asn entity instance. |
+| `Abuse` | `(data) -> AbuseEntity` | Create an Abuse entity instance. |
+| `Asn` | `(data) -> AsnEntity` | Create an Asn entity instance. |
 | `Carrier` | `(data) -> CarrierEntity` | Create a Carrier entity instance. |
 | `Company` | `(data) -> CompanyEntity` | Create a Company entity instance. |
 | `Core` | `(data) -> CoreEntity` | Create a Core entity instance. |
@@ -175,9 +178,9 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `General` | `(data) -> GeneralEntity` | Create a General entity instance. |
 | `GetCurrentInformation` | `(data) -> GetCurrentInformationEntity` | Create a GetCurrentInformation entity instance. |
 | `GetInformationByIp` | `(data) -> GetInformationByIpEntity` | Create a GetInformationByIp entity instance. |
-| `IpinfoCore` | `(data) -> IpinfoCoreEntity` | Create a IpinfoCore entity instance. |
-| `IpinfoLite` | `(data) -> IpinfoLiteEntity` | Create a IpinfoLite entity instance. |
-| `IpinfoPlus` | `(data) -> IpinfoPlusEntity` | Create a IpinfoPlus entity instance. |
+| `IpinfoCore` | `(data) -> IpinfoCoreEntity` | Create an IpinfoCore entity instance. |
+| `IpinfoLite` | `(data) -> IpinfoLiteEntity` | Create an IpinfoLite entity instance. |
+| `IpinfoPlus` | `(data) -> IpinfoPlusEntity` | Create an IpinfoPlus entity instance. |
 | `Lite` | `(data) -> LiteEntity` | Create a Lite entity instance. |
 | `Max` | `(data) -> MaxEntity` | Create a Max entity instance. |
 | `Men` | `(data) -> MenEntity` | Create a Men entity instance. |
@@ -672,7 +675,7 @@ API path: `/whois/poc/{whoispoc}`
 
 ### Abuse
 
-Create an instance: `const abuse = client.abuse`
+Create an instance: `abuse = client.Abuse()`
 
 #### Operations
 
@@ -693,14 +696,14 @@ Create an instance: `const abuse = client.abuse`
 
 #### Example: Load
 
-```ts
-const abuse = await client.abuse.load({ id: 'abuse_id' })
+```python
+abuse = client.Abuse().load({"id": "abuse_id"})
 ```
 
 
 ### Asn
 
-Create an instance: `const asn = client.asn`
+Create an instance: `asn = client.Asn()`
 
 #### Operations
 
@@ -729,14 +732,14 @@ Create an instance: `const asn = client.asn`
 
 #### Example: List
 
-```ts
-const asns = await client.asn.list()
+```python
+asns = client.Asn().list({})
 ```
 
 
 ### Carrier
 
-Create an instance: `const carrier = client.carrier`
+Create an instance: `carrier = client.Carrier()`
 
 #### Operations
 
@@ -754,14 +757,14 @@ Create an instance: `const carrier = client.carrier`
 
 #### Example: Load
 
-```ts
-const carrier = await client.carrier.load({ id: 'carrier_id' })
+```python
+carrier = client.Carrier().load({"id": "carrier_id"})
 ```
 
 
 ### Company
 
-Create an instance: `const company = client.company`
+Create an instance: `company = client.Company()`
 
 #### Operations
 
@@ -779,14 +782,14 @@ Create an instance: `const company = client.company`
 
 #### Example: Load
 
-```ts
-const company = await client.company.load({ id: 'company_id' })
+```python
+company = client.Company().load({"id": "company_id"})
 ```
 
 
 ### Core
 
-Create an instance: `const core = client.core`
+Create an instance: `core = client.Core()`
 
 #### Operations
 
@@ -810,14 +813,14 @@ Create an instance: `const core = client.core`
 
 #### Example: Load
 
-```ts
-const core = await client.core.load({ id: 'core_id' })
+```python
+core = client.Core().load({"id": "core_id"})
 ```
 
 
 ### Domain
 
-Create an instance: `const domain = client.domain`
+Create an instance: `domain = client.Domain()`
 
 #### Operations
 
@@ -836,14 +839,14 @@ Create an instance: `const domain = client.domain`
 
 #### Example: Load
 
-```ts
-const domain = await client.domain.load({ id: 'domain_id' })
+```python
+domain = client.Domain().load({"id": "domain_id"})
 ```
 
 
 ### General
 
-Create an instance: `const general = client.general`
+Create an instance: `general = client.General()`
 
 #### Operations
 
@@ -862,15 +865,15 @@ Create an instance: `const general = client.general`
 
 #### Example: Create
 
-```ts
-const general = await client.general.create({
+```python
+general = client.General().create({
 })
 ```
 
 
 ### GetCurrentInformation
 
-Create an instance: `const get_current_information = client.get_current_information`
+Create an instance: `get_current_information = client.GetCurrentInformation()`
 
 #### Operations
 
@@ -900,14 +903,14 @@ Create an instance: `const get_current_information = client.get_current_informat
 
 #### Example: Load
 
-```ts
-const get_current_information = await client.get_current_information.load({ id: 'get_current_information_id' })
+```python
+get_current_information = client.GetCurrentInformation().load({"id": "get_current_information_id"})
 ```
 
 
 ### GetInformationByIp
 
-Create an instance: `const get_information_by_ip = client.get_information_by_ip`
+Create an instance: `get_information_by_ip = client.GetInformationByIp()`
 
 #### Operations
 
@@ -937,14 +940,14 @@ Create an instance: `const get_information_by_ip = client.get_information_by_ip`
 
 #### Example: Load
 
-```ts
-const get_information_by_ip = await client.get_information_by_ip.load({ id: 'get_information_by_ip_id' })
+```python
+get_information_by_ip = client.GetInformationByIp().load({"id": "get_information_by_ip_id"})
 ```
 
 
 ### IpinfoCore
 
-Create an instance: `const ipinfo_core = client.ipinfo_core`
+Create an instance: `ipinfo_core = client.IpinfoCore()`
 
 #### Operations
 
@@ -962,14 +965,14 @@ Create an instance: `const ipinfo_core = client.ipinfo_core`
 
 #### Example: Load
 
-```ts
-const ipinfo_core = await client.ipinfo_core.load({ id: 'ipinfo_core_id' })
+```python
+ipinfo_core = client.IpinfoCore().load({"id": "ipinfo_core_id"})
 ```
 
 
 ### IpinfoLite
 
-Create an instance: `const ipinfo_lite = client.ipinfo_lite`
+Create an instance: `ipinfo_lite = client.IpinfoLite()`
 
 #### Operations
 
@@ -979,14 +982,14 @@ Create an instance: `const ipinfo_lite = client.ipinfo_lite`
 
 #### Example: Load
 
-```ts
-const ipinfo_lite = await client.ipinfo_lite.load({ id: 'ipinfo_lite_id' })
+```python
+ipinfo_lite = client.IpinfoLite().load({"id": "ipinfo_lite_id"})
 ```
 
 
 ### IpinfoPlus
 
-Create an instance: `const ipinfo_plus = client.ipinfo_plus`
+Create an instance: `ipinfo_plus = client.IpinfoPlus()`
 
 #### Operations
 
@@ -1004,14 +1007,14 @@ Create an instance: `const ipinfo_plus = client.ipinfo_plus`
 
 #### Example: Load
 
-```ts
-const ipinfo_plus = await client.ipinfo_plus.load({ id: 'ipinfo_plus_id' })
+```python
+ipinfo_plus = client.IpinfoPlus().load({"id": "ipinfo_plus_id"})
 ```
 
 
 ### Lite
 
-Create an instance: `const lite = client.lite`
+Create an instance: `lite = client.Lite()`
 
 #### Operations
 
@@ -1034,14 +1037,14 @@ Create an instance: `const lite = client.lite`
 
 #### Example: Load
 
-```ts
-const lite = await client.lite.load({ id: 'lite_id' })
+```python
+lite = client.Lite().load({"id": "lite_id"})
 ```
 
 
 ### Max
 
-Create an instance: `const max = client.max`
+Create an instance: `max = client.Max()`
 
 #### Operations
 
@@ -1067,14 +1070,14 @@ Create an instance: `const max = client.max`
 
 #### Example: Load
 
-```ts
-const max = await client.max.load({ id: 'max_id' })
+```python
+max = client.Max().load({"id": "max_id"})
 ```
 
 
 ### Men
 
-Create an instance: `const men = client.men`
+Create an instance: `men = client.Men()`
 
 #### Operations
 
@@ -1092,14 +1095,14 @@ Create an instance: `const men = client.men`
 
 #### Example: Load
 
-```ts
-const men = await client.men.load({ id: 'men_id' })
+```python
+men = client.Men().load({"id": "men_id"})
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `place = client.Place()`
 
 #### Operations
 
@@ -1120,14 +1123,14 @@ Create an instance: `const place = client.place`
 
 #### Example: Load
 
-```ts
-const place = await client.place.load({ id: 'place_id' })
+```python
+place = client.Place().load({"id": "place_id"})
 ```
 
 
 ### Plus
 
-Create an instance: `const plus = client.plus`
+Create an instance: `plus = client.Plus()`
 
 #### Operations
 
@@ -1152,14 +1155,14 @@ Create an instance: `const plus = client.plus`
 
 #### Example: Load
 
-```ts
-const plus = await client.plus.load({ id: 'plus_id' })
+```python
+plus = client.Plus().load({"id": "plus_id"})
 ```
 
 
 ### Privacy
 
-Create an instance: `const privacy = client.privacy`
+Create an instance: `privacy = client.Privacy()`
 
 #### Operations
 
@@ -1180,14 +1183,14 @@ Create an instance: `const privacy = client.privacy`
 
 #### Example: Load
 
-```ts
-const privacy = await client.privacy.load({ id: 'privacy_id' })
+```python
+privacy = client.Privacy().load({"id": "privacy_id"})
 ```
 
 
 ### PrivacyExtended
 
-Create an instance: `const privacy_extended = client.privacy_extended`
+Create an instance: `privacy_extended = client.PrivacyExtended()`
 
 #### Operations
 
@@ -1218,14 +1221,14 @@ Create an instance: `const privacy_extended = client.privacy_extended`
 
 #### Example: List
 
-```ts
-const privacy_extendeds = await client.privacy_extended.list()
+```python
+privacy_extendeds = client.PrivacyExtended().list({})
 ```
 
 
 ### Range
 
-Create an instance: `const range = client.range`
+Create an instance: `range = client.Range()`
 
 #### Operations
 
@@ -1244,14 +1247,14 @@ Create an instance: `const range = client.range`
 
 #### Example: Load
 
-```ts
-const range = await client.range.load({ id: 'range_id' })
+```python
+range = client.Range().load({"id": "range_id"})
 ```
 
 
 ### ResidentialProxy
 
-Create an instance: `const residential_proxy = client.residential_proxy`
+Create an instance: `residential_proxy = client.ResidentialProxy()`
 
 #### Operations
 
@@ -1270,14 +1273,14 @@ Create an instance: `const residential_proxy = client.residential_proxy`
 
 #### Example: Load
 
-```ts
-const residential_proxy = await client.residential_proxy.load({ id: 'residential_proxy_id' })
+```python
+residential_proxy = client.ResidentialProxy().load({"id": "residential_proxy_id"})
 ```
 
 
 ### Single
 
-Create an instance: `const single = client.single`
+Create an instance: `single = client.Single()`
 
 #### Operations
 
@@ -1287,14 +1290,14 @@ Create an instance: `const single = client.single`
 
 #### Example: Load
 
-```ts
-const single = await client.single.load({ id: 'single_id' })
+```python
+single = client.Single().load({"id": "single_id"})
 ```
 
 
 ### WhoisAsn
 
-Create an instance: `const whois_asn = client.whois_asn`
+Create an instance: `whois_asn = client.WhoisAsn()`
 
 #### Operations
 
@@ -1322,14 +1325,14 @@ Create an instance: `const whois_asn = client.whois_asn`
 
 #### Example: List
 
-```ts
-const whois_asns = await client.whois_asn.list()
+```python
+whois_asns = client.WhoisAsn().list({})
 ```
 
 
 ### WhoisDomain
 
-Create an instance: `const whois_domain = client.whois_domain`
+Create an instance: `whois_domain = client.WhoisDomain()`
 
 #### Operations
 
@@ -1348,14 +1351,14 @@ Create an instance: `const whois_domain = client.whois_domain`
 
 #### Example: Load
 
-```ts
-const whois_domain = await client.whois_domain.load({ id: 'whois_domain_id' })
+```python
+whois_domain = client.WhoisDomain().load({"id": "whois_domain_id"})
 ```
 
 
 ### WhoisIp
 
-Create an instance: `const whois_ip = client.whois_ip`
+Create an instance: `whois_ip = client.WhoisIp()`
 
 #### Operations
 
@@ -1374,14 +1377,14 @@ Create an instance: `const whois_ip = client.whois_ip`
 
 #### Example: Load
 
-```ts
-const whois_ip = await client.whois_ip.load({ id: 'whois_ip_id' })
+```python
+whois_ip = client.WhoisIp().load({"id": "whois_ip_id"})
 ```
 
 
 ### WhoisNetId
 
-Create an instance: `const whois_net_id = client.whois_net_id`
+Create an instance: `whois_net_id = client.WhoisNetId()`
 
 #### Operations
 
@@ -1400,14 +1403,14 @@ Create an instance: `const whois_net_id = client.whois_net_id`
 
 #### Example: Load
 
-```ts
-const whois_net_id = await client.whois_net_id.load({ id: 'whois_net_id_id' })
+```python
+whois_net_id = client.WhoisNetId().load({"id": "whois_net_id_id"})
 ```
 
 
 ### WhoisOrg
 
-Create an instance: `const whois_org = client.whois_org`
+Create an instance: `whois_org = client.WhoisOrg()`
 
 #### Operations
 
@@ -1426,14 +1429,14 @@ Create an instance: `const whois_org = client.whois_org`
 
 #### Example: Load
 
-```ts
-const whois_org = await client.whois_org.load({ id: 'whois_org_id' })
+```python
+whois_org = client.WhoisOrg().load({"id": "whois_org_id"})
 ```
 
 
 ### WhoisPoc
 
-Create an instance: `const whois_poc = client.whois_poc`
+Create an instance: `whois_poc = client.WhoisPoc()`
 
 #### Operations
 
@@ -1452,8 +1455,8 @@ Create an instance: `const whois_poc = client.whois_poc`
 
 #### Example: Load
 
-```ts
-const whois_poc = await client.whois_poc.load({ id: 'whois_poc_id' })
+```python
+whois_poc = client.WhoisPoc().load({"id": "whois_poc_id"})
 ```
 
 
@@ -1527,7 +1530,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-abuse = client.abuse
+abuse = client.Abuse()
 abuse.load({"id": "example_id"})
 
 # abuse.data_get() now returns the loaded abuse data

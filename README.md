@@ -28,9 +28,9 @@ const client = new IpinfoDeveloperSDK({
   apikey: process.env.IPINFO_DEVELOPER_APIKEY,
 })
 
-// Load abuse data
-const abuse = await client.abuse.load({})
-console.log(abuse.data)
+// Load abuse data (returns a Abuse)
+const abuse = await client.Abuse().load()
+console.log(abuse)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -116,8 +116,8 @@ client = IpinfoDeveloperSDK({
 })
 
 
-# Load a specific abuse
-abuse = client.abuse.load({"id": "example_id"})
+# Load a specific abuse (returns the record, raises on error)
+abuse = client.Abuse().load({"id": "example_id"})
 print(abuse)
 ```
 
@@ -132,8 +132,8 @@ $client = new IpinfoDeveloperSDK([
 ]);
 
 
-// Load a specific abuse
-$abuse = $client->abuse()->load(["id" => "example_id"]);
+// Load a specific abuse (returns the bare record; throws on error)
+$abuse = $client->Abuse()->load(["id" => "example_id"]);
 print_r($abuse);
 ```
 
@@ -161,8 +161,8 @@ client = IpinfoDeveloperSDK.new({
 })
 
 
-# Load a specific abuse
-abuse = client.abuse.load({ "id" => "example_id" })
+# Load a specific abuse (returns the bare record; raises on error)
+abuse = client.Abuse.load({ "id" => "example_id" })
 puts abuse
 ```
 
@@ -177,7 +177,7 @@ local client = sdk.new({
 
 
 -- Load a specific abuse
-local abuse, err = client:abuse():load({ id = "example_id" })
+local abuse, err = client:Abuse():load({ id = "example_id" })
 print(abuse)
 ```
 
@@ -190,22 +190,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = IpinfoDeveloperSDK.test()
-const result = await client.abuse.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const abuse = await client.Abuse().load({ id: 'test01' })
+// abuse is a bare Abuse populated with mock data
+console.log(abuse)
 ```
 
 ### Python
 
 ```python
 client = IpinfoDeveloperSDK.test()
-result = client.abuse.load({"id": "test01"})
+abuse = client.Abuse().load({"id": "test01"})
+print(abuse)
 ```
 
 ### PHP
 
 ```php
-$client = IpinfoDeveloperSDK::test();
-$result = $client->abuse()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = IpinfoDeveloperSDK::test([
+    "entity" => ["abuse" => ["test01" => ["id" => "test01"]]],
+]);
+$abuse = $client->Abuse()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -220,15 +225,18 @@ result, err := client.Abuse(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpinfoDeveloperSDK.test
-result = client.abuse.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = IpinfoDeveloperSDK.test({
+  "entity" => { "abuse" => { "test01" => { "id" => "test01" } } },
+})
+abuse = client.Abuse.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:abuse():load({ id = "test01" })
+local result, err = client:Abuse():load({ id = "test01" })
 ```
 
 ## How it works
@@ -276,6 +284,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

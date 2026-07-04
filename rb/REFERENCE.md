@@ -195,7 +195,7 @@ same parameters as `direct()`. Raises on error.
 ## AbuseEntity
 
 ```ruby
-abuse = client.abuse
+abuse = client.Abuse
 ```
 
 ### Fields
@@ -216,7 +216,7 @@ abuse = client.abuse
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.abuse.load({ "id" => "abuse_id" })
+result = client.Abuse.load({ "id" => "abuse_id" })
 ```
 
 ### Common Methods
@@ -252,7 +252,7 @@ Return the entity name.
 ## AsnEntity
 
 ```ruby
-asn = client.asn
+asn = client.Asn
 ```
 
 ### Fields
@@ -281,7 +281,7 @@ asn = client.asn
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.asn.list(nil)
+results = client.Asn.list(nil)
 ```
 
 ### Common Methods
@@ -317,7 +317,7 @@ Return the entity name.
 ## CarrierEntity
 
 ```ruby
-carrier = client.carrier
+carrier = client.Carrier
 ```
 
 ### Fields
@@ -335,7 +335,7 @@ carrier = client.carrier
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.carrier.load({ "id" => "carrier_id" })
+result = client.Carrier.load({ "id" => "carrier_id" })
 ```
 
 ### Common Methods
@@ -371,7 +371,7 @@ Return the entity name.
 ## CompanyEntity
 
 ```ruby
-company = client.company
+company = client.Company
 ```
 
 ### Fields
@@ -389,7 +389,7 @@ company = client.company
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.company.load({ "id" => "company_id" })
+result = client.Company.load({ "id" => "company_id" })
 ```
 
 ### Common Methods
@@ -425,7 +425,7 @@ Return the entity name.
 ## CoreEntity
 
 ```ruby
-core = client.core
+core = client.Core
 ```
 
 ### Fields
@@ -449,7 +449,7 @@ core = client.core
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.core.load({ "id" => "core_id" })
+result = client.Core.load({ "id" => "core_id" })
 ```
 
 ### Common Methods
@@ -485,7 +485,7 @@ Return the entity name.
 ## DomainEntity
 
 ```ruby
-domain = client.domain
+domain = client.Domain
 ```
 
 ### Fields
@@ -504,7 +504,7 @@ domain = client.domain
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.domain.load({ "id" => "domain_id" })
+result = client.Domain.load({ "id" => "domain_id" })
 ```
 
 ### Common Methods
@@ -540,7 +540,7 @@ Return the entity name.
 ## GeneralEntity
 
 ```ruby
-general = client.general
+general = client.General
 ```
 
 ### Fields
@@ -559,7 +559,7 @@ general = client.general
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.general.create({
+result = client.General.create({
 })
 ```
 
@@ -596,7 +596,7 @@ Return the entity name.
 ## GetCurrentInformationEntity
 
 ```ruby
-get_current_information = client.get_current_information
+get_current_information = client.GetCurrentInformation
 ```
 
 ### Fields
@@ -626,7 +626,7 @@ get_current_information = client.get_current_information
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_current_information.load({ "id" => "get_current_information_id" })
+result = client.GetCurrentInformation.load({ "id" => "get_current_information_id" })
 ```
 
 ### Common Methods
@@ -662,7 +662,7 @@ Return the entity name.
 ## GetInformationByIpEntity
 
 ```ruby
-get_information_by_ip = client.get_information_by_ip
+get_information_by_ip = client.GetInformationByIp
 ```
 
 ### Fields
@@ -692,7 +692,7 @@ get_information_by_ip = client.get_information_by_ip
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_information_by_ip.load({ "id" => "get_information_by_ip_id" })
+result = client.GetInformationByIp.load({ "id" => "get_information_by_ip_id" })
 ```
 
 ### Common Methods
@@ -728,7 +728,7 @@ Return the entity name.
 ## IpinfoCoreEntity
 
 ```ruby
-ipinfo_core = client.ipinfo_core
+ipinfo_core = client.IpinfoCore
 ```
 
 ### Fields
@@ -746,7 +746,7 @@ ipinfo_core = client.ipinfo_core
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ipinfo_core.load({ "id" => "ipinfo_core_id" })
+result = client.IpinfoCore.load({ "id" => "ipinfo_core_id" })
 ```
 
 ### Common Methods
@@ -782,7 +782,7 @@ Return the entity name.
 ## IpinfoLiteEntity
 
 ```ruby
-ipinfo_lite = client.ipinfo_lite
+ipinfo_lite = client.IpinfoLite
 ```
 
 ### Operations
@@ -792,7 +792,7 @@ ipinfo_lite = client.ipinfo_lite
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ipinfo_lite.load({ "id" => "ipinfo_lite_id" })
+result = client.IpinfoLite.load({ "id" => "ipinfo_lite_id" })
 ```
 
 ### Common Methods
@@ -828,7 +828,7 @@ Return the entity name.
 ## IpinfoPlusEntity
 
 ```ruby
-ipinfo_plus = client.ipinfo_plus
+ipinfo_plus = client.IpinfoPlus
 ```
 
 ### Fields
@@ -846,7 +846,7 @@ ipinfo_plus = client.ipinfo_plus
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ipinfo_plus.load({ "id" => "ipinfo_plus_id" })
+result = client.IpinfoPlus.load({ "id" => "ipinfo_plus_id" })
 ```
 
 ### Common Methods
@@ -882,7 +882,7 @@ Return the entity name.
 ## LiteEntity
 
 ```ruby
-lite = client.lite
+lite = client.Lite
 ```
 
 ### Fields
@@ -905,7 +905,7 @@ lite = client.lite
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.lite.load({ "id" => "lite_id" })
+result = client.Lite.load({ "id" => "lite_id" })
 ```
 
 ### Common Methods
@@ -941,7 +941,7 @@ Return the entity name.
 ## MaxEntity
 
 ```ruby
-max = client.max
+max = client.Max
 ```
 
 ### Fields
@@ -967,7 +967,7 @@ max = client.max
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.max.load({ "id" => "max_id" })
+result = client.Max.load({ "id" => "max_id" })
 ```
 
 ### Common Methods
@@ -1003,7 +1003,7 @@ Return the entity name.
 ## MenEntity
 
 ```ruby
-men = client.men
+men = client.Men
 ```
 
 ### Fields
@@ -1021,7 +1021,7 @@ men = client.men
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.men.load({ "id" => "men_id" })
+result = client.Men.load({ "id" => "men_id" })
 ```
 
 ### Common Methods
@@ -1057,7 +1057,7 @@ Return the entity name.
 ## PlaceEntity
 
 ```ruby
-place = client.place
+place = client.Place
 ```
 
 ### Fields
@@ -1078,7 +1078,7 @@ place = client.place
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.place.load({ "id" => "place_id" })
+result = client.Place.load({ "id" => "place_id" })
 ```
 
 ### Common Methods
@@ -1114,7 +1114,7 @@ Return the entity name.
 ## PlusEntity
 
 ```ruby
-plus = client.plus
+plus = client.Plus
 ```
 
 ### Fields
@@ -1139,7 +1139,7 @@ plus = client.plus
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.plus.load({ "id" => "plus_id" })
+result = client.Plus.load({ "id" => "plus_id" })
 ```
 
 ### Common Methods
@@ -1175,7 +1175,7 @@ Return the entity name.
 ## PrivacyEntity
 
 ```ruby
-privacy = client.privacy
+privacy = client.Privacy
 ```
 
 ### Fields
@@ -1196,7 +1196,7 @@ privacy = client.privacy
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.privacy.load({ "id" => "privacy_id" })
+result = client.Privacy.load({ "id" => "privacy_id" })
 ```
 
 ### Common Methods
@@ -1232,7 +1232,7 @@ Return the entity name.
 ## PrivacyExtendedEntity
 
 ```ruby
-privacy_extended = client.privacy_extended
+privacy_extended = client.PrivacyExtended
 ```
 
 ### Fields
@@ -1263,7 +1263,7 @@ privacy_extended = client.privacy_extended
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.privacy_extended.list(nil)
+results = client.PrivacyExtended.list(nil)
 ```
 
 ### Common Methods
@@ -1299,7 +1299,7 @@ Return the entity name.
 ## RangeEntity
 
 ```ruby
-range = client.range
+range = client.Range
 ```
 
 ### Fields
@@ -1318,7 +1318,7 @@ range = client.range
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.range.load({ "id" => "range_id" })
+result = client.Range.load({ "id" => "range_id" })
 ```
 
 ### Common Methods
@@ -1354,7 +1354,7 @@ Return the entity name.
 ## ResidentialProxyEntity
 
 ```ruby
-residential_proxy = client.residential_proxy
+residential_proxy = client.ResidentialProxy
 ```
 
 ### Fields
@@ -1373,7 +1373,7 @@ residential_proxy = client.residential_proxy
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.residential_proxy.load({ "id" => "residential_proxy_id" })
+result = client.ResidentialProxy.load({ "id" => "residential_proxy_id" })
 ```
 
 ### Common Methods
@@ -1409,7 +1409,7 @@ Return the entity name.
 ## SingleEntity
 
 ```ruby
-single = client.single
+single = client.Single
 ```
 
 ### Operations
@@ -1419,7 +1419,7 @@ single = client.single
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.single.load({ "id" => "single_id" })
+result = client.Single.load({ "id" => "single_id" })
 ```
 
 ### Common Methods
@@ -1455,7 +1455,7 @@ Return the entity name.
 ## WhoisAsnEntity
 
 ```ruby
-whois_asn = client.whois_asn
+whois_asn = client.WhoisAsn
 ```
 
 ### Fields
@@ -1483,7 +1483,7 @@ whois_asn = client.whois_asn
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.whois_asn.list(nil)
+results = client.WhoisAsn.list(nil)
 ```
 
 ### Common Methods
@@ -1519,7 +1519,7 @@ Return the entity name.
 ## WhoisDomainEntity
 
 ```ruby
-whois_domain = client.whois_domain
+whois_domain = client.WhoisDomain
 ```
 
 ### Fields
@@ -1538,7 +1538,7 @@ whois_domain = client.whois_domain
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.whois_domain.load({ "id" => "whois_domain_id" })
+result = client.WhoisDomain.load({ "id" => "whois_domain_id" })
 ```
 
 ### Common Methods
@@ -1574,7 +1574,7 @@ Return the entity name.
 ## WhoisIpEntity
 
 ```ruby
-whois_ip = client.whois_ip
+whois_ip = client.WhoisIp
 ```
 
 ### Fields
@@ -1593,7 +1593,7 @@ whois_ip = client.whois_ip
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.whois_ip.load({ "id" => "whois_ip_id" })
+result = client.WhoisIp.load({ "id" => "whois_ip_id" })
 ```
 
 ### Common Methods
@@ -1629,7 +1629,7 @@ Return the entity name.
 ## WhoisNetIdEntity
 
 ```ruby
-whois_net_id = client.whois_net_id
+whois_net_id = client.WhoisNetId
 ```
 
 ### Fields
@@ -1648,7 +1648,7 @@ whois_net_id = client.whois_net_id
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.whois_net_id.load({ "id" => "whois_net_id_id" })
+result = client.WhoisNetId.load({ "id" => "whois_net_id_id" })
 ```
 
 ### Common Methods
@@ -1684,7 +1684,7 @@ Return the entity name.
 ## WhoisOrgEntity
 
 ```ruby
-whois_org = client.whois_org
+whois_org = client.WhoisOrg
 ```
 
 ### Fields
@@ -1703,7 +1703,7 @@ whois_org = client.whois_org
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.whois_org.load({ "id" => "whois_org_id" })
+result = client.WhoisOrg.load({ "id" => "whois_org_id" })
 ```
 
 ### Common Methods
@@ -1739,7 +1739,7 @@ Return the entity name.
 ## WhoisPocEntity
 
 ```ruby
-whois_poc = client.whois_poc
+whois_poc = client.WhoisPoc
 ```
 
 ### Fields
@@ -1758,7 +1758,7 @@ whois_poc = client.whois_poc
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.whois_poc.load({ "id" => "whois_poc_id" })
+result = client.WhoisPoc.load({ "id" => "whois_poc_id" })
 ```
 
 ### Common Methods

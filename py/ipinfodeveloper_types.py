@@ -4,219 +4,214 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Abuse:
-    address: Optional[str] = None
-    country: Optional[str] = None
-    email: Optional[str] = None
-    name: Optional[str] = None
-    network: Optional[str] = None
-    phone: Optional[str] = None
+class Abuse(TypedDict, total=False):
+    address: str
+    country: str
+    email: str
+    name: str
+    network: str
+    phone: str
 
 
-@dataclass
-class AbuseLoadMatch:
+class AbuseLoadMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class Asn:
+class AsnRequired(TypedDict):
     asn: str
     domain: str
     name: str
     type: str
-    allocated: Optional[str] = None
-    country: Optional[str] = None
-    downstream: Optional[list] = None
-    num_ip: Optional[int] = None
-    peer: Optional[list] = None
-    prefix: Optional[list] = None
-    prefixes6: Optional[list] = None
-    registry: Optional[str] = None
-    route: Optional[str] = None
-    upstream: Optional[list] = None
 
 
-@dataclass
-class AsnListMatch:
+class Asn(AsnRequired, total=False):
+    allocated: str
+    country: str
+    downstream: list
+    num_ip: int
+    peer: list
+    prefix: list
+    prefixes6: list
+    registry: str
+    route: str
+    upstream: list
+
+
+class AsnListMatch(TypedDict):
     asn: int
 
 
-@dataclass
-class Carrier:
+class Carrier(TypedDict):
     mcc: str
     mnc: str
     name: str
 
 
-@dataclass
-class CarrierLoadMatch:
+class CarrierLoadMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class Company:
+class Company(TypedDict):
     domain: str
     name: str
     type: str
 
 
-@dataclass
-class CompanyLoadMatch:
+class CompanyLoadMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class Core:
-    ip: str
-    geo: Optional[dict] = None
-    hostname: Optional[str] = None
-    is_anonymous: Optional[bool] = None
-    is_anycast: Optional[bool] = None
-    is_hosting: Optional[bool] = None
-    is_mobile: Optional[bool] = None
-    is_satellite: Optional[bool] = None
-
-
-@dataclass
-class CoreLoadMatch:
+class CoreRequired(TypedDict):
     ip: str
 
 
-@dataclass
-class Domain:
+class Core(CoreRequired, total=False):
+    geo: dict
+    hostname: str
+    is_anonymous: bool
+    is_anycast: bool
+    is_hosting: bool
+    is_mobile: bool
+    is_satellite: bool
+
+
+class CoreLoadMatch(TypedDict):
+    ip: str
+
+
+class DomainRequired(TypedDict):
     total: int
-    domain: Optional[list] = None
-    ip: Optional[str] = None
-    page: Optional[int] = None
 
 
-@dataclass
-class DomainLoadMatch:
+class Domain(DomainRequired, total=False):
+    domain: list
+    ip: str
+    page: int
+
+
+class DomainLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class General:
-    summary: Optional[str] = None
-    value: Optional[dict] = None
+class General(TypedDict, total=False):
+    summary: str
+    value: dict
 
 
-@dataclass
-class GeneralCreateData:
-    summary: Optional[str] = None
-    value: Optional[dict] = None
+class GeneralCreateData(TypedDict, total=False):
+    summary: str
+    value: dict
 
 
-@dataclass
-class GetCurrentInformation:
+class GetCurrentInformationRequired(TypedDict):
     asn: dict
     carrier: dict
     company: dict
     domain: dict
     ip: str
     privacy: dict
-    bogon: Optional[bool] = None
-    city: Optional[str] = None
-    country: Optional[str] = None
-    hostname: Optional[str] = None
-    loc: Optional[str] = None
-    org: Optional[str] = None
-    postal: Optional[str] = None
-    region: Optional[str] = None
-    timezone: Optional[str] = None
 
 
-@dataclass
-class GetCurrentInformationLoadMatch:
-    asn: Optional[dict] = None
-    bogon: Optional[bool] = None
-    carrier: Optional[dict] = None
-    city: Optional[str] = None
-    company: Optional[dict] = None
-    country: Optional[str] = None
-    domain: Optional[dict] = None
-    hostname: Optional[str] = None
-    ip: Optional[str] = None
-    loc: Optional[str] = None
-    org: Optional[str] = None
-    postal: Optional[str] = None
-    privacy: Optional[dict] = None
-    region: Optional[str] = None
-    timezone: Optional[str] = None
+class GetCurrentInformation(GetCurrentInformationRequired, total=False):
+    bogon: bool
+    city: str
+    country: str
+    hostname: str
+    loc: str
+    org: str
+    postal: str
+    region: str
+    timezone: str
 
 
-@dataclass
-class GetInformationByIp:
+class GetCurrentInformationLoadMatch(TypedDict, total=False):
+    asn: dict
+    bogon: bool
+    carrier: dict
+    city: str
+    company: dict
+    country: str
+    domain: dict
+    hostname: str
+    ip: str
+    loc: str
+    org: str
+    postal: str
+    privacy: dict
+    region: str
+    timezone: str
+
+
+class GetInformationByIpRequired(TypedDict):
     asn: dict
     carrier: dict
     company: dict
     domain: dict
     ip: str
     privacy: dict
-    bogon: Optional[bool] = None
-    city: Optional[str] = None
-    country: Optional[str] = None
-    hostname: Optional[str] = None
-    loc: Optional[str] = None
-    org: Optional[str] = None
-    postal: Optional[str] = None
-    region: Optional[str] = None
-    timezone: Optional[str] = None
 
 
-@dataclass
-class GetInformationByIpLoadMatch:
+class GetInformationByIp(GetInformationByIpRequired, total=False):
+    bogon: bool
+    city: str
+    country: str
+    hostname: str
+    loc: str
+    org: str
+    postal: str
+    region: str
+    timezone: str
+
+
+class GetInformationByIpLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class IpinfoCore:
-    city: Optional[str] = None
-    key: Optional[str] = None
-    region: Optional[str] = None
+class IpinfoCore(TypedDict, total=False):
+    city: str
+    key: str
+    region: str
 
 
-@dataclass
-class IpinfoCoreLoadMatch:
+class IpinfoCoreLoadMatch(TypedDict):
     field: str
     ip: str
 
 
-@dataclass
-class IpinfoLite:
+class IpinfoLite(TypedDict):
     pass
 
 
-@dataclass
-class IpinfoLiteLoadMatch:
+class IpinfoLiteLoadMatch(TypedDict):
     field: str
     ip: str
     id: str
 
 
-@dataclass
-class IpinfoPlus:
-    city: Optional[str] = None
-    key: Optional[str] = None
-    region: Optional[str] = None
+class IpinfoPlus(TypedDict, total=False):
+    city: str
+    key: str
+    region: str
 
 
-@dataclass
-class IpinfoPlusLoadMatch:
+class IpinfoPlusLoadMatch(TypedDict):
     field: str
     ip: str
 
 
-@dataclass
-class Lite:
+class Lite(TypedDict):
     as_domain: str
     as_name: str
     asn: str
@@ -227,53 +222,50 @@ class Lite:
     ip: str
 
 
-@dataclass
-class LiteLoadMatch:
-    as_domain: Optional[str] = None
-    as_name: Optional[str] = None
-    asn: Optional[str] = None
-    continent: Optional[str] = None
-    continent_code: Optional[str] = None
-    country: Optional[str] = None
-    country_code: Optional[str] = None
-    ip: Optional[str] = None
+class LiteLoadMatch(TypedDict, total=False):
+    as_domain: str
+    as_name: str
+    asn: str
+    continent: str
+    continent_code: str
+    country: str
+    country_code: str
+    ip: str
 
 
-@dataclass
-class Max:
+class MaxRequired(TypedDict):
     anonymous: dict
     geo: dict
     ip: str
-    hostname: Optional[str] = None
-    is_anonymous: Optional[bool] = None
-    is_anycast: Optional[bool] = None
-    is_hosting: Optional[bool] = None
-    is_mobile: Optional[bool] = None
-    is_satellite: Optional[bool] = None
-    mobile: Optional[dict] = None
 
 
-@dataclass
-class MaxLoadMatch:
+class Max(MaxRequired, total=False):
+    hostname: str
+    is_anonymous: bool
+    is_anycast: bool
+    is_hosting: bool
+    is_mobile: bool
+    is_satellite: bool
+    mobile: dict
+
+
+class MaxLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Men:
+class Men(TypedDict):
     feature: dict
     request: dict
     token: str
 
 
-@dataclass
-class MenLoadMatch:
-    feature: Optional[dict] = None
-    request: Optional[dict] = None
-    token: Optional[str] = None
+class MenLoadMatch(TypedDict, total=False):
+    feature: dict
+    request: dict
+    token: str
 
 
-@dataclass
-class Place:
+class Place(TypedDict):
     category: str
     ip: str
     latitude: float
@@ -282,31 +274,30 @@ class Place:
     ssid: str
 
 
-@dataclass
-class PlaceLoadMatch:
+class PlaceLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Plus:
+class PlusRequired(TypedDict):
     ip: str
-    anonymous: Optional[dict] = None
-    geo: Optional[dict] = None
-    is_anonymous: Optional[bool] = None
-    is_anycast: Optional[bool] = None
-    is_hosting: Optional[bool] = None
-    is_mobile: Optional[bool] = None
-    is_satellite: Optional[bool] = None
-    mobile: Optional[dict] = None
 
 
-@dataclass
-class PlusLoadMatch:
+class Plus(PlusRequired, total=False):
+    anonymous: dict
+    geo: dict
+    is_anonymous: bool
+    is_anycast: bool
+    is_hosting: bool
+    is_mobile: bool
+    is_satellite: bool
+    mobile: dict
+
+
+class PlusLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Privacy:
+class Privacy(TypedDict):
     hosting: bool
     proxy: bool
     relay: bool
@@ -315,155 +306,136 @@ class Privacy:
     vpn: bool
 
 
-@dataclass
-class PrivacyLoadMatch:
+class PrivacyLoadMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class PrivacyExtended:
+class PrivacyExtendedRequired(TypedDict):
     hosting: bool
     proxy: bool
     relay: bool
     service: str
     tor: bool
     vpn: bool
-    census: Optional[bool] = None
-    census_port: Optional[list] = None
-    confidence: Optional[int] = None
-    coverage: Optional[float] = None
-    device_activity: Optional[bool] = None
-    first_seen: Optional[str] = None
-    inferred: Optional[bool] = None
-    last_seen: Optional[str] = None
-    vpn_config: Optional[bool] = None
-    whoi: Optional[bool] = None
 
 
-@dataclass
-class PrivacyExtendedListMatch:
+class PrivacyExtended(PrivacyExtendedRequired, total=False):
+    census: bool
+    census_port: list
+    confidence: int
+    coverage: float
+    device_activity: bool
+    first_seen: str
+    inferred: bool
+    last_seen: str
+    vpn_config: bool
+    whoi: bool
+
+
+class PrivacyExtendedListMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class Range:
+class Range(TypedDict):
     domain: str
     num_range: str
     range: list
     redirects_to: str
 
 
-@dataclass
-class RangeLoadMatch:
+class RangeLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ResidentialProxy:
+class ResidentialProxy(TypedDict):
     ip: str
     last_seen: str
     percent_days_seen: int
     service: str
 
 
-@dataclass
-class ResidentialProxyLoadMatch:
+class ResidentialProxyLoadMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class Single:
+class Single(TypedDict):
     pass
 
 
-@dataclass
-class SingleLoadMatch:
+class SingleLoadMatch(TypedDict):
     ip: str
 
 
-@dataclass
-class WhoisAsn:
-    abuse: Optional[str] = None
-    admin: Optional[str] = None
-    country: Optional[str] = None
-    id: Optional[str] = None
-    maintainer: Optional[str] = None
-    name: Optional[str] = None
-    org: Optional[str] = None
-    range: Optional[str] = None
-    raw: Optional[str] = None
-    source: Optional[str] = None
-    status: Optional[str] = None
-    tech: Optional[str] = None
-    updated: Optional[str] = None
+class WhoisAsn(TypedDict, total=False):
+    abuse: str
+    admin: str
+    country: str
+    id: str
+    maintainer: str
+    name: str
+    org: str
+    range: str
+    raw: str
+    source: str
+    status: str
+    tech: str
+    updated: str
 
 
-@dataclass
-class WhoisAsnListMatch:
+class WhoisAsnListMatch(TypedDict):
     asn: int
 
 
-@dataclass
-class WhoisDomain:
-    net: Optional[str] = None
-    page: Optional[int] = None
-    record: Optional[list] = None
-    total: Optional[int] = None
+class WhoisDomain(TypedDict, total=False):
+    net: str
+    page: int
+    record: list
+    total: int
 
 
-@dataclass
-class WhoisDomainLoadMatch:
+class WhoisDomainLoadMatch(TypedDict):
     domain: str
 
 
-@dataclass
-class WhoisIp:
-    net: Optional[str] = None
-    page: Optional[int] = None
-    record: Optional[list] = None
-    total: Optional[int] = None
+class WhoisIp(TypedDict, total=False):
+    net: str
+    page: int
+    record: list
+    total: int
 
 
-@dataclass
-class WhoisIpLoadMatch:
+class WhoisIpLoadMatch(TypedDict):
     whoisip: str
 
 
-@dataclass
-class WhoisNetId:
-    net: Optional[str] = None
-    page: Optional[int] = None
-    record: Optional[list] = None
-    total: Optional[int] = None
+class WhoisNetId(TypedDict, total=False):
+    net: str
+    page: int
+    record: list
+    total: int
 
 
-@dataclass
-class WhoisNetIdLoadMatch:
+class WhoisNetIdLoadMatch(TypedDict):
     whoisnetid: str
 
 
-@dataclass
-class WhoisOrg:
-    org: Optional[str] = None
-    page: Optional[int] = None
-    record: Optional[list] = None
-    total: Optional[int] = None
+class WhoisOrg(TypedDict, total=False):
+    org: str
+    page: int
+    record: list
+    total: int
 
 
-@dataclass
-class WhoisOrgLoadMatch:
+class WhoisOrgLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class WhoisPoc:
-    page: Optional[int] = None
-    poc: Optional[str] = None
-    record: Optional[list] = None
-    total: Optional[int] = None
+class WhoisPoc(TypedDict, total=False):
+    page: int
+    poc: str
+    record: list
+    total: int
 
 
-@dataclass
-class WhoisPocLoadMatch:
+class WhoisPocLoadMatch(TypedDict):
     id: str
-

@@ -277,7 +277,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body.asn`",
+                  ["res"] = "`body`",
                 },
                 ["index$"] = 0,
               },

@@ -106,7 +106,7 @@ main: kit: entity: asn: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body.asn`"
+            res: "`body`"
           }
         }
       ]

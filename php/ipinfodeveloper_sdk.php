@@ -233,10 +233,10 @@ class IpinfoDeveloperSDK
 
     private $_abuse = null;
 
-    // Idiomatic facade: $client->abuse()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Abuse() (PHP method
-    // names are case-insensitive).
-    public function abuse($data = null)
+    // Canonical facade: $client->Abuse()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->abuse()
+    // resolves here too.
+    public function Abuse($data = null)
     {
         require_once __DIR__ . '/entity/abuse_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class IpinfoDeveloperSDK
 
     private $_asn = null;
 
-    // Idiomatic facade: $client->asn()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Asn() (PHP method
-    // names are case-insensitive).
-    public function asn($data = null)
+    // Canonical facade: $client->Asn()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->asn()
+    // resolves here too.
+    public function Asn($data = null)
     {
         require_once __DIR__ . '/entity/asn_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class IpinfoDeveloperSDK
 
     private $_carrier = null;
 
-    // Idiomatic facade: $client->carrier()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Carrier() (PHP method
-    // names are case-insensitive).
-    public function carrier($data = null)
+    // Canonical facade: $client->Carrier()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->carrier()
+    // resolves here too.
+    public function Carrier($data = null)
     {
         require_once __DIR__ . '/entity/carrier_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class IpinfoDeveloperSDK
 
     private $_company = null;
 
-    // Idiomatic facade: $client->company()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Company() (PHP method
-    // names are case-insensitive).
-    public function company($data = null)
+    // Canonical facade: $client->Company()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->company()
+    // resolves here too.
+    public function Company($data = null)
     {
         require_once __DIR__ . '/entity/company_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class IpinfoDeveloperSDK
 
     private $_core = null;
 
-    // Idiomatic facade: $client->core()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Core() (PHP method
-    // names are case-insensitive).
-    public function core($data = null)
+    // Canonical facade: $client->Core()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->core()
+    // resolves here too.
+    public function Core($data = null)
     {
         require_once __DIR__ . '/entity/core_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class IpinfoDeveloperSDK
 
     private $_domain = null;
 
-    // Idiomatic facade: $client->domain()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Domain() (PHP method
-    // names are case-insensitive).
-    public function domain($data = null)
+    // Canonical facade: $client->Domain()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->domain()
+    // resolves here too.
+    public function Domain($data = null)
     {
         require_once __DIR__ . '/entity/domain_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class IpinfoDeveloperSDK
 
     private $_general = null;
 
-    // Idiomatic facade: $client->general()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias General() (PHP method
-    // names are case-insensitive).
-    public function general($data = null)
+    // Canonical facade: $client->General()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->general()
+    // resolves here too.
+    public function General($data = null)
     {
         require_once __DIR__ . '/entity/general_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class IpinfoDeveloperSDK
 
     private $_get_current_information = null;
 
-    // Idiomatic facade: $client->get_current_information()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetCurrentInformation() (PHP method
-    // names are case-insensitive).
-    public function get_current_information($data = null)
+    // Canonical facade: $client->GetCurrentInformation()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_current_information()
+    // resolves here too.
+    public function GetCurrentInformation($data = null)
     {
         require_once __DIR__ . '/entity/get_current_information_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class IpinfoDeveloperSDK
 
     private $_get_information_by_ip = null;
 
-    // Idiomatic facade: $client->get_information_by_ip()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetInformationByIp() (PHP method
-    // names are case-insensitive).
-    public function get_information_by_ip($data = null)
+    // Canonical facade: $client->GetInformationByIp()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_information_by_ip()
+    // resolves here too.
+    public function GetInformationByIp($data = null)
     {
         require_once __DIR__ . '/entity/get_information_by_ip_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class IpinfoDeveloperSDK
 
     private $_ipinfo_core = null;
 
-    // Idiomatic facade: $client->ipinfo_core()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias IpinfoCore() (PHP method
-    // names are case-insensitive).
-    public function ipinfo_core($data = null)
+    // Canonical facade: $client->IpinfoCore()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ipinfo_core()
+    // resolves here too.
+    public function IpinfoCore($data = null)
     {
         require_once __DIR__ . '/entity/ipinfo_core_entity.php';
         if ($data === null) {
@@ -413,10 +413,10 @@ class IpinfoDeveloperSDK
 
     private $_ipinfo_lite = null;
 
-    // Idiomatic facade: $client->ipinfo_lite()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias IpinfoLite() (PHP method
-    // names are case-insensitive).
-    public function ipinfo_lite($data = null)
+    // Canonical facade: $client->IpinfoLite()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ipinfo_lite()
+    // resolves here too.
+    public function IpinfoLite($data = null)
     {
         require_once __DIR__ . '/entity/ipinfo_lite_entity.php';
         if ($data === null) {
@@ -431,10 +431,10 @@ class IpinfoDeveloperSDK
 
     private $_ipinfo_plus = null;
 
-    // Idiomatic facade: $client->ipinfo_plus()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias IpinfoPlus() (PHP method
-    // names are case-insensitive).
-    public function ipinfo_plus($data = null)
+    // Canonical facade: $client->IpinfoPlus()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ipinfo_plus()
+    // resolves here too.
+    public function IpinfoPlus($data = null)
     {
         require_once __DIR__ . '/entity/ipinfo_plus_entity.php';
         if ($data === null) {
@@ -449,10 +449,10 @@ class IpinfoDeveloperSDK
 
     private $_lite = null;
 
-    // Idiomatic facade: $client->lite()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Lite() (PHP method
-    // names are case-insensitive).
-    public function lite($data = null)
+    // Canonical facade: $client->Lite()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->lite()
+    // resolves here too.
+    public function Lite($data = null)
     {
         require_once __DIR__ . '/entity/lite_entity.php';
         if ($data === null) {
@@ -467,10 +467,10 @@ class IpinfoDeveloperSDK
 
     private $_max = null;
 
-    // Idiomatic facade: $client->max()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Max() (PHP method
-    // names are case-insensitive).
-    public function max($data = null)
+    // Canonical facade: $client->Max()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->max()
+    // resolves here too.
+    public function Max($data = null)
     {
         require_once __DIR__ . '/entity/max_entity.php';
         if ($data === null) {
@@ -485,10 +485,10 @@ class IpinfoDeveloperSDK
 
     private $_men = null;
 
-    // Idiomatic facade: $client->men()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Men() (PHP method
-    // names are case-insensitive).
-    public function men($data = null)
+    // Canonical facade: $client->Men()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->men()
+    // resolves here too.
+    public function Men($data = null)
     {
         require_once __DIR__ . '/entity/men_entity.php';
         if ($data === null) {
@@ -503,10 +503,10 @@ class IpinfoDeveloperSDK
 
     private $_place = null;
 
-    // Idiomatic facade: $client->place()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Place() (PHP method
-    // names are case-insensitive).
-    public function place($data = null)
+    // Canonical facade: $client->Place()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->place()
+    // resolves here too.
+    public function Place($data = null)
     {
         require_once __DIR__ . '/entity/place_entity.php';
         if ($data === null) {
@@ -521,10 +521,10 @@ class IpinfoDeveloperSDK
 
     private $_plus = null;
 
-    // Idiomatic facade: $client->plus()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Plus() (PHP method
-    // names are case-insensitive).
-    public function plus($data = null)
+    // Canonical facade: $client->Plus()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->plus()
+    // resolves here too.
+    public function Plus($data = null)
     {
         require_once __DIR__ . '/entity/plus_entity.php';
         if ($data === null) {
@@ -539,10 +539,10 @@ class IpinfoDeveloperSDK
 
     private $_privacy = null;
 
-    // Idiomatic facade: $client->privacy()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Privacy() (PHP method
-    // names are case-insensitive).
-    public function privacy($data = null)
+    // Canonical facade: $client->Privacy()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->privacy()
+    // resolves here too.
+    public function Privacy($data = null)
     {
         require_once __DIR__ . '/entity/privacy_entity.php';
         if ($data === null) {
@@ -557,10 +557,10 @@ class IpinfoDeveloperSDK
 
     private $_privacy_extended = null;
 
-    // Idiomatic facade: $client->privacy_extended()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PrivacyExtended() (PHP method
-    // names are case-insensitive).
-    public function privacy_extended($data = null)
+    // Canonical facade: $client->PrivacyExtended()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->privacy_extended()
+    // resolves here too.
+    public function PrivacyExtended($data = null)
     {
         require_once __DIR__ . '/entity/privacy_extended_entity.php';
         if ($data === null) {
@@ -575,10 +575,10 @@ class IpinfoDeveloperSDK
 
     private $_range = null;
 
-    // Idiomatic facade: $client->range()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Range() (PHP method
-    // names are case-insensitive).
-    public function range($data = null)
+    // Canonical facade: $client->Range()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->range()
+    // resolves here too.
+    public function Range($data = null)
     {
         require_once __DIR__ . '/entity/range_entity.php';
         if ($data === null) {
@@ -593,10 +593,10 @@ class IpinfoDeveloperSDK
 
     private $_residential_proxy = null;
 
-    // Idiomatic facade: $client->residential_proxy()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ResidentialProxy() (PHP method
-    // names are case-insensitive).
-    public function residential_proxy($data = null)
+    // Canonical facade: $client->ResidentialProxy()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->residential_proxy()
+    // resolves here too.
+    public function ResidentialProxy($data = null)
     {
         require_once __DIR__ . '/entity/residential_proxy_entity.php';
         if ($data === null) {
@@ -611,10 +611,10 @@ class IpinfoDeveloperSDK
 
     private $_single = null;
 
-    // Idiomatic facade: $client->single()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Single() (PHP method
-    // names are case-insensitive).
-    public function single($data = null)
+    // Canonical facade: $client->Single()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->single()
+    // resolves here too.
+    public function Single($data = null)
     {
         require_once __DIR__ . '/entity/single_entity.php';
         if ($data === null) {
@@ -629,10 +629,10 @@ class IpinfoDeveloperSDK
 
     private $_whois_asn = null;
 
-    // Idiomatic facade: $client->whois_asn()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WhoisAsn() (PHP method
-    // names are case-insensitive).
-    public function whois_asn($data = null)
+    // Canonical facade: $client->WhoisAsn()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->whois_asn()
+    // resolves here too.
+    public function WhoisAsn($data = null)
     {
         require_once __DIR__ . '/entity/whois_asn_entity.php';
         if ($data === null) {
@@ -647,10 +647,10 @@ class IpinfoDeveloperSDK
 
     private $_whois_domain = null;
 
-    // Idiomatic facade: $client->whois_domain()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WhoisDomain() (PHP method
-    // names are case-insensitive).
-    public function whois_domain($data = null)
+    // Canonical facade: $client->WhoisDomain()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->whois_domain()
+    // resolves here too.
+    public function WhoisDomain($data = null)
     {
         require_once __DIR__ . '/entity/whois_domain_entity.php';
         if ($data === null) {
@@ -665,10 +665,10 @@ class IpinfoDeveloperSDK
 
     private $_whois_ip = null;
 
-    // Idiomatic facade: $client->whois_ip()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WhoisIp() (PHP method
-    // names are case-insensitive).
-    public function whois_ip($data = null)
+    // Canonical facade: $client->WhoisIp()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->whois_ip()
+    // resolves here too.
+    public function WhoisIp($data = null)
     {
         require_once __DIR__ . '/entity/whois_ip_entity.php';
         if ($data === null) {
@@ -683,10 +683,10 @@ class IpinfoDeveloperSDK
 
     private $_whois_net_id = null;
 
-    // Idiomatic facade: $client->whois_net_id()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WhoisNetId() (PHP method
-    // names are case-insensitive).
-    public function whois_net_id($data = null)
+    // Canonical facade: $client->WhoisNetId()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->whois_net_id()
+    // resolves here too.
+    public function WhoisNetId($data = null)
     {
         require_once __DIR__ . '/entity/whois_net_id_entity.php';
         if ($data === null) {
@@ -701,10 +701,10 @@ class IpinfoDeveloperSDK
 
     private $_whois_org = null;
 
-    // Idiomatic facade: $client->whois_org()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WhoisOrg() (PHP method
-    // names are case-insensitive).
-    public function whois_org($data = null)
+    // Canonical facade: $client->WhoisOrg()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->whois_org()
+    // resolves here too.
+    public function WhoisOrg($data = null)
     {
         require_once __DIR__ . '/entity/whois_org_entity.php';
         if ($data === null) {
@@ -719,10 +719,10 @@ class IpinfoDeveloperSDK
 
     private $_whois_poc = null;
 
-    // Idiomatic facade: $client->whois_poc()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WhoisPoc() (PHP method
-    // names are case-insensitive).
-    public function whois_poc($data = null)
+    // Canonical facade: $client->WhoisPoc()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->whois_poc()
+    // resolves here too.
+    public function WhoisPoc($data = null)
     {
         require_once __DIR__ . '/entity/whois_poc_entity.php';
         if ($data === null) {

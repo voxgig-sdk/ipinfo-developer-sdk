@@ -220,457 +220,177 @@ class IpinfoDeveloperSDK:
         }
 
 
-    @property
-    def abuse(self):
-        """Idiomatic facade: client.abuse.list() / client.abuse.load({"id": ...})."""
-        from entity.abuse_entity import AbuseEntity
-        cached = getattr(self, "_abuse", None)
-        if cached is None:
-            cached = AbuseEntity(self, None)
-            self._abuse = cached
-        return cached
-
-    def Abuse(self, data=None):
-        # Deprecated: use client.abuse instead.
+    def Abuse(self, data=None) -> "AbuseEntity":
+        """Entity factory: client.Abuse().list({}) / client.Abuse().load({"id": ...})."""
         from entity.abuse_entity import AbuseEntity
         return AbuseEntity(self, data)
 
 
-    @property
-    def asn(self):
-        """Idiomatic facade: client.asn.list() / client.asn.load({"id": ...})."""
-        from entity.asn_entity import AsnEntity
-        cached = getattr(self, "_asn", None)
-        if cached is None:
-            cached = AsnEntity(self, None)
-            self._asn = cached
-        return cached
-
-    def Asn(self, data=None):
-        # Deprecated: use client.asn instead.
+    def Asn(self, data=None) -> "AsnEntity":
+        """Entity factory: client.Asn().list({}) / client.Asn().load({"id": ...})."""
         from entity.asn_entity import AsnEntity
         return AsnEntity(self, data)
 
 
-    @property
-    def carrier(self):
-        """Idiomatic facade: client.carrier.list() / client.carrier.load({"id": ...})."""
-        from entity.carrier_entity import CarrierEntity
-        cached = getattr(self, "_carrier", None)
-        if cached is None:
-            cached = CarrierEntity(self, None)
-            self._carrier = cached
-        return cached
-
-    def Carrier(self, data=None):
-        # Deprecated: use client.carrier instead.
+    def Carrier(self, data=None) -> "CarrierEntity":
+        """Entity factory: client.Carrier().list({}) / client.Carrier().load({"id": ...})."""
         from entity.carrier_entity import CarrierEntity
         return CarrierEntity(self, data)
 
 
-    @property
-    def company(self):
-        """Idiomatic facade: client.company.list() / client.company.load({"id": ...})."""
-        from entity.company_entity import CompanyEntity
-        cached = getattr(self, "_company", None)
-        if cached is None:
-            cached = CompanyEntity(self, None)
-            self._company = cached
-        return cached
-
-    def Company(self, data=None):
-        # Deprecated: use client.company instead.
+    def Company(self, data=None) -> "CompanyEntity":
+        """Entity factory: client.Company().list({}) / client.Company().load({"id": ...})."""
         from entity.company_entity import CompanyEntity
         return CompanyEntity(self, data)
 
 
-    @property
-    def core(self):
-        """Idiomatic facade: client.core.list() / client.core.load({"id": ...})."""
-        from entity.core_entity import CoreEntity
-        cached = getattr(self, "_core", None)
-        if cached is None:
-            cached = CoreEntity(self, None)
-            self._core = cached
-        return cached
-
-    def Core(self, data=None):
-        # Deprecated: use client.core instead.
+    def Core(self, data=None) -> "CoreEntity":
+        """Entity factory: client.Core().list({}) / client.Core().load({"id": ...})."""
         from entity.core_entity import CoreEntity
         return CoreEntity(self, data)
 
 
-    @property
-    def domain(self):
-        """Idiomatic facade: client.domain.list() / client.domain.load({"id": ...})."""
-        from entity.domain_entity import DomainEntity
-        cached = getattr(self, "_domain", None)
-        if cached is None:
-            cached = DomainEntity(self, None)
-            self._domain = cached
-        return cached
-
-    def Domain(self, data=None):
-        # Deprecated: use client.domain instead.
+    def Domain(self, data=None) -> "DomainEntity":
+        """Entity factory: client.Domain().list({}) / client.Domain().load({"id": ...})."""
         from entity.domain_entity import DomainEntity
         return DomainEntity(self, data)
 
 
-    @property
-    def general(self):
-        """Idiomatic facade: client.general.list() / client.general.load({"id": ...})."""
-        from entity.general_entity import GeneralEntity
-        cached = getattr(self, "_general", None)
-        if cached is None:
-            cached = GeneralEntity(self, None)
-            self._general = cached
-        return cached
-
-    def General(self, data=None):
-        # Deprecated: use client.general instead.
+    def General(self, data=None) -> "GeneralEntity":
+        """Entity factory: client.General().list({}) / client.General().load({"id": ...})."""
         from entity.general_entity import GeneralEntity
         return GeneralEntity(self, data)
 
 
-    @property
-    def get_current_information(self):
-        """Idiomatic facade: client.get_current_information.list() / client.get_current_information.load({"id": ...})."""
-        from entity.get_current_information_entity import GetCurrentInformationEntity
-        cached = getattr(self, "_get_current_information", None)
-        if cached is None:
-            cached = GetCurrentInformationEntity(self, None)
-            self._get_current_information = cached
-        return cached
-
-    def GetCurrentInformation(self, data=None):
-        # Deprecated: use client.get_current_information instead.
+    def GetCurrentInformation(self, data=None) -> "GetCurrentInformationEntity":
+        """Entity factory: client.GetCurrentInformation().list({}) / client.GetCurrentInformation().load({"id": ...})."""
         from entity.get_current_information_entity import GetCurrentInformationEntity
         return GetCurrentInformationEntity(self, data)
 
 
-    @property
-    def get_information_by_ip(self):
-        """Idiomatic facade: client.get_information_by_ip.list() / client.get_information_by_ip.load({"id": ...})."""
-        from entity.get_information_by_ip_entity import GetInformationByIpEntity
-        cached = getattr(self, "_get_information_by_ip", None)
-        if cached is None:
-            cached = GetInformationByIpEntity(self, None)
-            self._get_information_by_ip = cached
-        return cached
-
-    def GetInformationByIp(self, data=None):
-        # Deprecated: use client.get_information_by_ip instead.
+    def GetInformationByIp(self, data=None) -> "GetInformationByIpEntity":
+        """Entity factory: client.GetInformationByIp().list({}) / client.GetInformationByIp().load({"id": ...})."""
         from entity.get_information_by_ip_entity import GetInformationByIpEntity
         return GetInformationByIpEntity(self, data)
 
 
-    @property
-    def ipinfo_core(self):
-        """Idiomatic facade: client.ipinfo_core.list() / client.ipinfo_core.load({"id": ...})."""
-        from entity.ipinfo_core_entity import IpinfoCoreEntity
-        cached = getattr(self, "_ipinfo_core", None)
-        if cached is None:
-            cached = IpinfoCoreEntity(self, None)
-            self._ipinfo_core = cached
-        return cached
-
-    def IpinfoCore(self, data=None):
-        # Deprecated: use client.ipinfo_core instead.
+    def IpinfoCore(self, data=None) -> "IpinfoCoreEntity":
+        """Entity factory: client.IpinfoCore().list({}) / client.IpinfoCore().load({"id": ...})."""
         from entity.ipinfo_core_entity import IpinfoCoreEntity
         return IpinfoCoreEntity(self, data)
 
 
-    @property
-    def ipinfo_lite(self):
-        """Idiomatic facade: client.ipinfo_lite.list() / client.ipinfo_lite.load({"id": ...})."""
-        from entity.ipinfo_lite_entity import IpinfoLiteEntity
-        cached = getattr(self, "_ipinfo_lite", None)
-        if cached is None:
-            cached = IpinfoLiteEntity(self, None)
-            self._ipinfo_lite = cached
-        return cached
-
-    def IpinfoLite(self, data=None):
-        # Deprecated: use client.ipinfo_lite instead.
+    def IpinfoLite(self, data=None) -> "IpinfoLiteEntity":
+        """Entity factory: client.IpinfoLite().list({}) / client.IpinfoLite().load({"id": ...})."""
         from entity.ipinfo_lite_entity import IpinfoLiteEntity
         return IpinfoLiteEntity(self, data)
 
 
-    @property
-    def ipinfo_plus(self):
-        """Idiomatic facade: client.ipinfo_plus.list() / client.ipinfo_plus.load({"id": ...})."""
-        from entity.ipinfo_plus_entity import IpinfoPlusEntity
-        cached = getattr(self, "_ipinfo_plus", None)
-        if cached is None:
-            cached = IpinfoPlusEntity(self, None)
-            self._ipinfo_plus = cached
-        return cached
-
-    def IpinfoPlus(self, data=None):
-        # Deprecated: use client.ipinfo_plus instead.
+    def IpinfoPlus(self, data=None) -> "IpinfoPlusEntity":
+        """Entity factory: client.IpinfoPlus().list({}) / client.IpinfoPlus().load({"id": ...})."""
         from entity.ipinfo_plus_entity import IpinfoPlusEntity
         return IpinfoPlusEntity(self, data)
 
 
-    @property
-    def lite(self):
-        """Idiomatic facade: client.lite.list() / client.lite.load({"id": ...})."""
-        from entity.lite_entity import LiteEntity
-        cached = getattr(self, "_lite", None)
-        if cached is None:
-            cached = LiteEntity(self, None)
-            self._lite = cached
-        return cached
-
-    def Lite(self, data=None):
-        # Deprecated: use client.lite instead.
+    def Lite(self, data=None) -> "LiteEntity":
+        """Entity factory: client.Lite().list({}) / client.Lite().load({"id": ...})."""
         from entity.lite_entity import LiteEntity
         return LiteEntity(self, data)
 
 
-    @property
-    def max(self):
-        """Idiomatic facade: client.max.list() / client.max.load({"id": ...})."""
-        from entity.max_entity import MaxEntity
-        cached = getattr(self, "_max", None)
-        if cached is None:
-            cached = MaxEntity(self, None)
-            self._max = cached
-        return cached
-
-    def Max(self, data=None):
-        # Deprecated: use client.max instead.
+    def Max(self, data=None) -> "MaxEntity":
+        """Entity factory: client.Max().list({}) / client.Max().load({"id": ...})."""
         from entity.max_entity import MaxEntity
         return MaxEntity(self, data)
 
 
-    @property
-    def men(self):
-        """Idiomatic facade: client.men.list() / client.men.load({"id": ...})."""
-        from entity.men_entity import MenEntity
-        cached = getattr(self, "_men", None)
-        if cached is None:
-            cached = MenEntity(self, None)
-            self._men = cached
-        return cached
-
-    def Men(self, data=None):
-        # Deprecated: use client.men instead.
+    def Men(self, data=None) -> "MenEntity":
+        """Entity factory: client.Men().list({}) / client.Men().load({"id": ...})."""
         from entity.men_entity import MenEntity
         return MenEntity(self, data)
 
 
-    @property
-    def place(self):
-        """Idiomatic facade: client.place.list() / client.place.load({"id": ...})."""
-        from entity.place_entity import PlaceEntity
-        cached = getattr(self, "_place", None)
-        if cached is None:
-            cached = PlaceEntity(self, None)
-            self._place = cached
-        return cached
-
-    def Place(self, data=None):
-        # Deprecated: use client.place instead.
+    def Place(self, data=None) -> "PlaceEntity":
+        """Entity factory: client.Place().list({}) / client.Place().load({"id": ...})."""
         from entity.place_entity import PlaceEntity
         return PlaceEntity(self, data)
 
 
-    @property
-    def plus(self):
-        """Idiomatic facade: client.plus.list() / client.plus.load({"id": ...})."""
-        from entity.plus_entity import PlusEntity
-        cached = getattr(self, "_plus", None)
-        if cached is None:
-            cached = PlusEntity(self, None)
-            self._plus = cached
-        return cached
-
-    def Plus(self, data=None):
-        # Deprecated: use client.plus instead.
+    def Plus(self, data=None) -> "PlusEntity":
+        """Entity factory: client.Plus().list({}) / client.Plus().load({"id": ...})."""
         from entity.plus_entity import PlusEntity
         return PlusEntity(self, data)
 
 
-    @property
-    def privacy(self):
-        """Idiomatic facade: client.privacy.list() / client.privacy.load({"id": ...})."""
-        from entity.privacy_entity import PrivacyEntity
-        cached = getattr(self, "_privacy", None)
-        if cached is None:
-            cached = PrivacyEntity(self, None)
-            self._privacy = cached
-        return cached
-
-    def Privacy(self, data=None):
-        # Deprecated: use client.privacy instead.
+    def Privacy(self, data=None) -> "PrivacyEntity":
+        """Entity factory: client.Privacy().list({}) / client.Privacy().load({"id": ...})."""
         from entity.privacy_entity import PrivacyEntity
         return PrivacyEntity(self, data)
 
 
-    @property
-    def privacy_extended(self):
-        """Idiomatic facade: client.privacy_extended.list() / client.privacy_extended.load({"id": ...})."""
-        from entity.privacy_extended_entity import PrivacyExtendedEntity
-        cached = getattr(self, "_privacy_extended", None)
-        if cached is None:
-            cached = PrivacyExtendedEntity(self, None)
-            self._privacy_extended = cached
-        return cached
-
-    def PrivacyExtended(self, data=None):
-        # Deprecated: use client.privacy_extended instead.
+    def PrivacyExtended(self, data=None) -> "PrivacyExtendedEntity":
+        """Entity factory: client.PrivacyExtended().list({}) / client.PrivacyExtended().load({"id": ...})."""
         from entity.privacy_extended_entity import PrivacyExtendedEntity
         return PrivacyExtendedEntity(self, data)
 
 
-    @property
-    def range(self):
-        """Idiomatic facade: client.range.list() / client.range.load({"id": ...})."""
-        from entity.range_entity import RangeEntity
-        cached = getattr(self, "_range", None)
-        if cached is None:
-            cached = RangeEntity(self, None)
-            self._range = cached
-        return cached
-
-    def Range(self, data=None):
-        # Deprecated: use client.range instead.
+    def Range(self, data=None) -> "RangeEntity":
+        """Entity factory: client.Range().list({}) / client.Range().load({"id": ...})."""
         from entity.range_entity import RangeEntity
         return RangeEntity(self, data)
 
 
-    @property
-    def residential_proxy(self):
-        """Idiomatic facade: client.residential_proxy.list() / client.residential_proxy.load({"id": ...})."""
-        from entity.residential_proxy_entity import ResidentialProxyEntity
-        cached = getattr(self, "_residential_proxy", None)
-        if cached is None:
-            cached = ResidentialProxyEntity(self, None)
-            self._residential_proxy = cached
-        return cached
-
-    def ResidentialProxy(self, data=None):
-        # Deprecated: use client.residential_proxy instead.
+    def ResidentialProxy(self, data=None) -> "ResidentialProxyEntity":
+        """Entity factory: client.ResidentialProxy().list({}) / client.ResidentialProxy().load({"id": ...})."""
         from entity.residential_proxy_entity import ResidentialProxyEntity
         return ResidentialProxyEntity(self, data)
 
 
-    @property
-    def single(self):
-        """Idiomatic facade: client.single.list() / client.single.load({"id": ...})."""
-        from entity.single_entity import SingleEntity
-        cached = getattr(self, "_single", None)
-        if cached is None:
-            cached = SingleEntity(self, None)
-            self._single = cached
-        return cached
-
-    def Single(self, data=None):
-        # Deprecated: use client.single instead.
+    def Single(self, data=None) -> "SingleEntity":
+        """Entity factory: client.Single().list({}) / client.Single().load({"id": ...})."""
         from entity.single_entity import SingleEntity
         return SingleEntity(self, data)
 
 
-    @property
-    def whois_asn(self):
-        """Idiomatic facade: client.whois_asn.list() / client.whois_asn.load({"id": ...})."""
-        from entity.whois_asn_entity import WhoisAsnEntity
-        cached = getattr(self, "_whois_asn", None)
-        if cached is None:
-            cached = WhoisAsnEntity(self, None)
-            self._whois_asn = cached
-        return cached
-
-    def WhoisAsn(self, data=None):
-        # Deprecated: use client.whois_asn instead.
+    def WhoisAsn(self, data=None) -> "WhoisAsnEntity":
+        """Entity factory: client.WhoisAsn().list({}) / client.WhoisAsn().load({"id": ...})."""
         from entity.whois_asn_entity import WhoisAsnEntity
         return WhoisAsnEntity(self, data)
 
 
-    @property
-    def whois_domain(self):
-        """Idiomatic facade: client.whois_domain.list() / client.whois_domain.load({"id": ...})."""
-        from entity.whois_domain_entity import WhoisDomainEntity
-        cached = getattr(self, "_whois_domain", None)
-        if cached is None:
-            cached = WhoisDomainEntity(self, None)
-            self._whois_domain = cached
-        return cached
-
-    def WhoisDomain(self, data=None):
-        # Deprecated: use client.whois_domain instead.
+    def WhoisDomain(self, data=None) -> "WhoisDomainEntity":
+        """Entity factory: client.WhoisDomain().list({}) / client.WhoisDomain().load({"id": ...})."""
         from entity.whois_domain_entity import WhoisDomainEntity
         return WhoisDomainEntity(self, data)
 
 
-    @property
-    def whois_ip(self):
-        """Idiomatic facade: client.whois_ip.list() / client.whois_ip.load({"id": ...})."""
-        from entity.whois_ip_entity import WhoisIpEntity
-        cached = getattr(self, "_whois_ip", None)
-        if cached is None:
-            cached = WhoisIpEntity(self, None)
-            self._whois_ip = cached
-        return cached
-
-    def WhoisIp(self, data=None):
-        # Deprecated: use client.whois_ip instead.
+    def WhoisIp(self, data=None) -> "WhoisIpEntity":
+        """Entity factory: client.WhoisIp().list({}) / client.WhoisIp().load({"id": ...})."""
         from entity.whois_ip_entity import WhoisIpEntity
         return WhoisIpEntity(self, data)
 
 
-    @property
-    def whois_net_id(self):
-        """Idiomatic facade: client.whois_net_id.list() / client.whois_net_id.load({"id": ...})."""
-        from entity.whois_net_id_entity import WhoisNetIdEntity
-        cached = getattr(self, "_whois_net_id", None)
-        if cached is None:
-            cached = WhoisNetIdEntity(self, None)
-            self._whois_net_id = cached
-        return cached
-
-    def WhoisNetId(self, data=None):
-        # Deprecated: use client.whois_net_id instead.
+    def WhoisNetId(self, data=None) -> "WhoisNetIdEntity":
+        """Entity factory: client.WhoisNetId().list({}) / client.WhoisNetId().load({"id": ...})."""
         from entity.whois_net_id_entity import WhoisNetIdEntity
         return WhoisNetIdEntity(self, data)
 
 
-    @property
-    def whois_org(self):
-        """Idiomatic facade: client.whois_org.list() / client.whois_org.load({"id": ...})."""
-        from entity.whois_org_entity import WhoisOrgEntity
-        cached = getattr(self, "_whois_org", None)
-        if cached is None:
-            cached = WhoisOrgEntity(self, None)
-            self._whois_org = cached
-        return cached
-
-    def WhoisOrg(self, data=None):
-        # Deprecated: use client.whois_org instead.
+    def WhoisOrg(self, data=None) -> "WhoisOrgEntity":
+        """Entity factory: client.WhoisOrg().list({}) / client.WhoisOrg().load({"id": ...})."""
         from entity.whois_org_entity import WhoisOrgEntity
         return WhoisOrgEntity(self, data)
 
 
-    @property
-    def whois_poc(self):
-        """Idiomatic facade: client.whois_poc.list() / client.whois_poc.load({"id": ...})."""
-        from entity.whois_poc_entity import WhoisPocEntity
-        cached = getattr(self, "_whois_poc", None)
-        if cached is None:
-            cached = WhoisPocEntity(self, None)
-            self._whois_poc = cached
-        return cached
-
-    def WhoisPoc(self, data=None):
-        # Deprecated: use client.whois_poc instead.
+    def WhoisPoc(self, data=None) -> "WhoisPocEntity":
+        """Entity factory: client.WhoisPoc().list({}) / client.WhoisPoc().load({"id": ...})."""
         from entity.whois_poc_entity import WhoisPocEntity
         return WhoisPocEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "IpinfoDeveloperSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -690,3 +410,36 @@ class IpinfoDeveloperSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.abuse_entity import AbuseEntity
+    from entity.asn_entity import AsnEntity
+    from entity.carrier_entity import CarrierEntity
+    from entity.company_entity import CompanyEntity
+    from entity.core_entity import CoreEntity
+    from entity.domain_entity import DomainEntity
+    from entity.general_entity import GeneralEntity
+    from entity.get_current_information_entity import GetCurrentInformationEntity
+    from entity.get_information_by_ip_entity import GetInformationByIpEntity
+    from entity.ipinfo_core_entity import IpinfoCoreEntity
+    from entity.ipinfo_lite_entity import IpinfoLiteEntity
+    from entity.ipinfo_plus_entity import IpinfoPlusEntity
+    from entity.lite_entity import LiteEntity
+    from entity.max_entity import MaxEntity
+    from entity.men_entity import MenEntity
+    from entity.place_entity import PlaceEntity
+    from entity.plus_entity import PlusEntity
+    from entity.privacy_entity import PrivacyEntity
+    from entity.privacy_extended_entity import PrivacyExtendedEntity
+    from entity.range_entity import RangeEntity
+    from entity.residential_proxy_entity import ResidentialProxyEntity
+    from entity.single_entity import SingleEntity
+    from entity.whois_asn_entity import WhoisAsnEntity
+    from entity.whois_domain_entity import WhoisDomainEntity
+    from entity.whois_ip_entity import WhoisIpEntity
+    from entity.whois_net_id_entity import WhoisNetIdEntity
+    from entity.whois_org_entity import WhoisOrgEntity
+    from entity.whois_poc_entity import WhoisPocEntity
