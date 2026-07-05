@@ -4,6 +4,8 @@
 
 The Ruby SDK for the IpinfoDeveloper API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Abuse` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,11 +37,38 @@ client = IpinfoDeveloperSDK.new({
 ```ruby
 begin
   # load returns the bare Abuse record (raises on error).
-  abuse = client.Abuse.load({ "id" => "example_id" })
+  abuse = client.Abuse.load()
   puts abuse
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  abuse = client.Abuse.load()
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -60,7 +89,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -83,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = IpinfoDeveloperSDK.test({
-  "entity" => { "abuse" => { "test01" => { "id" => "test01" } } },
-})
+client = IpinfoDeveloperSDK.test
 
-# load returns the bare mock record (raises on error).
-abuse = client.Abuse.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+abuse = client.Abuse.load()
 puts abuse
 ```
 
@@ -207,10 +235,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -688,18 +714,18 @@ Create an instance: `abuse = client.Abuse`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
+| `address` | `String` |  |
+| `country` | `String` |  |
+| `email` | `String` |  |
+| `name` | `String` |  |
+| `network` | `String` |  |
+| `phone` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Abuse record (raises on error).
-abuse = client.Abuse.load({ "id" => "abuse_id" })
+abuse = client.Abuse.load()
 ```
 
 
@@ -717,20 +743,20 @@ Create an instance: `asn = client.Asn`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allocated` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$STRING`` |  |
-| `downstream` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `num_ip` | ``$INTEGER`` |  |
-| `peer` | ``$ARRAY`` |  |
-| `prefix` | ``$ARRAY`` |  |
-| `prefixes6` | ``$ARRAY`` |  |
-| `registry` | ``$STRING`` |  |
-| `route` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `upstream` | ``$ARRAY`` |  |
+| `allocated` | `String` |  |
+| `asn` | `String` |  |
+| `country` | `String` |  |
+| `domain` | `String` |  |
+| `downstream` | `Array` |  |
+| `name` | `String` |  |
+| `num_ip` | `Integer` |  |
+| `peer` | `Array` |  |
+| `prefix` | `Array` |  |
+| `prefixes6` | `Array` |  |
+| `registry` | `String` |  |
+| `route` | `String` |  |
+| `type` | `String` |  |
+| `upstream` | `Array` |  |
 
 #### Example: List
 
@@ -754,15 +780,15 @@ Create an instance: `carrier = client.Carrier`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `mcc` | ``$STRING`` |  |
-| `mnc` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `mcc` | `String` |  |
+| `mnc` | `String` |  |
+| `name` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Carrier record (raises on error).
-carrier = client.Carrier.load({ "id" => "carrier_id" })
+carrier = client.Carrier.load()
 ```
 
 
@@ -780,15 +806,15 @@ Create an instance: `company = client.Company`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `domain` | `String` |  |
+| `name` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Company record (raises on error).
-company = client.Company.load({ "id" => "company_id" })
+company = client.Company.load()
 ```
 
 
@@ -806,21 +832,21 @@ Create an instance: `core = client.Core`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
+| `as` | `Hash` |  |
+| `geo` | `Hash` |  |
+| `hostname` | `String` |  |
+| `ip` | `String` |  |
+| `is_anonymous` | `Boolean` |  |
+| `is_anycast` | `Boolean` |  |
+| `is_hosting` | `Boolean` |  |
+| `is_mobile` | `Boolean` |  |
+| `is_satellite` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Core record (raises on error).
-core = client.Core.load({ "id" => "core_id" })
+core = client.Core.load()
 ```
 
 
@@ -838,10 +864,10 @@ Create an instance: `domain = client.Domain`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$ARRAY`` |  |
-| `ip` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `total` | ``$INTEGER`` |  |
+| `domain` | `Array` |  |
+| `ip` | `String` |  |
+| `page` | `Integer` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
@@ -865,10 +891,10 @@ Create an instance: `general = client.General`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` |  |
-| `8_8_8_8city` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `value` | ``$OBJECT`` |  |
+| `8_8_8_8` | `Hash` |  |
+| `8_8_8_8city` | `String` |  |
+| `summary` | `String` |  |
+| `value` | `Hash` |  |
 
 #### Example: Create
 
@@ -892,27 +918,27 @@ Create an instance: `get_current_information = client.GetCurrentInformation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `Hash` |  |
+| `bogon` | `Boolean` |  |
+| `carrier` | `Hash` |  |
+| `city` | `String` |  |
+| `company` | `Hash` |  |
+| `country` | `String` |  |
+| `domain` | `Hash` |  |
+| `hostname` | `String` |  |
+| `ip` | `String` |  |
+| `loc` | `String` |  |
+| `org` | `String` |  |
+| `postal` | `String` |  |
+| `privacy` | `Hash` |  |
+| `region` | `String` |  |
+| `timezone` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare GetCurrentInformation record (raises on error).
-get_current_information = client.GetCurrentInformation.load({ "id" => "get_current_information_id" })
+get_current_information = client.GetCurrentInformation.load()
 ```
 
 
@@ -930,21 +956,21 @@ Create an instance: `get_information_by_ip = client.GetInformationByIp`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `Hash` |  |
+| `bogon` | `Boolean` |  |
+| `carrier` | `Hash` |  |
+| `city` | `String` |  |
+| `company` | `Hash` |  |
+| `country` | `String` |  |
+| `domain` | `Hash` |  |
+| `hostname` | `String` |  |
+| `ip` | `String` |  |
+| `loc` | `String` |  |
+| `org` | `String` |  |
+| `postal` | `String` |  |
+| `privacy` | `Hash` |  |
+| `region` | `String` |  |
+| `timezone` | `String` |  |
 
 #### Example: Load
 
@@ -968,15 +994,15 @@ Create an instance: `ipinfo_core = client.IpinfoCore`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `String` |  |
+| `key` | `String` |  |
+| `region` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare IpinfoCore record (raises on error).
-ipinfo_core = client.IpinfoCore.load({ "id" => "ipinfo_core_id" })
+ipinfo_core = client.IpinfoCore.load()
 ```
 
 
@@ -1012,15 +1038,15 @@ Create an instance: `ipinfo_plus = client.IpinfoPlus`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `String` |  |
+| `key` | `String` |  |
+| `region` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare IpinfoPlus record (raises on error).
-ipinfo_plus = client.IpinfoPlus.load({ "id" => "ipinfo_plus_id" })
+ipinfo_plus = client.IpinfoPlus.load()
 ```
 
 
@@ -1038,20 +1064,20 @@ Create an instance: `lite = client.Lite`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as_domain` | ``$STRING`` |  |
-| `as_name` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
+| `as_domain` | `String` |  |
+| `as_name` | `String` |  |
+| `asn` | `String` |  |
+| `continent` | `String` |  |
+| `continent_code` | `String` |  |
+| `country` | `String` |  |
+| `country_code` | `String` |  |
+| `ip` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Lite record (raises on error).
-lite = client.Lite.load({ "id" => "lite_id" })
+lite = client.Lite.load()
 ```
 
 
@@ -1069,17 +1095,17 @@ Create an instance: `max = client.Max`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `Hash` |  |
+| `as` | `Hash` |  |
+| `geo` | `Hash` |  |
+| `hostname` | `String` |  |
+| `ip` | `String` |  |
+| `is_anonymous` | `Boolean` |  |
+| `is_anycast` | `Boolean` |  |
+| `is_hosting` | `Boolean` |  |
+| `is_mobile` | `Boolean` |  |
+| `is_satellite` | `Boolean` |  |
+| `mobile` | `Hash` |  |
 
 #### Example: Load
 
@@ -1103,15 +1129,15 @@ Create an instance: `men = client.Men`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | ``$OBJECT`` |  |
-| `request` | ``$OBJECT`` |  |
-| `token` | ``$STRING`` |  |
+| `feature` | `Hash` |  |
+| `request` | `Hash` |  |
+| `token` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Men record (raises on error).
-men = client.Men.load({ "id" => "men_id" })
+men = client.Men.load()
 ```
 
 
@@ -1129,12 +1155,12 @@ Create an instance: `place = client.Place`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `ssid` | ``$STRING`` |  |
+| `category` | `String` |  |
+| `ip` | `String` |  |
+| `latitude` | `Float` |  |
+| `longitude` | `Float` |  |
+| `name` | `String` |  |
+| `ssid` | `String` |  |
 
 #### Example: Load
 
@@ -1158,16 +1184,16 @@ Create an instance: `plus = client.Plus`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `Hash` |  |
+| `as` | `Hash` |  |
+| `geo` | `Hash` |  |
+| `ip` | `String` |  |
+| `is_anonymous` | `Boolean` |  |
+| `is_anycast` | `Boolean` |  |
+| `is_hosting` | `Boolean` |  |
+| `is_mobile` | `Boolean` |  |
+| `is_satellite` | `Boolean` |  |
+| `mobile` | `Hash` |  |
 
 #### Example: Load
 
@@ -1191,18 +1217,18 @@ Create an instance: `privacy = client.Privacy`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
+| `hosting` | `Boolean` |  |
+| `proxy` | `Boolean` |  |
+| `relay` | `Boolean` |  |
+| `service` | `String` |  |
+| `tor` | `Boolean` |  |
+| `vpn` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Privacy record (raises on error).
-privacy = client.Privacy.load({ "id" => "privacy_id" })
+privacy = client.Privacy.load()
 ```
 
 
@@ -1220,22 +1246,22 @@ Create an instance: `privacy_extended = client.PrivacyExtended`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `census` | ``$BOOLEAN`` |  |
-| `census_port` | ``$ARRAY`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `coverage` | ``$NUMBER`` |  |
-| `device_activity` | ``$BOOLEAN`` |  |
-| `first_seen` | ``$STRING`` |  |
-| `hosting` | ``$BOOLEAN`` |  |
-| `inferred` | ``$BOOLEAN`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
-| `vpn_config` | ``$BOOLEAN`` |  |
-| `whoi` | ``$BOOLEAN`` |  |
+| `census` | `Boolean` |  |
+| `census_port` | `Array` |  |
+| `confidence` | `Integer` |  |
+| `coverage` | `Float` |  |
+| `device_activity` | `Boolean` |  |
+| `first_seen` | `String` |  |
+| `hosting` | `Boolean` |  |
+| `inferred` | `Boolean` |  |
+| `last_seen` | `String` |  |
+| `proxy` | `Boolean` |  |
+| `relay` | `Boolean` |  |
+| `service` | `String` |  |
+| `tor` | `Boolean` |  |
+| `vpn` | `Boolean` |  |
+| `vpn_config` | `Boolean` |  |
+| `whoi` | `Boolean` |  |
 
 #### Example: List
 
@@ -1259,10 +1285,10 @@ Create an instance: `range = client.Range`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `num_range` | ``$STRING`` |  |
-| `range` | ``$ARRAY`` |  |
-| `redirects_to` | ``$STRING`` |  |
+| `domain` | `String` |  |
+| `num_range` | `String` |  |
+| `range` | `Array` |  |
+| `redirects_to` | `String` |  |
 
 #### Example: Load
 
@@ -1286,16 +1312,16 @@ Create an instance: `residential_proxy = client.ResidentialProxy`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | ``$STRING`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `percent_days_seen` | ``$INTEGER`` |  |
-| `service` | ``$STRING`` |  |
+| `ip` | `String` |  |
+| `last_seen` | `String` |  |
+| `percent_days_seen` | `Integer` |  |
+| `service` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare ResidentialProxy record (raises on error).
-residential_proxy = client.ResidentialProxy.load({ "id" => "residential_proxy_id" })
+residential_proxy = client.ResidentialProxy.load()
 ```
 
 
@@ -1313,7 +1339,7 @@ Create an instance: `single = client.Single`
 
 ```ruby
 # load returns the bare Single record (raises on error).
-single = client.Single.load({ "id" => "single_id" })
+single = client.Single.load()
 ```
 
 
@@ -1331,19 +1357,19 @@ Create an instance: `whois_asn = client.WhoisAsn`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abuse` | ``$STRING`` |  |
-| `admin` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `maintainer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `range` | ``$STRING`` |  |
-| `raw` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tech` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `abuse` | `String` |  |
+| `admin` | `String` |  |
+| `country` | `String` |  |
+| `id` | `String` |  |
+| `maintainer` | `String` |  |
+| `name` | `String` |  |
+| `org` | `String` |  |
+| `range` | `String` |  |
+| `raw` | `String` |  |
+| `source` | `String` |  |
+| `status` | `String` |  |
+| `tech` | `String` |  |
+| `updated` | `String` |  |
 
 #### Example: List
 
@@ -1367,16 +1393,16 @@ Create an instance: `whois_domain = client.WhoisDomain`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `String` |  |
+| `page` | `Integer` |  |
+| `record` | `Array` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare WhoisDomain record (raises on error).
-whois_domain = client.WhoisDomain.load({ "id" => "whois_domain_id" })
+whois_domain = client.WhoisDomain.load()
 ```
 
 
@@ -1394,16 +1420,16 @@ Create an instance: `whois_ip = client.WhoisIp`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `String` |  |
+| `page` | `Integer` |  |
+| `record` | `Array` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare WhoisIp record (raises on error).
-whois_ip = client.WhoisIp.load({ "id" => "whois_ip_id" })
+whois_ip = client.WhoisIp.load()
 ```
 
 
@@ -1421,16 +1447,16 @@ Create an instance: `whois_net_id = client.WhoisNetId`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `String` |  |
+| `page` | `Integer` |  |
+| `record` | `Array` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare WhoisNetId record (raises on error).
-whois_net_id = client.WhoisNetId.load({ "id" => "whois_net_id_id" })
+whois_net_id = client.WhoisNetId.load()
 ```
 
 
@@ -1448,10 +1474,10 @@ Create an instance: `whois_org = client.WhoisOrg`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `org` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `org` | `String` |  |
+| `page` | `Integer` |  |
+| `record` | `Array` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
@@ -1475,10 +1501,10 @@ Create an instance: `whois_poc = client.WhoisPoc`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `poc` | ``$STRING`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `page` | `Integer` |  |
+| `poc` | `String` |  |
+| `record` | `Array` |  |
+| `total` | `Integer` |  |
 
 #### Example: Load
 
@@ -1488,12 +1514,16 @@ whois_poc = client.WhoisPoc.load({ "id" => "whois_poc_id" })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1510,8 +1540,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1560,9 +1591,9 @@ stores the returned data and match criteria internally.
 
 ```ruby
 abuse = client.Abuse
-abuse.load({ "id" => "example_id" })
+abuse.load()
 
-# abuse.data_get now returns the loaded abuse data
+# abuse.data_get now returns the abuse data from the last load
 # abuse.match_get returns the last match criteria
 ```
 

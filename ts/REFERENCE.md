@@ -441,12 +441,12 @@ const abuse = client.Abuse()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `country` | `string` | No |  |
+| `email` | `string` | No |  |
+| `name` | `string` | No |  |
+| `network` | `string` | No |  |
+| `phone` | `string` | No |  |
 
 ### Operations
 
@@ -455,7 +455,7 @@ const abuse = client.Abuse()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Abuse().load({ id: 'abuse_id' })
+const result = await client.Abuse().load()
 ```
 
 ### Common Methods
@@ -496,20 +496,20 @@ const asn = client.Asn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allocated` | ``$STRING`` | No |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | Yes |  |
-| `downstream` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `num_ip` | ``$INTEGER`` | No |  |
-| `peer` | ``$ARRAY`` | No |  |
-| `prefix` | ``$ARRAY`` | No |  |
-| `prefixes6` | ``$ARRAY`` | No |  |
-| `registry` | ``$STRING`` | No |  |
-| `route` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
-| `upstream` | ``$ARRAY`` | No |  |
+| `allocated` | `string` | No |  |
+| `asn` | `string` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `string` | Yes |  |
+| `downstream` | `any[]` | No |  |
+| `name` | `string` | Yes |  |
+| `num_ip` | `number` | No |  |
+| `peer` | `any[]` | No |  |
+| `prefix` | `any[]` | No |  |
+| `prefixes6` | `any[]` | No |  |
+| `registry` | `string` | No |  |
+| `route` | `string` | No |  |
+| `type` | `string` | Yes |  |
+| `upstream` | `any[]` | No |  |
 
 ### Operations
 
@@ -559,9 +559,9 @@ const carrier = client.Carrier()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `mcc` | ``$STRING`` | Yes |  |
-| `mnc` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `mcc` | `string` | Yes |  |
+| `mnc` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 
@@ -570,7 +570,7 @@ const carrier = client.Carrier()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Carrier().load({ id: 'carrier_id' })
+const result = await client.Carrier().load()
 ```
 
 ### Common Methods
@@ -611,9 +611,9 @@ const company = client.Company()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -622,7 +622,7 @@ const company = client.Company()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Company().load({ id: 'company_id' })
+const result = await client.Company().load()
 ```
 
 ### Common Methods
@@ -663,15 +663,15 @@ const core = client.Core()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
+| `as` | `Record<string, any>` | No |  |
+| `geo` | `Record<string, any>` | No |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `boolean` | No |  |
+| `is_anycast` | `boolean` | No |  |
+| `is_hosting` | `boolean` | No |  |
+| `is_mobile` | `boolean` | No |  |
+| `is_satellite` | `boolean` | No |  |
 
 ### Operations
 
@@ -680,7 +680,7 @@ const core = client.Core()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Core().load({ id: 'core_id' })
+const result = await client.Core().load()
 ```
 
 ### Common Methods
@@ -721,10 +721,10 @@ const domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `total` | ``$INTEGER`` | Yes |  |
+| `domain` | `any[]` | No |  |
+| `ip` | `string` | No |  |
+| `page` | `number` | No |  |
+| `total` | `number` | Yes |  |
 
 ### Operations
 
@@ -774,10 +774,10 @@ const general = client.General()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` | No |  |
-| `8_8_8_8city` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `value` | ``$OBJECT`` | No |  |
+| `8_8_8_8` | `Record<string, any>` | No |  |
+| `8_8_8_8city` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `value` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -828,21 +828,21 @@ const get_current_information = client.GetCurrentInformation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `Record<string, any>` | Yes |  |
+| `bogon` | `boolean` | No |  |
+| `carrier` | `Record<string, any>` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `Record<string, any>` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `Record<string, any>` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `Record<string, any>` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -851,7 +851,7 @@ const get_current_information = client.GetCurrentInformation()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetCurrentInformation().load({ id: 'get_current_information_id' })
+const result = await client.GetCurrentInformation().load()
 ```
 
 ### Common Methods
@@ -892,21 +892,21 @@ const get_information_by_ip = client.GetInformationByIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `Record<string, any>` | Yes |  |
+| `bogon` | `boolean` | No |  |
+| `carrier` | `Record<string, any>` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `Record<string, any>` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `Record<string, any>` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `Record<string, any>` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -956,9 +956,9 @@ const ipinfo_core = client.IpinfoCore()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -967,7 +967,7 @@ const ipinfo_core = client.IpinfoCore()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoCore().load({ id: 'ipinfo_core_id' })
+const result = await client.IpinfoCore().load()
 ```
 
 ### Common Methods
@@ -1052,9 +1052,9 @@ const ipinfo_plus = client.IpinfoPlus()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -1063,7 +1063,7 @@ const ipinfo_plus = client.IpinfoPlus()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoPlus().load({ id: 'ipinfo_plus_id' })
+const result = await client.IpinfoPlus().load()
 ```
 
 ### Common Methods
@@ -1104,14 +1104,14 @@ const lite = client.Lite()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_domain` | ``$STRING`` | Yes |  |
-| `as_name` | ``$STRING`` | Yes |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `continent` | ``$STRING`` | Yes |  |
-| `continent_code` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `country_code` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
+| `as_domain` | `string` | Yes |  |
+| `as_name` | `string` | Yes |  |
+| `asn` | `string` | Yes |  |
+| `continent` | `string` | Yes |  |
+| `continent_code` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `country_code` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -1120,7 +1120,7 @@ const lite = client.Lite()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Lite().load({ id: 'lite_id' })
+const result = await client.Lite().load()
 ```
 
 ### Common Methods
@@ -1161,17 +1161,17 @@ const max = client.Max()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | Yes |  |
-| `as` | ``$OBJECT`` | Yes |  |
-| `geo` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `Record<string, any>` | Yes |  |
+| `as` | `Record<string, any>` | Yes |  |
+| `geo` | `Record<string, any>` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `boolean` | No |  |
+| `is_anycast` | `boolean` | No |  |
+| `is_hosting` | `boolean` | No |  |
+| `is_mobile` | `boolean` | No |  |
+| `is_satellite` | `boolean` | No |  |
+| `mobile` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -1221,9 +1221,9 @@ const men = client.Men()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | ``$OBJECT`` | Yes |  |
-| `request` | ``$OBJECT`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
+| `feature` | `Record<string, any>` | Yes |  |
+| `request` | `Record<string, any>` | Yes |  |
+| `token` | `string` | Yes |  |
 
 ### Operations
 
@@ -1232,7 +1232,7 @@ const men = client.Men()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Men().load({ id: 'men_id' })
+const result = await client.Men().load()
 ```
 
 ### Common Methods
@@ -1273,12 +1273,12 @@ const place = client.Place()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `ssid` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `latitude` | `number` | Yes |  |
+| `longitude` | `number` | Yes |  |
+| `name` | `string` | Yes |  |
+| `ssid` | `string` | Yes |  |
 
 ### Operations
 
@@ -1328,16 +1328,16 @@ const plus = client.Plus()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | No |  |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `Record<string, any>` | No |  |
+| `as` | `Record<string, any>` | No |  |
+| `geo` | `Record<string, any>` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `boolean` | No |  |
+| `is_anycast` | `boolean` | No |  |
+| `is_hosting` | `boolean` | No |  |
+| `is_mobile` | `boolean` | No |  |
+| `is_satellite` | `boolean` | No |  |
+| `mobile` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -1387,12 +1387,12 @@ const privacy = client.Privacy()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
+| `hosting` | `boolean` | Yes |  |
+| `proxy` | `boolean` | Yes |  |
+| `relay` | `boolean` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `boolean` | Yes |  |
+| `vpn` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -1401,7 +1401,7 @@ const privacy = client.Privacy()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Privacy().load({ id: 'privacy_id' })
+const result = await client.Privacy().load()
 ```
 
 ### Common Methods
@@ -1442,22 +1442,22 @@ const privacy_extended = client.PrivacyExtended()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | ``$BOOLEAN`` | No |  |
-| `census_port` | ``$ARRAY`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `coverage` | ``$NUMBER`` | No |  |
-| `device_activity` | ``$BOOLEAN`` | No |  |
-| `first_seen` | ``$STRING`` | No |  |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `inferred` | ``$BOOLEAN`` | No |  |
-| `last_seen` | ``$STRING`` | No |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
-| `vpn_config` | ``$BOOLEAN`` | No |  |
-| `whoi` | ``$BOOLEAN`` | No |  |
+| `census` | `boolean` | No |  |
+| `census_port` | `any[]` | No |  |
+| `confidence` | `number` | No |  |
+| `coverage` | `number` | No |  |
+| `device_activity` | `boolean` | No |  |
+| `first_seen` | `string` | No |  |
+| `hosting` | `boolean` | Yes |  |
+| `inferred` | `boolean` | No |  |
+| `last_seen` | `string` | No |  |
+| `proxy` | `boolean` | Yes |  |
+| `relay` | `boolean` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `boolean` | Yes |  |
+| `vpn` | `boolean` | Yes |  |
+| `vpn_config` | `boolean` | No |  |
+| `whoi` | `boolean` | No |  |
 
 ### Operations
 
@@ -1507,10 +1507,10 @@ const range = client.Range()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `num_range` | ``$STRING`` | Yes |  |
-| `range` | ``$ARRAY`` | Yes |  |
-| `redirects_to` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `num_range` | `string` | Yes |  |
+| `range` | `any[]` | Yes |  |
+| `redirects_to` | `string` | Yes |  |
 
 ### Operations
 
@@ -1560,10 +1560,10 @@ const residential_proxy = client.ResidentialProxy()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
-| `last_seen` | ``$STRING`` | Yes |  |
-| `percent_days_seen` | ``$INTEGER`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `last_seen` | `string` | Yes |  |
+| `percent_days_seen` | `number` | Yes |  |
+| `service` | `string` | Yes |  |
 
 ### Operations
 
@@ -1572,7 +1572,7 @@ const residential_proxy = client.ResidentialProxy()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ResidentialProxy().load({ id: 'residential_proxy_id' })
+const result = await client.ResidentialProxy().load()
 ```
 
 ### Common Methods
@@ -1616,7 +1616,7 @@ const single = client.Single()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Single().load({ id: 'single_id' })
+const result = await client.Single().load()
 ```
 
 ### Common Methods
@@ -1657,19 +1657,19 @@ const whois_asn = client.WhoisAsn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abuse` | ``$STRING`` | No |  |
-| `admin` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `maintainer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `range` | ``$STRING`` | No |  |
-| `raw` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tech` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `abuse` | `string` | No |  |
+| `admin` | `string` | No |  |
+| `country` | `string` | No |  |
+| `id` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `org` | `string` | No |  |
+| `range` | `string` | No |  |
+| `raw` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tech` | `string` | No |  |
+| `updated` | `string` | No |  |
 
 ### Operations
 
@@ -1719,10 +1719,10 @@ const whois_domain = client.WhoisDomain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `any[]` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1731,7 +1731,7 @@ const whois_domain = client.WhoisDomain()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisDomain().load({ id: 'whois_domain_id' })
+const result = await client.WhoisDomain().load()
 ```
 
 ### Common Methods
@@ -1772,10 +1772,10 @@ const whois_ip = client.WhoisIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `any[]` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1784,7 +1784,7 @@ const whois_ip = client.WhoisIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisIp().load({ id: 'whois_ip_id' })
+const result = await client.WhoisIp().load()
 ```
 
 ### Common Methods
@@ -1825,10 +1825,10 @@ const whois_net_id = client.WhoisNetId()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `any[]` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1837,7 +1837,7 @@ const whois_net_id = client.WhoisNetId()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisNetId().load({ id: 'whois_net_id_id' })
+const result = await client.WhoisNetId().load()
 ```
 
 ### Common Methods
@@ -1878,10 +1878,10 @@ const whois_org = client.WhoisOrg()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `org` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `org` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `any[]` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1931,10 +1931,10 @@ const whois_poc = client.WhoisPoc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `poc` | ``$STRING`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `page` | `number` | No |  |
+| `poc` | `string` | No |  |
+| `record` | `any[]` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 

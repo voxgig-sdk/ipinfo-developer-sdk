@@ -269,7 +269,7 @@ General = Struct.new(
   keyword_init: true
 )
 
-# Match filter for General#create (any subset of General fields).
+# Request payload for General#create.
 #
 # @!attribute [rw] 8_8_8_8
 #   @return [Hash, nil]
@@ -355,7 +355,7 @@ GetCurrentInformation = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetCurrentInformation#load (any subset of GetCurrentInformation fields).
+# Request payload for GetCurrentInformation#load.
 #
 # @!attribute [rw] asn
 #   @return [Hash, nil]
@@ -612,7 +612,7 @@ Lite = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Lite#load (any subset of Lite fields).
+# Request payload for Lite#load.
 #
 # @!attribute [rw] as_domain
 #   @return [String, nil]
@@ -724,7 +724,7 @@ Men = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Men#load (any subset of Men fields).
+# Request payload for Men#load.
 #
 # @!attribute [rw] feature
 #   @return [Hash, nil]

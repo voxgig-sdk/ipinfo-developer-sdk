@@ -206,12 +206,12 @@ abuse := client.Abuse(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `country` | `string` | No |  |
+| `email` | `string` | No |  |
+| `name` | `string` | No |  |
+| `network` | `string` | No |  |
+| `phone` | `string` | No |  |
 
 ### Operations
 
@@ -220,7 +220,7 @@ abuse := client.Abuse(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Abuse(nil).Load(map[string]any{"id": "abuse_id"}, nil)
+result, err := client.Abuse(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -257,20 +257,20 @@ asn := client.Asn(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allocated` | ``$STRING`` | No |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | Yes |  |
-| `downstream` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `num_ip` | ``$INTEGER`` | No |  |
-| `peer` | ``$ARRAY`` | No |  |
-| `prefix` | ``$ARRAY`` | No |  |
-| `prefixes6` | ``$ARRAY`` | No |  |
-| `registry` | ``$STRING`` | No |  |
-| `route` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
-| `upstream` | ``$ARRAY`` | No |  |
+| `allocated` | `string` | No |  |
+| `asn` | `string` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `string` | Yes |  |
+| `downstream` | `[]any` | No |  |
+| `name` | `string` | Yes |  |
+| `num_ip` | `int` | No |  |
+| `peer` | `[]any` | No |  |
+| `prefix` | `[]any` | No |  |
+| `prefixes6` | `[]any` | No |  |
+| `registry` | `string` | No |  |
+| `route` | `string` | No |  |
+| `type` | `string` | Yes |  |
+| `upstream` | `[]any` | No |  |
 
 ### Operations
 
@@ -316,9 +316,9 @@ carrier := client.Carrier(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `mcc` | ``$STRING`` | Yes |  |
-| `mnc` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `mcc` | `string` | Yes |  |
+| `mnc` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 
@@ -327,7 +327,7 @@ carrier := client.Carrier(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Carrier(nil).Load(map[string]any{"id": "carrier_id"}, nil)
+result, err := client.Carrier(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -364,9 +364,9 @@ company := client.Company(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -375,7 +375,7 @@ company := client.Company(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+result, err := client.Company(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -412,15 +412,15 @@ core := client.Core(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
+| `as` | `map[string]any` | No |  |
+| `geo` | `map[string]any` | No |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
 
 ### Operations
 
@@ -429,7 +429,7 @@ core := client.Core(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
+result, err := client.Core(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -466,10 +466,10 @@ domain := client.Domain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `total` | ``$INTEGER`` | Yes |  |
+| `domain` | `[]any` | No |  |
+| `ip` | `string` | No |  |
+| `page` | `int` | No |  |
+| `total` | `int` | Yes |  |
 
 ### Operations
 
@@ -515,10 +515,10 @@ general := client.General(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` | No |  |
-| `8_8_8_8city` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `value` | ``$OBJECT`` | No |  |
+| `8_8_8_8` | `map[string]any` | No |  |
+| `8_8_8_8city` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `value` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -565,21 +565,21 @@ get_current_information := client.GetCurrentInformation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `map[string]any` | Yes |  |
+| `bogon` | `bool` | No |  |
+| `carrier` | `map[string]any` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `map[string]any` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `map[string]any` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `map[string]any` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -588,7 +588,7 @@ get_current_information := client.GetCurrentInformation(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetCurrentInformation(nil).Load(map[string]any{"id": "get_current_information_id"}, nil)
+result, err := client.GetCurrentInformation(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -625,21 +625,21 @@ get_information_by_ip := client.GetInformationByIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `map[string]any` | Yes |  |
+| `bogon` | `bool` | No |  |
+| `carrier` | `map[string]any` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `map[string]any` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `map[string]any` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `map[string]any` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -685,9 +685,9 @@ ipinfo_core := client.IpinfoCore(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -696,7 +696,7 @@ ipinfo_core := client.IpinfoCore(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.IpinfoCore(nil).Load(map[string]any{"id": "ipinfo_core_id"}, nil)
+result, err := client.IpinfoCore(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -773,9 +773,9 @@ ipinfo_plus := client.IpinfoPlus(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -784,7 +784,7 @@ ipinfo_plus := client.IpinfoPlus(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.IpinfoPlus(nil).Load(map[string]any{"id": "ipinfo_plus_id"}, nil)
+result, err := client.IpinfoPlus(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -821,14 +821,14 @@ lite := client.Lite(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_domain` | ``$STRING`` | Yes |  |
-| `as_name` | ``$STRING`` | Yes |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `continent` | ``$STRING`` | Yes |  |
-| `continent_code` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `country_code` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
+| `as_domain` | `string` | Yes |  |
+| `as_name` | `string` | Yes |  |
+| `asn` | `string` | Yes |  |
+| `continent` | `string` | Yes |  |
+| `continent_code` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `country_code` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -837,7 +837,7 @@ lite := client.Lite(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Lite(nil).Load(map[string]any{"id": "lite_id"}, nil)
+result, err := client.Lite(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -874,17 +874,17 @@ max := client.Max(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | Yes |  |
-| `as` | ``$OBJECT`` | Yes |  |
-| `geo` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `map[string]any` | Yes |  |
+| `as` | `map[string]any` | Yes |  |
+| `geo` | `map[string]any` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
+| `mobile` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -930,9 +930,9 @@ men := client.Men(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | ``$OBJECT`` | Yes |  |
-| `request` | ``$OBJECT`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
+| `feature` | `map[string]any` | Yes |  |
+| `request` | `map[string]any` | Yes |  |
+| `token` | `string` | Yes |  |
 
 ### Operations
 
@@ -941,7 +941,7 @@ men := client.Men(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Men(nil).Load(map[string]any{"id": "men_id"}, nil)
+result, err := client.Men(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -978,12 +978,12 @@ place := client.Place(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `ssid` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `latitude` | `float64` | Yes |  |
+| `longitude` | `float64` | Yes |  |
+| `name` | `string` | Yes |  |
+| `ssid` | `string` | Yes |  |
 
 ### Operations
 
@@ -1029,16 +1029,16 @@ plus := client.Plus(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | No |  |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `map[string]any` | No |  |
+| `as` | `map[string]any` | No |  |
+| `geo` | `map[string]any` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
+| `mobile` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -1084,12 +1084,12 @@ privacy := client.Privacy(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
+| `hosting` | `bool` | Yes |  |
+| `proxy` | `bool` | Yes |  |
+| `relay` | `bool` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `bool` | Yes |  |
+| `vpn` | `bool` | Yes |  |
 
 ### Operations
 
@@ -1098,7 +1098,7 @@ privacy := client.Privacy(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Privacy(nil).Load(map[string]any{"id": "privacy_id"}, nil)
+result, err := client.Privacy(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1135,22 +1135,22 @@ privacy_extended := client.PrivacyExtended(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | ``$BOOLEAN`` | No |  |
-| `census_port` | ``$ARRAY`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `coverage` | ``$NUMBER`` | No |  |
-| `device_activity` | ``$BOOLEAN`` | No |  |
-| `first_seen` | ``$STRING`` | No |  |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `inferred` | ``$BOOLEAN`` | No |  |
-| `last_seen` | ``$STRING`` | No |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
-| `vpn_config` | ``$BOOLEAN`` | No |  |
-| `whoi` | ``$BOOLEAN`` | No |  |
+| `census` | `bool` | No |  |
+| `census_port` | `[]any` | No |  |
+| `confidence` | `int` | No |  |
+| `coverage` | `float64` | No |  |
+| `device_activity` | `bool` | No |  |
+| `first_seen` | `string` | No |  |
+| `hosting` | `bool` | Yes |  |
+| `inferred` | `bool` | No |  |
+| `last_seen` | `string` | No |  |
+| `proxy` | `bool` | Yes |  |
+| `relay` | `bool` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `bool` | Yes |  |
+| `vpn` | `bool` | Yes |  |
+| `vpn_config` | `bool` | No |  |
+| `whoi` | `bool` | No |  |
 
 ### Operations
 
@@ -1196,10 +1196,10 @@ range := client.Range(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `num_range` | ``$STRING`` | Yes |  |
-| `range` | ``$ARRAY`` | Yes |  |
-| `redirects_to` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `num_range` | `string` | Yes |  |
+| `range` | `[]any` | Yes |  |
+| `redirects_to` | `string` | Yes |  |
 
 ### Operations
 
@@ -1245,10 +1245,10 @@ residential_proxy := client.ResidentialProxy(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
-| `last_seen` | ``$STRING`` | Yes |  |
-| `percent_days_seen` | ``$INTEGER`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `last_seen` | `string` | Yes |  |
+| `percent_days_seen` | `int` | Yes |  |
+| `service` | `string` | Yes |  |
 
 ### Operations
 
@@ -1257,7 +1257,7 @@ residential_proxy := client.ResidentialProxy(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ResidentialProxy(nil).Load(map[string]any{"id": "residential_proxy_id"}, nil)
+result, err := client.ResidentialProxy(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1297,7 +1297,7 @@ single := client.Single(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Single(nil).Load(map[string]any{"id": "single_id"}, nil)
+result, err := client.Single(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1334,19 +1334,19 @@ whois_asn := client.WhoisAsn(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abuse` | ``$STRING`` | No |  |
-| `admin` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `maintainer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `range` | ``$STRING`` | No |  |
-| `raw` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tech` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `abuse` | `string` | No |  |
+| `admin` | `string` | No |  |
+| `country` | `string` | No |  |
+| `id` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `org` | `string` | No |  |
+| `range` | `string` | No |  |
+| `raw` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tech` | `string` | No |  |
+| `updated` | `string` | No |  |
 
 ### Operations
 
@@ -1392,10 +1392,10 @@ whois_domain := client.WhoisDomain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1404,7 +1404,7 @@ whois_domain := client.WhoisDomain(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WhoisDomain(nil).Load(map[string]any{"id": "whois_domain_id"}, nil)
+result, err := client.WhoisDomain(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1441,10 +1441,10 @@ whois_ip := client.WhoisIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1453,7 +1453,7 @@ whois_ip := client.WhoisIp(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WhoisIp(nil).Load(map[string]any{"id": "whois_ip_id"}, nil)
+result, err := client.WhoisIp(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1490,10 +1490,10 @@ whois_net_id := client.WhoisNetId(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1502,7 +1502,7 @@ whois_net_id := client.WhoisNetId(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WhoisNetId(nil).Load(map[string]any{"id": "whois_net_id_id"}, nil)
+result, err := client.WhoisNetId(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -1539,10 +1539,10 @@ whois_org := client.WhoisOrg(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `org` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `org` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1588,10 +1588,10 @@ whois_poc := client.WhoisPoc(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `poc` | ``$STRING`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `page` | `int` | No |  |
+| `poc` | `string` | No |  |
+| `record` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 

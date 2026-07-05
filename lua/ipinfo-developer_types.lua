@@ -82,6 +82,10 @@
 ---@field value? table
 
 ---@class GeneralCreateData
+---@field ["8_8_8_8"]? table
+---@field ["8_8_8_8city"]? string
+---@field summary? string
+---@field value? table
 
 ---@class GetCurrentInformation
 ---@field asn table
@@ -101,6 +105,21 @@
 ---@field timezone? string
 
 ---@class GetCurrentInformationLoadMatch
+---@field asn? table
+---@field bogon? boolean
+---@field carrier? table
+---@field city? string
+---@field company? table
+---@field country? string
+---@field domain? table
+---@field hostname? string
+---@field ip? string
+---@field loc? string
+---@field org? string
+---@field postal? string
+---@field privacy? table
+---@field region? string
+---@field timezone? string
 
 ---@class GetInformationByIp
 ---@field asn table
@@ -158,6 +177,14 @@
 ---@field ip string
 
 ---@class LiteLoadMatch
+---@field as_domain? string
+---@field as_name? string
+---@field asn? string
+---@field continent? string
+---@field continent_code? string
+---@field country? string
+---@field country_code? string
+---@field ip? string
 
 ---@class Max
 ---@field anonymous table
@@ -181,6 +208,9 @@
 ---@field token string
 
 ---@class MenLoadMatch
+---@field feature? table
+---@field request? table
+---@field token? string
 
 ---@class Place
 ---@field category string

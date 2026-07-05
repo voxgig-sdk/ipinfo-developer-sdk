@@ -67,10 +67,12 @@ class WhoisNetIdEntity
   
   # Load a single WhoisNetId.
   #
-  # @param reqmatch [WhoisNetIdLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [WhoisNetIdLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.WhoisNetId.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [WhoisNetId, Hash] the loaded WhoisNetId; raises IpinfoDeveloperError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

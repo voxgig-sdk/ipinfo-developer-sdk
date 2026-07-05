@@ -4,6 +4,8 @@
 
 The PHP SDK for the IpinfoDeveloper API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Abuse()` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ $client = new IpinfoDeveloperSDK([
 ```php
 try {
     // load() returns the bare Abuse record (throws on error).
-    $abuse = $client->Abuse()->load(["id" => "example_id"]);
+    $abuse = $client->Abuse()->load();
     print_r($abuse);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $abuse = $client->Abuse()->load();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = IpinfoDeveloperSDK::test([
-    "entity" => ["abuse" => ["test01" => ["id" => "test01"]]],
-]);
+$client = IpinfoDeveloperSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$abuse = $client->Abuse()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$abuse = $client->Abuse()->load();
 print_r($abuse);
 ```
 
@@ -211,10 +244,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -693,18 +724,18 @@ Create an instance: `$abuse = $client->Abuse();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `country` | `string` |  |
+| `email` | `string` |  |
+| `name` | `string` |  |
+| `network` | `string` |  |
+| `phone` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Abuse record (throws on error).
-$abuse = $client->Abuse()->load(["id" => "abuse_id"]);
+$abuse = $client->Abuse()->load();
 ```
 
 
@@ -722,20 +753,20 @@ Create an instance: `$asn = $client->Asn();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allocated` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$STRING`` |  |
-| `downstream` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `num_ip` | ``$INTEGER`` |  |
-| `peer` | ``$ARRAY`` |  |
-| `prefix` | ``$ARRAY`` |  |
-| `prefixes6` | ``$ARRAY`` |  |
-| `registry` | ``$STRING`` |  |
-| `route` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `upstream` | ``$ARRAY`` |  |
+| `allocated` | `string` |  |
+| `asn` | `string` |  |
+| `country` | `string` |  |
+| `domain` | `string` |  |
+| `downstream` | `array` |  |
+| `name` | `string` |  |
+| `num_ip` | `int` |  |
+| `peer` | `array` |  |
+| `prefix` | `array` |  |
+| `prefixes6` | `array` |  |
+| `registry` | `string` |  |
+| `route` | `string` |  |
+| `type` | `string` |  |
+| `upstream` | `array` |  |
 
 #### Example: List
 
@@ -759,15 +790,15 @@ Create an instance: `$carrier = $client->Carrier();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `mcc` | ``$STRING`` |  |
-| `mnc` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `mcc` | `string` |  |
+| `mnc` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Carrier record (throws on error).
-$carrier = $client->Carrier()->load(["id" => "carrier_id"]);
+$carrier = $client->Carrier()->load();
 ```
 
 
@@ -785,15 +816,15 @@ Create an instance: `$company = $client->Company();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `domain` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Company record (throws on error).
-$company = $client->Company()->load(["id" => "company_id"]);
+$company = $client->Company()->load();
 ```
 
 
@@ -811,21 +842,21 @@ Create an instance: `$core = $client->Core();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
+| `as` | `array` |  |
+| `geo` | `array` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Core record (throws on error).
-$core = $client->Core()->load(["id" => "core_id"]);
+$core = $client->Core()->load();
 ```
 
 
@@ -843,10 +874,10 @@ Create an instance: `$domain = $client->Domain();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$ARRAY`` |  |
-| `ip` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `total` | ``$INTEGER`` |  |
+| `domain` | `array` |  |
+| `ip` | `string` |  |
+| `page` | `int` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -870,10 +901,10 @@ Create an instance: `$general = $client->General();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` |  |
-| `8_8_8_8city` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `value` | ``$OBJECT`` |  |
+| `8_8_8_8` | `array` |  |
+| `8_8_8_8city` | `string` |  |
+| `summary` | `string` |  |
+| `value` | `array` |  |
 
 #### Example: Create
 
@@ -897,27 +928,27 @@ Create an instance: `$get_current_information = $client->GetCurrentInformation()
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `array` |  |
+| `bogon` | `bool` |  |
+| `carrier` | `array` |  |
+| `city` | `string` |  |
+| `company` | `array` |  |
+| `country` | `string` |  |
+| `domain` | `array` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `loc` | `string` |  |
+| `org` | `string` |  |
+| `postal` | `string` |  |
+| `privacy` | `array` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare GetCurrentInformation record (throws on error).
-$get_current_information = $client->GetCurrentInformation()->load(["id" => "get_current_information_id"]);
+$get_current_information = $client->GetCurrentInformation()->load();
 ```
 
 
@@ -935,21 +966,21 @@ Create an instance: `$get_information_by_ip = $client->GetInformationByIp();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `array` |  |
+| `bogon` | `bool` |  |
+| `carrier` | `array` |  |
+| `city` | `string` |  |
+| `company` | `array` |  |
+| `country` | `string` |  |
+| `domain` | `array` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `loc` | `string` |  |
+| `org` | `string` |  |
+| `postal` | `string` |  |
+| `privacy` | `array` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
@@ -973,15 +1004,15 @@ Create an instance: `$ipinfo_core = $client->IpinfoCore();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `key` | `string` |  |
+| `region` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare IpinfoCore record (throws on error).
-$ipinfo_core = $client->IpinfoCore()->load(["id" => "ipinfo_core_id"]);
+$ipinfo_core = $client->IpinfoCore()->load();
 ```
 
 
@@ -1017,15 +1048,15 @@ Create an instance: `$ipinfo_plus = $client->IpinfoPlus();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `key` | `string` |  |
+| `region` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare IpinfoPlus record (throws on error).
-$ipinfo_plus = $client->IpinfoPlus()->load(["id" => "ipinfo_plus_id"]);
+$ipinfo_plus = $client->IpinfoPlus()->load();
 ```
 
 
@@ -1043,20 +1074,20 @@ Create an instance: `$lite = $client->Lite();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as_domain` | ``$STRING`` |  |
-| `as_name` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
+| `as_domain` | `string` |  |
+| `as_name` | `string` |  |
+| `asn` | `string` |  |
+| `continent` | `string` |  |
+| `continent_code` | `string` |  |
+| `country` | `string` |  |
+| `country_code` | `string` |  |
+| `ip` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Lite record (throws on error).
-$lite = $client->Lite()->load(["id" => "lite_id"]);
+$lite = $client->Lite()->load();
 ```
 
 
@@ -1074,17 +1105,17 @@ Create an instance: `$max = $client->Max();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `array` |  |
+| `as` | `array` |  |
+| `geo` | `array` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
+| `mobile` | `array` |  |
 
 #### Example: Load
 
@@ -1108,15 +1139,15 @@ Create an instance: `$men = $client->Men();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | ``$OBJECT`` |  |
-| `request` | ``$OBJECT`` |  |
-| `token` | ``$STRING`` |  |
+| `feature` | `array` |  |
+| `request` | `array` |  |
+| `token` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Men record (throws on error).
-$men = $client->Men()->load(["id" => "men_id"]);
+$men = $client->Men()->load();
 ```
 
 
@@ -1134,12 +1165,12 @@ Create an instance: `$place = $client->Place();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `ssid` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `ip` | `string` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `name` | `string` |  |
+| `ssid` | `string` |  |
 
 #### Example: Load
 
@@ -1163,16 +1194,16 @@ Create an instance: `$plus = $client->Plus();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `array` |  |
+| `as` | `array` |  |
+| `geo` | `array` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
+| `mobile` | `array` |  |
 
 #### Example: Load
 
@@ -1196,18 +1227,18 @@ Create an instance: `$privacy = $client->Privacy();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
+| `hosting` | `bool` |  |
+| `proxy` | `bool` |  |
+| `relay` | `bool` |  |
+| `service` | `string` |  |
+| `tor` | `bool` |  |
+| `vpn` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Privacy record (throws on error).
-$privacy = $client->Privacy()->load(["id" => "privacy_id"]);
+$privacy = $client->Privacy()->load();
 ```
 
 
@@ -1225,22 +1256,22 @@ Create an instance: `$privacy_extended = $client->PrivacyExtended();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `census` | ``$BOOLEAN`` |  |
-| `census_port` | ``$ARRAY`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `coverage` | ``$NUMBER`` |  |
-| `device_activity` | ``$BOOLEAN`` |  |
-| `first_seen` | ``$STRING`` |  |
-| `hosting` | ``$BOOLEAN`` |  |
-| `inferred` | ``$BOOLEAN`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
-| `vpn_config` | ``$BOOLEAN`` |  |
-| `whoi` | ``$BOOLEAN`` |  |
+| `census` | `bool` |  |
+| `census_port` | `array` |  |
+| `confidence` | `int` |  |
+| `coverage` | `float` |  |
+| `device_activity` | `bool` |  |
+| `first_seen` | `string` |  |
+| `hosting` | `bool` |  |
+| `inferred` | `bool` |  |
+| `last_seen` | `string` |  |
+| `proxy` | `bool` |  |
+| `relay` | `bool` |  |
+| `service` | `string` |  |
+| `tor` | `bool` |  |
+| `vpn` | `bool` |  |
+| `vpn_config` | `bool` |  |
+| `whoi` | `bool` |  |
 
 #### Example: List
 
@@ -1264,10 +1295,10 @@ Create an instance: `$range = $client->Range();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `num_range` | ``$STRING`` |  |
-| `range` | ``$ARRAY`` |  |
-| `redirects_to` | ``$STRING`` |  |
+| `domain` | `string` |  |
+| `num_range` | `string` |  |
+| `range` | `array` |  |
+| `redirects_to` | `string` |  |
 
 #### Example: Load
 
@@ -1291,16 +1322,16 @@ Create an instance: `$residential_proxy = $client->ResidentialProxy();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | ``$STRING`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `percent_days_seen` | ``$INTEGER`` |  |
-| `service` | ``$STRING`` |  |
+| `ip` | `string` |  |
+| `last_seen` | `string` |  |
+| `percent_days_seen` | `int` |  |
+| `service` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare ResidentialProxy record (throws on error).
-$residential_proxy = $client->ResidentialProxy()->load(["id" => "residential_proxy_id"]);
+$residential_proxy = $client->ResidentialProxy()->load();
 ```
 
 
@@ -1318,7 +1349,7 @@ Create an instance: `$single = $client->Single();`
 
 ```php
 // load() returns the bare Single record (throws on error).
-$single = $client->Single()->load(["id" => "single_id"]);
+$single = $client->Single()->load();
 ```
 
 
@@ -1336,19 +1367,19 @@ Create an instance: `$whois_asn = $client->WhoisAsn();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abuse` | ``$STRING`` |  |
-| `admin` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `maintainer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `range` | ``$STRING`` |  |
-| `raw` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tech` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `abuse` | `string` |  |
+| `admin` | `string` |  |
+| `country` | `string` |  |
+| `id` | `string` |  |
+| `maintainer` | `string` |  |
+| `name` | `string` |  |
+| `org` | `string` |  |
+| `range` | `string` |  |
+| `raw` | `string` |  |
+| `source` | `string` |  |
+| `status` | `string` |  |
+| `tech` | `string` |  |
+| `updated` | `string` |  |
 
 #### Example: List
 
@@ -1372,16 +1403,16 @@ Create an instance: `$whois_domain = $client->WhoisDomain();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `int` |  |
+| `record` | `array` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare WhoisDomain record (throws on error).
-$whois_domain = $client->WhoisDomain()->load(["id" => "whois_domain_id"]);
+$whois_domain = $client->WhoisDomain()->load();
 ```
 
 
@@ -1399,16 +1430,16 @@ Create an instance: `$whois_ip = $client->WhoisIp();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `int` |  |
+| `record` | `array` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare WhoisIp record (throws on error).
-$whois_ip = $client->WhoisIp()->load(["id" => "whois_ip_id"]);
+$whois_ip = $client->WhoisIp()->load();
 ```
 
 
@@ -1426,16 +1457,16 @@ Create an instance: `$whois_net_id = $client->WhoisNetId();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `int` |  |
+| `record` | `array` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare WhoisNetId record (throws on error).
-$whois_net_id = $client->WhoisNetId()->load(["id" => "whois_net_id_id"]);
+$whois_net_id = $client->WhoisNetId()->load();
 ```
 
 
@@ -1453,10 +1484,10 @@ Create an instance: `$whois_org = $client->WhoisOrg();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `org` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `org` | `string` |  |
+| `page` | `int` |  |
+| `record` | `array` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -1480,10 +1511,10 @@ Create an instance: `$whois_poc = $client->WhoisPoc();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `poc` | ``$STRING`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `page` | `int` |  |
+| `poc` | `string` |  |
+| `record` | `array` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -1493,12 +1524,16 @@ $whois_poc = $client->WhoisPoc()->load(["id" => "whois_poc_id"]);
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1515,8 +1550,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1565,10 +1601,10 @@ stores the returned data and match criteria internally.
 
 ```php
 $abuse = $client->Abuse();
-$abuse->load(["id" => "example_id"]);
+$abuse->load();
 
-// $abuse->dataGet() now returns the loaded abuse data
-// $abuse->matchGet() returns the last match criteria
+// $abuse->data_get() now returns the abuse data from the last load
+// $abuse->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

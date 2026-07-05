@@ -8,7 +8,7 @@ Complete API reference for the IpinfoDeveloper Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ipinfo-developer_sdk'
+require_relative 'IpinfoDeveloper_sdk'
 
 client = IpinfoDeveloperSDK.new(options)
 ```
@@ -202,12 +202,12 @@ abuse = client.Abuse
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
+| `address` | `String` | No |  |
+| `country` | `String` | No |  |
+| `email` | `String` | No |  |
+| `name` | `String` | No |  |
+| `network` | `String` | No |  |
+| `phone` | `String` | No |  |
 
 ### Operations
 
@@ -216,7 +216,7 @@ abuse = client.Abuse
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Abuse.load({ "id" => "abuse_id" })
+result = client.Abuse.load()
 ```
 
 ### Common Methods
@@ -259,29 +259,29 @@ asn = client.Asn
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allocated` | ``$STRING`` | No |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | Yes |  |
-| `downstream` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `num_ip` | ``$INTEGER`` | No |  |
-| `peer` | ``$ARRAY`` | No |  |
-| `prefix` | ``$ARRAY`` | No |  |
-| `prefixes6` | ``$ARRAY`` | No |  |
-| `registry` | ``$STRING`` | No |  |
-| `route` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
-| `upstream` | ``$ARRAY`` | No |  |
+| `allocated` | `String` | No |  |
+| `asn` | `String` | Yes |  |
+| `country` | `String` | No |  |
+| `domain` | `String` | Yes |  |
+| `downstream` | `Array` | No |  |
+| `name` | `String` | Yes |  |
+| `num_ip` | `Integer` | No |  |
+| `peer` | `Array` | No |  |
+| `prefix` | `Array` | No |  |
+| `prefixes6` | `Array` | No |  |
+| `registry` | `String` | No |  |
+| `route` | `String` | No |  |
+| `type` | `String` | Yes |  |
+| `upstream` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Asn.list(nil)
+results = client.Asn.list
 ```
 
 ### Common Methods
@@ -324,9 +324,9 @@ carrier = client.Carrier
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `mcc` | ``$STRING`` | Yes |  |
-| `mnc` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `mcc` | `String` | Yes |  |
+| `mnc` | `String` | Yes |  |
+| `name` | `String` | Yes |  |
 
 ### Operations
 
@@ -335,7 +335,7 @@ carrier = client.Carrier
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Carrier.load({ "id" => "carrier_id" })
+result = client.Carrier.load()
 ```
 
 ### Common Methods
@@ -378,9 +378,9 @@ company = client.Company
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `domain` | `String` | Yes |  |
+| `name` | `String` | Yes |  |
+| `type` | `String` | Yes |  |
 
 ### Operations
 
@@ -389,7 +389,7 @@ company = client.Company
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Company.load({ "id" => "company_id" })
+result = client.Company.load()
 ```
 
 ### Common Methods
@@ -432,15 +432,15 @@ core = client.Core
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
+| `as` | `Hash` | No |  |
+| `geo` | `Hash` | No |  |
+| `hostname` | `String` | No |  |
+| `ip` | `String` | Yes |  |
+| `is_anonymous` | `Boolean` | No |  |
+| `is_anycast` | `Boolean` | No |  |
+| `is_hosting` | `Boolean` | No |  |
+| `is_mobile` | `Boolean` | No |  |
+| `is_satellite` | `Boolean` | No |  |
 
 ### Operations
 
@@ -449,7 +449,7 @@ core = client.Core
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Core.load({ "id" => "core_id" })
+result = client.Core.load()
 ```
 
 ### Common Methods
@@ -492,10 +492,10 @@ domain = client.Domain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `total` | ``$INTEGER`` | Yes |  |
+| `domain` | `Array` | No |  |
+| `ip` | `String` | No |  |
+| `page` | `Integer` | No |  |
+| `total` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -547,10 +547,10 @@ general = client.General
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` | No |  |
-| `8_8_8_8city` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `value` | ``$OBJECT`` | No |  |
+| `8_8_8_8` | `Hash` | No |  |
+| `8_8_8_8city` | `String` | No |  |
+| `summary` | `String` | No |  |
+| `value` | `Hash` | No |  |
 
 ### Operations
 
@@ -603,21 +603,21 @@ get_current_information = client.GetCurrentInformation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `Hash` | Yes |  |
+| `bogon` | `Boolean` | No |  |
+| `carrier` | `Hash` | Yes |  |
+| `city` | `String` | No |  |
+| `company` | `Hash` | Yes |  |
+| `country` | `String` | No |  |
+| `domain` | `Hash` | Yes |  |
+| `hostname` | `String` | No |  |
+| `ip` | `String` | Yes |  |
+| `loc` | `String` | No |  |
+| `org` | `String` | No |  |
+| `postal` | `String` | No |  |
+| `privacy` | `Hash` | Yes |  |
+| `region` | `String` | No |  |
+| `timezone` | `String` | No |  |
 
 ### Operations
 
@@ -626,7 +626,7 @@ get_current_information = client.GetCurrentInformation
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetCurrentInformation.load({ "id" => "get_current_information_id" })
+result = client.GetCurrentInformation.load()
 ```
 
 ### Common Methods
@@ -669,21 +669,21 @@ get_information_by_ip = client.GetInformationByIp
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `Hash` | Yes |  |
+| `bogon` | `Boolean` | No |  |
+| `carrier` | `Hash` | Yes |  |
+| `city` | `String` | No |  |
+| `company` | `Hash` | Yes |  |
+| `country` | `String` | No |  |
+| `domain` | `Hash` | Yes |  |
+| `hostname` | `String` | No |  |
+| `ip` | `String` | Yes |  |
+| `loc` | `String` | No |  |
+| `org` | `String` | No |  |
+| `postal` | `String` | No |  |
+| `privacy` | `Hash` | Yes |  |
+| `region` | `String` | No |  |
+| `timezone` | `String` | No |  |
 
 ### Operations
 
@@ -735,9 +735,9 @@ ipinfo_core = client.IpinfoCore
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `String` | No |  |
+| `key` | `String` | No |  |
+| `region` | `String` | No |  |
 
 ### Operations
 
@@ -746,7 +746,7 @@ ipinfo_core = client.IpinfoCore
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.IpinfoCore.load({ "id" => "ipinfo_core_id" })
+result = client.IpinfoCore.load()
 ```
 
 ### Common Methods
@@ -835,9 +835,9 @@ ipinfo_plus = client.IpinfoPlus
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `String` | No |  |
+| `key` | `String` | No |  |
+| `region` | `String` | No |  |
 
 ### Operations
 
@@ -846,7 +846,7 @@ ipinfo_plus = client.IpinfoPlus
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.IpinfoPlus.load({ "id" => "ipinfo_plus_id" })
+result = client.IpinfoPlus.load()
 ```
 
 ### Common Methods
@@ -889,14 +889,14 @@ lite = client.Lite
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_domain` | ``$STRING`` | Yes |  |
-| `as_name` | ``$STRING`` | Yes |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `continent` | ``$STRING`` | Yes |  |
-| `continent_code` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `country_code` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
+| `as_domain` | `String` | Yes |  |
+| `as_name` | `String` | Yes |  |
+| `asn` | `String` | Yes |  |
+| `continent` | `String` | Yes |  |
+| `continent_code` | `String` | Yes |  |
+| `country` | `String` | Yes |  |
+| `country_code` | `String` | Yes |  |
+| `ip` | `String` | Yes |  |
 
 ### Operations
 
@@ -905,7 +905,7 @@ lite = client.Lite
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Lite.load({ "id" => "lite_id" })
+result = client.Lite.load()
 ```
 
 ### Common Methods
@@ -948,17 +948,17 @@ max = client.Max
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | Yes |  |
-| `as` | ``$OBJECT`` | Yes |  |
-| `geo` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `Hash` | Yes |  |
+| `as` | `Hash` | Yes |  |
+| `geo` | `Hash` | Yes |  |
+| `hostname` | `String` | No |  |
+| `ip` | `String` | Yes |  |
+| `is_anonymous` | `Boolean` | No |  |
+| `is_anycast` | `Boolean` | No |  |
+| `is_hosting` | `Boolean` | No |  |
+| `is_mobile` | `Boolean` | No |  |
+| `is_satellite` | `Boolean` | No |  |
+| `mobile` | `Hash` | No |  |
 
 ### Operations
 
@@ -1010,9 +1010,9 @@ men = client.Men
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | ``$OBJECT`` | Yes |  |
-| `request` | ``$OBJECT`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
+| `feature` | `Hash` | Yes |  |
+| `request` | `Hash` | Yes |  |
+| `token` | `String` | Yes |  |
 
 ### Operations
 
@@ -1021,7 +1021,7 @@ men = client.Men
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Men.load({ "id" => "men_id" })
+result = client.Men.load()
 ```
 
 ### Common Methods
@@ -1064,12 +1064,12 @@ place = client.Place
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `ssid` | ``$STRING`` | Yes |  |
+| `category` | `String` | Yes |  |
+| `ip` | `String` | Yes |  |
+| `latitude` | `Float` | Yes |  |
+| `longitude` | `Float` | Yes |  |
+| `name` | `String` | Yes |  |
+| `ssid` | `String` | Yes |  |
 
 ### Operations
 
@@ -1121,16 +1121,16 @@ plus = client.Plus
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | No |  |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `Hash` | No |  |
+| `as` | `Hash` | No |  |
+| `geo` | `Hash` | No |  |
+| `ip` | `String` | Yes |  |
+| `is_anonymous` | `Boolean` | No |  |
+| `is_anycast` | `Boolean` | No |  |
+| `is_hosting` | `Boolean` | No |  |
+| `is_mobile` | `Boolean` | No |  |
+| `is_satellite` | `Boolean` | No |  |
+| `mobile` | `Hash` | No |  |
 
 ### Operations
 
@@ -1182,12 +1182,12 @@ privacy = client.Privacy
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
+| `hosting` | `Boolean` | Yes |  |
+| `proxy` | `Boolean` | Yes |  |
+| `relay` | `Boolean` | Yes |  |
+| `service` | `String` | Yes |  |
+| `tor` | `Boolean` | Yes |  |
+| `vpn` | `Boolean` | Yes |  |
 
 ### Operations
 
@@ -1196,7 +1196,7 @@ privacy = client.Privacy
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Privacy.load({ "id" => "privacy_id" })
+result = client.Privacy.load()
 ```
 
 ### Common Methods
@@ -1239,31 +1239,31 @@ privacy_extended = client.PrivacyExtended
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | ``$BOOLEAN`` | No |  |
-| `census_port` | ``$ARRAY`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `coverage` | ``$NUMBER`` | No |  |
-| `device_activity` | ``$BOOLEAN`` | No |  |
-| `first_seen` | ``$STRING`` | No |  |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `inferred` | ``$BOOLEAN`` | No |  |
-| `last_seen` | ``$STRING`` | No |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
-| `vpn_config` | ``$BOOLEAN`` | No |  |
-| `whoi` | ``$BOOLEAN`` | No |  |
+| `census` | `Boolean` | No |  |
+| `census_port` | `Array` | No |  |
+| `confidence` | `Integer` | No |  |
+| `coverage` | `Float` | No |  |
+| `device_activity` | `Boolean` | No |  |
+| `first_seen` | `String` | No |  |
+| `hosting` | `Boolean` | Yes |  |
+| `inferred` | `Boolean` | No |  |
+| `last_seen` | `String` | No |  |
+| `proxy` | `Boolean` | Yes |  |
+| `relay` | `Boolean` | Yes |  |
+| `service` | `String` | Yes |  |
+| `tor` | `Boolean` | Yes |  |
+| `vpn` | `Boolean` | Yes |  |
+| `vpn_config` | `Boolean` | No |  |
+| `whoi` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.PrivacyExtended.list(nil)
+results = client.PrivacyExtended.list
 ```
 
 ### Common Methods
@@ -1306,10 +1306,10 @@ range = client.Range
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `num_range` | ``$STRING`` | Yes |  |
-| `range` | ``$ARRAY`` | Yes |  |
-| `redirects_to` | ``$STRING`` | Yes |  |
+| `domain` | `String` | Yes |  |
+| `num_range` | `String` | Yes |  |
+| `range` | `Array` | Yes |  |
+| `redirects_to` | `String` | Yes |  |
 
 ### Operations
 
@@ -1361,10 +1361,10 @@ residential_proxy = client.ResidentialProxy
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
-| `last_seen` | ``$STRING`` | Yes |  |
-| `percent_days_seen` | ``$INTEGER`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
+| `ip` | `String` | Yes |  |
+| `last_seen` | `String` | Yes |  |
+| `percent_days_seen` | `Integer` | Yes |  |
+| `service` | `String` | Yes |  |
 
 ### Operations
 
@@ -1373,7 +1373,7 @@ residential_proxy = client.ResidentialProxy
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ResidentialProxy.load({ "id" => "residential_proxy_id" })
+result = client.ResidentialProxy.load()
 ```
 
 ### Common Methods
@@ -1419,7 +1419,7 @@ single = client.Single
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Single.load({ "id" => "single_id" })
+result = client.Single.load()
 ```
 
 ### Common Methods
@@ -1462,28 +1462,28 @@ whois_asn = client.WhoisAsn
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abuse` | ``$STRING`` | No |  |
-| `admin` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `maintainer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `range` | ``$STRING`` | No |  |
-| `raw` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tech` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `abuse` | `String` | No |  |
+| `admin` | `String` | No |  |
+| `country` | `String` | No |  |
+| `id` | `String` | No |  |
+| `maintainer` | `String` | No |  |
+| `name` | `String` | No |  |
+| `org` | `String` | No |  |
+| `range` | `String` | No |  |
+| `raw` | `String` | No |  |
+| `source` | `String` | No |  |
+| `status` | `String` | No |  |
+| `tech` | `String` | No |  |
+| `updated` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.WhoisAsn.list(nil)
+results = client.WhoisAsn.list
 ```
 
 ### Common Methods
@@ -1526,10 +1526,10 @@ whois_domain = client.WhoisDomain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `String` | No |  |
+| `page` | `Integer` | No |  |
+| `record` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 
@@ -1538,7 +1538,7 @@ whois_domain = client.WhoisDomain
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.WhoisDomain.load({ "id" => "whois_domain_id" })
+result = client.WhoisDomain.load()
 ```
 
 ### Common Methods
@@ -1581,10 +1581,10 @@ whois_ip = client.WhoisIp
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `String` | No |  |
+| `page` | `Integer` | No |  |
+| `record` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 
@@ -1593,7 +1593,7 @@ whois_ip = client.WhoisIp
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.WhoisIp.load({ "id" => "whois_ip_id" })
+result = client.WhoisIp.load()
 ```
 
 ### Common Methods
@@ -1636,10 +1636,10 @@ whois_net_id = client.WhoisNetId
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `String` | No |  |
+| `page` | `Integer` | No |  |
+| `record` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 
@@ -1648,7 +1648,7 @@ whois_net_id = client.WhoisNetId
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.WhoisNetId.load({ "id" => "whois_net_id_id" })
+result = client.WhoisNetId.load()
 ```
 
 ### Common Methods
@@ -1691,10 +1691,10 @@ whois_org = client.WhoisOrg
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `org` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `org` | `String` | No |  |
+| `page` | `Integer` | No |  |
+| `record` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 
@@ -1746,10 +1746,10 @@ whois_poc = client.WhoisPoc
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `poc` | ``$STRING`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `page` | `Integer` | No |  |
+| `poc` | `String` | No |  |
+| `record` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 

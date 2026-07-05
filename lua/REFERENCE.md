@@ -199,12 +199,12 @@ local abuse = client:Abuse(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `country` | `string` | No |  |
+| `email` | `string` | No |  |
+| `name` | `string` | No |  |
+| `network` | `string` | No |  |
+| `phone` | `string` | No |  |
 
 ### Operations
 
@@ -213,7 +213,7 @@ local abuse = client:Abuse(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Abuse():load({ id = "abuse_id" })
+local result, err = client:Abuse():load()
 ```
 
 ### Common Methods
@@ -256,20 +256,20 @@ local asn = client:Asn(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allocated` | ``$STRING`` | No |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | Yes |  |
-| `downstream` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `num_ip` | ``$INTEGER`` | No |  |
-| `peer` | ``$ARRAY`` | No |  |
-| `prefix` | ``$ARRAY`` | No |  |
-| `prefixes6` | ``$ARRAY`` | No |  |
-| `registry` | ``$STRING`` | No |  |
-| `route` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
-| `upstream` | ``$ARRAY`` | No |  |
+| `allocated` | `string` | No |  |
+| `asn` | `string` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `string` | Yes |  |
+| `downstream` | `table` | No |  |
+| `name` | `string` | Yes |  |
+| `num_ip` | `number` | No |  |
+| `peer` | `table` | No |  |
+| `prefix` | `table` | No |  |
+| `prefixes6` | `table` | No |  |
+| `registry` | `string` | No |  |
+| `route` | `string` | No |  |
+| `type` | `string` | Yes |  |
+| `upstream` | `table` | No |  |
 
 ### Operations
 
@@ -321,9 +321,9 @@ local carrier = client:Carrier(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `mcc` | ``$STRING`` | Yes |  |
-| `mnc` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `mcc` | `string` | Yes |  |
+| `mnc` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 
@@ -332,7 +332,7 @@ local carrier = client:Carrier(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Carrier():load({ id = "carrier_id" })
+local result, err = client:Carrier():load()
 ```
 
 ### Common Methods
@@ -375,9 +375,9 @@ local company = client:Company(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -386,7 +386,7 @@ local company = client:Company(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Company():load({ id = "company_id" })
+local result, err = client:Company():load()
 ```
 
 ### Common Methods
@@ -429,15 +429,15 @@ local core = client:Core(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
+| `as` | `table` | No |  |
+| `geo` | `table` | No |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `boolean` | No |  |
+| `is_anycast` | `boolean` | No |  |
+| `is_hosting` | `boolean` | No |  |
+| `is_mobile` | `boolean` | No |  |
+| `is_satellite` | `boolean` | No |  |
 
 ### Operations
 
@@ -446,7 +446,7 @@ local core = client:Core(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Core():load({ id = "core_id" })
+local result, err = client:Core():load()
 ```
 
 ### Common Methods
@@ -489,10 +489,10 @@ local domain = client:Domain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `total` | ``$INTEGER`` | Yes |  |
+| `domain` | `table` | No |  |
+| `ip` | `string` | No |  |
+| `page` | `number` | No |  |
+| `total` | `number` | Yes |  |
 
 ### Operations
 
@@ -544,10 +544,10 @@ local general = client:General(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` | No |  |
-| `8_8_8_8city` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `value` | ``$OBJECT`` | No |  |
+| `8_8_8_8` | `table` | No |  |
+| `8_8_8_8city` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `value` | `table` | No |  |
 
 ### Operations
 
@@ -600,21 +600,21 @@ local get_current_information = client:GetCurrentInformation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `table` | Yes |  |
+| `bogon` | `boolean` | No |  |
+| `carrier` | `table` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `table` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `table` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `table` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -623,7 +623,7 @@ local get_current_information = client:GetCurrentInformation(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetCurrentInformation():load({ id = "get_current_information_id" })
+local result, err = client:GetCurrentInformation():load()
 ```
 
 ### Common Methods
@@ -666,21 +666,21 @@ local get_information_by_ip = client:GetInformationByIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `table` | Yes |  |
+| `bogon` | `boolean` | No |  |
+| `carrier` | `table` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `table` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `table` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `table` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -732,9 +732,9 @@ local ipinfo_core = client:IpinfoCore(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -743,7 +743,7 @@ local ipinfo_core = client:IpinfoCore(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:IpinfoCore():load({ id = "ipinfo_core_id" })
+local result, err = client:IpinfoCore():load()
 ```
 
 ### Common Methods
@@ -832,9 +832,9 @@ local ipinfo_plus = client:IpinfoPlus(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -843,7 +843,7 @@ local ipinfo_plus = client:IpinfoPlus(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:IpinfoPlus():load({ id = "ipinfo_plus_id" })
+local result, err = client:IpinfoPlus():load()
 ```
 
 ### Common Methods
@@ -886,14 +886,14 @@ local lite = client:Lite(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_domain` | ``$STRING`` | Yes |  |
-| `as_name` | ``$STRING`` | Yes |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `continent` | ``$STRING`` | Yes |  |
-| `continent_code` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `country_code` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
+| `as_domain` | `string` | Yes |  |
+| `as_name` | `string` | Yes |  |
+| `asn` | `string` | Yes |  |
+| `continent` | `string` | Yes |  |
+| `continent_code` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `country_code` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -902,7 +902,7 @@ local lite = client:Lite(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Lite():load({ id = "lite_id" })
+local result, err = client:Lite():load()
 ```
 
 ### Common Methods
@@ -945,17 +945,17 @@ local max = client:Max(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | Yes |  |
-| `as` | ``$OBJECT`` | Yes |  |
-| `geo` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `table` | Yes |  |
+| `as` | `table` | Yes |  |
+| `geo` | `table` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `boolean` | No |  |
+| `is_anycast` | `boolean` | No |  |
+| `is_hosting` | `boolean` | No |  |
+| `is_mobile` | `boolean` | No |  |
+| `is_satellite` | `boolean` | No |  |
+| `mobile` | `table` | No |  |
 
 ### Operations
 
@@ -1007,9 +1007,9 @@ local men = client:Men(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | ``$OBJECT`` | Yes |  |
-| `request` | ``$OBJECT`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
+| `feature` | `table` | Yes |  |
+| `request` | `table` | Yes |  |
+| `token` | `string` | Yes |  |
 
 ### Operations
 
@@ -1018,7 +1018,7 @@ local men = client:Men(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Men():load({ id = "men_id" })
+local result, err = client:Men():load()
 ```
 
 ### Common Methods
@@ -1061,12 +1061,12 @@ local place = client:Place(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `ssid` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `latitude` | `number` | Yes |  |
+| `longitude` | `number` | Yes |  |
+| `name` | `string` | Yes |  |
+| `ssid` | `string` | Yes |  |
 
 ### Operations
 
@@ -1118,16 +1118,16 @@ local plus = client:Plus(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | No |  |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `table` | No |  |
+| `as` | `table` | No |  |
+| `geo` | `table` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `boolean` | No |  |
+| `is_anycast` | `boolean` | No |  |
+| `is_hosting` | `boolean` | No |  |
+| `is_mobile` | `boolean` | No |  |
+| `is_satellite` | `boolean` | No |  |
+| `mobile` | `table` | No |  |
 
 ### Operations
 
@@ -1179,12 +1179,12 @@ local privacy = client:Privacy(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
+| `hosting` | `boolean` | Yes |  |
+| `proxy` | `boolean` | Yes |  |
+| `relay` | `boolean` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `boolean` | Yes |  |
+| `vpn` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -1193,7 +1193,7 @@ local privacy = client:Privacy(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Privacy():load({ id = "privacy_id" })
+local result, err = client:Privacy():load()
 ```
 
 ### Common Methods
@@ -1236,22 +1236,22 @@ local privacy_extended = client:PrivacyExtended(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | ``$BOOLEAN`` | No |  |
-| `census_port` | ``$ARRAY`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `coverage` | ``$NUMBER`` | No |  |
-| `device_activity` | ``$BOOLEAN`` | No |  |
-| `first_seen` | ``$STRING`` | No |  |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `inferred` | ``$BOOLEAN`` | No |  |
-| `last_seen` | ``$STRING`` | No |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
-| `vpn_config` | ``$BOOLEAN`` | No |  |
-| `whoi` | ``$BOOLEAN`` | No |  |
+| `census` | `boolean` | No |  |
+| `census_port` | `table` | No |  |
+| `confidence` | `number` | No |  |
+| `coverage` | `number` | No |  |
+| `device_activity` | `boolean` | No |  |
+| `first_seen` | `string` | No |  |
+| `hosting` | `boolean` | Yes |  |
+| `inferred` | `boolean` | No |  |
+| `last_seen` | `string` | No |  |
+| `proxy` | `boolean` | Yes |  |
+| `relay` | `boolean` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `boolean` | Yes |  |
+| `vpn` | `boolean` | Yes |  |
+| `vpn_config` | `boolean` | No |  |
+| `whoi` | `boolean` | No |  |
 
 ### Operations
 
@@ -1303,10 +1303,10 @@ local range = client:Range(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `num_range` | ``$STRING`` | Yes |  |
-| `range` | ``$ARRAY`` | Yes |  |
-| `redirects_to` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `num_range` | `string` | Yes |  |
+| `range` | `table` | Yes |  |
+| `redirects_to` | `string` | Yes |  |
 
 ### Operations
 
@@ -1358,10 +1358,10 @@ local residential_proxy = client:ResidentialProxy(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
-| `last_seen` | ``$STRING`` | Yes |  |
-| `percent_days_seen` | ``$INTEGER`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `last_seen` | `string` | Yes |  |
+| `percent_days_seen` | `number` | Yes |  |
+| `service` | `string` | Yes |  |
 
 ### Operations
 
@@ -1370,7 +1370,7 @@ local residential_proxy = client:ResidentialProxy(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ResidentialProxy():load({ id = "residential_proxy_id" })
+local result, err = client:ResidentialProxy():load()
 ```
 
 ### Common Methods
@@ -1416,7 +1416,7 @@ local single = client:Single(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Single():load({ id = "single_id" })
+local result, err = client:Single():load()
 ```
 
 ### Common Methods
@@ -1459,19 +1459,19 @@ local whois_asn = client:WhoisAsn(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abuse` | ``$STRING`` | No |  |
-| `admin` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `maintainer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `range` | ``$STRING`` | No |  |
-| `raw` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tech` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `abuse` | `string` | No |  |
+| `admin` | `string` | No |  |
+| `country` | `string` | No |  |
+| `id` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `org` | `string` | No |  |
+| `range` | `string` | No |  |
+| `raw` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tech` | `string` | No |  |
+| `updated` | `string` | No |  |
 
 ### Operations
 
@@ -1523,10 +1523,10 @@ local whois_domain = client:WhoisDomain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `table` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1535,7 +1535,7 @@ local whois_domain = client:WhoisDomain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WhoisDomain():load({ id = "whois_domain_id" })
+local result, err = client:WhoisDomain():load()
 ```
 
 ### Common Methods
@@ -1578,10 +1578,10 @@ local whois_ip = client:WhoisIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `table` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1590,7 +1590,7 @@ local whois_ip = client:WhoisIp(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WhoisIp():load({ id = "whois_ip_id" })
+local result, err = client:WhoisIp():load()
 ```
 
 ### Common Methods
@@ -1633,10 +1633,10 @@ local whois_net_id = client:WhoisNetId(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `table` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1645,7 +1645,7 @@ local whois_net_id = client:WhoisNetId(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WhoisNetId():load({ id = "whois_net_id_id" })
+local result, err = client:WhoisNetId():load()
 ```
 
 ### Common Methods
@@ -1688,10 +1688,10 @@ local whois_org = client:WhoisOrg(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `org` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `org` | `string` | No |  |
+| `page` | `number` | No |  |
+| `record` | `table` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -1743,10 +1743,10 @@ local whois_poc = client:WhoisPoc(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `poc` | ``$STRING`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `page` | `number` | No |  |
+| `poc` | `string` | No |  |
+| `record` | `table` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 

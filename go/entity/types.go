@@ -109,8 +109,7 @@ type General struct {
 	Value *map[string]any `json:"value,omitempty"`
 }
 
-// GeneralCreateData mirrors the general fields as an all-optional match
-// filter (Go analog of Partial<General>).
+// GeneralCreateData is the typed request payload for General.CreateTyped.
 type GeneralCreateData struct {
 	F8888 *map[string]any `json:"8_8_8_8,omitempty"`
 	F8888city *string `json:"8_8_8_8city,omitempty"`
@@ -137,8 +136,7 @@ type GetCurrentInformation struct {
 	Timezone *string `json:"timezone,omitempty"`
 }
 
-// GetCurrentInformationLoadMatch mirrors the get_current_information fields as an all-optional match
-// filter (Go analog of Partial<GetCurrentInformation>).
+// GetCurrentInformationLoadMatch is the typed request payload for GetCurrentInformation.LoadTyped.
 type GetCurrentInformationLoadMatch struct {
 	Asn *map[string]any `json:"asn,omitempty"`
 	Bogon *bool `json:"bogon,omitempty"`
@@ -230,8 +228,7 @@ type Lite struct {
 	Ip string `json:"ip"`
 }
 
-// LiteLoadMatch mirrors the lite fields as an all-optional match
-// filter (Go analog of Partial<Lite>).
+// LiteLoadMatch is the typed request payload for Lite.LoadTyped.
 type LiteLoadMatch struct {
 	AsDomain *string `json:"as_domain,omitempty"`
 	AsName *string `json:"as_name,omitempty"`
@@ -270,8 +267,7 @@ type Men struct {
 	Token string `json:"token"`
 }
 
-// MenLoadMatch mirrors the men fields as an all-optional match
-// filter (Go analog of Partial<Men>).
+// MenLoadMatch is the typed request payload for Men.LoadTyped.
 type MenLoadMatch struct {
 	Feature *map[string]any `json:"feature,omitempty"`
 	Request *map[string]any `json:"request,omitempty"`

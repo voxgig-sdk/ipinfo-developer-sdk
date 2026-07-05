@@ -221,169 +221,169 @@ class IpinfoDeveloperSDK:
 
 
     def Abuse(self, data=None) -> "AbuseEntity":
-        """Entity factory: client.Abuse().list({}) / client.Abuse().load({"id": ...})."""
+        """Entity factory: client.Abuse().list() / client.Abuse().load({"id": ...})."""
         from entity.abuse_entity import AbuseEntity
         return AbuseEntity(self, data)
 
 
     def Asn(self, data=None) -> "AsnEntity":
-        """Entity factory: client.Asn().list({}) / client.Asn().load({"id": ...})."""
+        """Entity factory: client.Asn().list() / client.Asn().load({"id": ...})."""
         from entity.asn_entity import AsnEntity
         return AsnEntity(self, data)
 
 
     def Carrier(self, data=None) -> "CarrierEntity":
-        """Entity factory: client.Carrier().list({}) / client.Carrier().load({"id": ...})."""
+        """Entity factory: client.Carrier().list() / client.Carrier().load({"id": ...})."""
         from entity.carrier_entity import CarrierEntity
         return CarrierEntity(self, data)
 
 
     def Company(self, data=None) -> "CompanyEntity":
-        """Entity factory: client.Company().list({}) / client.Company().load({"id": ...})."""
+        """Entity factory: client.Company().list() / client.Company().load({"id": ...})."""
         from entity.company_entity import CompanyEntity
         return CompanyEntity(self, data)
 
 
     def Core(self, data=None) -> "CoreEntity":
-        """Entity factory: client.Core().list({}) / client.Core().load({"id": ...})."""
+        """Entity factory: client.Core().list() / client.Core().load({"id": ...})."""
         from entity.core_entity import CoreEntity
         return CoreEntity(self, data)
 
 
     def Domain(self, data=None) -> "DomainEntity":
-        """Entity factory: client.Domain().list({}) / client.Domain().load({"id": ...})."""
+        """Entity factory: client.Domain().list() / client.Domain().load({"id": ...})."""
         from entity.domain_entity import DomainEntity
         return DomainEntity(self, data)
 
 
     def General(self, data=None) -> "GeneralEntity":
-        """Entity factory: client.General().list({}) / client.General().load({"id": ...})."""
+        """Entity factory: client.General().list() / client.General().load({"id": ...})."""
         from entity.general_entity import GeneralEntity
         return GeneralEntity(self, data)
 
 
     def GetCurrentInformation(self, data=None) -> "GetCurrentInformationEntity":
-        """Entity factory: client.GetCurrentInformation().list({}) / client.GetCurrentInformation().load({"id": ...})."""
+        """Entity factory: client.GetCurrentInformation().list() / client.GetCurrentInformation().load({"id": ...})."""
         from entity.get_current_information_entity import GetCurrentInformationEntity
         return GetCurrentInformationEntity(self, data)
 
 
     def GetInformationByIp(self, data=None) -> "GetInformationByIpEntity":
-        """Entity factory: client.GetInformationByIp().list({}) / client.GetInformationByIp().load({"id": ...})."""
+        """Entity factory: client.GetInformationByIp().list() / client.GetInformationByIp().load({"id": ...})."""
         from entity.get_information_by_ip_entity import GetInformationByIpEntity
         return GetInformationByIpEntity(self, data)
 
 
     def IpinfoCore(self, data=None) -> "IpinfoCoreEntity":
-        """Entity factory: client.IpinfoCore().list({}) / client.IpinfoCore().load({"id": ...})."""
+        """Entity factory: client.IpinfoCore().list() / client.IpinfoCore().load({"id": ...})."""
         from entity.ipinfo_core_entity import IpinfoCoreEntity
         return IpinfoCoreEntity(self, data)
 
 
     def IpinfoLite(self, data=None) -> "IpinfoLiteEntity":
-        """Entity factory: client.IpinfoLite().list({}) / client.IpinfoLite().load({"id": ...})."""
+        """Entity factory: client.IpinfoLite().list() / client.IpinfoLite().load({"id": ...})."""
         from entity.ipinfo_lite_entity import IpinfoLiteEntity
         return IpinfoLiteEntity(self, data)
 
 
     def IpinfoPlus(self, data=None) -> "IpinfoPlusEntity":
-        """Entity factory: client.IpinfoPlus().list({}) / client.IpinfoPlus().load({"id": ...})."""
+        """Entity factory: client.IpinfoPlus().list() / client.IpinfoPlus().load({"id": ...})."""
         from entity.ipinfo_plus_entity import IpinfoPlusEntity
         return IpinfoPlusEntity(self, data)
 
 
     def Lite(self, data=None) -> "LiteEntity":
-        """Entity factory: client.Lite().list({}) / client.Lite().load({"id": ...})."""
+        """Entity factory: client.Lite().list() / client.Lite().load({"id": ...})."""
         from entity.lite_entity import LiteEntity
         return LiteEntity(self, data)
 
 
     def Max(self, data=None) -> "MaxEntity":
-        """Entity factory: client.Max().list({}) / client.Max().load({"id": ...})."""
+        """Entity factory: client.Max().list() / client.Max().load({"id": ...})."""
         from entity.max_entity import MaxEntity
         return MaxEntity(self, data)
 
 
     def Men(self, data=None) -> "MenEntity":
-        """Entity factory: client.Men().list({}) / client.Men().load({"id": ...})."""
+        """Entity factory: client.Men().list() / client.Men().load({"id": ...})."""
         from entity.men_entity import MenEntity
         return MenEntity(self, data)
 
 
     def Place(self, data=None) -> "PlaceEntity":
-        """Entity factory: client.Place().list({}) / client.Place().load({"id": ...})."""
+        """Entity factory: client.Place().list() / client.Place().load({"id": ...})."""
         from entity.place_entity import PlaceEntity
         return PlaceEntity(self, data)
 
 
     def Plus(self, data=None) -> "PlusEntity":
-        """Entity factory: client.Plus().list({}) / client.Plus().load({"id": ...})."""
+        """Entity factory: client.Plus().list() / client.Plus().load({"id": ...})."""
         from entity.plus_entity import PlusEntity
         return PlusEntity(self, data)
 
 
     def Privacy(self, data=None) -> "PrivacyEntity":
-        """Entity factory: client.Privacy().list({}) / client.Privacy().load({"id": ...})."""
+        """Entity factory: client.Privacy().list() / client.Privacy().load({"id": ...})."""
         from entity.privacy_entity import PrivacyEntity
         return PrivacyEntity(self, data)
 
 
     def PrivacyExtended(self, data=None) -> "PrivacyExtendedEntity":
-        """Entity factory: client.PrivacyExtended().list({}) / client.PrivacyExtended().load({"id": ...})."""
+        """Entity factory: client.PrivacyExtended().list() / client.PrivacyExtended().load({"id": ...})."""
         from entity.privacy_extended_entity import PrivacyExtendedEntity
         return PrivacyExtendedEntity(self, data)
 
 
     def Range(self, data=None) -> "RangeEntity":
-        """Entity factory: client.Range().list({}) / client.Range().load({"id": ...})."""
+        """Entity factory: client.Range().list() / client.Range().load({"id": ...})."""
         from entity.range_entity import RangeEntity
         return RangeEntity(self, data)
 
 
     def ResidentialProxy(self, data=None) -> "ResidentialProxyEntity":
-        """Entity factory: client.ResidentialProxy().list({}) / client.ResidentialProxy().load({"id": ...})."""
+        """Entity factory: client.ResidentialProxy().list() / client.ResidentialProxy().load({"id": ...})."""
         from entity.residential_proxy_entity import ResidentialProxyEntity
         return ResidentialProxyEntity(self, data)
 
 
     def Single(self, data=None) -> "SingleEntity":
-        """Entity factory: client.Single().list({}) / client.Single().load({"id": ...})."""
+        """Entity factory: client.Single().list() / client.Single().load({"id": ...})."""
         from entity.single_entity import SingleEntity
         return SingleEntity(self, data)
 
 
     def WhoisAsn(self, data=None) -> "WhoisAsnEntity":
-        """Entity factory: client.WhoisAsn().list({}) / client.WhoisAsn().load({"id": ...})."""
+        """Entity factory: client.WhoisAsn().list() / client.WhoisAsn().load({"id": ...})."""
         from entity.whois_asn_entity import WhoisAsnEntity
         return WhoisAsnEntity(self, data)
 
 
     def WhoisDomain(self, data=None) -> "WhoisDomainEntity":
-        """Entity factory: client.WhoisDomain().list({}) / client.WhoisDomain().load({"id": ...})."""
+        """Entity factory: client.WhoisDomain().list() / client.WhoisDomain().load({"id": ...})."""
         from entity.whois_domain_entity import WhoisDomainEntity
         return WhoisDomainEntity(self, data)
 
 
     def WhoisIp(self, data=None) -> "WhoisIpEntity":
-        """Entity factory: client.WhoisIp().list({}) / client.WhoisIp().load({"id": ...})."""
+        """Entity factory: client.WhoisIp().list() / client.WhoisIp().load({"id": ...})."""
         from entity.whois_ip_entity import WhoisIpEntity
         return WhoisIpEntity(self, data)
 
 
     def WhoisNetId(self, data=None) -> "WhoisNetIdEntity":
-        """Entity factory: client.WhoisNetId().list({}) / client.WhoisNetId().load({"id": ...})."""
+        """Entity factory: client.WhoisNetId().list() / client.WhoisNetId().load({"id": ...})."""
         from entity.whois_net_id_entity import WhoisNetIdEntity
         return WhoisNetIdEntity(self, data)
 
 
     def WhoisOrg(self, data=None) -> "WhoisOrgEntity":
-        """Entity factory: client.WhoisOrg().list({}) / client.WhoisOrg().load({"id": ...})."""
+        """Entity factory: client.WhoisOrg().list() / client.WhoisOrg().load({"id": ...})."""
         from entity.whois_org_entity import WhoisOrgEntity
         return WhoisOrgEntity(self, data)
 
 
     def WhoisPoc(self, data=None) -> "WhoisPocEntity":
-        """Entity factory: client.WhoisPoc().list({}) / client.WhoisPoc().load({"id": ...})."""
+        """Entity factory: client.WhoisPoc().list() / client.WhoisPoc().load({"id": ...})."""
         from entity.whois_poc_entity import WhoisPocEntity
         return WhoisPocEntity(self, data)
 

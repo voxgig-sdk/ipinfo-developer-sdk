@@ -8,7 +8,7 @@ Complete API reference for the IpinfoDeveloper Python SDK.
 ### Constructor
 
 ```python
-from ipinfo-developer_sdk import IpinfoDeveloperSDK
+from ipinfodeveloper_sdk import IpinfoDeveloperSDK
 
 client = IpinfoDeveloperSDK(options)
 ```
@@ -196,12 +196,12 @@ abuse = client.Abuse()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `country` | `str` | No |  |
+| `email` | `str` | No |  |
+| `name` | `str` | No |  |
+| `network` | `str` | No |  |
+| `phone` | `str` | No |  |
 
 ### Operations
 
@@ -210,7 +210,7 @@ abuse = client.Abuse()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Abuse().load({"id": "abuse_id"})
+result = client.Abuse().load()
 ```
 
 ### Common Methods
@@ -252,29 +252,29 @@ asn = client.Asn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allocated` | ``$STRING`` | No |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | Yes |  |
-| `downstream` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `num_ip` | ``$INTEGER`` | No |  |
-| `peer` | ``$ARRAY`` | No |  |
-| `prefix` | ``$ARRAY`` | No |  |
-| `prefixes6` | ``$ARRAY`` | No |  |
-| `registry` | ``$STRING`` | No |  |
-| `route` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
-| `upstream` | ``$ARRAY`` | No |  |
+| `allocated` | `str` | No |  |
+| `asn` | `str` | Yes |  |
+| `country` | `str` | No |  |
+| `domain` | `str` | Yes |  |
+| `downstream` | `list` | No |  |
+| `name` | `str` | Yes |  |
+| `num_ip` | `int` | No |  |
+| `peer` | `list` | No |  |
+| `prefix` | `list` | No |  |
+| `prefixes6` | `list` | No |  |
+| `registry` | `str` | No |  |
+| `route` | `str` | No |  |
+| `type` | `str` | Yes |  |
+| `upstream` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Asn().list({})
+results = client.Asn().list()
 for asn in results:
     print(asn)
 ```
@@ -318,9 +318,9 @@ carrier = client.Carrier()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `mcc` | ``$STRING`` | Yes |  |
-| `mnc` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `mcc` | `str` | Yes |  |
+| `mnc` | `str` | Yes |  |
+| `name` | `str` | Yes |  |
 
 ### Operations
 
@@ -329,7 +329,7 @@ carrier = client.Carrier()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Carrier().load({"id": "carrier_id"})
+result = client.Carrier().load()
 ```
 
 ### Common Methods
@@ -371,9 +371,9 @@ company = client.Company()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `domain` | `str` | Yes |  |
+| `name` | `str` | Yes |  |
+| `type` | `str` | Yes |  |
 
 ### Operations
 
@@ -382,7 +382,7 @@ company = client.Company()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Company().load({"id": "company_id"})
+result = client.Company().load()
 ```
 
 ### Common Methods
@@ -424,15 +424,15 @@ core = client.Core()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
+| `as` | `dict` | No |  |
+| `geo` | `dict` | No |  |
+| `hostname` | `str` | No |  |
+| `ip` | `str` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
 
 ### Operations
 
@@ -441,7 +441,7 @@ core = client.Core()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Core().load({"id": "core_id"})
+result = client.Core().load()
 ```
 
 ### Common Methods
@@ -483,10 +483,10 @@ domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `total` | ``$INTEGER`` | Yes |  |
+| `domain` | `list` | No |  |
+| `ip` | `str` | No |  |
+| `page` | `int` | No |  |
+| `total` | `int` | Yes |  |
 
 ### Operations
 
@@ -537,10 +537,10 @@ general = client.General()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` | No |  |
-| `8_8_8_8city` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `value` | ``$OBJECT`` | No |  |
+| `8_8_8_8` | `dict` | No |  |
+| `8_8_8_8city` | `str` | No |  |
+| `summary` | `str` | No |  |
+| `value` | `dict` | No |  |
 
 ### Operations
 
@@ -592,21 +592,21 @@ get_current_information = client.GetCurrentInformation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `dict` | Yes |  |
+| `bogon` | `bool` | No |  |
+| `carrier` | `dict` | Yes |  |
+| `city` | `str` | No |  |
+| `company` | `dict` | Yes |  |
+| `country` | `str` | No |  |
+| `domain` | `dict` | Yes |  |
+| `hostname` | `str` | No |  |
+| `ip` | `str` | Yes |  |
+| `loc` | `str` | No |  |
+| `org` | `str` | No |  |
+| `postal` | `str` | No |  |
+| `privacy` | `dict` | Yes |  |
+| `region` | `str` | No |  |
+| `timezone` | `str` | No |  |
 
 ### Operations
 
@@ -615,7 +615,7 @@ get_current_information = client.GetCurrentInformation()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetCurrentInformation().load({"id": "get_current_information_id"})
+result = client.GetCurrentInformation().load()
 ```
 
 ### Common Methods
@@ -657,21 +657,21 @@ get_information_by_ip = client.GetInformationByIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `dict` | Yes |  |
+| `bogon` | `bool` | No |  |
+| `carrier` | `dict` | Yes |  |
+| `city` | `str` | No |  |
+| `company` | `dict` | Yes |  |
+| `country` | `str` | No |  |
+| `domain` | `dict` | Yes |  |
+| `hostname` | `str` | No |  |
+| `ip` | `str` | Yes |  |
+| `loc` | `str` | No |  |
+| `org` | `str` | No |  |
+| `postal` | `str` | No |  |
+| `privacy` | `dict` | Yes |  |
+| `region` | `str` | No |  |
+| `timezone` | `str` | No |  |
 
 ### Operations
 
@@ -722,9 +722,9 @@ ipinfo_core = client.IpinfoCore()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `str` | No |  |
+| `key` | `str` | No |  |
+| `region` | `str` | No |  |
 
 ### Operations
 
@@ -733,7 +733,7 @@ ipinfo_core = client.IpinfoCore()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.IpinfoCore().load({"id": "ipinfo_core_id"})
+result = client.IpinfoCore().load()
 ```
 
 ### Common Methods
@@ -820,9 +820,9 @@ ipinfo_plus = client.IpinfoPlus()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `str` | No |  |
+| `key` | `str` | No |  |
+| `region` | `str` | No |  |
 
 ### Operations
 
@@ -831,7 +831,7 @@ ipinfo_plus = client.IpinfoPlus()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.IpinfoPlus().load({"id": "ipinfo_plus_id"})
+result = client.IpinfoPlus().load()
 ```
 
 ### Common Methods
@@ -873,14 +873,14 @@ lite = client.Lite()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_domain` | ``$STRING`` | Yes |  |
-| `as_name` | ``$STRING`` | Yes |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `continent` | ``$STRING`` | Yes |  |
-| `continent_code` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `country_code` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
+| `as_domain` | `str` | Yes |  |
+| `as_name` | `str` | Yes |  |
+| `asn` | `str` | Yes |  |
+| `continent` | `str` | Yes |  |
+| `continent_code` | `str` | Yes |  |
+| `country` | `str` | Yes |  |
+| `country_code` | `str` | Yes |  |
+| `ip` | `str` | Yes |  |
 
 ### Operations
 
@@ -889,7 +889,7 @@ lite = client.Lite()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Lite().load({"id": "lite_id"})
+result = client.Lite().load()
 ```
 
 ### Common Methods
@@ -931,17 +931,17 @@ max = client.Max()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | Yes |  |
-| `as` | ``$OBJECT`` | Yes |  |
-| `geo` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `dict` | Yes |  |
+| `as` | `dict` | Yes |  |
+| `geo` | `dict` | Yes |  |
+| `hostname` | `str` | No |  |
+| `ip` | `str` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
+| `mobile` | `dict` | No |  |
 
 ### Operations
 
@@ -992,9 +992,9 @@ men = client.Men()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | ``$OBJECT`` | Yes |  |
-| `request` | ``$OBJECT`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
+| `feature` | `dict` | Yes |  |
+| `request` | `dict` | Yes |  |
+| `token` | `str` | Yes |  |
 
 ### Operations
 
@@ -1003,7 +1003,7 @@ men = client.Men()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Men().load({"id": "men_id"})
+result = client.Men().load()
 ```
 
 ### Common Methods
@@ -1045,12 +1045,12 @@ place = client.Place()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `ssid` | ``$STRING`` | Yes |  |
+| `category` | `str` | Yes |  |
+| `ip` | `str` | Yes |  |
+| `latitude` | `float` | Yes |  |
+| `longitude` | `float` | Yes |  |
+| `name` | `str` | Yes |  |
+| `ssid` | `str` | Yes |  |
 
 ### Operations
 
@@ -1101,16 +1101,16 @@ plus = client.Plus()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | No |  |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `dict` | No |  |
+| `as` | `dict` | No |  |
+| `geo` | `dict` | No |  |
+| `ip` | `str` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
+| `mobile` | `dict` | No |  |
 
 ### Operations
 
@@ -1161,12 +1161,12 @@ privacy = client.Privacy()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
+| `hosting` | `bool` | Yes |  |
+| `proxy` | `bool` | Yes |  |
+| `relay` | `bool` | Yes |  |
+| `service` | `str` | Yes |  |
+| `tor` | `bool` | Yes |  |
+| `vpn` | `bool` | Yes |  |
 
 ### Operations
 
@@ -1175,7 +1175,7 @@ privacy = client.Privacy()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Privacy().load({"id": "privacy_id"})
+result = client.Privacy().load()
 ```
 
 ### Common Methods
@@ -1217,31 +1217,31 @@ privacy_extended = client.PrivacyExtended()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | ``$BOOLEAN`` | No |  |
-| `census_port` | ``$ARRAY`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `coverage` | ``$NUMBER`` | No |  |
-| `device_activity` | ``$BOOLEAN`` | No |  |
-| `first_seen` | ``$STRING`` | No |  |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `inferred` | ``$BOOLEAN`` | No |  |
-| `last_seen` | ``$STRING`` | No |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
-| `vpn_config` | ``$BOOLEAN`` | No |  |
-| `whoi` | ``$BOOLEAN`` | No |  |
+| `census` | `bool` | No |  |
+| `census_port` | `list` | No |  |
+| `confidence` | `int` | No |  |
+| `coverage` | `float` | No |  |
+| `device_activity` | `bool` | No |  |
+| `first_seen` | `str` | No |  |
+| `hosting` | `bool` | Yes |  |
+| `inferred` | `bool` | No |  |
+| `last_seen` | `str` | No |  |
+| `proxy` | `bool` | Yes |  |
+| `relay` | `bool` | Yes |  |
+| `service` | `str` | Yes |  |
+| `tor` | `bool` | Yes |  |
+| `vpn` | `bool` | Yes |  |
+| `vpn_config` | `bool` | No |  |
+| `whoi` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PrivacyExtended().list({})
+results = client.PrivacyExtended().list()
 for privacy_extended in results:
     print(privacy_extended)
 ```
@@ -1285,10 +1285,10 @@ range = client.Range()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `num_range` | ``$STRING`` | Yes |  |
-| `range` | ``$ARRAY`` | Yes |  |
-| `redirects_to` | ``$STRING`` | Yes |  |
+| `domain` | `str` | Yes |  |
+| `num_range` | `str` | Yes |  |
+| `range` | `list` | Yes |  |
+| `redirects_to` | `str` | Yes |  |
 
 ### Operations
 
@@ -1339,10 +1339,10 @@ residential_proxy = client.ResidentialProxy()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
-| `last_seen` | ``$STRING`` | Yes |  |
-| `percent_days_seen` | ``$INTEGER`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
+| `ip` | `str` | Yes |  |
+| `last_seen` | `str` | Yes |  |
+| `percent_days_seen` | `int` | Yes |  |
+| `service` | `str` | Yes |  |
 
 ### Operations
 
@@ -1351,7 +1351,7 @@ residential_proxy = client.ResidentialProxy()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ResidentialProxy().load({"id": "residential_proxy_id"})
+result = client.ResidentialProxy().load()
 ```
 
 ### Common Methods
@@ -1396,7 +1396,7 @@ single = client.Single()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Single().load({"id": "single_id"})
+result = client.Single().load()
 ```
 
 ### Common Methods
@@ -1438,28 +1438,28 @@ whois_asn = client.WhoisAsn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abuse` | ``$STRING`` | No |  |
-| `admin` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `maintainer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `range` | ``$STRING`` | No |  |
-| `raw` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tech` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `abuse` | `str` | No |  |
+| `admin` | `str` | No |  |
+| `country` | `str` | No |  |
+| `id` | `str` | No |  |
+| `maintainer` | `str` | No |  |
+| `name` | `str` | No |  |
+| `org` | `str` | No |  |
+| `range` | `str` | No |  |
+| `raw` | `str` | No |  |
+| `source` | `str` | No |  |
+| `status` | `str` | No |  |
+| `tech` | `str` | No |  |
+| `updated` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.WhoisAsn().list({})
+results = client.WhoisAsn().list()
 for whois_asn in results:
     print(whois_asn)
 ```
@@ -1503,10 +1503,10 @@ whois_domain = client.WhoisDomain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `str` | No |  |
+| `page` | `int` | No |  |
+| `record` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1515,7 +1515,7 @@ whois_domain = client.WhoisDomain()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WhoisDomain().load({"id": "whois_domain_id"})
+result = client.WhoisDomain().load()
 ```
 
 ### Common Methods
@@ -1557,10 +1557,10 @@ whois_ip = client.WhoisIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `str` | No |  |
+| `page` | `int` | No |  |
+| `record` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1569,7 +1569,7 @@ whois_ip = client.WhoisIp()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WhoisIp().load({"id": "whois_ip_id"})
+result = client.WhoisIp().load()
 ```
 
 ### Common Methods
@@ -1611,10 +1611,10 @@ whois_net_id = client.WhoisNetId()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `str` | No |  |
+| `page` | `int` | No |  |
+| `record` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1623,7 +1623,7 @@ whois_net_id = client.WhoisNetId()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WhoisNetId().load({"id": "whois_net_id_id"})
+result = client.WhoisNetId().load()
 ```
 
 ### Common Methods
@@ -1665,10 +1665,10 @@ whois_org = client.WhoisOrg()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `org` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `org` | `str` | No |  |
+| `page` | `int` | No |  |
+| `record` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1719,10 +1719,10 @@ whois_poc = client.WhoisPoc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `poc` | ``$STRING`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `page` | `int` | No |  |
+| `poc` | `str` | No |  |
+| `record` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 

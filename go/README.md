@@ -4,6 +4,8 @@
 
 The Golang SDK for the IpinfoDeveloper API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Abuse(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -52,12 +54,41 @@ func main() {
     })
 
     // Load a single abuse — the value is the loaded record.
-    abuse, err := client.Abuse(nil).Load(map[string]any{"id": "example_id"}, nil)
+    abuse, err := client.Abuse(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(abuse)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+abuse, err := client.Abuse(nil).Load(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = abuse
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -108,12 +139,12 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 abuse, err := client.Abuse(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(abuse) // the loaded mock data
+fmt.Println(abuse) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -230,8 +261,6 @@ All entities implement the `IpinfoDeveloperEntity` interface.
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -244,16 +273,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` / `Create` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    abuse, err := client.Abuse(nil).Load(map[string]any{"id": "example_id"}, nil)
+    abuse, err := client.Abuse(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // abuse is the loaded record
+    // abuse is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -711,17 +740,17 @@ Create an instance: `abuse := client.Abuse(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `country` | `string` |  |
+| `email` | `string` |  |
+| `name` | `string` |  |
+| `network` | `string` |  |
+| `phone` | `string` |  |
 
 #### Example: Load
 
 ```go
-abuse, err := client.Abuse(nil).Load(map[string]any{"id": "abuse_id"}, nil)
+abuse, err := client.Abuse(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -743,20 +772,20 @@ Create an instance: `asn := client.Asn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allocated` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$STRING`` |  |
-| `downstream` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `num_ip` | ``$INTEGER`` |  |
-| `peer` | ``$ARRAY`` |  |
-| `prefix` | ``$ARRAY`` |  |
-| `prefixes6` | ``$ARRAY`` |  |
-| `registry` | ``$STRING`` |  |
-| `route` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `upstream` | ``$ARRAY`` |  |
+| `allocated` | `string` |  |
+| `asn` | `string` |  |
+| `country` | `string` |  |
+| `domain` | `string` |  |
+| `downstream` | `[]any` |  |
+| `name` | `string` |  |
+| `num_ip` | `int` |  |
+| `peer` | `[]any` |  |
+| `prefix` | `[]any` |  |
+| `prefixes6` | `[]any` |  |
+| `registry` | `string` |  |
+| `route` | `string` |  |
+| `type` | `string` |  |
+| `upstream` | `[]any` |  |
 
 #### Example: List
 
@@ -783,14 +812,14 @@ Create an instance: `carrier := client.Carrier(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `mcc` | ``$STRING`` |  |
-| `mnc` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `mcc` | `string` |  |
+| `mnc` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
 ```go
-carrier, err := client.Carrier(nil).Load(map[string]any{"id": "carrier_id"}, nil)
+carrier, err := client.Carrier(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -812,14 +841,14 @@ Create an instance: `company := client.Company(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `domain` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
 ```go
-company, err := client.Company(nil).Load(map[string]any{"id": "company_id"}, nil)
+company, err := client.Company(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -841,20 +870,20 @@ Create an instance: `core := client.Core(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
+| `as` | `map[string]any` |  |
+| `geo` | `map[string]any` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
 
 #### Example: Load
 
 ```go
-core, err := client.Core(nil).Load(map[string]any{"id": "core_id"}, nil)
+core, err := client.Core(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -876,10 +905,10 @@ Create an instance: `domain := client.Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$ARRAY`` |  |
-| `ip` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `total` | ``$INTEGER`` |  |
+| `domain` | `[]any` |  |
+| `ip` | `string` |  |
+| `page` | `int` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -906,10 +935,10 @@ Create an instance: `general := client.General(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` |  |
-| `8_8_8_8city` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `value` | ``$OBJECT`` |  |
+| `8_8_8_8` | `map[string]any` |  |
+| `8_8_8_8city` | `string` |  |
+| `summary` | `string` |  |
+| `value` | `map[string]any` |  |
 
 #### Example: Create
 
@@ -933,26 +962,26 @@ Create an instance: `get_current_information := client.GetCurrentInformation(nil
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `map[string]any` |  |
+| `bogon` | `bool` |  |
+| `carrier` | `map[string]any` |  |
+| `city` | `string` |  |
+| `company` | `map[string]any` |  |
+| `country` | `string` |  |
+| `domain` | `map[string]any` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `loc` | `string` |  |
+| `org` | `string` |  |
+| `postal` | `string` |  |
+| `privacy` | `map[string]any` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
 ```go
-get_current_information, err := client.GetCurrentInformation(nil).Load(map[string]any{"id": "get_current_information_id"}, nil)
+get_current_information, err := client.GetCurrentInformation(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -974,21 +1003,21 @@ Create an instance: `get_information_by_ip := client.GetInformationByIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `map[string]any` |  |
+| `bogon` | `bool` |  |
+| `carrier` | `map[string]any` |  |
+| `city` | `string` |  |
+| `company` | `map[string]any` |  |
+| `country` | `string` |  |
+| `domain` | `map[string]any` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `loc` | `string` |  |
+| `org` | `string` |  |
+| `postal` | `string` |  |
+| `privacy` | `map[string]any` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
@@ -1015,14 +1044,14 @@ Create an instance: `ipinfo_core := client.IpinfoCore(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `key` | `string` |  |
+| `region` | `string` |  |
 
 #### Example: Load
 
 ```go
-ipinfo_core, err := client.IpinfoCore(nil).Load(map[string]any{"id": "ipinfo_core_id"}, nil)
+ipinfo_core, err := client.IpinfoCore(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1065,14 +1094,14 @@ Create an instance: `ipinfo_plus := client.IpinfoPlus(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `key` | `string` |  |
+| `region` | `string` |  |
 
 #### Example: Load
 
 ```go
-ipinfo_plus, err := client.IpinfoPlus(nil).Load(map[string]any{"id": "ipinfo_plus_id"}, nil)
+ipinfo_plus, err := client.IpinfoPlus(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1094,19 +1123,19 @@ Create an instance: `lite := client.Lite(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as_domain` | ``$STRING`` |  |
-| `as_name` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
+| `as_domain` | `string` |  |
+| `as_name` | `string` |  |
+| `asn` | `string` |  |
+| `continent` | `string` |  |
+| `continent_code` | `string` |  |
+| `country` | `string` |  |
+| `country_code` | `string` |  |
+| `ip` | `string` |  |
 
 #### Example: Load
 
 ```go
-lite, err := client.Lite(nil).Load(map[string]any{"id": "lite_id"}, nil)
+lite, err := client.Lite(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1128,17 +1157,17 @@ Create an instance: `max := client.Max(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `map[string]any` |  |
+| `as` | `map[string]any` |  |
+| `geo` | `map[string]any` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
+| `mobile` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -1165,14 +1194,14 @@ Create an instance: `men := client.Men(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | ``$OBJECT`` |  |
-| `request` | ``$OBJECT`` |  |
-| `token` | ``$STRING`` |  |
+| `feature` | `map[string]any` |  |
+| `request` | `map[string]any` |  |
+| `token` | `string` |  |
 
 #### Example: Load
 
 ```go
-men, err := client.Men(nil).Load(map[string]any{"id": "men_id"}, nil)
+men, err := client.Men(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1194,12 +1223,12 @@ Create an instance: `place := client.Place(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `ssid` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `ip` | `string` |  |
+| `latitude` | `float64` |  |
+| `longitude` | `float64` |  |
+| `name` | `string` |  |
+| `ssid` | `string` |  |
 
 #### Example: Load
 
@@ -1226,16 +1255,16 @@ Create an instance: `plus := client.Plus(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `map[string]any` |  |
+| `as` | `map[string]any` |  |
+| `geo` | `map[string]any` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
+| `mobile` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -1262,17 +1291,17 @@ Create an instance: `privacy := client.Privacy(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
+| `hosting` | `bool` |  |
+| `proxy` | `bool` |  |
+| `relay` | `bool` |  |
+| `service` | `string` |  |
+| `tor` | `bool` |  |
+| `vpn` | `bool` |  |
 
 #### Example: Load
 
 ```go
-privacy, err := client.Privacy(nil).Load(map[string]any{"id": "privacy_id"}, nil)
+privacy, err := client.Privacy(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1294,22 +1323,22 @@ Create an instance: `privacy_extended := client.PrivacyExtended(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `census` | ``$BOOLEAN`` |  |
-| `census_port` | ``$ARRAY`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `coverage` | ``$NUMBER`` |  |
-| `device_activity` | ``$BOOLEAN`` |  |
-| `first_seen` | ``$STRING`` |  |
-| `hosting` | ``$BOOLEAN`` |  |
-| `inferred` | ``$BOOLEAN`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
-| `vpn_config` | ``$BOOLEAN`` |  |
-| `whoi` | ``$BOOLEAN`` |  |
+| `census` | `bool` |  |
+| `census_port` | `[]any` |  |
+| `confidence` | `int` |  |
+| `coverage` | `float64` |  |
+| `device_activity` | `bool` |  |
+| `first_seen` | `string` |  |
+| `hosting` | `bool` |  |
+| `inferred` | `bool` |  |
+| `last_seen` | `string` |  |
+| `proxy` | `bool` |  |
+| `relay` | `bool` |  |
+| `service` | `string` |  |
+| `tor` | `bool` |  |
+| `vpn` | `bool` |  |
+| `vpn_config` | `bool` |  |
+| `whoi` | `bool` |  |
 
 #### Example: List
 
@@ -1324,7 +1353,7 @@ fmt.Println(privacy_extendeds) // the array of records
 
 ### Range
 
-Create an instance: `range := client.Range(nil)`
+Create an instance: `range_ := client.Range(nil)`
 
 #### Operations
 
@@ -1336,19 +1365,19 @@ Create an instance: `range := client.Range(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `num_range` | ``$STRING`` |  |
-| `range` | ``$ARRAY`` |  |
-| `redirects_to` | ``$STRING`` |  |
+| `domain` | `string` |  |
+| `num_range` | `string` |  |
+| `range` | `[]any` |  |
+| `redirects_to` | `string` |  |
 
 #### Example: Load
 
 ```go
-range, err := client.Range(nil).Load(map[string]any{"id": "range_id"}, nil)
+range_, err := client.Range(nil).Load(map[string]any{"id": "range_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(range) // the loaded record
+fmt.Println(range_) // the loaded record
 ```
 
 
@@ -1366,15 +1395,15 @@ Create an instance: `residential_proxy := client.ResidentialProxy(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | ``$STRING`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `percent_days_seen` | ``$INTEGER`` |  |
-| `service` | ``$STRING`` |  |
+| `ip` | `string` |  |
+| `last_seen` | `string` |  |
+| `percent_days_seen` | `int` |  |
+| `service` | `string` |  |
 
 #### Example: Load
 
 ```go
-residential_proxy, err := client.ResidentialProxy(nil).Load(map[string]any{"id": "residential_proxy_id"}, nil)
+residential_proxy, err := client.ResidentialProxy(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1395,7 +1424,7 @@ Create an instance: `single := client.Single(nil)`
 #### Example: Load
 
 ```go
-single, err := client.Single(nil).Load(map[string]any{"id": "single_id"}, nil)
+single, err := client.Single(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1417,19 +1446,19 @@ Create an instance: `whois_asn := client.WhoisAsn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abuse` | ``$STRING`` |  |
-| `admin` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `maintainer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `range` | ``$STRING`` |  |
-| `raw` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tech` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `abuse` | `string` |  |
+| `admin` | `string` |  |
+| `country` | `string` |  |
+| `id` | `string` |  |
+| `maintainer` | `string` |  |
+| `name` | `string` |  |
+| `org` | `string` |  |
+| `range` | `string` |  |
+| `raw` | `string` |  |
+| `source` | `string` |  |
+| `status` | `string` |  |
+| `tech` | `string` |  |
+| `updated` | `string` |  |
 
 #### Example: List
 
@@ -1456,15 +1485,15 @@ Create an instance: `whois_domain := client.WhoisDomain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `int` |  |
+| `record` | `[]any` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```go
-whois_domain, err := client.WhoisDomain(nil).Load(map[string]any{"id": "whois_domain_id"}, nil)
+whois_domain, err := client.WhoisDomain(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1486,15 +1515,15 @@ Create an instance: `whois_ip := client.WhoisIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `int` |  |
+| `record` | `[]any` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```go
-whois_ip, err := client.WhoisIp(nil).Load(map[string]any{"id": "whois_ip_id"}, nil)
+whois_ip, err := client.WhoisIp(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1516,15 +1545,15 @@ Create an instance: `whois_net_id := client.WhoisNetId(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `int` |  |
+| `record` | `[]any` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```go
-whois_net_id, err := client.WhoisNetId(nil).Load(map[string]any{"id": "whois_net_id_id"}, nil)
+whois_net_id, err := client.WhoisNetId(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -1546,10 +1575,10 @@ Create an instance: `whois_org := client.WhoisOrg(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `org` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `org` | `string` |  |
+| `page` | `int` |  |
+| `record` | `[]any` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -1576,10 +1605,10 @@ Create an instance: `whois_poc := client.WhoisPoc(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `poc` | ``$STRING`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `page` | `int` |  |
+| `poc` | `string` |  |
+| `record` | `[]any` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -1592,12 +1621,16 @@ fmt.Println(whois_poc) // the loaded record
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1614,9 +1647,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1662,9 +1695,9 @@ stores the returned data and match criteria internally.
 
 ```go
 abuse := client.Abuse(nil)
-abuse.Load(map[string]any{"id": "example_id"}, nil)
+abuse.Load(nil, nil)
 
-// abuse.Data() now returns the loaded abuse data
+// abuse.Data() now returns the abuse data from the last load
 // abuse.Match() returns the last match criteria
 ```
 

@@ -124,7 +124,7 @@ class General
     public ?array $value = null;
 }
 
-/** Match filter for General#create (any subset of General fields). */
+/** Request payload for General#create. */
 class GeneralCreateData
 {
     public ?string $summary = null;
@@ -151,7 +151,7 @@ class GetCurrentInformation
     public ?string $timezone = null;
 }
 
-/** Match filter for GetCurrentInformation#load (any subset of GetCurrentInformation fields). */
+/** Request payload for GetCurrentInformation#load. */
 class GetCurrentInformationLoadMatch
 {
     public ?array $asn = null;
@@ -253,7 +253,7 @@ class Lite
     public string $ip;
 }
 
-/** Match filter for Lite#load (any subset of Lite fields). */
+/** Request payload for Lite#load. */
 class LiteLoadMatch
 {
     public ?string $as_domain = null;
@@ -296,7 +296,7 @@ class Men
     public string $token;
 }
 
-/** Match filter for Men#load (any subset of Men fields). */
+/** Request payload for Men#load. */
 class MenLoadMatch
 {
     public ?array $feature = null;

@@ -4,6 +4,11 @@
 
 The Python SDK for the IpinfoDeveloper API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Abuse()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -40,10 +45,38 @@ client = IpinfoDeveloperSDK({
 
 ```python
 try:
-    abuse = client.Abuse().load({"id": "example_id"})
+    abuse = client.Abuse().load()
     print(abuse)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    abuse = client.Abuse().load()
+    print(abuse)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -64,7 +97,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -90,7 +126,7 @@ Create a mock client for unit testing — no server required:
 client = IpinfoDeveloperSDK.test()
 
 # Entity ops return the bare record and raise on error.
-abuse = client.Abuse().load({"id": "test01"})
+abuse = client.Abuse().load()
 # abuse contains the mock response record
 ```
 
@@ -207,8 +243,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -687,17 +721,17 @@ Create an instance: `abuse = client.Abuse()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
+| `address` | `str` |  |
+| `country` | `str` |  |
+| `email` | `str` |  |
+| `name` | `str` |  |
+| `network` | `str` |  |
+| `phone` | `str` |  |
 
 #### Example: Load
 
 ```python
-abuse = client.Abuse().load({"id": "abuse_id"})
+abuse = client.Abuse().load()
 ```
 
 
@@ -709,31 +743,31 @@ Create an instance: `asn = client.Asn()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allocated` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$STRING`` |  |
-| `downstream` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `num_ip` | ``$INTEGER`` |  |
-| `peer` | ``$ARRAY`` |  |
-| `prefix` | ``$ARRAY`` |  |
-| `prefixes6` | ``$ARRAY`` |  |
-| `registry` | ``$STRING`` |  |
-| `route` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `upstream` | ``$ARRAY`` |  |
+| `allocated` | `str` |  |
+| `asn` | `str` |  |
+| `country` | `str` |  |
+| `domain` | `str` |  |
+| `downstream` | `list` |  |
+| `name` | `str` |  |
+| `num_ip` | `int` |  |
+| `peer` | `list` |  |
+| `prefix` | `list` |  |
+| `prefixes6` | `list` |  |
+| `registry` | `str` |  |
+| `route` | `str` |  |
+| `type` | `str` |  |
+| `upstream` | `list` |  |
 
 #### Example: List
 
 ```python
-asns = client.Asn().list({})
+asns = client.Asn().list()
 ```
 
 
@@ -751,14 +785,14 @@ Create an instance: `carrier = client.Carrier()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `mcc` | ``$STRING`` |  |
-| `mnc` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `mcc` | `str` |  |
+| `mnc` | `str` |  |
+| `name` | `str` |  |
 
 #### Example: Load
 
 ```python
-carrier = client.Carrier().load({"id": "carrier_id"})
+carrier = client.Carrier().load()
 ```
 
 
@@ -776,14 +810,14 @@ Create an instance: `company = client.Company()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `domain` | `str` |  |
+| `name` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
 ```python
-company = client.Company().load({"id": "company_id"})
+company = client.Company().load()
 ```
 
 
@@ -801,20 +835,20 @@ Create an instance: `core = client.Core()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
+| `as` | `dict` |  |
+| `geo` | `dict` |  |
+| `hostname` | `str` |  |
+| `ip` | `str` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
 
 #### Example: Load
 
 ```python
-core = client.Core().load({"id": "core_id"})
+core = client.Core().load()
 ```
 
 
@@ -832,10 +866,10 @@ Create an instance: `domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$ARRAY`` |  |
-| `ip` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `total` | ``$INTEGER`` |  |
+| `domain` | `list` |  |
+| `ip` | `str` |  |
+| `page` | `int` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -858,10 +892,10 @@ Create an instance: `general = client.General()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` |  |
-| `8_8_8_8city` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `value` | ``$OBJECT`` |  |
+| `8_8_8_8` | `dict` |  |
+| `8_8_8_8city` | `str` |  |
+| `summary` | `str` |  |
+| `value` | `dict` |  |
 
 #### Example: Create
 
@@ -885,26 +919,26 @@ Create an instance: `get_current_information = client.GetCurrentInformation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `dict` |  |
+| `bogon` | `bool` |  |
+| `carrier` | `dict` |  |
+| `city` | `str` |  |
+| `company` | `dict` |  |
+| `country` | `str` |  |
+| `domain` | `dict` |  |
+| `hostname` | `str` |  |
+| `ip` | `str` |  |
+| `loc` | `str` |  |
+| `org` | `str` |  |
+| `postal` | `str` |  |
+| `privacy` | `dict` |  |
+| `region` | `str` |  |
+| `timezone` | `str` |  |
 
 #### Example: Load
 
 ```python
-get_current_information = client.GetCurrentInformation().load({"id": "get_current_information_id"})
+get_current_information = client.GetCurrentInformation().load()
 ```
 
 
@@ -922,21 +956,21 @@ Create an instance: `get_information_by_ip = client.GetInformationByIp()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `dict` |  |
+| `bogon` | `bool` |  |
+| `carrier` | `dict` |  |
+| `city` | `str` |  |
+| `company` | `dict` |  |
+| `country` | `str` |  |
+| `domain` | `dict` |  |
+| `hostname` | `str` |  |
+| `ip` | `str` |  |
+| `loc` | `str` |  |
+| `org` | `str` |  |
+| `postal` | `str` |  |
+| `privacy` | `dict` |  |
+| `region` | `str` |  |
+| `timezone` | `str` |  |
 
 #### Example: Load
 
@@ -959,14 +993,14 @@ Create an instance: `ipinfo_core = client.IpinfoCore()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `str` |  |
+| `key` | `str` |  |
+| `region` | `str` |  |
 
 #### Example: Load
 
 ```python
-ipinfo_core = client.IpinfoCore().load({"id": "ipinfo_core_id"})
+ipinfo_core = client.IpinfoCore().load()
 ```
 
 
@@ -1001,14 +1035,14 @@ Create an instance: `ipinfo_plus = client.IpinfoPlus()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `str` |  |
+| `key` | `str` |  |
+| `region` | `str` |  |
 
 #### Example: Load
 
 ```python
-ipinfo_plus = client.IpinfoPlus().load({"id": "ipinfo_plus_id"})
+ipinfo_plus = client.IpinfoPlus().load()
 ```
 
 
@@ -1026,19 +1060,19 @@ Create an instance: `lite = client.Lite()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as_domain` | ``$STRING`` |  |
-| `as_name` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
+| `as_domain` | `str` |  |
+| `as_name` | `str` |  |
+| `asn` | `str` |  |
+| `continent` | `str` |  |
+| `continent_code` | `str` |  |
+| `country` | `str` |  |
+| `country_code` | `str` |  |
+| `ip` | `str` |  |
 
 #### Example: Load
 
 ```python
-lite = client.Lite().load({"id": "lite_id"})
+lite = client.Lite().load()
 ```
 
 
@@ -1056,17 +1090,17 @@ Create an instance: `max = client.Max()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `dict` |  |
+| `as` | `dict` |  |
+| `geo` | `dict` |  |
+| `hostname` | `str` |  |
+| `ip` | `str` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
+| `mobile` | `dict` |  |
 
 #### Example: Load
 
@@ -1089,14 +1123,14 @@ Create an instance: `men = client.Men()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | ``$OBJECT`` |  |
-| `request` | ``$OBJECT`` |  |
-| `token` | ``$STRING`` |  |
+| `feature` | `dict` |  |
+| `request` | `dict` |  |
+| `token` | `str` |  |
 
 #### Example: Load
 
 ```python
-men = client.Men().load({"id": "men_id"})
+men = client.Men().load()
 ```
 
 
@@ -1114,12 +1148,12 @@ Create an instance: `place = client.Place()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `ssid` | ``$STRING`` |  |
+| `category` | `str` |  |
+| `ip` | `str` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `name` | `str` |  |
+| `ssid` | `str` |  |
 
 #### Example: Load
 
@@ -1142,16 +1176,16 @@ Create an instance: `plus = client.Plus()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `dict` |  |
+| `as` | `dict` |  |
+| `geo` | `dict` |  |
+| `ip` | `str` |  |
+| `is_anonymous` | `bool` |  |
+| `is_anycast` | `bool` |  |
+| `is_hosting` | `bool` |  |
+| `is_mobile` | `bool` |  |
+| `is_satellite` | `bool` |  |
+| `mobile` | `dict` |  |
 
 #### Example: Load
 
@@ -1174,17 +1208,17 @@ Create an instance: `privacy = client.Privacy()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
+| `hosting` | `bool` |  |
+| `proxy` | `bool` |  |
+| `relay` | `bool` |  |
+| `service` | `str` |  |
+| `tor` | `bool` |  |
+| `vpn` | `bool` |  |
 
 #### Example: Load
 
 ```python
-privacy = client.Privacy().load({"id": "privacy_id"})
+privacy = client.Privacy().load()
 ```
 
 
@@ -1196,33 +1230,33 @@ Create an instance: `privacy_extended = client.PrivacyExtended()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `census` | ``$BOOLEAN`` |  |
-| `census_port` | ``$ARRAY`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `coverage` | ``$NUMBER`` |  |
-| `device_activity` | ``$BOOLEAN`` |  |
-| `first_seen` | ``$STRING`` |  |
-| `hosting` | ``$BOOLEAN`` |  |
-| `inferred` | ``$BOOLEAN`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
-| `vpn_config` | ``$BOOLEAN`` |  |
-| `whoi` | ``$BOOLEAN`` |  |
+| `census` | `bool` |  |
+| `census_port` | `list` |  |
+| `confidence` | `int` |  |
+| `coverage` | `float` |  |
+| `device_activity` | `bool` |  |
+| `first_seen` | `str` |  |
+| `hosting` | `bool` |  |
+| `inferred` | `bool` |  |
+| `last_seen` | `str` |  |
+| `proxy` | `bool` |  |
+| `relay` | `bool` |  |
+| `service` | `str` |  |
+| `tor` | `bool` |  |
+| `vpn` | `bool` |  |
+| `vpn_config` | `bool` |  |
+| `whoi` | `bool` |  |
 
 #### Example: List
 
 ```python
-privacy_extendeds = client.PrivacyExtended().list({})
+privacy_extendeds = client.PrivacyExtended().list()
 ```
 
 
@@ -1240,10 +1274,10 @@ Create an instance: `range = client.Range()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `num_range` | ``$STRING`` |  |
-| `range` | ``$ARRAY`` |  |
-| `redirects_to` | ``$STRING`` |  |
+| `domain` | `str` |  |
+| `num_range` | `str` |  |
+| `range` | `list` |  |
+| `redirects_to` | `str` |  |
 
 #### Example: Load
 
@@ -1266,15 +1300,15 @@ Create an instance: `residential_proxy = client.ResidentialProxy()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | ``$STRING`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `percent_days_seen` | ``$INTEGER`` |  |
-| `service` | ``$STRING`` |  |
+| `ip` | `str` |  |
+| `last_seen` | `str` |  |
+| `percent_days_seen` | `int` |  |
+| `service` | `str` |  |
 
 #### Example: Load
 
 ```python
-residential_proxy = client.ResidentialProxy().load({"id": "residential_proxy_id"})
+residential_proxy = client.ResidentialProxy().load()
 ```
 
 
@@ -1291,7 +1325,7 @@ Create an instance: `single = client.Single()`
 #### Example: Load
 
 ```python
-single = client.Single().load({"id": "single_id"})
+single = client.Single().load()
 ```
 
 
@@ -1303,30 +1337,30 @@ Create an instance: `whois_asn = client.WhoisAsn()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abuse` | ``$STRING`` |  |
-| `admin` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `maintainer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `range` | ``$STRING`` |  |
-| `raw` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tech` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `abuse` | `str` |  |
+| `admin` | `str` |  |
+| `country` | `str` |  |
+| `id` | `str` |  |
+| `maintainer` | `str` |  |
+| `name` | `str` |  |
+| `org` | `str` |  |
+| `range` | `str` |  |
+| `raw` | `str` |  |
+| `source` | `str` |  |
+| `status` | `str` |  |
+| `tech` | `str` |  |
+| `updated` | `str` |  |
 
 #### Example: List
 
 ```python
-whois_asns = client.WhoisAsn().list({})
+whois_asns = client.WhoisAsn().list()
 ```
 
 
@@ -1344,15 +1378,15 @@ Create an instance: `whois_domain = client.WhoisDomain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `str` |  |
+| `page` | `int` |  |
+| `record` | `list` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```python
-whois_domain = client.WhoisDomain().load({"id": "whois_domain_id"})
+whois_domain = client.WhoisDomain().load()
 ```
 
 
@@ -1370,15 +1404,15 @@ Create an instance: `whois_ip = client.WhoisIp()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `str` |  |
+| `page` | `int` |  |
+| `record` | `list` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```python
-whois_ip = client.WhoisIp().load({"id": "whois_ip_id"})
+whois_ip = client.WhoisIp().load()
 ```
 
 
@@ -1396,15 +1430,15 @@ Create an instance: `whois_net_id = client.WhoisNetId()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `str` |  |
+| `page` | `int` |  |
+| `record` | `list` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
 ```python
-whois_net_id = client.WhoisNetId().load({"id": "whois_net_id_id"})
+whois_net_id = client.WhoisNetId().load()
 ```
 
 
@@ -1422,10 +1456,10 @@ Create an instance: `whois_org = client.WhoisOrg()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `org` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `org` | `str` |  |
+| `page` | `int` |  |
+| `record` | `list` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -1448,10 +1482,10 @@ Create an instance: `whois_poc = client.WhoisPoc()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `poc` | ``$STRING`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `page` | `int` |  |
+| `poc` | `str` |  |
+| `record` | `list` |  |
+| `total` | `int` |  |
 
 #### Example: Load
 
@@ -1460,12 +1494,16 @@ whois_poc = client.WhoisPoc().load({"id": "whois_poc_id"})
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1482,8 +1520,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1531,9 +1570,9 @@ stores the returned data and match criteria internally.
 
 ```python
 abuse = client.Abuse()
-abuse.load({"id": "example_id"})
+abuse.load()
 
-# abuse.data_get() now returns the loaded abuse data
+# abuse.data_get() now returns the abuse data from the last load
 # abuse.match_get() returns the last match criteria
 ```
 

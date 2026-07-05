@@ -93,7 +93,12 @@ export interface General {
   value?: Record<string, any>
 }
 
-export type GeneralCreateData = Partial<General>
+export interface GeneralCreateData {
+  "8_8_8_8"?: Record<string, any>
+  "8_8_8_8city"?: string
+  summary?: string
+  value?: Record<string, any>
+}
 
 export interface GetCurrentInformation {
   asn: Record<string, any>
@@ -113,7 +118,23 @@ export interface GetCurrentInformation {
   timezone?: string
 }
 
-export type GetCurrentInformationLoadMatch = Partial<GetCurrentInformation>
+export interface GetCurrentInformationLoadMatch {
+  asn?: Record<string, any>
+  bogon?: boolean
+  carrier?: Record<string, any>
+  city?: string
+  company?: Record<string, any>
+  country?: string
+  domain?: Record<string, any>
+  hostname?: string
+  ip?: string
+  loc?: string
+  org?: string
+  postal?: string
+  privacy?: Record<string, any>
+  region?: string
+  timezone?: string
+}
 
 export interface GetInformationByIp {
   asn: Record<string, any>
@@ -179,7 +200,16 @@ export interface Lite {
   ip: string
 }
 
-export type LiteLoadMatch = Partial<Lite>
+export interface LiteLoadMatch {
+  as_domain?: string
+  as_name?: string
+  asn?: string
+  continent?: string
+  continent_code?: string
+  country?: string
+  country_code?: string
+  ip?: string
+}
 
 export interface Max {
   anonymous: Record<string, any>
@@ -205,7 +235,11 @@ export interface Men {
   token: string
 }
 
-export type MenLoadMatch = Partial<Men>
+export interface MenLoadMatch {
+  feature?: Record<string, any>
+  request?: Record<string, any>
+  token?: string
+}
 
 export interface Place {
   category: string

@@ -64,8 +64,13 @@ class MaxEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: MaxLoadMatch, ctrl=None) -> Max:
+    def load(self, reqmatch=None, ctrl=None) -> Max:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Max().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,

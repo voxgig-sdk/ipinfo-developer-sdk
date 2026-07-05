@@ -8,7 +8,7 @@ Complete API reference for the IpinfoDeveloper PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/ipinfo-developer_sdk.php';
+require_once __DIR__ . '/ipinfodeveloper_sdk.php';
 
 $client = new IpinfoDeveloperSDK($options);
 ```
@@ -154,11 +154,11 @@ Create a new `WhoisOrgEntity` instance. Pass `null` for no initial data.
 
 Create a new `WhoisPocEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): IpinfoDeveloperUtility`
 
 Return a copy of the SDK utility object.
 
@@ -201,12 +201,12 @@ $abuse = $client->Abuse();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `network` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `country` | `string` | No |  |
+| `email` | `string` | No |  |
+| `name` | `string` | No |  |
+| `network` | `string` | No |  |
+| `phone` | `string` | No |  |
 
 ### Operations
 
@@ -215,24 +215,24 @@ $abuse = $client->Abuse();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Abuse()->load(["id" => "abuse_id"]);
+$result = $client->Abuse()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -241,7 +241,7 @@ Set the entity match criteria.
 Create a new `AbuseEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -258,46 +258,46 @@ $asn = $client->Asn();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `allocated` | ``$STRING`` | No |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$STRING`` | Yes |  |
-| `downstream` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `num_ip` | ``$INTEGER`` | No |  |
-| `peer` | ``$ARRAY`` | No |  |
-| `prefix` | ``$ARRAY`` | No |  |
-| `prefixes6` | ``$ARRAY`` | No |  |
-| `registry` | ``$STRING`` | No |  |
-| `route` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
-| `upstream` | ``$ARRAY`` | No |  |
+| `allocated` | `string` | No |  |
+| `asn` | `string` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `string` | Yes |  |
+| `downstream` | `array` | No |  |
+| `name` | `string` | Yes |  |
+| `num_ip` | `int` | No |  |
+| `peer` | `array` | No |  |
+| `prefix` | `array` | No |  |
+| `prefixes6` | `array` | No |  |
+| `registry` | `string` | No |  |
+| `route` | `string` | No |  |
+| `type` | `string` | Yes |  |
+| `upstream` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Asn()->list([]);
+$results = $client->Asn()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -306,7 +306,7 @@ Set the entity match criteria.
 Create a new `AsnEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -323,9 +323,9 @@ $carrier = $client->Carrier();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `mcc` | ``$STRING`` | Yes |  |
-| `mnc` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
+| `mcc` | `string` | Yes |  |
+| `mnc` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
 
 ### Operations
 
@@ -334,24 +334,24 @@ $carrier = $client->Carrier();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Carrier()->load(["id" => "carrier_id"]);
+$result = $client->Carrier()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -360,7 +360,7 @@ Set the entity match criteria.
 Create a new `CarrierEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -377,9 +377,9 @@ $company = $client->Company();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `type` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -388,24 +388,24 @@ $company = $client->Company();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Company()->load(["id" => "company_id"]);
+$result = $client->Company()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -414,7 +414,7 @@ Set the entity match criteria.
 Create a new `CompanyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -431,15 +431,15 @@ $core = $client->Core();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
+| `as` | `array` | No |  |
+| `geo` | `array` | No |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
 
 ### Operations
 
@@ -448,24 +448,24 @@ $core = $client->Core();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Core()->load(["id" => "core_id"]);
+$result = $client->Core()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -474,7 +474,7 @@ Set the entity match criteria.
 Create a new `CoreEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -491,10 +491,10 @@ $domain = $client->Domain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$ARRAY`` | No |  |
-| `ip` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `total` | ``$INTEGER`` | Yes |  |
+| `domain` | `array` | No |  |
+| `ip` | `string` | No |  |
+| `page` | `int` | No |  |
+| `total` | `int` | Yes |  |
 
 ### Operations
 
@@ -508,19 +508,19 @@ $result = $client->Domain()->load(["id" => "domain_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -529,7 +529,7 @@ Set the entity match criteria.
 Create a new `DomainEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -546,10 +546,10 @@ $general = $client->General();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` | No |  |
-| `8_8_8_8city` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `value` | ``$OBJECT`` | No |  |
+| `8_8_8_8` | `array` | No |  |
+| `8_8_8_8city` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `value` | `array` | No |  |
 
 ### Operations
 
@@ -564,19 +564,19 @@ $result = $client->General()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -585,7 +585,7 @@ Set the entity match criteria.
 Create a new `GeneralEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -602,21 +602,21 @@ $get_current_information = $client->GetCurrentInformation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `array` | Yes |  |
+| `bogon` | `bool` | No |  |
+| `carrier` | `array` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `array` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `array` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `array` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -625,24 +625,24 @@ $get_current_information = $client->GetCurrentInformation();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetCurrentInformation()->load(["id" => "get_current_information_id"]);
+$result = $client->GetCurrentInformation()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -651,7 +651,7 @@ Set the entity match criteria.
 Create a new `GetCurrentInformationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -668,21 +668,21 @@ $get_information_by_ip = $client->GetInformationByIp();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | ``$OBJECT`` | Yes |  |
-| `bogon` | ``$BOOLEAN`` | No |  |
-| `carrier` | ``$OBJECT`` | Yes |  |
-| `city` | ``$STRING`` | No |  |
-| `company` | ``$OBJECT`` | Yes |  |
-| `country` | ``$STRING`` | No |  |
-| `domain` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `loc` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `postal` | ``$STRING`` | No |  |
-| `privacy` | ``$OBJECT`` | Yes |  |
-| `region` | ``$STRING`` | No |  |
-| `timezone` | ``$STRING`` | No |  |
+| `asn` | `array` | Yes |  |
+| `bogon` | `bool` | No |  |
+| `carrier` | `array` | Yes |  |
+| `city` | `string` | No |  |
+| `company` | `array` | Yes |  |
+| `country` | `string` | No |  |
+| `domain` | `array` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `loc` | `string` | No |  |
+| `org` | `string` | No |  |
+| `postal` | `string` | No |  |
+| `privacy` | `array` | Yes |  |
+| `region` | `string` | No |  |
+| `timezone` | `string` | No |  |
 
 ### Operations
 
@@ -696,19 +696,19 @@ $result = $client->GetInformationByIp()->load(["id" => "get_information_by_ip_id
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -717,7 +717,7 @@ Set the entity match criteria.
 Create a new `GetInformationByIpEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -734,9 +734,9 @@ $ipinfo_core = $client->IpinfoCore();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -745,24 +745,24 @@ $ipinfo_core = $client->IpinfoCore();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->IpinfoCore()->load(["id" => "ipinfo_core_id"]);
+$result = $client->IpinfoCore()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -771,7 +771,7 @@ Set the entity match criteria.
 Create a new `IpinfoCoreEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -796,19 +796,19 @@ $result = $client->IpinfoLite()->load(["id" => "ipinfo_lite_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -817,7 +817,7 @@ Set the entity match criteria.
 Create a new `IpinfoLiteEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -834,9 +834,9 @@ $ipinfo_plus = $client->IpinfoPlus();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `region` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `key` | `string` | No |  |
+| `region` | `string` | No |  |
 
 ### Operations
 
@@ -845,24 +845,24 @@ $ipinfo_plus = $client->IpinfoPlus();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->IpinfoPlus()->load(["id" => "ipinfo_plus_id"]);
+$result = $client->IpinfoPlus()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -871,7 +871,7 @@ Set the entity match criteria.
 Create a new `IpinfoPlusEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -888,14 +888,14 @@ $lite = $client->Lite();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `as_domain` | ``$STRING`` | Yes |  |
-| `as_name` | ``$STRING`` | Yes |  |
-| `asn` | ``$STRING`` | Yes |  |
-| `continent` | ``$STRING`` | Yes |  |
-| `continent_code` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `country_code` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
+| `as_domain` | `string` | Yes |  |
+| `as_name` | `string` | Yes |  |
+| `asn` | `string` | Yes |  |
+| `continent` | `string` | Yes |  |
+| `continent_code` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `country_code` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
 
 ### Operations
 
@@ -904,24 +904,24 @@ $lite = $client->Lite();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Lite()->load(["id" => "lite_id"]);
+$result = $client->Lite()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -930,7 +930,7 @@ Set the entity match criteria.
 Create a new `LiteEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -947,17 +947,17 @@ $max = $client->Max();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | Yes |  |
-| `as` | ``$OBJECT`` | Yes |  |
-| `geo` | ``$OBJECT`` | Yes |  |
-| `hostname` | ``$STRING`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `array` | Yes |  |
+| `as` | `array` | Yes |  |
+| `geo` | `array` | Yes |  |
+| `hostname` | `string` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
+| `mobile` | `array` | No |  |
 
 ### Operations
 
@@ -971,19 +971,19 @@ $result = $client->Max()->load(["id" => "max_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -992,7 +992,7 @@ Set the entity match criteria.
 Create a new `MaxEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1009,9 +1009,9 @@ $men = $client->Men();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | ``$OBJECT`` | Yes |  |
-| `request` | ``$OBJECT`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
+| `feature` | `array` | Yes |  |
+| `request` | `array` | Yes |  |
+| `token` | `string` | Yes |  |
 
 ### Operations
 
@@ -1020,24 +1020,24 @@ $men = $client->Men();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Men()->load(["id" => "men_id"]);
+$result = $client->Men()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1046,7 +1046,7 @@ Set the entity match criteria.
 Create a new `MenEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1063,12 +1063,12 @@ $place = $client->Place();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `ssid` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `latitude` | `float` | Yes |  |
+| `longitude` | `float` | Yes |  |
+| `name` | `string` | Yes |  |
+| `ssid` | `string` | Yes |  |
 
 ### Operations
 
@@ -1082,19 +1082,19 @@ $result = $client->Place()->load(["id" => "place_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1103,7 +1103,7 @@ Set the entity match criteria.
 Create a new `PlaceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1120,16 +1120,16 @@ $plus = $client->Plus();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` | No |  |
-| `as` | ``$OBJECT`` | No |  |
-| `geo` | ``$OBJECT`` | No |  |
-| `ip` | ``$STRING`` | Yes |  |
-| `is_anonymous` | ``$BOOLEAN`` | No |  |
-| `is_anycast` | ``$BOOLEAN`` | No |  |
-| `is_hosting` | ``$BOOLEAN`` | No |  |
-| `is_mobile` | ``$BOOLEAN`` | No |  |
-| `is_satellite` | ``$BOOLEAN`` | No |  |
-| `mobile` | ``$OBJECT`` | No |  |
+| `anonymous` | `array` | No |  |
+| `as` | `array` | No |  |
+| `geo` | `array` | No |  |
+| `ip` | `string` | Yes |  |
+| `is_anonymous` | `bool` | No |  |
+| `is_anycast` | `bool` | No |  |
+| `is_hosting` | `bool` | No |  |
+| `is_mobile` | `bool` | No |  |
+| `is_satellite` | `bool` | No |  |
+| `mobile` | `array` | No |  |
 
 ### Operations
 
@@ -1143,19 +1143,19 @@ $result = $client->Plus()->load(["id" => "plus_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1164,7 +1164,7 @@ Set the entity match criteria.
 Create a new `PlusEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1181,12 +1181,12 @@ $privacy = $client->Privacy();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
+| `hosting` | `bool` | Yes |  |
+| `proxy` | `bool` | Yes |  |
+| `relay` | `bool` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `bool` | Yes |  |
+| `vpn` | `bool` | Yes |  |
 
 ### Operations
 
@@ -1195,24 +1195,24 @@ $privacy = $client->Privacy();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Privacy()->load(["id" => "privacy_id"]);
+$result = $client->Privacy()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1221,7 +1221,7 @@ Set the entity match criteria.
 Create a new `PrivacyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1238,48 +1238,48 @@ $privacy_extended = $client->PrivacyExtended();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | ``$BOOLEAN`` | No |  |
-| `census_port` | ``$ARRAY`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `coverage` | ``$NUMBER`` | No |  |
-| `device_activity` | ``$BOOLEAN`` | No |  |
-| `first_seen` | ``$STRING`` | No |  |
-| `hosting` | ``$BOOLEAN`` | Yes |  |
-| `inferred` | ``$BOOLEAN`` | No |  |
-| `last_seen` | ``$STRING`` | No |  |
-| `proxy` | ``$BOOLEAN`` | Yes |  |
-| `relay` | ``$BOOLEAN`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
-| `tor` | ``$BOOLEAN`` | Yes |  |
-| `vpn` | ``$BOOLEAN`` | Yes |  |
-| `vpn_config` | ``$BOOLEAN`` | No |  |
-| `whoi` | ``$BOOLEAN`` | No |  |
+| `census` | `bool` | No |  |
+| `census_port` | `array` | No |  |
+| `confidence` | `int` | No |  |
+| `coverage` | `float` | No |  |
+| `device_activity` | `bool` | No |  |
+| `first_seen` | `string` | No |  |
+| `hosting` | `bool` | Yes |  |
+| `inferred` | `bool` | No |  |
+| `last_seen` | `string` | No |  |
+| `proxy` | `bool` | Yes |  |
+| `relay` | `bool` | Yes |  |
+| `service` | `string` | Yes |  |
+| `tor` | `bool` | Yes |  |
+| `vpn` | `bool` | Yes |  |
+| `vpn_config` | `bool` | No |  |
+| `whoi` | `bool` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->PrivacyExtended()->list([]);
+$results = $client->PrivacyExtended()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1288,7 +1288,7 @@ Set the entity match criteria.
 Create a new `PrivacyExtendedEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1305,10 +1305,10 @@ $range = $client->Range();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | ``$STRING`` | Yes |  |
-| `num_range` | ``$STRING`` | Yes |  |
-| `range` | ``$ARRAY`` | Yes |  |
-| `redirects_to` | ``$STRING`` | Yes |  |
+| `domain` | `string` | Yes |  |
+| `num_range` | `string` | Yes |  |
+| `range` | `array` | Yes |  |
+| `redirects_to` | `string` | Yes |  |
 
 ### Operations
 
@@ -1322,19 +1322,19 @@ $result = $client->Range()->load(["id" => "range_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1343,7 +1343,7 @@ Set the entity match criteria.
 Create a new `RangeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1360,10 +1360,10 @@ $residential_proxy = $client->ResidentialProxy();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | Yes |  |
-| `last_seen` | ``$STRING`` | Yes |  |
-| `percent_days_seen` | ``$INTEGER`` | Yes |  |
-| `service` | ``$STRING`` | Yes |  |
+| `ip` | `string` | Yes |  |
+| `last_seen` | `string` | Yes |  |
+| `percent_days_seen` | `int` | Yes |  |
+| `service` | `string` | Yes |  |
 
 ### Operations
 
@@ -1372,24 +1372,24 @@ $residential_proxy = $client->ResidentialProxy();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ResidentialProxy()->load(["id" => "residential_proxy_id"]);
+$result = $client->ResidentialProxy()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1398,7 +1398,7 @@ Set the entity match criteria.
 Create a new `ResidentialProxyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1418,24 +1418,24 @@ $single = $client->Single();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Single()->load(["id" => "single_id"]);
+$result = $client->Single()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1444,7 +1444,7 @@ Set the entity match criteria.
 Create a new `SingleEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1461,45 +1461,45 @@ $whois_asn = $client->WhoisAsn();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `abuse` | ``$STRING`` | No |  |
-| `admin` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `maintainer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `org` | ``$STRING`` | No |  |
-| `range` | ``$STRING`` | No |  |
-| `raw` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `tech` | ``$STRING`` | No |  |
-| `updated` | ``$STRING`` | No |  |
+| `abuse` | `string` | No |  |
+| `admin` | `string` | No |  |
+| `country` | `string` | No |  |
+| `id` | `string` | No |  |
+| `maintainer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `org` | `string` | No |  |
+| `range` | `string` | No |  |
+| `raw` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `tech` | `string` | No |  |
+| `updated` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->WhoisAsn()->list([]);
+$results = $client->WhoisAsn()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1508,7 +1508,7 @@ Set the entity match criteria.
 Create a new `WhoisAsnEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1525,10 +1525,10 @@ $whois_domain = $client->WhoisDomain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `array` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1537,24 +1537,24 @@ $whois_domain = $client->WhoisDomain();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->WhoisDomain()->load(["id" => "whois_domain_id"]);
+$result = $client->WhoisDomain()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1563,7 +1563,7 @@ Set the entity match criteria.
 Create a new `WhoisDomainEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1580,10 +1580,10 @@ $whois_ip = $client->WhoisIp();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `array` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1592,24 +1592,24 @@ $whois_ip = $client->WhoisIp();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->WhoisIp()->load(["id" => "whois_ip_id"]);
+$result = $client->WhoisIp()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1618,7 +1618,7 @@ Set the entity match criteria.
 Create a new `WhoisIpEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1635,10 +1635,10 @@ $whois_net_id = $client->WhoisNetId();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `net` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `net` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `array` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1647,24 +1647,24 @@ $whois_net_id = $client->WhoisNetId();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->WhoisNetId()->load(["id" => "whois_net_id_id"]);
+$result = $client->WhoisNetId()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1673,7 +1673,7 @@ Set the entity match criteria.
 Create a new `WhoisNetIdEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1690,10 +1690,10 @@ $whois_org = $client->WhoisOrg();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `org` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `org` | `string` | No |  |
+| `page` | `int` | No |  |
+| `record` | `array` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1707,19 +1707,19 @@ $result = $client->WhoisOrg()->load(["id" => "whois_org_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1728,7 +1728,7 @@ Set the entity match criteria.
 Create a new `WhoisOrgEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -1745,10 +1745,10 @@ $whois_poc = $client->WhoisPoc();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `poc` | ``$STRING`` | No |  |
-| `record` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `page` | `int` | No |  |
+| `poc` | `string` | No |  |
+| `record` | `array` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -1762,19 +1762,19 @@ $result = $client->WhoisPoc()->load(["id" => "whois_poc_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -1783,7 +1783,7 @@ Set the entity match criteria.
 Create a new `WhoisPocEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

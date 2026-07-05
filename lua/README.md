@@ -4,6 +4,8 @@
 
 The Lua SDK for the IpinfoDeveloper API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Abuse()` — each with the same small set of operations (`list`, `load`, `create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,9 +38,31 @@ local client = sdk.new({
 ### 3. Load an abuse
 
 ```lua
-local abuse, err = client:Abuse():load({ id = "example_id" })
+local abuse, err = client:Abuse():load()
 if err then error(err) end
 print(abuse)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local abuse, err = client:Abuse():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -84,8 +108,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Abuse():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Abuse():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -203,8 +227,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -219,12 +241,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` / `create` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local abuse, err = client:Abuse():load({ id = "example_id" })
+    local abuse, err = client:Abuse():load()
     if err then error(err) end
     -- abuse is the loaded record
 
@@ -684,17 +706,17 @@ Create an instance: `local abuse = client:Abuse(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `network` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `country` | `string` |  |
+| `email` | `string` |  |
+| `name` | `string` |  |
+| `network` | `string` |  |
+| `phone` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local abuse, err = client:Abuse():load({ id = "abuse_id" })
+local abuse, err = client:Abuse():load()
 ```
 
 
@@ -712,20 +734,20 @@ Create an instance: `local asn = client:Asn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `allocated` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$STRING`` |  |
-| `downstream` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `num_ip` | ``$INTEGER`` |  |
-| `peer` | ``$ARRAY`` |  |
-| `prefix` | ``$ARRAY`` |  |
-| `prefixes6` | ``$ARRAY`` |  |
-| `registry` | ``$STRING`` |  |
-| `route` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `upstream` | ``$ARRAY`` |  |
+| `allocated` | `string` |  |
+| `asn` | `string` |  |
+| `country` | `string` |  |
+| `domain` | `string` |  |
+| `downstream` | `table` |  |
+| `name` | `string` |  |
+| `num_ip` | `number` |  |
+| `peer` | `table` |  |
+| `prefix` | `table` |  |
+| `prefixes6` | `table` |  |
+| `registry` | `string` |  |
+| `route` | `string` |  |
+| `type` | `string` |  |
+| `upstream` | `table` |  |
 
 #### Example: List
 
@@ -748,14 +770,14 @@ Create an instance: `local carrier = client:Carrier(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `mcc` | ``$STRING`` |  |
-| `mnc` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `mcc` | `string` |  |
+| `mnc` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local carrier, err = client:Carrier():load({ id = "carrier_id" })
+local carrier, err = client:Carrier():load()
 ```
 
 
@@ -773,14 +795,14 @@ Create an instance: `local company = client:Company(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `domain` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local company, err = client:Company():load({ id = "company_id" })
+local company, err = client:Company():load()
 ```
 
 
@@ -798,20 +820,20 @@ Create an instance: `local core = client:Core(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
+| `as` | `table` |  |
+| `geo` | `table` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `boolean` |  |
+| `is_anycast` | `boolean` |  |
+| `is_hosting` | `boolean` |  |
+| `is_mobile` | `boolean` |  |
+| `is_satellite` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local core, err = client:Core():load({ id = "core_id" })
+local core, err = client:Core():load()
 ```
 
 
@@ -829,10 +851,10 @@ Create an instance: `local domain = client:Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$ARRAY`` |  |
-| `ip` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `total` | ``$INTEGER`` |  |
+| `domain` | `table` |  |
+| `ip` | `string` |  |
+| `page` | `number` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
@@ -855,10 +877,10 @@ Create an instance: `local general = client:General(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `8_8_8_8` | ``$OBJECT`` |  |
-| `8_8_8_8city` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `value` | ``$OBJECT`` |  |
+| `8_8_8_8` | `table` |  |
+| `8_8_8_8city` | `string` |  |
+| `summary` | `string` |  |
+| `value` | `table` |  |
 
 #### Example: Create
 
@@ -882,26 +904,26 @@ Create an instance: `local get_current_information = client:GetCurrentInformatio
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `table` |  |
+| `bogon` | `boolean` |  |
+| `carrier` | `table` |  |
+| `city` | `string` |  |
+| `company` | `table` |  |
+| `country` | `string` |  |
+| `domain` | `table` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `loc` | `string` |  |
+| `org` | `string` |  |
+| `postal` | `string` |  |
+| `privacy` | `table` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local get_current_information, err = client:GetCurrentInformation():load({ id = "get_current_information_id" })
+local get_current_information, err = client:GetCurrentInformation():load()
 ```
 
 
@@ -919,21 +941,21 @@ Create an instance: `local get_information_by_ip = client:GetInformationByIp(nil
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | ``$OBJECT`` |  |
-| `bogon` | ``$BOOLEAN`` |  |
-| `carrier` | ``$OBJECT`` |  |
-| `city` | ``$STRING`` |  |
-| `company` | ``$OBJECT`` |  |
-| `country` | ``$STRING`` |  |
-| `domain` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `loc` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `postal` | ``$STRING`` |  |
-| `privacy` | ``$OBJECT`` |  |
-| `region` | ``$STRING`` |  |
-| `timezone` | ``$STRING`` |  |
+| `asn` | `table` |  |
+| `bogon` | `boolean` |  |
+| `carrier` | `table` |  |
+| `city` | `string` |  |
+| `company` | `table` |  |
+| `country` | `string` |  |
+| `domain` | `table` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `loc` | `string` |  |
+| `org` | `string` |  |
+| `postal` | `string` |  |
+| `privacy` | `table` |  |
+| `region` | `string` |  |
+| `timezone` | `string` |  |
 
 #### Example: Load
 
@@ -956,14 +978,14 @@ Create an instance: `local ipinfo_core = client:IpinfoCore(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `key` | `string` |  |
+| `region` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local ipinfo_core, err = client:IpinfoCore():load({ id = "ipinfo_core_id" })
+local ipinfo_core, err = client:IpinfoCore():load()
 ```
 
 
@@ -998,14 +1020,14 @@ Create an instance: `local ipinfo_plus = client:IpinfoPlus(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `region` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `key` | `string` |  |
+| `region` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local ipinfo_plus, err = client:IpinfoPlus():load({ id = "ipinfo_plus_id" })
+local ipinfo_plus, err = client:IpinfoPlus():load()
 ```
 
 
@@ -1023,19 +1045,19 @@ Create an instance: `local lite = client:Lite(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `as_domain` | ``$STRING`` |  |
-| `as_name` | ``$STRING`` |  |
-| `asn` | ``$STRING`` |  |
-| `continent` | ``$STRING`` |  |
-| `continent_code` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_code` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
+| `as_domain` | `string` |  |
+| `as_name` | `string` |  |
+| `asn` | `string` |  |
+| `continent` | `string` |  |
+| `continent_code` | `string` |  |
+| `country` | `string` |  |
+| `country_code` | `string` |  |
+| `ip` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local lite, err = client:Lite():load({ id = "lite_id" })
+local lite, err = client:Lite():load()
 ```
 
 
@@ -1053,17 +1075,17 @@ Create an instance: `local max = client:Max(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `hostname` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `table` |  |
+| `as` | `table` |  |
+| `geo` | `table` |  |
+| `hostname` | `string` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `boolean` |  |
+| `is_anycast` | `boolean` |  |
+| `is_hosting` | `boolean` |  |
+| `is_mobile` | `boolean` |  |
+| `is_satellite` | `boolean` |  |
+| `mobile` | `table` |  |
 
 #### Example: Load
 
@@ -1086,14 +1108,14 @@ Create an instance: `local men = client:Men(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | ``$OBJECT`` |  |
-| `request` | ``$OBJECT`` |  |
-| `token` | ``$STRING`` |  |
+| `feature` | `table` |  |
+| `request` | `table` |  |
+| `token` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local men, err = client:Men():load({ id = "men_id" })
+local men, err = client:Men():load()
 ```
 
 
@@ -1111,12 +1133,12 @@ Create an instance: `local place = client:Place(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `ip` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `ssid` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `ip` | `string` |  |
+| `latitude` | `number` |  |
+| `longitude` | `number` |  |
+| `name` | `string` |  |
+| `ssid` | `string` |  |
 
 #### Example: Load
 
@@ -1139,16 +1161,16 @@ Create an instance: `local plus = client:Plus(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `anonymous` | ``$OBJECT`` |  |
-| `as` | ``$OBJECT`` |  |
-| `geo` | ``$OBJECT`` |  |
-| `ip` | ``$STRING`` |  |
-| `is_anonymous` | ``$BOOLEAN`` |  |
-| `is_anycast` | ``$BOOLEAN`` |  |
-| `is_hosting` | ``$BOOLEAN`` |  |
-| `is_mobile` | ``$BOOLEAN`` |  |
-| `is_satellite` | ``$BOOLEAN`` |  |
-| `mobile` | ``$OBJECT`` |  |
+| `anonymous` | `table` |  |
+| `as` | `table` |  |
+| `geo` | `table` |  |
+| `ip` | `string` |  |
+| `is_anonymous` | `boolean` |  |
+| `is_anycast` | `boolean` |  |
+| `is_hosting` | `boolean` |  |
+| `is_mobile` | `boolean` |  |
+| `is_satellite` | `boolean` |  |
+| `mobile` | `table` |  |
 
 #### Example: Load
 
@@ -1171,17 +1193,17 @@ Create an instance: `local privacy = client:Privacy(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hosting` | ``$BOOLEAN`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
+| `hosting` | `boolean` |  |
+| `proxy` | `boolean` |  |
+| `relay` | `boolean` |  |
+| `service` | `string` |  |
+| `tor` | `boolean` |  |
+| `vpn` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local privacy, err = client:Privacy():load({ id = "privacy_id" })
+local privacy, err = client:Privacy():load()
 ```
 
 
@@ -1199,22 +1221,22 @@ Create an instance: `local privacy_extended = client:PrivacyExtended(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `census` | ``$BOOLEAN`` |  |
-| `census_port` | ``$ARRAY`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `coverage` | ``$NUMBER`` |  |
-| `device_activity` | ``$BOOLEAN`` |  |
-| `first_seen` | ``$STRING`` |  |
-| `hosting` | ``$BOOLEAN`` |  |
-| `inferred` | ``$BOOLEAN`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `proxy` | ``$BOOLEAN`` |  |
-| `relay` | ``$BOOLEAN`` |  |
-| `service` | ``$STRING`` |  |
-| `tor` | ``$BOOLEAN`` |  |
-| `vpn` | ``$BOOLEAN`` |  |
-| `vpn_config` | ``$BOOLEAN`` |  |
-| `whoi` | ``$BOOLEAN`` |  |
+| `census` | `boolean` |  |
+| `census_port` | `table` |  |
+| `confidence` | `number` |  |
+| `coverage` | `number` |  |
+| `device_activity` | `boolean` |  |
+| `first_seen` | `string` |  |
+| `hosting` | `boolean` |  |
+| `inferred` | `boolean` |  |
+| `last_seen` | `string` |  |
+| `proxy` | `boolean` |  |
+| `relay` | `boolean` |  |
+| `service` | `string` |  |
+| `tor` | `boolean` |  |
+| `vpn` | `boolean` |  |
+| `vpn_config` | `boolean` |  |
+| `whoi` | `boolean` |  |
 
 #### Example: List
 
@@ -1237,10 +1259,10 @@ Create an instance: `local range = client:Range(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | ``$STRING`` |  |
-| `num_range` | ``$STRING`` |  |
-| `range` | ``$ARRAY`` |  |
-| `redirects_to` | ``$STRING`` |  |
+| `domain` | `string` |  |
+| `num_range` | `string` |  |
+| `range` | `table` |  |
+| `redirects_to` | `string` |  |
 
 #### Example: Load
 
@@ -1263,15 +1285,15 @@ Create an instance: `local residential_proxy = client:ResidentialProxy(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | ``$STRING`` |  |
-| `last_seen` | ``$STRING`` |  |
-| `percent_days_seen` | ``$INTEGER`` |  |
-| `service` | ``$STRING`` |  |
+| `ip` | `string` |  |
+| `last_seen` | `string` |  |
+| `percent_days_seen` | `number` |  |
+| `service` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local residential_proxy, err = client:ResidentialProxy():load({ id = "residential_proxy_id" })
+local residential_proxy, err = client:ResidentialProxy():load()
 ```
 
 
@@ -1288,7 +1310,7 @@ Create an instance: `local single = client:Single(nil)`
 #### Example: Load
 
 ```lua
-local single, err = client:Single():load({ id = "single_id" })
+local single, err = client:Single():load()
 ```
 
 
@@ -1306,19 +1328,19 @@ Create an instance: `local whois_asn = client:WhoisAsn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `abuse` | ``$STRING`` |  |
-| `admin` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `maintainer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `org` | ``$STRING`` |  |
-| `range` | ``$STRING`` |  |
-| `raw` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `tech` | ``$STRING`` |  |
-| `updated` | ``$STRING`` |  |
+| `abuse` | `string` |  |
+| `admin` | `string` |  |
+| `country` | `string` |  |
+| `id` | `string` |  |
+| `maintainer` | `string` |  |
+| `name` | `string` |  |
+| `org` | `string` |  |
+| `range` | `string` |  |
+| `raw` | `string` |  |
+| `source` | `string` |  |
+| `status` | `string` |  |
+| `tech` | `string` |  |
+| `updated` | `string` |  |
 
 #### Example: List
 
@@ -1341,15 +1363,15 @@ Create an instance: `local whois_domain = client:WhoisDomain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `number` |  |
+| `record` | `table` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local whois_domain, err = client:WhoisDomain():load({ id = "whois_domain_id" })
+local whois_domain, err = client:WhoisDomain():load()
 ```
 
 
@@ -1367,15 +1389,15 @@ Create an instance: `local whois_ip = client:WhoisIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `number` |  |
+| `record` | `table` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local whois_ip, err = client:WhoisIp():load({ id = "whois_ip_id" })
+local whois_ip, err = client:WhoisIp():load()
 ```
 
 
@@ -1393,15 +1415,15 @@ Create an instance: `local whois_net_id = client:WhoisNetId(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `net` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `net` | `string` |  |
+| `page` | `number` |  |
+| `record` | `table` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local whois_net_id, err = client:WhoisNetId():load({ id = "whois_net_id_id" })
+local whois_net_id, err = client:WhoisNetId():load()
 ```
 
 
@@ -1419,10 +1441,10 @@ Create an instance: `local whois_org = client:WhoisOrg(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `org` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `org` | `string` |  |
+| `page` | `number` |  |
+| `record` | `table` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
@@ -1445,10 +1467,10 @@ Create an instance: `local whois_poc = client:WhoisPoc(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `poc` | ``$STRING`` |  |
-| `record` | ``$ARRAY`` |  |
-| `total` | ``$INTEGER`` |  |
+| `page` | `number` |  |
+| `poc` | `string` |  |
+| `record` | `table` |  |
+| `total` | `number` |  |
 
 #### Example: Load
 
@@ -1457,12 +1479,16 @@ local whois_poc, err = client:WhoisPoc():load({ id = "whois_poc_id" })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -1479,8 +1505,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -1529,9 +1556,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local abuse = client:Abuse()
-abuse:load({ id = "example_id" })
+abuse:load()
 
--- abuse:data_get() now returns the loaded abuse data
+-- abuse:data_get() now returns the abuse data from the last load
 -- abuse:match_get() returns the last match criteria
 ```
 
