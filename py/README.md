@@ -39,14 +39,15 @@ client = IpinfoDeveloperSDK({
 })
 ```
 
-### 3. Load an abuse
+### 3. Load an ipinfocore
 
+IpinfoCore is nested under field, so provide the `field`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    abuse = client.Abuse().load()
-    print(abuse)
+    ipinfocore = client.IpinfoCore().load({"field": "example_field"})
+    print(ipinfocore)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -731,7 +732,7 @@ Create an instance: `abuse = client.Abuse()`
 #### Example: Load
 
 ```python
-abuse = client.Abuse().load()
+abuse = client.Abuse().load({"ip": "ip"})
 ```
 
 
@@ -792,7 +793,7 @@ Create an instance: `carrier = client.Carrier()`
 #### Example: Load
 
 ```python
-carrier = client.Carrier().load()
+carrier = client.Carrier().load({"ip": "ip"})
 ```
 
 
@@ -817,7 +818,7 @@ Create an instance: `company = client.Company()`
 #### Example: Load
 
 ```python
-company = client.Company().load()
+company = client.Company().load({"ip": "ip"})
 ```
 
 
@@ -1000,7 +1001,7 @@ Create an instance: `ipinfo_core = client.IpinfoCore()`
 #### Example: Load
 
 ```python
-ipinfo_core = client.IpinfoCore().load()
+ipinfo_core = client.IpinfoCore().load({"field": "field"})
 ```
 
 
@@ -1042,7 +1043,7 @@ Create an instance: `ipinfo_plus = client.IpinfoPlus()`
 #### Example: Load
 
 ```python
-ipinfo_plus = client.IpinfoPlus().load()
+ipinfo_plus = client.IpinfoPlus().load({"field": "field"})
 ```
 
 
@@ -1218,7 +1219,7 @@ Create an instance: `privacy = client.Privacy()`
 #### Example: Load
 
 ```python
-privacy = client.Privacy().load()
+privacy = client.Privacy().load({"ip": "ip"})
 ```
 
 
@@ -1308,7 +1309,7 @@ Create an instance: `residential_proxy = client.ResidentialProxy()`
 #### Example: Load
 
 ```python
-residential_proxy = client.ResidentialProxy().load()
+residential_proxy = client.ResidentialProxy().load({"ip": "ip"})
 ```
 
 
@@ -1386,7 +1387,7 @@ Create an instance: `whois_domain = client.WhoisDomain()`
 #### Example: Load
 
 ```python
-whois_domain = client.WhoisDomain().load()
+whois_domain = client.WhoisDomain().load({"domain": "domain"})
 ```
 
 
@@ -1412,7 +1413,7 @@ Create an instance: `whois_ip = client.WhoisIp()`
 #### Example: Load
 
 ```python
-whois_ip = client.WhoisIp().load()
+whois_ip = client.WhoisIp().load({"whoisip": "whoisip"})
 ```
 
 
@@ -1438,7 +1439,7 @@ Create an instance: `whois_net_id = client.WhoisNetId()`
 #### Example: Load
 
 ```python
-whois_net_id = client.WhoisNetId().load()
+whois_net_id = client.WhoisNetId().load({"whoisnetid": "whoisnetid"})
 ```
 
 

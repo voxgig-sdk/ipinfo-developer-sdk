@@ -97,6 +97,13 @@ For backwards compatibility, legacy endpoints remain available:
 
 ---
 `
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Basic"
+        scheme: "BasicAuth"
+        type: "http"
+      }
       servers: [
         {
           url: "https://ipinfo.io/"
@@ -108,9 +115,9 @@ For backwards compatibility, legacy endpoints remain available:
           url: "https://api.ipinfo.io/"
         }
       ]
+      summary: "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API."
       title: "IPinfo.io OpenAPI Specification"
       version: "1.0.0"
+      website: "https://ipinfo.io/developers"
     }
   }
-}
-

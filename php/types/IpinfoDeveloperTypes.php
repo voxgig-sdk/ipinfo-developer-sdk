@@ -99,7 +99,7 @@ class Core
 /** Request payload for Core#load. */
 class CoreLoadMatch
 {
-    public string $ip;
+    public ?string $ip = null;
 }
 
 /** Domain entity data model. */
@@ -209,7 +209,7 @@ class IpinfoCore
 class IpinfoCoreLoadMatch
 {
     public string $field;
-    public string $ip;
+    public ?string $ip = null;
 }
 
 /** IpinfoLite entity data model. */
@@ -220,9 +220,9 @@ class IpinfoLite
 /** Request payload for IpinfoLite#load. */
 class IpinfoLiteLoadMatch
 {
-    public string $field;
-    public string $ip;
-    public string $id;
+    public ?string $field = null;
+    public ?string $ip = null;
+    public ?string $id = null;
 }
 
 /** IpinfoPlus entity data model. */
@@ -237,7 +237,7 @@ class IpinfoPlus
 class IpinfoPlusLoadMatch
 {
     public string $field;
-    public string $ip;
+    public ?string $ip = null;
 }
 
 /** Lite entity data model. */
@@ -424,7 +424,7 @@ class Single
 /** Request payload for Single#load. */
 class SingleLoadMatch
 {
-    public string $ip;
+    public ?string $ip = null;
 }
 
 /** WhoisAsn entity data model. */

@@ -87,7 +87,7 @@ class Core(CoreRequired, total=False):
     is_satellite: bool
 
 
-class CoreLoadMatch(TypedDict):
+class CoreLoadMatch(TypedDict, total=False):
     ip: str
 
 
@@ -185,8 +185,11 @@ class IpinfoCore(TypedDict, total=False):
     region: str
 
 
-class IpinfoCoreLoadMatch(TypedDict):
+class IpinfoCoreLoadMatchRequired(TypedDict):
     field: str
+
+
+class IpinfoCoreLoadMatch(IpinfoCoreLoadMatchRequired, total=False):
     ip: str
 
 
@@ -194,7 +197,7 @@ class IpinfoLite(TypedDict):
     pass
 
 
-class IpinfoLiteLoadMatch(TypedDict):
+class IpinfoLiteLoadMatch(TypedDict, total=False):
     field: str
     ip: str
     id: str
@@ -206,8 +209,11 @@ class IpinfoPlus(TypedDict, total=False):
     region: str
 
 
-class IpinfoPlusLoadMatch(TypedDict):
+class IpinfoPlusLoadMatchRequired(TypedDict):
     field: str
+
+
+class IpinfoPlusLoadMatch(IpinfoPlusLoadMatchRequired, total=False):
     ip: str
 
 
@@ -362,7 +368,7 @@ class Single(TypedDict):
     pass
 
 
-class SingleLoadMatch(TypedDict):
+class SingleLoadMatch(TypedDict, total=False):
     ip: str
 
 

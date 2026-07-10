@@ -35,14 +35,17 @@ const client = new IpinfoDeveloperSDK({
 })
 ```
 
-### 3. Load an abuse
+### 3. Load an ipinfocore
 
+IpinfoCore is nested under field, so provide the `field`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const abuse = await client.Abuse().load()
-  console.log(abuse)
+  const ipinfocore = await client.IpinfoCore().load({
+    field: 'example_field',
+  })
+  console.log(ipinfocore)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -778,7 +781,7 @@ Create an instance: `const abuse = client.Abuse()`
 #### Example: Load
 
 ```ts
-const abuse = await client.Abuse().load()
+const abuse = await client.Abuse().load({ ip: 'ip' })
 ```
 
 
@@ -839,7 +842,7 @@ Create an instance: `const carrier = client.Carrier()`
 #### Example: Load
 
 ```ts
-const carrier = await client.Carrier().load()
+const carrier = await client.Carrier().load({ ip: 'ip' })
 ```
 
 
@@ -864,7 +867,7 @@ Create an instance: `const company = client.Company()`
 #### Example: Load
 
 ```ts
-const company = await client.Company().load()
+const company = await client.Company().load({ ip: 'ip' })
 ```
 
 
@@ -1047,7 +1050,7 @@ Create an instance: `const ipinfo_core = client.IpinfoCore()`
 #### Example: Load
 
 ```ts
-const ipinfo_core = await client.IpinfoCore().load()
+const ipinfo_core = await client.IpinfoCore().load({ field: 'field' })
 ```
 
 
@@ -1089,7 +1092,7 @@ Create an instance: `const ipinfo_plus = client.IpinfoPlus()`
 #### Example: Load
 
 ```ts
-const ipinfo_plus = await client.IpinfoPlus().load()
+const ipinfo_plus = await client.IpinfoPlus().load({ field: 'field' })
 ```
 
 
@@ -1265,7 +1268,7 @@ Create an instance: `const privacy = client.Privacy()`
 #### Example: Load
 
 ```ts
-const privacy = await client.Privacy().load()
+const privacy = await client.Privacy().load({ ip: 'ip' })
 ```
 
 
@@ -1355,7 +1358,7 @@ Create an instance: `const residential_proxy = client.ResidentialProxy()`
 #### Example: Load
 
 ```ts
-const residential_proxy = await client.ResidentialProxy().load()
+const residential_proxy = await client.ResidentialProxy().load({ ip: 'ip' })
 ```
 
 
@@ -1433,7 +1436,7 @@ Create an instance: `const whois_domain = client.WhoisDomain()`
 #### Example: Load
 
 ```ts
-const whois_domain = await client.WhoisDomain().load()
+const whois_domain = await client.WhoisDomain().load({ domain: 'domain' })
 ```
 
 
@@ -1459,7 +1462,7 @@ Create an instance: `const whois_ip = client.WhoisIp()`
 #### Example: Load
 
 ```ts
-const whois_ip = await client.WhoisIp().load()
+const whois_ip = await client.WhoisIp().load({ whoisip: 'whoisip' })
 ```
 
 
@@ -1485,7 +1488,7 @@ Create an instance: `const whois_net_id = client.WhoisNetId()`
 #### Example: Load
 
 ```ts
-const whois_net_id = await client.WhoisNetId().load()
+const whois_net_id = await client.WhoisNetId().load({ whoisnetid: 'whoisnetid' })
 ```
 
 

@@ -39,7 +39,7 @@ class Config {
     base: 'https://ipinfo.io/',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: 'Basic',
     },
 
     headers: {

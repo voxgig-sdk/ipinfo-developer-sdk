@@ -35,12 +35,14 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load an abuse
+### 3. Load an ipinfocore
+
+IpinfoCore is nested under field, so provide the `field`.
 
 ```lua
-local abuse, err = client:Abuse():load()
+local ipinfocore, err = client:IpinfoCore():load({ field = "example_field" })
 if err then error(err) end
-print(abuse)
+print(ipinfocore)
 ```
 
 
@@ -716,7 +718,7 @@ Create an instance: `local abuse = client:Abuse(nil)`
 #### Example: Load
 
 ```lua
-local abuse, err = client:Abuse():load()
+local abuse, err = client:Abuse():load({ ip = "ip" })
 ```
 
 
@@ -777,7 +779,7 @@ Create an instance: `local carrier = client:Carrier(nil)`
 #### Example: Load
 
 ```lua
-local carrier, err = client:Carrier():load()
+local carrier, err = client:Carrier():load({ ip = "ip" })
 ```
 
 
@@ -802,7 +804,7 @@ Create an instance: `local company = client:Company(nil)`
 #### Example: Load
 
 ```lua
-local company, err = client:Company():load()
+local company, err = client:Company():load({ ip = "ip" })
 ```
 
 
@@ -985,7 +987,7 @@ Create an instance: `local ipinfo_core = client:IpinfoCore(nil)`
 #### Example: Load
 
 ```lua
-local ipinfo_core, err = client:IpinfoCore():load()
+local ipinfo_core, err = client:IpinfoCore():load({ field = "field" })
 ```
 
 
@@ -1027,7 +1029,7 @@ Create an instance: `local ipinfo_plus = client:IpinfoPlus(nil)`
 #### Example: Load
 
 ```lua
-local ipinfo_plus, err = client:IpinfoPlus():load()
+local ipinfo_plus, err = client:IpinfoPlus():load({ field = "field" })
 ```
 
 
@@ -1203,7 +1205,7 @@ Create an instance: `local privacy = client:Privacy(nil)`
 #### Example: Load
 
 ```lua
-local privacy, err = client:Privacy():load()
+local privacy, err = client:Privacy():load({ ip = "ip" })
 ```
 
 
@@ -1293,7 +1295,7 @@ Create an instance: `local residential_proxy = client:ResidentialProxy(nil)`
 #### Example: Load
 
 ```lua
-local residential_proxy, err = client:ResidentialProxy():load()
+local residential_proxy, err = client:ResidentialProxy():load({ ip = "ip" })
 ```
 
 
@@ -1371,7 +1373,7 @@ Create an instance: `local whois_domain = client:WhoisDomain(nil)`
 #### Example: Load
 
 ```lua
-local whois_domain, err = client:WhoisDomain():load()
+local whois_domain, err = client:WhoisDomain():load({ domain = "domain" })
 ```
 
 
@@ -1397,7 +1399,7 @@ Create an instance: `local whois_ip = client:WhoisIp(nil)`
 #### Example: Load
 
 ```lua
-local whois_ip, err = client:WhoisIp():load()
+local whois_ip, err = client:WhoisIp():load({ whoisip = "whoisip" })
 ```
 
 
@@ -1423,7 +1425,7 @@ Create an instance: `local whois_net_id = client:WhoisNetId(nil)`
 #### Example: Load
 
 ```lua
-local whois_net_id, err = client:WhoisNetId():load()
+local whois_net_id, err = client:WhoisNetId():load({ whoisnetid = "whoisnetid" })
 ```
 
 

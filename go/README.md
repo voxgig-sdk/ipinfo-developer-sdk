@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single abuse — the value is the loaded record.
-    abuse, err := client.Abuse(nil).Load(nil, nil)
+    abuse, err := client.Abuse(nil).Load(map[string]any{"ip": "example_ip"}, nil)
     if err != nil {
         panic(err)
     }
@@ -750,7 +750,7 @@ Create an instance: `abuse := client.Abuse(nil)`
 #### Example: Load
 
 ```go
-abuse, err := client.Abuse(nil).Load(nil, nil)
+abuse, err := client.Abuse(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -819,7 +819,7 @@ Create an instance: `carrier := client.Carrier(nil)`
 #### Example: Load
 
 ```go
-carrier, err := client.Carrier(nil).Load(nil, nil)
+carrier, err := client.Carrier(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -848,7 +848,7 @@ Create an instance: `company := client.Company(nil)`
 #### Example: Load
 
 ```go
-company, err := client.Company(nil).Load(nil, nil)
+company, err := client.Company(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -945,12 +945,16 @@ Create an instance: `general := client.General(nil)`
 ```go
 result, err := client.General(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### GetCurrentInformation
 
-Create an instance: `get_current_information := client.GetCurrentInformation(nil)`
+Create an instance: `getCurrentInformation := client.GetCurrentInformation(nil)`
 
 #### Operations
 
@@ -981,17 +985,17 @@ Create an instance: `get_current_information := client.GetCurrentInformation(nil
 #### Example: Load
 
 ```go
-get_current_information, err := client.GetCurrentInformation(nil).Load(nil, nil)
+getCurrentInformation, err := client.GetCurrentInformation(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_current_information) // the loaded record
+fmt.Println(getCurrentInformation) // the loaded record
 ```
 
 
 ### GetInformationByIp
 
-Create an instance: `get_information_by_ip := client.GetInformationByIp(nil)`
+Create an instance: `getInformationByIp := client.GetInformationByIp(nil)`
 
 #### Operations
 
@@ -1022,17 +1026,17 @@ Create an instance: `get_information_by_ip := client.GetInformationByIp(nil)`
 #### Example: Load
 
 ```go
-get_information_by_ip, err := client.GetInformationByIp(nil).Load(map[string]any{"id": "get_information_by_ip_id"}, nil)
+getInformationByIp, err := client.GetInformationByIp(nil).Load(map[string]any{"id": "get_information_by_ip_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_information_by_ip) // the loaded record
+fmt.Println(getInformationByIp) // the loaded record
 ```
 
 
 ### IpinfoCore
 
-Create an instance: `ipinfo_core := client.IpinfoCore(nil)`
+Create an instance: `ipinfoCore := client.IpinfoCore(nil)`
 
 #### Operations
 
@@ -1051,17 +1055,17 @@ Create an instance: `ipinfo_core := client.IpinfoCore(nil)`
 #### Example: Load
 
 ```go
-ipinfo_core, err := client.IpinfoCore(nil).Load(nil, nil)
+ipinfoCore, err := client.IpinfoCore(nil).Load(map[string]any{"field": "field"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ipinfo_core) // the loaded record
+fmt.Println(ipinfoCore) // the loaded record
 ```
 
 
 ### IpinfoLite
 
-Create an instance: `ipinfo_lite := client.IpinfoLite(nil)`
+Create an instance: `ipinfoLite := client.IpinfoLite(nil)`
 
 #### Operations
 
@@ -1072,17 +1076,17 @@ Create an instance: `ipinfo_lite := client.IpinfoLite(nil)`
 #### Example: Load
 
 ```go
-ipinfo_lite, err := client.IpinfoLite(nil).Load(map[string]any{"id": "ipinfo_lite_id"}, nil)
+ipinfoLite, err := client.IpinfoLite(nil).Load(map[string]any{"id": "ipinfo_lite_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ipinfo_lite) // the loaded record
+fmt.Println(ipinfoLite) // the loaded record
 ```
 
 
 ### IpinfoPlus
 
-Create an instance: `ipinfo_plus := client.IpinfoPlus(nil)`
+Create an instance: `ipinfoPlus := client.IpinfoPlus(nil)`
 
 #### Operations
 
@@ -1101,11 +1105,11 @@ Create an instance: `ipinfo_plus := client.IpinfoPlus(nil)`
 #### Example: Load
 
 ```go
-ipinfo_plus, err := client.IpinfoPlus(nil).Load(nil, nil)
+ipinfoPlus, err := client.IpinfoPlus(nil).Load(map[string]any{"field": "field"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ipinfo_plus) // the loaded record
+fmt.Println(ipinfoPlus) // the loaded record
 ```
 
 
@@ -1301,7 +1305,7 @@ Create an instance: `privacy := client.Privacy(nil)`
 #### Example: Load
 
 ```go
-privacy, err := client.Privacy(nil).Load(nil, nil)
+privacy, err := client.Privacy(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1311,7 +1315,7 @@ fmt.Println(privacy) // the loaded record
 
 ### PrivacyExtended
 
-Create an instance: `privacy_extended := client.PrivacyExtended(nil)`
+Create an instance: `privacyExtended := client.PrivacyExtended(nil)`
 
 #### Operations
 
@@ -1343,11 +1347,11 @@ Create an instance: `privacy_extended := client.PrivacyExtended(nil)`
 #### Example: List
 
 ```go
-privacy_extendeds, err := client.PrivacyExtended(nil).List(nil, nil)
+privacyExtendeds, err := client.PrivacyExtended(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(privacy_extendeds) // the array of records
+fmt.Println(privacyExtendeds) // the array of records
 ```
 
 
@@ -1383,7 +1387,7 @@ fmt.Println(range_) // the loaded record
 
 ### ResidentialProxy
 
-Create an instance: `residential_proxy := client.ResidentialProxy(nil)`
+Create an instance: `residentialProxy := client.ResidentialProxy(nil)`
 
 #### Operations
 
@@ -1403,11 +1407,11 @@ Create an instance: `residential_proxy := client.ResidentialProxy(nil)`
 #### Example: Load
 
 ```go
-residential_proxy, err := client.ResidentialProxy(nil).Load(nil, nil)
+residentialProxy, err := client.ResidentialProxy(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(residential_proxy) // the loaded record
+fmt.Println(residentialProxy) // the loaded record
 ```
 
 
@@ -1434,7 +1438,7 @@ fmt.Println(single) // the loaded record
 
 ### WhoisAsn
 
-Create an instance: `whois_asn := client.WhoisAsn(nil)`
+Create an instance: `whoisAsn := client.WhoisAsn(nil)`
 
 #### Operations
 
@@ -1463,17 +1467,17 @@ Create an instance: `whois_asn := client.WhoisAsn(nil)`
 #### Example: List
 
 ```go
-whois_asns, err := client.WhoisAsn(nil).List(nil, nil)
+whoisAsns, err := client.WhoisAsn(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(whois_asns) // the array of records
+fmt.Println(whoisAsns) // the array of records
 ```
 
 
 ### WhoisDomain
 
-Create an instance: `whois_domain := client.WhoisDomain(nil)`
+Create an instance: `whoisDomain := client.WhoisDomain(nil)`
 
 #### Operations
 
@@ -1493,17 +1497,17 @@ Create an instance: `whois_domain := client.WhoisDomain(nil)`
 #### Example: Load
 
 ```go
-whois_domain, err := client.WhoisDomain(nil).Load(nil, nil)
+whoisDomain, err := client.WhoisDomain(nil).Load(map[string]any{"domain": "domain"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(whois_domain) // the loaded record
+fmt.Println(whoisDomain) // the loaded record
 ```
 
 
 ### WhoisIp
 
-Create an instance: `whois_ip := client.WhoisIp(nil)`
+Create an instance: `whoisIp := client.WhoisIp(nil)`
 
 #### Operations
 
@@ -1523,17 +1527,17 @@ Create an instance: `whois_ip := client.WhoisIp(nil)`
 #### Example: Load
 
 ```go
-whois_ip, err := client.WhoisIp(nil).Load(nil, nil)
+whoisIp, err := client.WhoisIp(nil).Load(map[string]any{"whoisip": "whoisip"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(whois_ip) // the loaded record
+fmt.Println(whoisIp) // the loaded record
 ```
 
 
 ### WhoisNetId
 
-Create an instance: `whois_net_id := client.WhoisNetId(nil)`
+Create an instance: `whoisNetId := client.WhoisNetId(nil)`
 
 #### Operations
 
@@ -1553,17 +1557,17 @@ Create an instance: `whois_net_id := client.WhoisNetId(nil)`
 #### Example: Load
 
 ```go
-whois_net_id, err := client.WhoisNetId(nil).Load(nil, nil)
+whoisNetId, err := client.WhoisNetId(nil).Load(map[string]any{"whoisnetid": "whoisnetid"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(whois_net_id) // the loaded record
+fmt.Println(whoisNetId) // the loaded record
 ```
 
 
 ### WhoisOrg
 
-Create an instance: `whois_org := client.WhoisOrg(nil)`
+Create an instance: `whoisOrg := client.WhoisOrg(nil)`
 
 #### Operations
 
@@ -1583,17 +1587,17 @@ Create an instance: `whois_org := client.WhoisOrg(nil)`
 #### Example: Load
 
 ```go
-whois_org, err := client.WhoisOrg(nil).Load(map[string]any{"id": "whois_org_id"}, nil)
+whoisOrg, err := client.WhoisOrg(nil).Load(map[string]any{"id": "whois_org_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(whois_org) // the loaded record
+fmt.Println(whoisOrg) // the loaded record
 ```
 
 
 ### WhoisPoc
 
-Create an instance: `whois_poc := client.WhoisPoc(nil)`
+Create an instance: `whoisPoc := client.WhoisPoc(nil)`
 
 #### Operations
 
@@ -1613,11 +1617,11 @@ Create an instance: `whois_poc := client.WhoisPoc(nil)`
 #### Example: Load
 
 ```go
-whois_poc, err := client.WhoisPoc(nil).Load(map[string]any{"id": "whois_poc_id"}, nil)
+whoisPoc, err := client.WhoisPoc(nil).Load(map[string]any{"id": "whois_poc_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(whois_poc) // the loaded record
+fmt.Println(whoisPoc) // the loaded record
 ```
 
 

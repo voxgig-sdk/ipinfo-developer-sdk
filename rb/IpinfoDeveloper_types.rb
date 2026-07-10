@@ -212,7 +212,7 @@ Core = Struct.new(
 # Request payload for Core#load.
 #
 # @!attribute [rw] ip
-#   @return [String]
+#   @return [String, nil]
 CoreLoadMatch = Struct.new(
   :ip,
   keyword_init: true
@@ -517,7 +517,7 @@ IpinfoCore = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] ip
-#   @return [String]
+#   @return [String, nil]
 IpinfoCoreLoadMatch = Struct.new(
   :field,
   :ip,
@@ -531,13 +531,13 @@ end
 # Request payload for IpinfoLite#load.
 #
 # @!attribute [rw] field
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] ip
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [String]
+#   @return [String, nil]
 IpinfoLiteLoadMatch = Struct.new(
   :field,
   :ip,
@@ -568,7 +568,7 @@ IpinfoPlus = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] ip
-#   @return [String]
+#   @return [String, nil]
 IpinfoPlusLoadMatch = Struct.new(
   :field,
   :ip,
@@ -1016,7 +1016,7 @@ end
 # Request payload for Single#load.
 #
 # @!attribute [rw] ip
-#   @return [String]
+#   @return [String, nil]
 SingleLoadMatch = Struct.new(
   :ip,
   keyword_init: true

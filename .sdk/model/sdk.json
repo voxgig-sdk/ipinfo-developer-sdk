@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -4245,6 +4242,14 @@
           "url": "https://ipinfo.io/"
         },
         "description": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API. This specification defines all endpoints for IP geolocation, ASN data, company information, privacy detection, and specialized data services.\n\n## Authentication\n\nAll endpoints support three authentication methods:\n- **HTTP Basic Auth**: Use your token as the username with empty password\n- **Bearer Token**: Include token in Authorization header\n- **Query Parameter**: Pass token as `?token=YOUR_TOKEN`\n\n[Learn more about authentication](https://ipinfo.io/developers#authentication)\n\n## IPinfo API Tiers\n\nIPinfo offers three main API tiers with different feature sets:\n\n### IPinfo Lite\nLightweight IP geolocation with essential information including ASN details, country, and continent data. Perfect for basic geolocation needs with fast response times. Unlimited requests on paid plans.\n- Endpoints: `/lite/me`, `/lite/{ip}`, `/lite/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/lite-api)\n\n### IPinfo Core\nComprehensive IP information with detailed geolocation data (city, region, coordinates, postal code, timezone), ASN information, and classification boolean flags (anycast, hosting, mobile, satellite).\n- Endpoints: `/lookup/me`, `/lookup/{ip}`, `/lookup/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/core-api)\n\n### IPinfo Plus\nAll Core features plus mobile/carrier detection, anonymity analysis (VPN, proxy, Tor, relay detection), service identification, and extended geographic metadata. Ideal for security, fraud prevention, and advanced analytics.\n- Endpoints: `/plus/me`, `/plus/{ip}`, `/plus/{ip}/{field}`\n- Base URL: `https://api.ipinfo.io/`\n- [Documentation](https://ipinfo.io/developers/plus-api)\n\n## Specialized Detection APIs\n\n### Residential Proxy Detection\nDetect residential, mobile, and datacenter proxy IPs with activity insights, last seen dates, and proxy service identification.\n- Endpoints: `/{ip}/resproxy`\n- [Documentation](https://ipinfo.io/developers/residential-proxy-api)\n\n### Privacy Detection Standard\nDetect VPNs, proxies, Tor exit nodes, relays, and hosting providers associated with an IP address. Returns core privacy signals including service provider identification.\n- Endpoints: `/{ip}/privacy`\n- [Documentation](https://ipinfo.io/developers/privacy-standard-api)\n\n### Privacy Detection Extended\nAdvanced anonymous IP detection with detailed methodologies, confidence metrics, and metadata for VPNs, proxies, Tor, hosting providers, and relays.\n- Endpoints: `/{ip}/privacy_extended`\n- [Documentation](https://ipinfo.io/developers/privacy-extended-api)\n\n## Legacy API Products\n\nFor backwards compatibility, legacy endpoints remain available:\n- [IP to Geolocation API](https://ipinfo.io/products/ip-geolocation-api) - Use Core or Plus instead\n- [IP to Privacy Detection API](https://ipinfo.io/products/proxy-vpn-detection-api) - Use Plus instead\n- [ASN API](https://ipinfo.io/products/asn-api) - `/AS{asn}` endpoint\n- [IP to Company API](https://ipinfo.io/products/ip-company-api) - `/{ip}/company` endpoint\n- [Hosted Domains API](https://ipinfo.io/products/reverse-ip-api) - `/domains/{ip}` endpoint\n- [IP to Phone Carrier Detection API](https://ipinfo.io/products/ip-carrier-api) - `/{ip}/carrier` endpoint\n- [IP to Abuse Contact API](https://ipinfo.io/products/ip-abuse-contact-api) - `/{ip}/abuse` endpoint\n- [IP WHOIS API](https://ipinfo.io/products/whois-api) - `/whois/*` endpoints\n\n## Special Endpoints\n\n- **Token Info**: `/me` - View request limits and API access for your token\n- **Batch Requests**: `/batch` - Enrich multiple IPs in a single request\n- **IP Summarization**: `/tools/summarize-ips` - Analyze up to 500,000 IPs\n- **IP Mapping**: `/tools/map` - Visualize up to 500,000 IPs on an interactive map\n- **Single Field**: `/{ip}/{field}` - Get specific field values as plaintext\n\n## Rate Limits\n\n- **IPinfo Lite**: Unlimited requests on paid plans\n- **Paid Plans**: Monthly request limits with configurable alerts and automatic metered billing\n- **Rate Limit Exceeded**: 429 HTTP status code when limit reached\n\n[View pricing and limits](https://ipinfo.io/pricing)\n\n## Resources\n\n- **Developer Portal**: [https://ipinfo.io/developers](https://ipinfo.io/developers)\n- **API Libraries**: Official libraries for Python, Node.js, Java, Ruby, PHP, Go, and more\n- **Sign Up**: [Free account](https://ipinfo.io/signup) with up to 50,000 requests/month\n- **Community Support**: [https://community.ipinfo.io/](https://community.ipinfo.io/)\n- **Email Support**: support@ipinfo.io\n\n---\n",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Basic",
+          "scheme": "BasicAuth",
+          "type": "http"
+        },
         "servers": [
           {
             "url": "https://ipinfo.io/"
@@ -4256,8 +4261,10 @@
             "url": "https://api.ipinfo.io/"
           }
         ],
+        "summary": "Official OpenAPI Specification for IPinfo's comprehensive IP intelligence API.",
         "title": "IPinfo.io OpenAPI Specification",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://ipinfo.io/developers"
       },
       "option": {},
       "target": {
@@ -4310,6 +4317,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -4360,6 +4370,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

@@ -455,7 +455,7 @@ const abuse = client.Abuse()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Abuse().load()
+const result = await client.Abuse().load({ ip: 'ip' })
 ```
 
 ### Common Methods
@@ -570,7 +570,7 @@ const carrier = client.Carrier()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Carrier().load()
+const result = await client.Carrier().load({ ip: 'ip' })
 ```
 
 ### Common Methods
@@ -622,7 +622,7 @@ const company = client.Company()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Company().load()
+const result = await client.Company().load({ ip: 'ip' })
 ```
 
 ### Common Methods
@@ -967,7 +967,7 @@ const ipinfo_core = client.IpinfoCore()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoCore().load()
+const result = await client.IpinfoCore().load({ field: 'field' })
 ```
 
 ### Common Methods
@@ -1063,7 +1063,7 @@ const ipinfo_plus = client.IpinfoPlus()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpinfoPlus().load()
+const result = await client.IpinfoPlus().load({ field: 'field' })
 ```
 
 ### Common Methods
@@ -1401,7 +1401,7 @@ const privacy = client.Privacy()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Privacy().load()
+const result = await client.Privacy().load({ ip: 'ip' })
 ```
 
 ### Common Methods
@@ -1572,7 +1572,7 @@ const residential_proxy = client.ResidentialProxy()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ResidentialProxy().load()
+const result = await client.ResidentialProxy().load({ ip: 'ip' })
 ```
 
 ### Common Methods
@@ -1731,7 +1731,7 @@ const whois_domain = client.WhoisDomain()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisDomain().load()
+const result = await client.WhoisDomain().load({ domain: 'domain' })
 ```
 
 ### Common Methods
@@ -1784,7 +1784,7 @@ const whois_ip = client.WhoisIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisIp().load()
+const result = await client.WhoisIp().load({ whoisip: 'whoisip' })
 ```
 
 ### Common Methods
@@ -1837,7 +1837,7 @@ const whois_net_id = client.WhoisNetId()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.WhoisNetId().load()
+const result = await client.WhoisNetId().load({ whoisnetid: 'whoisnetid' })
 ```
 
 ### Common Methods

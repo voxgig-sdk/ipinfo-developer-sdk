@@ -32,13 +32,15 @@ client = IpinfoDeveloperSDK.new({
 })
 ```
 
-### 3. Load an abuse
+### 3. Load an ipinfocore
+
+IpinfoCore is nested under field, so provide the `field`.
 
 ```ruby
 begin
-  # load returns the bare Abuse record (raises on error).
-  abuse = client.Abuse.load()
-  puts abuse
+  # load returns the bare IpinfoCore record (raises on error).
+  ipinfocore = client.IpinfoCore.load({ "field" => "example_field" })
+  puts ipinfocore
 rescue => err
   warn "load failed: #{err}"
 end
@@ -725,7 +727,7 @@ Create an instance: `abuse = client.Abuse`
 
 ```ruby
 # load returns the bare Abuse record (raises on error).
-abuse = client.Abuse.load()
+abuse = client.Abuse.load({ "ip" => "ip" })
 ```
 
 
@@ -788,7 +790,7 @@ Create an instance: `carrier = client.Carrier`
 
 ```ruby
 # load returns the bare Carrier record (raises on error).
-carrier = client.Carrier.load()
+carrier = client.Carrier.load({ "ip" => "ip" })
 ```
 
 
@@ -814,7 +816,7 @@ Create an instance: `company = client.Company`
 
 ```ruby
 # load returns the bare Company record (raises on error).
-company = client.Company.load()
+company = client.Company.load({ "ip" => "ip" })
 ```
 
 
@@ -1002,7 +1004,7 @@ Create an instance: `ipinfo_core = client.IpinfoCore`
 
 ```ruby
 # load returns the bare IpinfoCore record (raises on error).
-ipinfo_core = client.IpinfoCore.load()
+ipinfo_core = client.IpinfoCore.load({ "field" => "field" })
 ```
 
 
@@ -1046,7 +1048,7 @@ Create an instance: `ipinfo_plus = client.IpinfoPlus`
 
 ```ruby
 # load returns the bare IpinfoPlus record (raises on error).
-ipinfo_plus = client.IpinfoPlus.load()
+ipinfo_plus = client.IpinfoPlus.load({ "field" => "field" })
 ```
 
 
@@ -1228,7 +1230,7 @@ Create an instance: `privacy = client.Privacy`
 
 ```ruby
 # load returns the bare Privacy record (raises on error).
-privacy = client.Privacy.load()
+privacy = client.Privacy.load({ "ip" => "ip" })
 ```
 
 
@@ -1321,7 +1323,7 @@ Create an instance: `residential_proxy = client.ResidentialProxy`
 
 ```ruby
 # load returns the bare ResidentialProxy record (raises on error).
-residential_proxy = client.ResidentialProxy.load()
+residential_proxy = client.ResidentialProxy.load({ "ip" => "ip" })
 ```
 
 
@@ -1402,7 +1404,7 @@ Create an instance: `whois_domain = client.WhoisDomain`
 
 ```ruby
 # load returns the bare WhoisDomain record (raises on error).
-whois_domain = client.WhoisDomain.load()
+whois_domain = client.WhoisDomain.load({ "domain" => "domain" })
 ```
 
 
@@ -1429,7 +1431,7 @@ Create an instance: `whois_ip = client.WhoisIp`
 
 ```ruby
 # load returns the bare WhoisIp record (raises on error).
-whois_ip = client.WhoisIp.load()
+whois_ip = client.WhoisIp.load({ "whoisip" => "whoisip" })
 ```
 
 
@@ -1456,7 +1458,7 @@ Create an instance: `whois_net_id = client.WhoisNetId`
 
 ```ruby
 # load returns the bare WhoisNetId record (raises on error).
-whois_net_id = client.WhoisNetId.load()
+whois_net_id = client.WhoisNetId.load({ "whoisnetid" => "whoisnetid" })
 ```
 
 

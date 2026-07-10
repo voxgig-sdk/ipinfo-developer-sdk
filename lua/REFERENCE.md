@@ -213,7 +213,7 @@ local abuse = client:Abuse(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Abuse():load()
+local result, err = client:Abuse():load({ ip = "ip" })
 ```
 
 ### Common Methods
@@ -332,7 +332,7 @@ local carrier = client:Carrier(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Carrier():load()
+local result, err = client:Carrier():load({ ip = "ip" })
 ```
 
 ### Common Methods
@@ -386,7 +386,7 @@ local company = client:Company(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Company():load()
+local result, err = client:Company():load({ ip = "ip" })
 ```
 
 ### Common Methods
@@ -743,7 +743,7 @@ local ipinfo_core = client:IpinfoCore(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:IpinfoCore():load()
+local result, err = client:IpinfoCore():load({ field = "field" })
 ```
 
 ### Common Methods
@@ -843,7 +843,7 @@ local ipinfo_plus = client:IpinfoPlus(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:IpinfoPlus():load()
+local result, err = client:IpinfoPlus():load({ field = "field" })
 ```
 
 ### Common Methods
@@ -1193,7 +1193,7 @@ local privacy = client:Privacy(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Privacy():load()
+local result, err = client:Privacy():load({ ip = "ip" })
 ```
 
 ### Common Methods
@@ -1370,7 +1370,7 @@ local residential_proxy = client:ResidentialProxy(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ResidentialProxy():load()
+local result, err = client:ResidentialProxy():load({ ip = "ip" })
 ```
 
 ### Common Methods
@@ -1535,7 +1535,7 @@ local whois_domain = client:WhoisDomain(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WhoisDomain():load()
+local result, err = client:WhoisDomain():load({ domain = "domain" })
 ```
 
 ### Common Methods
@@ -1590,7 +1590,7 @@ local whois_ip = client:WhoisIp(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WhoisIp():load()
+local result, err = client:WhoisIp():load({ whoisip = "whoisip" })
 ```
 
 ### Common Methods
@@ -1645,7 +1645,7 @@ local whois_net_id = client:WhoisNetId(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:WhoisNetId():load()
+local result, err = client:WhoisNetId():load({ whoisnetid = "whoisnetid" })
 ```
 
 ### Common Methods

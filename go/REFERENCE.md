@@ -200,6 +200,7 @@ same parameters as `Direct()`.
 
 ```go
 abuse := client.Abuse(nil)
+fmt.Println(abuse.GetName()) // "abuse"
 ```
 
 ### Fields
@@ -220,7 +221,11 @@ abuse := client.Abuse(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Abuse(nil).Load(nil, nil)
+result, err := client.Abuse(nil).Load(map[string]any{"ip": "ip"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -251,6 +256,7 @@ Return the entity name.
 
 ```go
 asn := client.Asn(nil)
+fmt.Println(asn.GetName()) // "asn"
 ```
 
 ### Fields
@@ -280,6 +286,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Asn(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -310,6 +320,7 @@ Return the entity name.
 
 ```go
 carrier := client.Carrier(nil)
+fmt.Println(carrier.GetName()) // "carrier"
 ```
 
 ### Fields
@@ -327,7 +338,11 @@ carrier := client.Carrier(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Carrier(nil).Load(nil, nil)
+result, err := client.Carrier(nil).Load(map[string]any{"ip": "ip"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -358,6 +373,7 @@ Return the entity name.
 
 ```go
 company := client.Company(nil)
+fmt.Println(company.GetName()) // "company"
 ```
 
 ### Fields
@@ -375,7 +391,11 @@ company := client.Company(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Company(nil).Load(nil, nil)
+result, err := client.Company(nil).Load(map[string]any{"ip": "ip"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -406,6 +426,7 @@ Return the entity name.
 
 ```go
 core := client.Core(nil)
+fmt.Println(core.GetName()) // "core"
 ```
 
 ### Fields
@@ -430,6 +451,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Core(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -460,6 +485,7 @@ Return the entity name.
 
 ```go
 domain := client.Domain(nil)
+fmt.Println(domain.GetName()) // "domain"
 ```
 
 ### Fields
@@ -479,6 +505,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Domain(nil).Load(map[string]any{"id": "domain_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -509,6 +539,7 @@ Return the entity name.
 
 ```go
 general := client.General(nil)
+fmt.Println(general.GetName()) // "general"
 ```
 
 ### Fields
@@ -529,6 +560,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.General(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -558,7 +593,8 @@ Return the entity name.
 ## GetCurrentInformationEntity
 
 ```go
-get_current_information := client.GetCurrentInformation(nil)
+getCurrentInformation := client.GetCurrentInformation(nil)
+fmt.Println(getCurrentInformation.GetName()) // "get_current_information"
 ```
 
 ### Fields
@@ -589,6 +625,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetCurrentInformation(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -618,7 +658,8 @@ Return the entity name.
 ## GetInformationByIpEntity
 
 ```go
-get_information_by_ip := client.GetInformationByIp(nil)
+getInformationByIp := client.GetInformationByIp(nil)
+fmt.Println(getInformationByIp.GetName()) // "get_information_by_ip"
 ```
 
 ### Fields
@@ -649,6 +690,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetInformationByIp(nil).Load(map[string]any{"id": "get_information_by_ip_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -678,7 +723,8 @@ Return the entity name.
 ## IpinfoCoreEntity
 
 ```go
-ipinfo_core := client.IpinfoCore(nil)
+ipinfoCore := client.IpinfoCore(nil)
+fmt.Println(ipinfoCore.GetName()) // "ipinfo_core"
 ```
 
 ### Fields
@@ -696,7 +742,11 @@ ipinfo_core := client.IpinfoCore(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.IpinfoCore(nil).Load(nil, nil)
+result, err := client.IpinfoCore(nil).Load(map[string]any{"field": "field"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -726,7 +776,8 @@ Return the entity name.
 ## IpinfoLiteEntity
 
 ```go
-ipinfo_lite := client.IpinfoLite(nil)
+ipinfoLite := client.IpinfoLite(nil)
+fmt.Println(ipinfoLite.GetName()) // "ipinfo_lite"
 ```
 
 ### Operations
@@ -737,6 +788,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.IpinfoLite(nil).Load(map[string]any{"id": "ipinfo_lite_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -766,7 +821,8 @@ Return the entity name.
 ## IpinfoPlusEntity
 
 ```go
-ipinfo_plus := client.IpinfoPlus(nil)
+ipinfoPlus := client.IpinfoPlus(nil)
+fmt.Println(ipinfoPlus.GetName()) // "ipinfo_plus"
 ```
 
 ### Fields
@@ -784,7 +840,11 @@ ipinfo_plus := client.IpinfoPlus(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.IpinfoPlus(nil).Load(nil, nil)
+result, err := client.IpinfoPlus(nil).Load(map[string]any{"field": "field"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -815,6 +875,7 @@ Return the entity name.
 
 ```go
 lite := client.Lite(nil)
+fmt.Println(lite.GetName()) // "lite"
 ```
 
 ### Fields
@@ -838,6 +899,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Lite(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -868,6 +933,7 @@ Return the entity name.
 
 ```go
 max := client.Max(nil)
+fmt.Println(max.GetName()) // "max"
 ```
 
 ### Fields
@@ -894,6 +960,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Max(nil).Load(map[string]any{"id": "max_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -924,6 +994,7 @@ Return the entity name.
 
 ```go
 men := client.Men(nil)
+fmt.Println(men.GetName()) // "men"
 ```
 
 ### Fields
@@ -942,6 +1013,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Men(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -972,6 +1047,7 @@ Return the entity name.
 
 ```go
 place := client.Place(nil)
+fmt.Println(place.GetName()) // "place"
 ```
 
 ### Fields
@@ -993,6 +1069,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Place(nil).Load(map[string]any{"id": "place_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1023,6 +1103,7 @@ Return the entity name.
 
 ```go
 plus := client.Plus(nil)
+fmt.Println(plus.GetName()) // "plus"
 ```
 
 ### Fields
@@ -1048,6 +1129,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Plus(nil).Load(map[string]any{"id": "plus_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1078,6 +1163,7 @@ Return the entity name.
 
 ```go
 privacy := client.Privacy(nil)
+fmt.Println(privacy.GetName()) // "privacy"
 ```
 
 ### Fields
@@ -1098,7 +1184,11 @@ privacy := client.Privacy(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Privacy(nil).Load(nil, nil)
+result, err := client.Privacy(nil).Load(map[string]any{"ip": "ip"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1128,7 +1218,8 @@ Return the entity name.
 ## PrivacyExtendedEntity
 
 ```go
-privacy_extended := client.PrivacyExtended(nil)
+privacyExtended := client.PrivacyExtended(nil)
+fmt.Println(privacyExtended.GetName()) // "privacy_extended"
 ```
 
 ### Fields
@@ -1160,6 +1251,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.PrivacyExtended(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -1189,7 +1284,8 @@ Return the entity name.
 ## RangeEntity
 
 ```go
-range := client.Range(nil)
+range_ := client.Range(nil)
+fmt.Println(range_.GetName()) // "range"
 ```
 
 ### Fields
@@ -1209,6 +1305,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Range(nil).Load(map[string]any{"id": "range_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1238,7 +1338,8 @@ Return the entity name.
 ## ResidentialProxyEntity
 
 ```go
-residential_proxy := client.ResidentialProxy(nil)
+residentialProxy := client.ResidentialProxy(nil)
+fmt.Println(residentialProxy.GetName()) // "residential_proxy"
 ```
 
 ### Fields
@@ -1257,7 +1358,11 @@ residential_proxy := client.ResidentialProxy(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ResidentialProxy(nil).Load(nil, nil)
+result, err := client.ResidentialProxy(nil).Load(map[string]any{"ip": "ip"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1288,6 +1393,7 @@ Return the entity name.
 
 ```go
 single := client.Single(nil)
+fmt.Println(single.GetName()) // "single"
 ```
 
 ### Operations
@@ -1298,6 +1404,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Single(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1327,7 +1437,8 @@ Return the entity name.
 ## WhoisAsnEntity
 
 ```go
-whois_asn := client.WhoisAsn(nil)
+whoisAsn := client.WhoisAsn(nil)
+fmt.Println(whoisAsn.GetName()) // "whois_asn"
 ```
 
 ### Fields
@@ -1356,6 +1467,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.WhoisAsn(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -1385,7 +1500,8 @@ Return the entity name.
 ## WhoisDomainEntity
 
 ```go
-whois_domain := client.WhoisDomain(nil)
+whoisDomain := client.WhoisDomain(nil)
+fmt.Println(whoisDomain.GetName()) // "whois_domain"
 ```
 
 ### Fields
@@ -1404,7 +1520,11 @@ whois_domain := client.WhoisDomain(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WhoisDomain(nil).Load(nil, nil)
+result, err := client.WhoisDomain(nil).Load(map[string]any{"domain": "domain"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1434,7 +1554,8 @@ Return the entity name.
 ## WhoisIpEntity
 
 ```go
-whois_ip := client.WhoisIp(nil)
+whoisIp := client.WhoisIp(nil)
+fmt.Println(whoisIp.GetName()) // "whois_ip"
 ```
 
 ### Fields
@@ -1453,7 +1574,11 @@ whois_ip := client.WhoisIp(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WhoisIp(nil).Load(nil, nil)
+result, err := client.WhoisIp(nil).Load(map[string]any{"whoisip": "whoisip"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1483,7 +1608,8 @@ Return the entity name.
 ## WhoisNetIdEntity
 
 ```go
-whois_net_id := client.WhoisNetId(nil)
+whoisNetId := client.WhoisNetId(nil)
+fmt.Println(whoisNetId.GetName()) // "whois_net_id"
 ```
 
 ### Fields
@@ -1502,7 +1628,11 @@ whois_net_id := client.WhoisNetId(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.WhoisNetId(nil).Load(nil, nil)
+result, err := client.WhoisNetId(nil).Load(map[string]any{"whoisnetid": "whoisnetid"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1532,7 +1662,8 @@ Return the entity name.
 ## WhoisOrgEntity
 
 ```go
-whois_org := client.WhoisOrg(nil)
+whoisOrg := client.WhoisOrg(nil)
+fmt.Println(whoisOrg.GetName()) // "whois_org"
 ```
 
 ### Fields
@@ -1552,6 +1683,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.WhoisOrg(nil).Load(map[string]any{"id": "whois_org_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -1581,7 +1716,8 @@ Return the entity name.
 ## WhoisPocEntity
 
 ```go
-whois_poc := client.WhoisPoc(nil)
+whoisPoc := client.WhoisPoc(nil)
+fmt.Println(whoisPoc.GetName()) // "whois_poc"
 ```
 
 ### Fields
@@ -1601,6 +1737,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.WhoisPoc(nil).Load(map[string]any{"id": "whois_poc_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

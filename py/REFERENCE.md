@@ -210,7 +210,7 @@ abuse = client.Abuse()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Abuse().load()
+result = client.Abuse().load({"ip": "ip"})
 ```
 
 ### Common Methods
@@ -329,7 +329,7 @@ carrier = client.Carrier()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Carrier().load()
+result = client.Carrier().load({"ip": "ip"})
 ```
 
 ### Common Methods
@@ -382,7 +382,7 @@ company = client.Company()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Company().load()
+result = client.Company().load({"ip": "ip"})
 ```
 
 ### Common Methods
@@ -733,7 +733,7 @@ ipinfo_core = client.IpinfoCore()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.IpinfoCore().load()
+result = client.IpinfoCore().load({"field": "field"})
 ```
 
 ### Common Methods
@@ -831,7 +831,7 @@ ipinfo_plus = client.IpinfoPlus()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.IpinfoPlus().load()
+result = client.IpinfoPlus().load({"field": "field"})
 ```
 
 ### Common Methods
@@ -1175,7 +1175,7 @@ privacy = client.Privacy()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Privacy().load()
+result = client.Privacy().load({"ip": "ip"})
 ```
 
 ### Common Methods
@@ -1351,7 +1351,7 @@ residential_proxy = client.ResidentialProxy()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ResidentialProxy().load()
+result = client.ResidentialProxy().load({"ip": "ip"})
 ```
 
 ### Common Methods
@@ -1515,7 +1515,7 @@ whois_domain = client.WhoisDomain()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WhoisDomain().load()
+result = client.WhoisDomain().load({"domain": "domain"})
 ```
 
 ### Common Methods
@@ -1569,7 +1569,7 @@ whois_ip = client.WhoisIp()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WhoisIp().load()
+result = client.WhoisIp().load({"whoisip": "whoisip"})
 ```
 
 ### Common Methods
@@ -1623,7 +1623,7 @@ whois_net_id = client.WhoisNetId()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.WhoisNetId().load()
+result = client.WhoisNetId().load({"whoisnetid": "whoisnetid"})
 ```
 
 ### Common Methods

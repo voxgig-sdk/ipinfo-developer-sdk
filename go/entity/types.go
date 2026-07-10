@@ -85,7 +85,7 @@ type Core struct {
 
 // CoreLoadMatch is the typed request payload for Core.LoadTyped.
 type CoreLoadMatch struct {
-	Ip string `json:"ip"`
+	Ip *string `json:"ip,omitempty"`
 }
 
 // Domain is the typed data model for the domain entity.
@@ -189,7 +189,7 @@ type IpinfoCore struct {
 // IpinfoCoreLoadMatch is the typed request payload for IpinfoCore.LoadTyped.
 type IpinfoCoreLoadMatch struct {
 	Field string `json:"field"`
-	Ip string `json:"ip"`
+	Ip *string `json:"ip,omitempty"`
 }
 
 // IpinfoLite is the typed data model for the ipinfo_lite entity.
@@ -198,9 +198,9 @@ type IpinfoLite struct {
 
 // IpinfoLiteLoadMatch is the typed request payload for IpinfoLite.LoadTyped.
 type IpinfoLiteLoadMatch struct {
-	Field string `json:"field"`
-	Ip string `json:"ip"`
-	Id string `json:"id"`
+	Field *string `json:"field,omitempty"`
+	Ip *string `json:"ip,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // IpinfoPlus is the typed data model for the ipinfo_plus entity.
@@ -213,7 +213,7 @@ type IpinfoPlus struct {
 // IpinfoPlusLoadMatch is the typed request payload for IpinfoPlus.LoadTyped.
 type IpinfoPlusLoadMatch struct {
 	Field string `json:"field"`
-	Ip string `json:"ip"`
+	Ip *string `json:"ip,omitempty"`
 }
 
 // Lite is the typed data model for the lite entity.
@@ -380,7 +380,7 @@ type Single struct {
 
 // SingleLoadMatch is the typed request payload for Single.LoadTyped.
 type SingleLoadMatch struct {
-	Ip string `json:"ip"`
+	Ip *string `json:"ip,omitempty"`
 }
 
 // WhoisAsn is the typed data model for the whois_asn entity.
