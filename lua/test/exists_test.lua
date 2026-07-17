@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- IpinfoDeveloper SDK exists test
 
 local sdk = require("ipinfo-developer_sdk")
 
