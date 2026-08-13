@@ -65,16 +65,16 @@ function men_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "IPINFODEVELOPER_TEST_MEN_ENTID" => [],
-        "IPINFODEVELOPER_TEST_LIVE" => "FALSE",
-        "IPINFODEVELOPER_APIKEY" => "NONE",
+        "IPINFO_DEVELOPER_TEST_MEN_ENTID" => [],
+        "IPINFO_DEVELOPER_TEST_LIVE" => "FALSE",
+        "IPINFO_DEVELOPER_APIKEY" => "NONE",
     ]);
 
-    $live = $env["IPINFODEVELOPER_TEST_LIVE"] === "TRUE";
+    $live = $env["IPINFO_DEVELOPER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["IPINFODEVELOPER_APIKEY"],
+            "apikey" => $env["IPINFO_DEVELOPER_APIKEY"],
         ];
         $client = new IpinfoDeveloperSDK($merged_opts);
         return [

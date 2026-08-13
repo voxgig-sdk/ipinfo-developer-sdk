@@ -75,16 +75,16 @@ function privacy_extended_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["IPINFODEVELOPER_TEST_PRIVACY_EXTENDED_ENTID"] = {},
-    ["IPINFODEVELOPER_TEST_LIVE"] = "FALSE",
-    ["IPINFODEVELOPER_APIKEY"] = "NONE",
+    ["IPINFO_DEVELOPER_TEST_PRIVACY_EXTENDED_ENTID"] = {},
+    ["IPINFO_DEVELOPER_TEST_LIVE"] = "FALSE",
+    ["IPINFO_DEVELOPER_APIKEY"] = "NONE",
   })
 
-  local live = env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
+  local live = env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["IPINFODEVELOPER_APIKEY"],
+      apikey = env["IPINFO_DEVELOPER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

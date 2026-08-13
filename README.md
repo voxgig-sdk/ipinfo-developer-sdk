@@ -23,7 +23,7 @@ support (`list`, `load`, `create`):
 
 ```ts
 const client = new IpinfoDeveloperSDK()
-const abuse = await client.Abuse().load()
+const abuse = await client.Abuse().load({ ip: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = IpinfoDeveloperSDK.test()
-const abuse = await client.Abuse().load({ ip: 'example_ip' })
-// abuse is a bare Abuse populated with mock data
-console.log(abuse)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = IpinfoDeveloperSDK.test({
+  entity: {
+    domain: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const domain = await client.Domain().load({ id: 'test01' })
+// domain is the Domain entity, populated with mock data
+// — call domain.data() for the record itself
+console.log(domain)
 ```
 
 ### Python
 
 ```python
 client = IpinfoDeveloperSDK.test()
-abuse = client.Abuse().load({"ip": "example"})
-print(abuse)
+domain = client.Domain().load({"id": "test01"})
+print(domain)
 ```
 
 ### PHP
@@ -57,17 +66,17 @@ print(abuse)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = IpinfoDeveloperSDK::test([
-    "entity" => ["abuse" => ["test01" => []]],
+    "entity" => ["domain" => ["test01" => ["id" => "test01"]]],
 ]);
-$abuse = $client->Abuse()->load(["ip" => "example"]);
+$domain = $client->Domain()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Abuse(nil).Load(
-    nil, nil,
+result, err := client.Domain(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -76,16 +85,16 @@ result, err := client.Abuse(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = IpinfoDeveloperSDK.test({
-  "entity" => { "abuse" => { "test01" => {} } },
+  "entity" => { "domain" => { "test01" => { "id" => "test01" } } },
 })
-abuse = client.Abuse.load({ "ip" => "example" })
+domain = client.Domain.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Abuse():load({ ip = "example" })
+local result, err = client:Domain():load({ id = "test01" })
 ```
 
 ## Packages
@@ -219,7 +228,7 @@ $client = new IpinfoDeveloperSDK([
 ]);
 
 
-// Load a specific abuse (returns the bare record; throws on error)
+// Load a specific abuse (returns the ENTITY; call data_get() for the record; throws on error)
 $abuse = $client->Abuse()->load(["ip" => "example_ip"]);
 print_r($abuse);
 ```
@@ -254,7 +263,7 @@ client = IpinfoDeveloperSDK.new({
 })
 
 
-# Load a specific abuse (returns the bare record; raises on error)
+# Load a specific abuse (returns the ENTITY; call data_get for the record)
 abuse = client.Abuse.load({ "ip" => "example_ip" })
 puts abuse
 ```
@@ -390,6 +399,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://ipinfo.io/](https://ipinfo.io/)
 

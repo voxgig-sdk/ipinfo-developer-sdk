@@ -118,6 +118,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/abuse",
                 ["parts"] = {
@@ -175,7 +176,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "downstream",
+            ["name"] = "downstreams",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
@@ -189,21 +190,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "num_ip",
+            ["name"] = "num_ips",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "peer",
+            ["name"] = "peers",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "prefix",
+            ["name"] = "prefixes",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 8,
@@ -238,7 +239,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "upstream",
+            ["name"] = "upstreams",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 13,
@@ -265,6 +266,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/AS{asn}",
                 ["parts"] = {
@@ -334,6 +336,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/carrier",
                 ["parts"] = {
@@ -404,6 +407,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/company",
                 ["parts"] = {
@@ -516,6 +520,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/{ip}",
                 ["parts"] = {
@@ -536,6 +541,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/me",
                 ["parts"] = {
@@ -565,7 +571,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "domain",
+            ["name"] = "domains",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -632,6 +638,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/domains/{ip}",
                 ["parts"] = {
@@ -716,6 +723,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/tools/map",
                 ["parts"] = {
@@ -748,6 +756,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/tools/summarize-ips",
                 ["parts"] = {
@@ -768,6 +777,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/batch",
                 ["parts"] = {
@@ -834,7 +844,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "domain",
+            ["name"] = "domains",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -905,6 +915,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
                 ["parts"] = {},
@@ -969,7 +980,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "domain",
+            ["name"] = "domains",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -1052,6 +1063,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}",
                 ["parts"] = {
@@ -1135,6 +1147,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/{ip}/{field}",
                 ["parts"] = {
@@ -1169,6 +1182,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/me/{field}",
                 ["parts"] = {
@@ -1234,6 +1248,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/{ip}/{field}",
                 ["parts"] = {
@@ -1268,6 +1283,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/me/{field}",
                 ["parts"] = {
@@ -1301,6 +1317,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/{ip}",
                 ["parts"] = {
@@ -1392,6 +1409,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/{ip}/{field}",
                 ["parts"] = {
@@ -1426,6 +1444,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/me/{field}",
                 ["parts"] = {
@@ -1527,6 +1546,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/me",
                 ["parts"] = {
@@ -1651,6 +1671,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/max/{ip}",
                 ["parts"] = {
@@ -1685,14 +1706,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "feature",
+            ["name"] = "features",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "request",
+            ["name"] = "requests",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -1714,6 +1735,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/me",
                 ["parts"] = {
@@ -1800,6 +1822,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/places/{ip}",
                 ["parts"] = {
@@ -1924,6 +1947,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/{ip}",
                 ["parts"] = {
@@ -1949,6 +1973,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/me",
                 ["parts"] = {
@@ -2038,6 +2063,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/privacy",
                 ["parts"] = {
@@ -2074,7 +2100,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "census_port",
+            ["name"] = "census_ports",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -2172,7 +2198,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "whoi",
+            ["name"] = "whois",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 15,
@@ -2199,6 +2225,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/privacy_extended",
                 ["parts"] = {
@@ -2212,7 +2239,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.census_ports`",
                 },
                 ["index$"] = 0,
               },
@@ -2235,14 +2262,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "num_range",
+            ["name"] = "num_ranges",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "range",
+            ["name"] = "ranges",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -2276,6 +2303,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ranges/{domain}",
                 ["parts"] = {
@@ -2358,6 +2386,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/resproxy",
                 ["parts"] = {
@@ -2406,6 +2435,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/city",
                 ["parts"] = {
@@ -2438,6 +2468,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/country",
                 ["parts"] = {
@@ -2470,6 +2501,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/hostname",
                 ["parts"] = {
@@ -2502,6 +2534,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/ip",
                 ["parts"] = {
@@ -2534,6 +2567,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/loc",
                 ["parts"] = {
@@ -2566,6 +2600,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/org",
                 ["parts"] = {
@@ -2598,6 +2633,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/postal",
                 ["parts"] = {
@@ -2630,6 +2666,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/region",
                 ["parts"] = {
@@ -2662,6 +2699,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/timezone",
                 ["parts"] = {
@@ -2682,6 +2720,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/city",
                 ["parts"] = {
@@ -2697,6 +2736,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/country",
                 ["parts"] = {
@@ -2712,6 +2752,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hostname",
                 ["parts"] = {
@@ -2727,6 +2768,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ip",
                 ["parts"] = {
@@ -2742,6 +2784,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/loc",
                 ["parts"] = {
@@ -2757,6 +2800,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/org",
                 ["parts"] = {
@@ -2772,6 +2816,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/postal",
                 ["parts"] = {
@@ -2787,6 +2832,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/region",
                 ["parts"] = {
@@ -2802,6 +2848,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/timezone",
                 ["parts"] = {
@@ -2955,6 +3002,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/AS{asn}",
                 ["parts"] = {
@@ -2971,7 +3019,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.records`",
                 },
                 ["index$"] = 0,
               },
@@ -3001,7 +3049,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "record",
+            ["name"] = "records",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -3053,6 +3101,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/{domain}",
                 ["parts"] = {
@@ -3103,7 +3152,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "record",
+            ["name"] = "records",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -3155,6 +3204,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/{whoisip}",
                 ["parts"] = {
@@ -3205,7 +3255,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "record",
+            ["name"] = "records",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -3257,6 +3307,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/{whoisnetid}",
                 ["parts"] = {
@@ -3307,7 +3358,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "record",
+            ["name"] = "records",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -3359,6 +3410,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/org/{whoisorgid}",
                 ["parts"] = {
@@ -3410,7 +3462,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "record",
+            ["name"] = "records",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -3462,6 +3514,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/poc/{whoispoc}",
                 ["parts"] = {

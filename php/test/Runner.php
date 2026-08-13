@@ -43,8 +43,8 @@ class IpinfoDeveloperTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('IPINFODEVELOPER_TEST_LIVE');
-        $override = self::getenv('IPINFODEVELOPER_TEST_OVERRIDE');
+        $live = self::getenv('IPINFO_DEVELOPER_TEST_LIVE');
+        $override = self::getenv('IPINFO_DEVELOPER_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class IpinfoDeveloperTestRunner
             }
         }
 
-        $explain = self::getenv('IPINFODEVELOPER_TEST_EXPLAIN');
+        $explain = self::getenv('IPINFO_DEVELOPER_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['IPINFODEVELOPER_TEST_EXPLAIN'] = $explain;
+            $m['IPINFO_DEVELOPER_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

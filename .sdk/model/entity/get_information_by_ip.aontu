@@ -36,7 +36,7 @@ main: kit: entity: get_information_by_ip: {
       type: "`$STRING`"
     }
     {
-      name: "domain"
+      name: "domains"
       req: true
       type: "`$OBJECT`"
     }

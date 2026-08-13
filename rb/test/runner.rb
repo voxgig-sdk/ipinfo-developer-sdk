@@ -23,8 +23,8 @@ module IpinfoDeveloperTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("IPINFODEVELOPER_TEST_LIVE")
-    override = getenv("IPINFODEVELOPER_TEST_OVERRIDE")
+    live = getenv("IPINFO_DEVELOPER_TEST_LIVE")
+    override = getenv("IPINFO_DEVELOPER_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module IpinfoDeveloperTestRunner
       end
     end
 
-    explain = getenv("IPINFODEVELOPER_TEST_EXPLAIN")
-    m["IPINFODEVELOPER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("IPINFO_DEVELOPER_TEST_EXPLAIN")
+    m["IPINFO_DEVELOPER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

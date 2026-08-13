@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/ipinfo-developer-sdk/go/core"
+)
 
 // Abuse is the typed data model for the abuse entity.
 type Abuse struct {
@@ -29,16 +33,16 @@ type Asn struct {
 	Asn string `json:"asn"`
 	Country *string `json:"country,omitempty"`
 	Domain string `json:"domain"`
-	Downstream *[]any `json:"downstream,omitempty"`
+	Downstreams *[]any `json:"downstreams,omitempty"`
 	Name string `json:"name"`
-	NumIp *int `json:"num_ip,omitempty"`
-	Peer *[]any `json:"peer,omitempty"`
-	Prefix *[]any `json:"prefix,omitempty"`
+	NumIps *int `json:"num_ips,omitempty"`
+	Peers *[]any `json:"peers,omitempty"`
+	Prefixes *[]any `json:"prefixes,omitempty"`
 	Prefixes6 *[]any `json:"prefixes6,omitempty"`
 	Registry *string `json:"registry,omitempty"`
 	Route *string `json:"route,omitempty"`
 	Type string `json:"type"`
-	Upstream *[]any `json:"upstream,omitempty"`
+	Upstreams *[]any `json:"upstreams,omitempty"`
 }
 
 // AsnListMatch is the typed request payload for Asn.ListTyped.
@@ -90,7 +94,7 @@ type CoreLoadMatch struct {
 
 // Domain is the typed data model for the domain entity.
 type Domain struct {
-	Domain *[]any `json:"domain,omitempty"`
+	Domains *[]any `json:"domains,omitempty"`
 	Ip *string `json:"ip,omitempty"`
 	Page *int `json:"page,omitempty"`
 	Total int `json:"total"`
@@ -125,7 +129,7 @@ type GetCurrentInformation struct {
 	City *string `json:"city,omitempty"`
 	Company map[string]any `json:"company"`
 	Country *string `json:"country,omitempty"`
-	Domain map[string]any `json:"domain"`
+	Domains map[string]any `json:"domains"`
 	Hostname *string `json:"hostname,omitempty"`
 	Ip string `json:"ip"`
 	Loc *string `json:"loc,omitempty"`
@@ -144,7 +148,7 @@ type GetCurrentInformationLoadMatch struct {
 	City *string `json:"city,omitempty"`
 	Company *map[string]any `json:"company,omitempty"`
 	Country *string `json:"country,omitempty"`
-	Domain *map[string]any `json:"domain,omitempty"`
+	Domains *map[string]any `json:"domains,omitempty"`
 	Hostname *string `json:"hostname,omitempty"`
 	Ip *string `json:"ip,omitempty"`
 	Loc *string `json:"loc,omitempty"`
@@ -163,7 +167,7 @@ type GetInformationByIp struct {
 	City *string `json:"city,omitempty"`
 	Company map[string]any `json:"company"`
 	Country *string `json:"country,omitempty"`
-	Domain map[string]any `json:"domain"`
+	Domains map[string]any `json:"domains"`
 	Hostname *string `json:"hostname,omitempty"`
 	Ip string `json:"ip"`
 	Loc *string `json:"loc,omitempty"`
@@ -262,15 +266,15 @@ type MaxLoadMatch struct {
 
 // Men is the typed data model for the men entity.
 type Men struct {
-	Feature map[string]any `json:"feature"`
-	Request map[string]any `json:"request"`
+	Features map[string]any `json:"features"`
+	Requests map[string]any `json:"requests"`
 	Token string `json:"token"`
 }
 
 // MenLoadMatch is the typed request payload for Men.LoadTyped.
 type MenLoadMatch struct {
-	Feature *map[string]any `json:"feature,omitempty"`
-	Request *map[string]any `json:"request,omitempty"`
+	Features *map[string]any `json:"features,omitempty"`
+	Requests *map[string]any `json:"requests,omitempty"`
 	Token *string `json:"token,omitempty"`
 }
 
@@ -326,7 +330,7 @@ type PrivacyLoadMatch struct {
 // PrivacyExtended is the typed data model for the privacy_extended entity.
 type PrivacyExtended struct {
 	Census *bool `json:"census,omitempty"`
-	CensusPort *[]any `json:"census_port,omitempty"`
+	CensusPorts *[]any `json:"census_ports,omitempty"`
 	Confidence *int `json:"confidence,omitempty"`
 	Coverage *float64 `json:"coverage,omitempty"`
 	DeviceActivity *bool `json:"device_activity,omitempty"`
@@ -340,7 +344,7 @@ type PrivacyExtended struct {
 	Tor bool `json:"tor"`
 	Vpn bool `json:"vpn"`
 	VpnConfig *bool `json:"vpn_config,omitempty"`
-	Whoi *bool `json:"whoi,omitempty"`
+	Whois *bool `json:"whois,omitempty"`
 }
 
 // PrivacyExtendedListMatch is the typed request payload for PrivacyExtended.ListTyped.
@@ -351,8 +355,8 @@ type PrivacyExtendedListMatch struct {
 // Range is the typed data model for the range entity.
 type Range struct {
 	Domain string `json:"domain"`
-	NumRange string `json:"num_range"`
-	Range []any `json:"range"`
+	NumRanges string `json:"num_ranges"`
+	Ranges []any `json:"ranges"`
 	RedirectsTo string `json:"redirects_to"`
 }
 
@@ -409,7 +413,7 @@ type WhoisAsnListMatch struct {
 type WhoisDomain struct {
 	Net *string `json:"net,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Record *[]any `json:"record,omitempty"`
+	Records *[]any `json:"records,omitempty"`
 	Total *int `json:"total,omitempty"`
 }
 
@@ -422,7 +426,7 @@ type WhoisDomainLoadMatch struct {
 type WhoisIp struct {
 	Net *string `json:"net,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Record *[]any `json:"record,omitempty"`
+	Records *[]any `json:"records,omitempty"`
 	Total *int `json:"total,omitempty"`
 }
 
@@ -435,7 +439,7 @@ type WhoisIpLoadMatch struct {
 type WhoisNetId struct {
 	Net *string `json:"net,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Record *[]any `json:"record,omitempty"`
+	Records *[]any `json:"records,omitempty"`
 	Total *int `json:"total,omitempty"`
 }
 
@@ -448,7 +452,7 @@ type WhoisNetIdLoadMatch struct {
 type WhoisOrg struct {
 	Org *string `json:"org,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Record *[]any `json:"record,omitempty"`
+	Records *[]any `json:"records,omitempty"`
 	Total *int `json:"total,omitempty"`
 }
 
@@ -461,7 +465,7 @@ type WhoisOrgLoadMatch struct {
 type WhoisPoc struct {
 	Page *int `json:"page,omitempty"`
 	Poc *string `json:"poc,omitempty"`
-	Record *[]any `json:"record,omitempty"`
+	Records *[]any `json:"records,omitempty"`
 	Total *int `json:"total,omitempty"`
 }
 
@@ -482,12 +486,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -499,12 +517,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

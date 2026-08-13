@@ -3,22 +3,22 @@
     "range": {
       "RANGE00": {
         "domain": "s28",
-        "num_range": "s29",
-        "range": [],
+        "num_ranges": "s29",
+        "ranges": [],
         "redirects_to": "s2b",
         "id": "RANGE00"
       },
       "RANGE01": {
         "domain": "s50",
-        "num_range": "s51",
-        "range": [],
+        "num_ranges": "s51",
+        "ranges": [],
         "redirects_to": "s53",
         "id": "RANGE01"
       },
       "RANGE02": {
         "domain": "s78",
-        "num_range": "s79",
-        "range": [],
+        "num_ranges": "s79",
+        "ranges": [],
         "redirects_to": "s7b",
         "id": "RANGE02"
       }
@@ -28,8 +28,8 @@
     "range": {
       "range_ref01": {
         "domain": "sa0",
-        "num_range": "sa1",
-        "range": [],
+        "num_ranges": "sa1",
+        "ranges": [],
         "redirects_to": "sa3"
       }
     }

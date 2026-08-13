@@ -16,7 +16,7 @@ main: kit: entity: whois_net_id: {
       type: "`$INTEGER`"
     }
     {
-      name: "record"
+      name: "records"
       req: false
       type: "`$ARRAY`"
     }

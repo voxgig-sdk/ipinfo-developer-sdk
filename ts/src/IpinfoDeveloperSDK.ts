@@ -173,8 +173,29 @@ class IpinfoDeveloperSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('IpinfoDeveloperSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -235,199 +256,309 @@ class IpinfoDeveloperSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('IpinfoDeveloperSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('IpinfoDeveloperSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Abuse().list()` / `client.Abuse().load({ id })`.
-  Abuse(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Abuse(entopts?: Record<string, any>) {
     const self = this
-    return new AbuseEntity(self,data)
+    return new AbuseEntity(self, entopts)
   }
 
 
   // Entity access: `client.Asn().list()` / `client.Asn().load({ id })`.
-  Asn(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Asn(entopts?: Record<string, any>) {
     const self = this
-    return new AsnEntity(self,data)
+    return new AsnEntity(self, entopts)
   }
 
 
   // Entity access: `client.Carrier().list()` / `client.Carrier().load({ id })`.
-  Carrier(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Carrier(entopts?: Record<string, any>) {
     const self = this
-    return new CarrierEntity(self,data)
+    return new CarrierEntity(self, entopts)
   }
 
 
   // Entity access: `client.Company().list()` / `client.Company().load({ id })`.
-  Company(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Company(entopts?: Record<string, any>) {
     const self = this
-    return new CompanyEntity(self,data)
+    return new CompanyEntity(self, entopts)
   }
 
 
   // Entity access: `client.Core().list()` / `client.Core().load({ id })`.
-  Core(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Core(entopts?: Record<string, any>) {
     const self = this
-    return new CoreEntity(self,data)
+    return new CoreEntity(self, entopts)
   }
 
 
   // Entity access: `client.Domain().list()` / `client.Domain().load({ id })`.
-  Domain(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Domain(entopts?: Record<string, any>) {
     const self = this
-    return new DomainEntity(self,data)
+    return new DomainEntity(self, entopts)
   }
 
 
   // Entity access: `client.General().list()` / `client.General().load({ id })`.
-  General(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  General(entopts?: Record<string, any>) {
     const self = this
-    return new GeneralEntity(self,data)
+    return new GeneralEntity(self, entopts)
   }
 
 
   // Entity access: `client.GetCurrentInformation().list()` / `client.GetCurrentInformation().load({ id })`.
-  GetCurrentInformation(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  GetCurrentInformation(entopts?: Record<string, any>) {
     const self = this
-    return new GetCurrentInformationEntity(self,data)
+    return new GetCurrentInformationEntity(self, entopts)
   }
 
 
   // Entity access: `client.GetInformationByIp().list()` / `client.GetInformationByIp().load({ id })`.
-  GetInformationByIp(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  GetInformationByIp(entopts?: Record<string, any>) {
     const self = this
-    return new GetInformationByIpEntity(self,data)
+    return new GetInformationByIpEntity(self, entopts)
   }
 
 
   // Entity access: `client.IpinfoCore().list()` / `client.IpinfoCore().load({ id })`.
-  IpinfoCore(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  IpinfoCore(entopts?: Record<string, any>) {
     const self = this
-    return new IpinfoCoreEntity(self,data)
+    return new IpinfoCoreEntity(self, entopts)
   }
 
 
   // Entity access: `client.IpinfoLite().list()` / `client.IpinfoLite().load({ id })`.
-  IpinfoLite(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  IpinfoLite(entopts?: Record<string, any>) {
     const self = this
-    return new IpinfoLiteEntity(self,data)
+    return new IpinfoLiteEntity(self, entopts)
   }
 
 
   // Entity access: `client.IpinfoPlus().list()` / `client.IpinfoPlus().load({ id })`.
-  IpinfoPlus(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  IpinfoPlus(entopts?: Record<string, any>) {
     const self = this
-    return new IpinfoPlusEntity(self,data)
+    return new IpinfoPlusEntity(self, entopts)
   }
 
 
   // Entity access: `client.Lite().list()` / `client.Lite().load({ id })`.
-  Lite(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Lite(entopts?: Record<string, any>) {
     const self = this
-    return new LiteEntity(self,data)
+    return new LiteEntity(self, entopts)
   }
 
 
   // Entity access: `client.Max().list()` / `client.Max().load({ id })`.
-  Max(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Max(entopts?: Record<string, any>) {
     const self = this
-    return new MaxEntity(self,data)
+    return new MaxEntity(self, entopts)
   }
 
 
   // Entity access: `client.Men().list()` / `client.Men().load({ id })`.
-  Men(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Men(entopts?: Record<string, any>) {
     const self = this
-    return new MenEntity(self,data)
+    return new MenEntity(self, entopts)
   }
 
 
   // Entity access: `client.Place().list()` / `client.Place().load({ id })`.
-  Place(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Place(entopts?: Record<string, any>) {
     const self = this
-    return new PlaceEntity(self,data)
+    return new PlaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.Plus().list()` / `client.Plus().load({ id })`.
-  Plus(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Plus(entopts?: Record<string, any>) {
     const self = this
-    return new PlusEntity(self,data)
+    return new PlusEntity(self, entopts)
   }
 
 
   // Entity access: `client.Privacy().list()` / `client.Privacy().load({ id })`.
-  Privacy(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Privacy(entopts?: Record<string, any>) {
     const self = this
-    return new PrivacyEntity(self,data)
+    return new PrivacyEntity(self, entopts)
   }
 
 
   // Entity access: `client.PrivacyExtended().list()` / `client.PrivacyExtended().load({ id })`.
-  PrivacyExtended(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PrivacyExtended(entopts?: Record<string, any>) {
     const self = this
-    return new PrivacyExtendedEntity(self,data)
+    return new PrivacyExtendedEntity(self, entopts)
   }
 
 
   // Entity access: `client.Range().list()` / `client.Range().load({ id })`.
-  Range(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Range(entopts?: Record<string, any>) {
     const self = this
-    return new RangeEntity(self,data)
+    return new RangeEntity(self, entopts)
   }
 
 
   // Entity access: `client.ResidentialProxy().list()` / `client.ResidentialProxy().load({ id })`.
-  ResidentialProxy(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ResidentialProxy(entopts?: Record<string, any>) {
     const self = this
-    return new ResidentialProxyEntity(self,data)
+    return new ResidentialProxyEntity(self, entopts)
   }
 
 
   // Entity access: `client.Single().list()` / `client.Single().load({ id })`.
-  Single(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Single(entopts?: Record<string, any>) {
     const self = this
-    return new SingleEntity(self,data)
+    return new SingleEntity(self, entopts)
   }
 
 
   // Entity access: `client.WhoisAsn().list()` / `client.WhoisAsn().load({ id })`.
-  WhoisAsn(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhoisAsn(entopts?: Record<string, any>) {
     const self = this
-    return new WhoisAsnEntity(self,data)
+    return new WhoisAsnEntity(self, entopts)
   }
 
 
   // Entity access: `client.WhoisDomain().list()` / `client.WhoisDomain().load({ id })`.
-  WhoisDomain(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhoisDomain(entopts?: Record<string, any>) {
     const self = this
-    return new WhoisDomainEntity(self,data)
+    return new WhoisDomainEntity(self, entopts)
   }
 
 
   // Entity access: `client.WhoisIp().list()` / `client.WhoisIp().load({ id })`.
-  WhoisIp(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhoisIp(entopts?: Record<string, any>) {
     const self = this
-    return new WhoisIpEntity(self,data)
+    return new WhoisIpEntity(self, entopts)
   }
 
 
   // Entity access: `client.WhoisNetId().list()` / `client.WhoisNetId().load({ id })`.
-  WhoisNetId(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhoisNetId(entopts?: Record<string, any>) {
     const self = this
-    return new WhoisNetIdEntity(self,data)
+    return new WhoisNetIdEntity(self, entopts)
   }
 
 
   // Entity access: `client.WhoisOrg().list()` / `client.WhoisOrg().load({ id })`.
-  WhoisOrg(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhoisOrg(entopts?: Record<string, any>) {
     const self = this
-    return new WhoisOrgEntity(self,data)
+    return new WhoisOrgEntity(self, entopts)
   }
 
 
   // Entity access: `client.WhoisPoc().list()` / `client.WhoisPoc().load({ id })`.
-  WhoisPoc(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhoisPoc(entopts?: Record<string, any>) {
     const self = this
-    return new WhoisPocEntity(self,data)
+    return new WhoisPocEntity(self, entopts)
   }
 
 

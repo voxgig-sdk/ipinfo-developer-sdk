@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import IpinfoDeveloperSDK
-from core.error import IpinfoDeveloperError
-from core.result import IpinfoDeveloperResult
-from core.response import IpinfoDeveloperResponse
-from core.spec import IpinfoDeveloperSpec
-from feature.base_feature import IpinfoDeveloperBaseFeature
+from projectname_sdk.core.error import IpinfoDeveloperError
+from projectname_sdk.core.result import IpinfoDeveloperResult
+from projectname_sdk.core.response import IpinfoDeveloperResponse
+from projectname_sdk.core.spec import IpinfoDeveloperSpec
+from projectname_sdk.feature.base_feature import IpinfoDeveloperBaseFeature
 
 
 def _client():

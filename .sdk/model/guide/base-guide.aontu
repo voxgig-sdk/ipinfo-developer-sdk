@@ -148,6 +148,7 @@ guide: {
   entity: privacy_extended: {
     path: "/{ip}/privacy_extended": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.census_ports`")|top
     }
   }
 
@@ -224,6 +225,7 @@ guide: {
   entity: whois_asn: {
     path: "/whois/net/AS{asn}": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.records`")|top
     }
   }
 

@@ -26,8 +26,8 @@ import {
 describe('PrivacyExtendedEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPINFODEVELOPER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPINFODEVELOPER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IPINFO_DEVELOPER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IPINFO_DEVELOPER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpinfoDeveloperSDK.test()
@@ -64,7 +64,7 @@ describe('PrivacyExtendedEntity', async () => {
     const privacy_extended_ref01_match: any = {}
     privacy_extended_ref01_match['ip'] = setup.idmap['ip01']
 
-    const privacy_extended_ref01_list = await privacy_extended_ref01_ent.list(privacy_extended_ref01_match)
+    const privacy_extended_ref01_list = (await privacy_extended_ref01_ent.list(privacy_extended_ref01_match)).map((e: any) => e.data())
 
 
   })

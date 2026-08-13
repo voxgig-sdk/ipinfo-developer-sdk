@@ -26,8 +26,8 @@ import {
 describe('AsnEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPINFODEVELOPER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPINFODEVELOPER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IPINFO_DEVELOPER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IPINFO_DEVELOPER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpinfoDeveloperSDK.test()
@@ -64,7 +64,7 @@ describe('AsnEntity', async () => {
     const asn_ref01_match: any = {}
     asn_ref01_match['asn'] = setup.idmap['asn01']
 
-    const asn_ref01_list = await asn_ref01_ent.list(asn_ref01_match)
+    const asn_ref01_list = (await asn_ref01_ent.list(asn_ref01_match)).map((e: any) => e.data())
 
 
   })

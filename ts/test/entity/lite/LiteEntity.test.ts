@@ -26,8 +26,8 @@ import {
 describe('LiteEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPINFODEVELOPER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPINFODEVELOPER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IPINFO_DEVELOPER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IPINFO_DEVELOPER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpinfoDeveloperSDK.test()
@@ -62,7 +62,7 @@ describe('LiteEntity', async () => {
     // LOAD
     const lite_ref01_ent = client.Lite()
     const lite_ref01_match_dt0: any = {}
-    const lite_ref01_data_dt0 = await lite_ref01_ent.load(lite_ref01_match_dt0)
+    const lite_ref01_data_dt0 = (await lite_ref01_ent.load(lite_ref01_match_dt0)).data()
     assert(null != lite_ref01_data_dt0)
 
 

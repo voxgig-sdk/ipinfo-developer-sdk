@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# IpinfoDeveloper SDK exists test
 
 import pytest
 from ipinfodeveloper_sdk import IpinfoDeveloperSDK

@@ -37,7 +37,7 @@ class AsnEntity extends IpinfoDeveloperEntityBase<Asn> {
 
 
 
-  async list(this: any, reqmatch?: AsnListMatch, ctrl?: Control): Promise<Asn[]> {
+  async list(this: any, reqmatch?: AsnListMatch, ctrl?: Control): Promise<AsnEntity[]> {
 
     const utility = this._utility
 

@@ -4,21 +4,21 @@
       "WHOIS_ORG00": {
         "org": "s28",
         "page": "s29",
-        "record": [],
+        "records": [],
         "total": "s2b",
         "id": "WHOIS_ORG00"
       },
       "WHOIS_ORG01": {
         "org": "s50",
         "page": "s51",
-        "record": [],
+        "records": [],
         "total": "s53",
         "id": "WHOIS_ORG01"
       },
       "WHOIS_ORG02": {
         "org": "s78",
         "page": "s79",
-        "record": [],
+        "records": [],
         "total": "s7b",
         "id": "WHOIS_ORG02"
       }
@@ -29,7 +29,7 @@
       "whois_org_ref01": {
         "org": "sa0",
         "page": "sa1",
-        "record": [],
+        "records": [],
         "total": "sa3"
       }
     }

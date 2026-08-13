@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'IpinfoDeveloper',
   }
 
 
@@ -203,6 +203,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/abuse",
               "parts": [
@@ -260,7 +261,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "downstream",
+          "name": "downstreams",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 4
@@ -274,21 +275,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "num_ip",
+          "name": "num_ips",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "peer",
+          "name": "peers",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "prefix",
+          "name": "prefixes",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 8
@@ -323,7 +324,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "upstream",
+          "name": "upstreams",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 13
@@ -350,6 +351,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/AS{asn}",
               "parts": [
@@ -419,6 +421,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/carrier",
               "parts": [
@@ -489,6 +492,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/company",
               "parts": [
@@ -601,6 +605,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lookup/{ip}",
               "parts": [
@@ -621,6 +626,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/lookup/me",
               "parts": [
@@ -650,7 +656,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "domain",
+          "name": "domains",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -717,6 +723,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/domains/{ip}",
               "parts": [
@@ -801,6 +808,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/tools/map",
               "parts": [
@@ -833,6 +841,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/tools/summarize-ips",
               "parts": [
@@ -853,6 +862,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/batch",
               "parts": [
@@ -919,7 +929,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "domain",
+          "name": "domains",
           "req": true,
           "type": "`$OBJECT`",
           "index$": 6
@@ -990,6 +1000,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/",
               "parts": [],
@@ -1054,7 +1065,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "domain",
+          "name": "domains",
           "req": true,
           "type": "`$OBJECT`",
           "index$": 6
@@ -1137,6 +1148,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}",
               "parts": [
@@ -1220,6 +1232,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lookup/{ip}/{field}",
               "parts": [
@@ -1254,6 +1267,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lookup/me/{field}",
               "parts": [
@@ -1319,6 +1333,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lite/{ip}/{field}",
               "parts": [
@@ -1353,6 +1368,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lite/me/{field}",
               "parts": [
@@ -1386,6 +1402,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lite/{ip}",
               "parts": [
@@ -1477,6 +1494,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/plus/{ip}/{field}",
               "parts": [
@@ -1511,6 +1529,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/plus/me/{field}",
               "parts": [
@@ -1612,6 +1631,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/lite/me",
               "parts": [
@@ -1736,6 +1756,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/max/{ip}",
               "parts": [
@@ -1770,14 +1791,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "feature",
+          "name": "features",
           "req": true,
           "type": "`$OBJECT`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "request",
+          "name": "requests",
           "req": true,
           "type": "`$OBJECT`",
           "index$": 1
@@ -1799,6 +1820,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/me",
               "parts": [
@@ -1885,6 +1907,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/places/{ip}",
               "parts": [
@@ -2009,6 +2032,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/plus/{ip}",
               "parts": [
@@ -2034,6 +2058,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/plus/me",
               "parts": [
@@ -2123,6 +2148,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/privacy",
               "parts": [
@@ -2159,7 +2185,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "census_port",
+          "name": "census_ports",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -2257,7 +2283,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "whoi",
+          "name": "whois",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 15
@@ -2284,6 +2310,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/privacy_extended",
               "parts": [
@@ -2297,7 +2324,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.census_ports`"
               },
               "index$": 0
             }
@@ -2320,14 +2347,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "num_range",
+          "name": "num_ranges",
           "req": true,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "range",
+          "name": "ranges",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 2
@@ -2361,6 +2388,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ranges/{domain}",
               "parts": [
@@ -2443,6 +2471,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/resproxy",
               "parts": [
@@ -2491,6 +2520,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/city",
               "parts": [
@@ -2523,6 +2553,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/country",
               "parts": [
@@ -2555,6 +2586,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/hostname",
               "parts": [
@@ -2587,6 +2619,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/ip",
               "parts": [
@@ -2619,6 +2652,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/loc",
               "parts": [
@@ -2651,6 +2685,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/org",
               "parts": [
@@ -2683,6 +2718,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/postal",
               "parts": [
@@ -2715,6 +2751,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/region",
               "parts": [
@@ -2747,6 +2784,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{ip}/timezone",
               "parts": [
@@ -2767,6 +2805,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/city",
               "parts": [
@@ -2782,6 +2821,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/country",
               "parts": [
@@ -2797,6 +2837,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/hostname",
               "parts": [
@@ -2812,6 +2853,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/ip",
               "parts": [
@@ -2827,6 +2869,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/loc",
               "parts": [
@@ -2842,6 +2885,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/org",
               "parts": [
@@ -2857,6 +2901,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/postal",
               "parts": [
@@ -2872,6 +2917,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/region",
               "parts": [
@@ -2887,6 +2933,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/timezone",
               "parts": [
@@ -3040,6 +3087,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois/net/AS{asn}",
               "parts": [
@@ -3056,7 +3104,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.records`"
               },
               "index$": 0
             }
@@ -3086,7 +3134,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "record",
+          "name": "records",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -3138,6 +3186,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois/net/{domain}",
               "parts": [
@@ -3188,7 +3237,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "record",
+          "name": "records",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -3240,6 +3289,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois/net/{whoisip}",
               "parts": [
@@ -3290,7 +3340,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "record",
+          "name": "records",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -3342,6 +3392,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois/net/{whoisnetid}",
               "parts": [
@@ -3392,7 +3443,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "record",
+          "name": "records",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -3444,6 +3495,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois/org/{whoisorgid}",
               "parts": [
@@ -3495,7 +3547,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "record",
+          "name": "records",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -3547,6 +3599,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois/poc/{whoispoc}",
               "parts": [

@@ -42,7 +42,7 @@ client = IpinfoDeveloperSDK({
 ### 3. Load an ipinfocore
 
 IpinfoCore is nested under field, so provide the `field`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -59,8 +59,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    abuse = client.Abuse().load()
-    print(abuse)
+    domain = client.Domain().load({"id": "example_id"})
+    print(domain)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -126,9 +126,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpinfoDeveloperSDK.test()
 
-# Entity ops return the bare record and raise on error.
-abuse = client.Abuse().load()
-# abuse contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+domain = client.Domain().load({"id": "test01"})
+# domain contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -253,7 +254,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -294,16 +295,16 @@ API path: `/{ip}/abuse`
 | `asn` |  |
 | `country` |  |
 | `domain` |  |
-| `downstream` |  |
+| `downstreams` |  |
 | `name` |  |
-| `num_ip` |  |
-| `peer` |  |
-| `prefix` |  |
+| `num_ips` |  |
+| `peers` |  |
+| `prefixes` |  |
 | `prefixes6` |  |
 | `registry` |  |
 | `route` |  |
 | `type` |  |
-| `upstream` |  |
+| `upstreams` |  |
 
 Operations: List.
 
@@ -355,7 +356,7 @@ API path: `/lookup/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -387,7 +388,7 @@ API path: `/tools/map`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -411,7 +412,7 @@ API path: `/`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -499,8 +500,8 @@ API path: `/max/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `feature` |  |
-| `request` |  |
+| `features` |  |
+| `requests` |  |
 | `token` |  |
 
 Operations: Load.
@@ -561,7 +562,7 @@ API path: `/{ip}/privacy`
 | Field | Description |
 | --- | --- |
 | `census` |  |
-| `census_port` |  |
+| `census_ports` |  |
 | `confidence` |  |
 | `coverage` |  |
 | `device_activity` |  |
@@ -575,7 +576,7 @@ API path: `/{ip}/privacy`
 | `tor` |  |
 | `vpn` |  |
 | `vpn_config` |  |
-| `whoi` |  |
+| `whois` |  |
 
 Operations: List.
 
@@ -586,8 +587,8 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `num_range` |  |
-| `range` |  |
+| `num_ranges` |  |
+| `ranges` |  |
 | `redirects_to` |  |
 
 Operations: Load.
@@ -644,7 +645,7 @@ API path: `/whois/net/AS{asn}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -657,7 +658,7 @@ API path: `/whois/net/{domain}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -670,7 +671,7 @@ API path: `/whois/net/{whoisip}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -683,7 +684,7 @@ API path: `/whois/net/{whoisnetid}`
 | --- | --- |
 | `org` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -696,7 +697,7 @@ API path: `/whois/org/{whoisorgid}`
 | --- | --- |
 | `page` |  |
 | `poc` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -754,21 +755,21 @@ Create an instance: `asn = client.Asn()`
 | `asn` | `str` |  |
 | `country` | `str` |  |
 | `domain` | `str` |  |
-| `downstream` | `list` |  |
+| `downstreams` | `list` |  |
 | `name` | `str` |  |
-| `num_ip` | `int` |  |
-| `peer` | `list` |  |
-| `prefix` | `list` |  |
+| `num_ips` | `int` |  |
+| `peers` | `list` |  |
+| `prefixes` | `list` |  |
 | `prefixes6` | `list` |  |
 | `registry` | `str` |  |
 | `route` | `str` |  |
 | `type` | `str` |  |
-| `upstream` | `list` |  |
+| `upstreams` | `list` |  |
 
 #### Example: List
 
 ```python
-asns = client.Asn().list()
+asns = client.Asn().list({"asn": 1})
 ```
 
 
@@ -867,7 +868,7 @@ Create an instance: `domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `list` |  |
+| `domains` | `list` |  |
 | `ip` | `str` |  |
 | `page` | `int` |  |
 | `total` | `int` |  |
@@ -926,7 +927,7 @@ Create an instance: `get_current_information = client.GetCurrentInformation()`
 | `city` | `str` |  |
 | `company` | `dict` |  |
 | `country` | `str` |  |
-| `domain` | `dict` |  |
+| `domains` | `dict` |  |
 | `hostname` | `str` |  |
 | `ip` | `str` |  |
 | `loc` | `str` |  |
@@ -963,7 +964,7 @@ Create an instance: `get_information_by_ip = client.GetInformationByIp()`
 | `city` | `str` |  |
 | `company` | `dict` |  |
 | `country` | `str` |  |
-| `domain` | `dict` |  |
+| `domains` | `dict` |  |
 | `hostname` | `str` |  |
 | `ip` | `str` |  |
 | `loc` | `str` |  |
@@ -1124,8 +1125,8 @@ Create an instance: `men = client.Men()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | `dict` |  |
-| `request` | `dict` |  |
+| `features` | `dict` |  |
+| `requests` | `dict` |  |
 | `token` | `str` |  |
 
 #### Example: Load
@@ -1238,7 +1239,7 @@ Create an instance: `privacy_extended = client.PrivacyExtended()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `census` | `bool` |  |
-| `census_port` | `list` |  |
+| `census_ports` | `list` |  |
 | `confidence` | `int` |  |
 | `coverage` | `float` |  |
 | `device_activity` | `bool` |  |
@@ -1252,12 +1253,12 @@ Create an instance: `privacy_extended = client.PrivacyExtended()`
 | `tor` | `bool` |  |
 | `vpn` | `bool` |  |
 | `vpn_config` | `bool` |  |
-| `whoi` | `bool` |  |
+| `whois` | `bool` |  |
 
 #### Example: List
 
 ```python
-privacy_extendeds = client.PrivacyExtended().list()
+privacy_extendeds = client.PrivacyExtended().list({"ip": "example"})
 ```
 
 
@@ -1276,8 +1277,8 @@ Create an instance: `range = client.Range()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `str` |  |
-| `num_range` | `str` |  |
-| `range` | `list` |  |
+| `num_ranges` | `str` |  |
+| `ranges` | `list` |  |
 | `redirects_to` | `str` |  |
 
 #### Example: Load
@@ -1361,7 +1362,7 @@ Create an instance: `whois_asn = client.WhoisAsn()`
 #### Example: List
 
 ```python
-whois_asns = client.WhoisAsn().list()
+whois_asns = client.WhoisAsn().list({"asn": 1})
 ```
 
 
@@ -1381,7 +1382,7 @@ Create an instance: `whois_domain = client.WhoisDomain()`
 | --- | --- | --- |
 | `net` | `str` |  |
 | `page` | `int` |  |
-| `record` | `list` |  |
+| `records` | `list` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1407,7 +1408,7 @@ Create an instance: `whois_ip = client.WhoisIp()`
 | --- | --- | --- |
 | `net` | `str` |  |
 | `page` | `int` |  |
-| `record` | `list` |  |
+| `records` | `list` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1433,7 +1434,7 @@ Create an instance: `whois_net_id = client.WhoisNetId()`
 | --- | --- | --- |
 | `net` | `str` |  |
 | `page` | `int` |  |
-| `record` | `list` |  |
+| `records` | `list` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1459,7 +1460,7 @@ Create an instance: `whois_org = client.WhoisOrg()`
 | --- | --- | --- |
 | `org` | `str` |  |
 | `page` | `int` |  |
-| `record` | `list` |  |
+| `records` | `list` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1485,7 +1486,7 @@ Create an instance: `whois_poc = client.WhoisPoc()`
 | --- | --- | --- |
 | `page` | `int` |  |
 | `poc` | `str` |  |
-| `record` | `list` |  |
+| `records` | `list` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1570,11 +1571,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-abuse = client.Abuse()
-abuse.load()
+domain = client.Domain()
+domain.load({"id": "example_id"})
 
-# abuse.data_get() now returns the abuse data from the last load
-# abuse.match_get() returns the last match criteria
+# domain.data_get() now returns the domain data from the last load
+# domain.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

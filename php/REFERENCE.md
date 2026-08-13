@@ -262,16 +262,16 @@ $asn = $client->Asn();
 | `asn` | `string` | Yes |  |
 | `country` | `string` | No |  |
 | `domain` | `string` | Yes |  |
-| `downstream` | `array` | No |  |
+| `downstreams` | `array` | No |  |
 | `name` | `string` | Yes |  |
-| `num_ip` | `int` | No |  |
-| `peer` | `array` | No |  |
-| `prefix` | `array` | No |  |
+| `num_ips` | `int` | No |  |
+| `peers` | `array` | No |  |
+| `prefixes` | `array` | No |  |
 | `prefixes6` | `array` | No |  |
 | `registry` | `string` | No |  |
 | `route` | `string` | No |  |
 | `type` | `string` | Yes |  |
-| `upstream` | `array` | No |  |
+| `upstreams` | `array` | No |  |
 
 ### Operations
 
@@ -491,7 +491,7 @@ $domain = $client->Domain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `array` | No |  |
+| `domains` | `array` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `int` | No |  |
 | `total` | `int` | Yes |  |
@@ -608,7 +608,7 @@ $get_current_information = $client->GetCurrentInformation();
 | `city` | `string` | No |  |
 | `company` | `array` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `array` | Yes |  |
+| `domains` | `array` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -674,7 +674,7 @@ $get_information_by_ip = $client->GetInformationByIp();
 | `city` | `string` | No |  |
 | `company` | `array` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `array` | Yes |  |
+| `domains` | `array` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -1009,8 +1009,8 @@ $men = $client->Men();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | `array` | Yes |  |
-| `request` | `array` | Yes |  |
+| `features` | `array` | Yes |  |
+| `requests` | `array` | Yes |  |
 | `token` | `string` | Yes |  |
 
 ### Operations
@@ -1239,7 +1239,7 @@ $privacy_extended = $client->PrivacyExtended();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `census` | `bool` | No |  |
-| `census_port` | `array` | No |  |
+| `census_ports` | `array` | No |  |
 | `confidence` | `int` | No |  |
 | `coverage` | `float` | No |  |
 | `device_activity` | `bool` | No |  |
@@ -1253,7 +1253,7 @@ $privacy_extended = $client->PrivacyExtended();
 | `tor` | `bool` | Yes |  |
 | `vpn` | `bool` | Yes |  |
 | `vpn_config` | `bool` | No |  |
-| `whoi` | `bool` | No |  |
+| `whois` | `bool` | No |  |
 
 ### Operations
 
@@ -1306,8 +1306,8 @@ $range = $client->Range();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `num_range` | `string` | Yes |  |
-| `range` | `array` | Yes |  |
+| `num_ranges` | `string` | Yes |  |
+| `ranges` | `array` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
 
 ### Operations
@@ -1527,7 +1527,7 @@ $whois_domain = $client->WhoisDomain();
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `array` | No |  |
+| `records` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1582,7 +1582,7 @@ $whois_ip = $client->WhoisIp();
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `array` | No |  |
+| `records` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1637,7 +1637,7 @@ $whois_net_id = $client->WhoisNetId();
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `array` | No |  |
+| `records` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1692,7 +1692,7 @@ $whois_org = $client->WhoisOrg();
 | --- | --- | --- | --- |
 | `org` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `array` | No |  |
+| `records` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1747,7 +1747,7 @@ $whois_poc = $client->WhoisPoc();
 | --- | --- | --- | --- |
 | `page` | `int` | No |  |
 | `poc` | `string` | No |  |
-| `record` | `array` | No |  |
+| `records` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

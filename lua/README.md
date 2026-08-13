@@ -52,7 +52,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local abuse, err = client:Abuse():load()
+local domain, err = client:Domain():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -110,7 +110,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Abuse():load()
+local result, err = client:Domain():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -280,16 +280,16 @@ API path: `/{ip}/abuse`
 | `asn` |  |
 | `country` |  |
 | `domain` |  |
-| `downstream` |  |
+| `downstreams` |  |
 | `name` |  |
-| `num_ip` |  |
-| `peer` |  |
-| `prefix` |  |
+| `num_ips` |  |
+| `peers` |  |
+| `prefixes` |  |
 | `prefixes6` |  |
 | `registry` |  |
 | `route` |  |
 | `type` |  |
-| `upstream` |  |
+| `upstreams` |  |
 
 Operations: List.
 
@@ -341,7 +341,7 @@ API path: `/lookup/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -373,7 +373,7 @@ API path: `/tools/map`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -397,7 +397,7 @@ API path: `/`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -485,8 +485,8 @@ API path: `/max/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `feature` |  |
-| `request` |  |
+| `features` |  |
+| `requests` |  |
 | `token` |  |
 
 Operations: Load.
@@ -547,7 +547,7 @@ API path: `/{ip}/privacy`
 | Field | Description |
 | --- | --- |
 | `census` |  |
-| `census_port` |  |
+| `census_ports` |  |
 | `confidence` |  |
 | `coverage` |  |
 | `device_activity` |  |
@@ -561,7 +561,7 @@ API path: `/{ip}/privacy`
 | `tor` |  |
 | `vpn` |  |
 | `vpn_config` |  |
-| `whoi` |  |
+| `whois` |  |
 
 Operations: List.
 
@@ -572,8 +572,8 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `num_range` |  |
-| `range` |  |
+| `num_ranges` |  |
+| `ranges` |  |
 | `redirects_to` |  |
 
 Operations: Load.
@@ -630,7 +630,7 @@ API path: `/whois/net/AS{asn}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -643,7 +643,7 @@ API path: `/whois/net/{domain}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -656,7 +656,7 @@ API path: `/whois/net/{whoisip}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -669,7 +669,7 @@ API path: `/whois/net/{whoisnetid}`
 | --- | --- |
 | `org` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -682,7 +682,7 @@ API path: `/whois/org/{whoisorgid}`
 | --- | --- |
 | `page` |  |
 | `poc` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -740,16 +740,16 @@ Create an instance: `local asn = client:Asn(nil)`
 | `asn` | `string` |  |
 | `country` | `string` |  |
 | `domain` | `string` |  |
-| `downstream` | `table` |  |
+| `downstreams` | `table` |  |
 | `name` | `string` |  |
-| `num_ip` | `number` |  |
-| `peer` | `table` |  |
-| `prefix` | `table` |  |
+| `num_ips` | `number` |  |
+| `peers` | `table` |  |
+| `prefixes` | `table` |  |
 | `prefixes6` | `table` |  |
 | `registry` | `string` |  |
 | `route` | `string` |  |
 | `type` | `string` |  |
-| `upstream` | `table` |  |
+| `upstreams` | `table` |  |
 
 #### Example: List
 
@@ -853,7 +853,7 @@ Create an instance: `local domain = client:Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `table` |  |
+| `domains` | `table` |  |
 | `ip` | `string` |  |
 | `page` | `number` |  |
 | `total` | `number` |  |
@@ -912,7 +912,7 @@ Create an instance: `local get_current_information = client:GetCurrentInformatio
 | `city` | `string` |  |
 | `company` | `table` |  |
 | `country` | `string` |  |
-| `domain` | `table` |  |
+| `domains` | `table` |  |
 | `hostname` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
@@ -949,7 +949,7 @@ Create an instance: `local get_information_by_ip = client:GetInformationByIp(nil
 | `city` | `string` |  |
 | `company` | `table` |  |
 | `country` | `string` |  |
-| `domain` | `table` |  |
+| `domains` | `table` |  |
 | `hostname` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
@@ -1110,8 +1110,8 @@ Create an instance: `local men = client:Men(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | `table` |  |
-| `request` | `table` |  |
+| `features` | `table` |  |
+| `requests` | `table` |  |
 | `token` | `string` |  |
 
 #### Example: Load
@@ -1224,7 +1224,7 @@ Create an instance: `local privacy_extended = client:PrivacyExtended(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `census` | `boolean` |  |
-| `census_port` | `table` |  |
+| `census_ports` | `table` |  |
 | `confidence` | `number` |  |
 | `coverage` | `number` |  |
 | `device_activity` | `boolean` |  |
@@ -1238,7 +1238,7 @@ Create an instance: `local privacy_extended = client:PrivacyExtended(nil)`
 | `tor` | `boolean` |  |
 | `vpn` | `boolean` |  |
 | `vpn_config` | `boolean` |  |
-| `whoi` | `boolean` |  |
+| `whois` | `boolean` |  |
 
 #### Example: List
 
@@ -1262,8 +1262,8 @@ Create an instance: `local range = client:Range(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `num_range` | `string` |  |
-| `range` | `table` |  |
+| `num_ranges` | `string` |  |
+| `ranges` | `table` |  |
 | `redirects_to` | `string` |  |
 
 #### Example: Load
@@ -1367,7 +1367,7 @@ Create an instance: `local whois_domain = client:WhoisDomain(nil)`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `number` |  |
-| `record` | `table` |  |
+| `records` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1393,7 +1393,7 @@ Create an instance: `local whois_ip = client:WhoisIp(nil)`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `number` |  |
-| `record` | `table` |  |
+| `records` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1419,7 +1419,7 @@ Create an instance: `local whois_net_id = client:WhoisNetId(nil)`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `number` |  |
-| `record` | `table` |  |
+| `records` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1445,7 +1445,7 @@ Create an instance: `local whois_org = client:WhoisOrg(nil)`
 | --- | --- | --- |
 | `org` | `string` |  |
 | `page` | `number` |  |
-| `record` | `table` |  |
+| `records` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1471,7 +1471,7 @@ Create an instance: `local whois_poc = client:WhoisPoc(nil)`
 | --- | --- | --- |
 | `page` | `number` |  |
 | `poc` | `string` |  |
-| `record` | `table` |  |
+| `records` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1557,11 +1557,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local abuse = client:Abuse()
-abuse:load()
+local domain = client:Domain()
+domain:load({ id = "example_id" })
 
--- abuse:data_get() now returns the abuse data from the last load
--- abuse:match_get() returns the last match criteria
+-- domain:data_get() now returns the domain data from the last load
+-- domain:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

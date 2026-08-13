@@ -36,16 +36,16 @@ class Asn
     public string $asn;
     public ?string $country = null;
     public string $domain;
-    public ?array $downstream = null;
+    public ?array $downstreams = null;
     public string $name;
-    public ?int $num_ip = null;
-    public ?array $peer = null;
-    public ?array $prefix = null;
+    public ?int $num_ips = null;
+    public ?array $peers = null;
+    public ?array $prefixes = null;
     public ?array $prefixes6 = null;
     public ?string $registry = null;
     public ?string $route = null;
     public string $type;
-    public ?array $upstream = null;
+    public ?array $upstreams = null;
 }
 
 /** Request payload for Asn#list. */
@@ -105,7 +105,7 @@ class CoreLoadMatch
 /** Domain entity data model. */
 class Domain
 {
-    public ?array $domain = null;
+    public ?array $domains = null;
     public ?string $ip = null;
     public ?int $page = null;
     public int $total;
@@ -140,7 +140,7 @@ class GetCurrentInformation
     public ?string $city = null;
     public array $company;
     public ?string $country = null;
-    public array $domain;
+    public array $domains;
     public ?string $hostname = null;
     public string $ip;
     public ?string $loc = null;
@@ -160,7 +160,7 @@ class GetCurrentInformationLoadMatch
     public ?string $city = null;
     public ?array $company = null;
     public ?string $country = null;
-    public ?array $domain = null;
+    public ?array $domains = null;
     public ?string $hostname = null;
     public ?string $ip = null;
     public ?string $loc = null;
@@ -180,7 +180,7 @@ class GetInformationByIp
     public ?string $city = null;
     public array $company;
     public ?string $country = null;
-    public array $domain;
+    public array $domains;
     public ?string $hostname = null;
     public string $ip;
     public ?string $loc = null;
@@ -291,16 +291,16 @@ class MaxLoadMatch
 /** Men entity data model. */
 class Men
 {
-    public array $feature;
-    public array $request;
+    public array $features;
+    public array $requests;
     public string $token;
 }
 
 /** Request payload for Men#load. */
 class MenLoadMatch
 {
-    public ?array $feature = null;
-    public ?array $request = null;
+    public ?array $features = null;
+    public ?array $requests = null;
     public ?string $token = null;
 }
 
@@ -363,7 +363,7 @@ class PrivacyLoadMatch
 class PrivacyExtended
 {
     public ?bool $census = null;
-    public ?array $census_port = null;
+    public ?array $census_ports = null;
     public ?int $confidence = null;
     public ?float $coverage = null;
     public ?bool $device_activity = null;
@@ -377,7 +377,7 @@ class PrivacyExtended
     public bool $tor;
     public bool $vpn;
     public ?bool $vpn_config = null;
-    public ?bool $whoi = null;
+    public ?bool $whois = null;
 }
 
 /** Request payload for PrivacyExtended#list. */
@@ -390,8 +390,8 @@ class PrivacyExtendedListMatch
 class Range
 {
     public string $domain;
-    public string $num_range;
-    public array $range;
+    public string $num_ranges;
+    public array $ranges;
     public string $redirects_to;
 }
 
@@ -456,7 +456,7 @@ class WhoisDomain
 {
     public ?string $net = null;
     public ?int $page = null;
-    public ?array $record = null;
+    public ?array $records = null;
     public ?int $total = null;
 }
 
@@ -471,7 +471,7 @@ class WhoisIp
 {
     public ?string $net = null;
     public ?int $page = null;
-    public ?array $record = null;
+    public ?array $records = null;
     public ?int $total = null;
 }
 
@@ -486,7 +486,7 @@ class WhoisNetId
 {
     public ?string $net = null;
     public ?int $page = null;
-    public ?array $record = null;
+    public ?array $records = null;
     public ?int $total = null;
 }
 
@@ -501,7 +501,7 @@ class WhoisOrg
 {
     public ?string $org = null;
     public ?int $page = null;
-    public ?array $record = null;
+    public ?array $records = null;
     public ?int $total = null;
 }
 
@@ -516,7 +516,7 @@ class WhoisPoc
 {
     public ?int $page = null;
     public ?string $poc = null;
-    public ?array $record = null;
+    public ?array $records = null;
     public ?int $total = null;
 }
 

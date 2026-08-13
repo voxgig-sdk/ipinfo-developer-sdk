@@ -4,21 +4,21 @@
       "WHOIS_POC00": {
         "page": "s28",
         "poc": "s29",
-        "record": [],
+        "records": [],
         "total": "s2b",
         "id": "WHOIS_POC00"
       },
       "WHOIS_POC01": {
         "page": "s50",
         "poc": "s51",
-        "record": [],
+        "records": [],
         "total": "s53",
         "id": "WHOIS_POC01"
       },
       "WHOIS_POC02": {
         "page": "s78",
         "poc": "s79",
-        "record": [],
+        "records": [],
         "total": "s7b",
         "id": "WHOIS_POC02"
       }
@@ -29,7 +29,7 @@
       "whois_poc_ref01": {
         "page": "sa0",
         "poc": "sa1",
-        "record": [],
+        "records": [],
         "total": "sa3"
       }
     }

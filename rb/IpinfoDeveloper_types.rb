@@ -60,19 +60,19 @@ AbuseLoadMatch = Struct.new(
 # @!attribute [rw] domain
 #   @return [String]
 #
-# @!attribute [rw] downstream
+# @!attribute [rw] downstreams
 #   @return [Array, nil]
 #
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] num_ip
+# @!attribute [rw] num_ips
 #   @return [Integer, nil]
 #
-# @!attribute [rw] peer
+# @!attribute [rw] peers
 #   @return [Array, nil]
 #
-# @!attribute [rw] prefix
+# @!attribute [rw] prefixes
 #   @return [Array, nil]
 #
 # @!attribute [rw] prefixes6
@@ -87,23 +87,23 @@ AbuseLoadMatch = Struct.new(
 # @!attribute [rw] type
 #   @return [String]
 #
-# @!attribute [rw] upstream
+# @!attribute [rw] upstreams
 #   @return [Array, nil]
 Asn = Struct.new(
   :allocated,
   :asn,
   :country,
   :domain,
-  :downstream,
+  :downstreams,
   :name,
-  :num_ip,
-  :peer,
-  :prefix,
+  :num_ips,
+  :peers,
+  :prefixes,
   :prefixes6,
   :registry,
   :route,
   :type,
-  :upstream,
+  :upstreams,
   keyword_init: true
 )
 
@@ -220,7 +220,7 @@ CoreLoadMatch = Struct.new(
 
 # Domain entity data model.
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Array, nil]
 #
 # @!attribute [rw] ip
@@ -232,7 +232,7 @@ CoreLoadMatch = Struct.new(
 # @!attribute [rw] total
 #   @return [Integer]
 Domain = Struct.new(
-  :domain,
+  :domains,
   :ip,
   :page,
   :total,
@@ -310,7 +310,7 @@ GeneralCreateData = Struct.new(
 # @!attribute [rw] country
 #   @return [String, nil]
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Hash]
 #
 # @!attribute [rw] hostname
@@ -343,7 +343,7 @@ GetCurrentInformation = Struct.new(
   :city,
   :company,
   :country,
-  :domain,
+  :domains,
   :hostname,
   :ip,
   :loc,
@@ -375,7 +375,7 @@ GetCurrentInformation = Struct.new(
 # @!attribute [rw] country
 #   @return [String, nil]
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Hash, nil]
 #
 # @!attribute [rw] hostname
@@ -408,7 +408,7 @@ GetCurrentInformationLoadMatch = Struct.new(
   :city,
   :company,
   :country,
-  :domain,
+  :domains,
   :hostname,
   :ip,
   :loc,
@@ -440,7 +440,7 @@ GetCurrentInformationLoadMatch = Struct.new(
 # @!attribute [rw] country
 #   @return [String, nil]
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Hash]
 #
 # @!attribute [rw] hostname
@@ -473,7 +473,7 @@ GetInformationByIp = Struct.new(
   :city,
   :company,
   :country,
-  :domain,
+  :domains,
   :hostname,
   :ip,
   :loc,
@@ -709,34 +709,34 @@ MaxLoadMatch = Struct.new(
 
 # Men entity data model.
 #
-# @!attribute [rw] feature
+# @!attribute [rw] features
 #   @return [Hash]
 #
-# @!attribute [rw] request
+# @!attribute [rw] requests
 #   @return [Hash]
 #
 # @!attribute [rw] token
 #   @return [String]
 Men = Struct.new(
-  :feature,
-  :request,
+  :features,
+  :requests,
   :token,
   keyword_init: true
 )
 
 # Request payload for Men#load.
 #
-# @!attribute [rw] feature
+# @!attribute [rw] features
 #   @return [Hash, nil]
 #
-# @!attribute [rw] request
+# @!attribute [rw] requests
 #   @return [Hash, nil]
 #
 # @!attribute [rw] token
 #   @return [String, nil]
 MenLoadMatch = Struct.new(
-  :feature,
-  :request,
+  :features,
+  :requests,
   :token,
   keyword_init: true
 )
@@ -876,7 +876,7 @@ PrivacyLoadMatch = Struct.new(
 # @!attribute [rw] census
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] census_port
+# @!attribute [rw] census_ports
 #   @return [Array, nil]
 #
 # @!attribute [rw] confidence
@@ -918,11 +918,11 @@ PrivacyLoadMatch = Struct.new(
 # @!attribute [rw] vpn_config
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] whoi
+# @!attribute [rw] whois
 #   @return [Boolean, nil]
 PrivacyExtended = Struct.new(
   :census,
-  :census_port,
+  :census_ports,
   :confidence,
   :coverage,
   :device_activity,
@@ -936,7 +936,7 @@ PrivacyExtended = Struct.new(
   :tor,
   :vpn,
   :vpn_config,
-  :whoi,
+  :whois,
   keyword_init: true
 )
 
@@ -954,18 +954,18 @@ PrivacyExtendedListMatch = Struct.new(
 # @!attribute [rw] domain
 #   @return [String]
 #
-# @!attribute [rw] num_range
+# @!attribute [rw] num_ranges
 #   @return [String]
 #
-# @!attribute [rw] range
+# @!attribute [rw] ranges
 #   @return [Array]
 #
 # @!attribute [rw] redirects_to
 #   @return [String]
-Range = Struct.new(
+RangeType = Struct.new(
   :domain,
-  :num_range,
-  :range,
+  :num_ranges,
+  :ranges,
   :redirects_to,
   keyword_init: true
 )
@@ -1096,7 +1096,7 @@ WhoisAsnListMatch = Struct.new(
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
@@ -1104,7 +1104,7 @@ WhoisAsnListMatch = Struct.new(
 WhoisDomain = Struct.new(
   :net,
   :page,
-  :record,
+  :records,
   :total,
   keyword_init: true
 )
@@ -1126,7 +1126,7 @@ WhoisDomainLoadMatch = Struct.new(
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
@@ -1134,7 +1134,7 @@ WhoisDomainLoadMatch = Struct.new(
 WhoisIp = Struct.new(
   :net,
   :page,
-  :record,
+  :records,
   :total,
   keyword_init: true
 )
@@ -1156,7 +1156,7 @@ WhoisIpLoadMatch = Struct.new(
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
@@ -1164,7 +1164,7 @@ WhoisIpLoadMatch = Struct.new(
 WhoisNetId = Struct.new(
   :net,
   :page,
-  :record,
+  :records,
   :total,
   keyword_init: true
 )
@@ -1186,7 +1186,7 @@ WhoisNetIdLoadMatch = Struct.new(
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
@@ -1194,7 +1194,7 @@ WhoisNetIdLoadMatch = Struct.new(
 WhoisOrg = Struct.new(
   :org,
   :page,
-  :record,
+  :records,
   :total,
   keyword_init: true
 )
@@ -1216,7 +1216,7 @@ WhoisOrgLoadMatch = Struct.new(
 # @!attribute [rw] poc
 #   @return [String, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
@@ -1224,7 +1224,7 @@ WhoisOrgLoadMatch = Struct.new(
 WhoisPoc = Struct.new(
   :page,
   :poc,
-  :record,
+  :records,
   :total,
   keyword_init: true
 )

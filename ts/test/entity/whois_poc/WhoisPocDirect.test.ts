@@ -19,11 +19,15 @@ import {
 describe('WhoisPocDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPINFODEVELOPER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPINFODEVELOPER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IPINFO_DEVELOPER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IPINFO_DEVELOPER_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new IpinfoDeveloperSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -78,19 +82,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'IPINFODEVELOPER_TEST_WHOIS_POC_ENTID': {},
-    'IPINFODEVELOPER_TEST_LIVE': 'FALSE',
-    'IPINFODEVELOPER_APIKEY': 'NONE',
+    'IPINFO_DEVELOPER_TEST_WHOIS_POC_ENTID': {},
+    'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
+    'IPINFO_DEVELOPER_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.IPINFODEVELOPER_TEST_LIVE
+  const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE
 
   if (live) {
     const client = new IpinfoDeveloperSDK({
-      apikey: env.IPINFODEVELOPER_APIKEY,
+      apikey: env.IPINFO_DEVELOPER_APIKEY,
     })
 
-    let idmap: any = env['IPINFODEVELOPER_TEST_WHOIS_POC_ENTID']
+    let idmap: any = env['IPINFO_DEVELOPER_TEST_WHOIS_POC_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import IpinfoDeveloperControl
-from core.error import IpinfoDeveloperError
-from core.result import IpinfoDeveloperResult
-from core.spec import IpinfoDeveloperSpec
+from ipinfodeveloper_sdk.config import make_config
+from ipinfodeveloper_sdk.features import _make_feature
+from ipinfodeveloper_sdk.core.control import IpinfoDeveloperControl
+from ipinfodeveloper_sdk.core.error import IpinfoDeveloperError
+from ipinfodeveloper_sdk.core.result import IpinfoDeveloperResult
+from ipinfodeveloper_sdk.core.spec import IpinfoDeveloperSpec
 
 
 # True when this SDK was generated with the named feature.

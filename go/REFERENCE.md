@@ -267,16 +267,16 @@ fmt.Println(asn.GetName()) // "asn"
 | `asn` | `string` | Yes |  |
 | `country` | `string` | No |  |
 | `domain` | `string` | Yes |  |
-| `downstream` | `[]any` | No |  |
+| `downstreams` | `[]any` | No |  |
 | `name` | `string` | Yes |  |
-| `num_ip` | `int` | No |  |
-| `peer` | `[]any` | No |  |
-| `prefix` | `[]any` | No |  |
+| `num_ips` | `int` | No |  |
+| `peers` | `[]any` | No |  |
+| `prefixes` | `[]any` | No |  |
 | `prefixes6` | `[]any` | No |  |
 | `registry` | `string` | No |  |
 | `route` | `string` | No |  |
 | `type` | `string` | Yes |  |
-| `upstream` | `[]any` | No |  |
+| `upstreams` | `[]any` | No |  |
 
 ### Operations
 
@@ -492,7 +492,7 @@ fmt.Println(domain.GetName()) // "domain"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `[]any` | No |  |
+| `domains` | `[]any` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `int` | No |  |
 | `total` | `int` | Yes |  |
@@ -607,7 +607,7 @@ fmt.Println(getCurrentInformation.GetName()) // "get_current_information"
 | `city` | `string` | No |  |
 | `company` | `map[string]any` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `map[string]any` | Yes |  |
+| `domains` | `map[string]any` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -672,7 +672,7 @@ fmt.Println(getInformationByIp.GetName()) // "get_information_by_ip"
 | `city` | `string` | No |  |
 | `company` | `map[string]any` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `map[string]any` | Yes |  |
+| `domains` | `map[string]any` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -1001,8 +1001,8 @@ fmt.Println(men.GetName()) // "men"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | `map[string]any` | Yes |  |
-| `request` | `map[string]any` | Yes |  |
+| `features` | `map[string]any` | Yes |  |
+| `requests` | `map[string]any` | Yes |  |
 | `token` | `string` | Yes |  |
 
 ### Operations
@@ -1227,7 +1227,7 @@ fmt.Println(privacyExtended.GetName()) // "privacy_extended"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `census` | `bool` | No |  |
-| `census_port` | `[]any` | No |  |
+| `census_ports` | `[]any` | No |  |
 | `confidence` | `int` | No |  |
 | `coverage` | `float64` | No |  |
 | `device_activity` | `bool` | No |  |
@@ -1241,7 +1241,7 @@ fmt.Println(privacyExtended.GetName()) // "privacy_extended"
 | `tor` | `bool` | Yes |  |
 | `vpn` | `bool` | Yes |  |
 | `vpn_config` | `bool` | No |  |
-| `whoi` | `bool` | No |  |
+| `whois` | `bool` | No |  |
 
 ### Operations
 
@@ -1293,8 +1293,8 @@ fmt.Println(range_.GetName()) // "range"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `num_range` | `string` | Yes |  |
-| `range` | `[]any` | Yes |  |
+| `num_ranges` | `string` | Yes |  |
+| `ranges` | `[]any` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
 
 ### Operations
@@ -1510,7 +1510,7 @@ fmt.Println(whoisDomain.GetName()) // "whois_domain"
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `[]any` | No |  |
+| `records` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1564,7 +1564,7 @@ fmt.Println(whoisIp.GetName()) // "whois_ip"
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `[]any` | No |  |
+| `records` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1618,7 +1618,7 @@ fmt.Println(whoisNetId.GetName()) // "whois_net_id"
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `[]any` | No |  |
+| `records` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1672,7 +1672,7 @@ fmt.Println(whoisOrg.GetName()) // "whois_org"
 | --- | --- | --- | --- |
 | `org` | `string` | No |  |
 | `page` | `int` | No |  |
-| `record` | `[]any` | No |  |
+| `records` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1726,7 +1726,7 @@ fmt.Println(whoisPoc.GetName()) // "whois_poc"
 | --- | --- | --- | --- |
 | `page` | `int` | No |  |
 | `poc` | `string` | No |  |
-| `record` | `[]any` | No |  |
+| `records` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

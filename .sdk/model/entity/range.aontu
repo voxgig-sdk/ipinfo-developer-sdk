@@ -11,12 +11,12 @@ main: kit: entity: range: {
       type: "`$STRING`"
     }
     {
-      name: "num_range"
+      name: "num_ranges"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "range"
+      name: "ranges"
       req: true
       type: "`$ARRAY`"
     }

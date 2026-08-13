@@ -2,21 +2,21 @@
   "existing": {
     "domain": {
       "DOMAIN00": {
-        "domain": [],
+        "domains": [],
         "ip": "s29",
         "page": "s2a",
         "total": "s2b",
         "id": "DOMAIN00"
       },
       "DOMAIN01": {
-        "domain": [],
+        "domains": [],
         "ip": "s51",
         "page": "s52",
         "total": "s53",
         "id": "DOMAIN01"
       },
       "DOMAIN02": {
-        "domain": [],
+        "domains": [],
         "ip": "s79",
         "page": "s7a",
         "total": "s7b",
@@ -27,7 +27,7 @@
   "new": {
     "domain": {
       "domain_ref01": {
-        "domain": [],
+        "domains": [],
         "ip": "sa1",
         "page": "sa2",
         "total": "sa3"

@@ -256,16 +256,16 @@ asn = client.Asn()
 | `asn` | `str` | Yes |  |
 | `country` | `str` | No |  |
 | `domain` | `str` | Yes |  |
-| `downstream` | `list` | No |  |
+| `downstreams` | `list` | No |  |
 | `name` | `str` | Yes |  |
-| `num_ip` | `int` | No |  |
-| `peer` | `list` | No |  |
-| `prefix` | `list` | No |  |
+| `num_ips` | `int` | No |  |
+| `peers` | `list` | No |  |
+| `prefixes` | `list` | No |  |
 | `prefixes6` | `list` | No |  |
 | `registry` | `str` | No |  |
 | `route` | `str` | No |  |
 | `type` | `str` | Yes |  |
-| `upstream` | `list` | No |  |
+| `upstreams` | `list` | No |  |
 
 ### Operations
 
@@ -274,7 +274,7 @@ asn = client.Asn()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Asn().list()
+results = client.Asn().list({"asn": 1})
 for asn in results:
     print(asn)
 ```
@@ -483,7 +483,7 @@ domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `list` | No |  |
+| `domains` | `list` | No |  |
 | `ip` | `str` | No |  |
 | `page` | `int` | No |  |
 | `total` | `int` | Yes |  |
@@ -598,7 +598,7 @@ get_current_information = client.GetCurrentInformation()
 | `city` | `str` | No |  |
 | `company` | `dict` | Yes |  |
 | `country` | `str` | No |  |
-| `domain` | `dict` | Yes |  |
+| `domains` | `dict` | Yes |  |
 | `hostname` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `loc` | `str` | No |  |
@@ -663,7 +663,7 @@ get_information_by_ip = client.GetInformationByIp()
 | `city` | `str` | No |  |
 | `company` | `dict` | Yes |  |
 | `country` | `str` | No |  |
-| `domain` | `dict` | Yes |  |
+| `domains` | `dict` | Yes |  |
 | `hostname` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `loc` | `str` | No |  |
@@ -992,8 +992,8 @@ men = client.Men()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | `dict` | Yes |  |
-| `request` | `dict` | Yes |  |
+| `features` | `dict` | Yes |  |
+| `requests` | `dict` | Yes |  |
 | `token` | `str` | Yes |  |
 
 ### Operations
@@ -1218,7 +1218,7 @@ privacy_extended = client.PrivacyExtended()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `census` | `bool` | No |  |
-| `census_port` | `list` | No |  |
+| `census_ports` | `list` | No |  |
 | `confidence` | `int` | No |  |
 | `coverage` | `float` | No |  |
 | `device_activity` | `bool` | No |  |
@@ -1232,7 +1232,7 @@ privacy_extended = client.PrivacyExtended()
 | `tor` | `bool` | Yes |  |
 | `vpn` | `bool` | Yes |  |
 | `vpn_config` | `bool` | No |  |
-| `whoi` | `bool` | No |  |
+| `whois` | `bool` | No |  |
 
 ### Operations
 
@@ -1241,7 +1241,7 @@ privacy_extended = client.PrivacyExtended()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PrivacyExtended().list()
+results = client.PrivacyExtended().list({"ip": "example"})
 for privacy_extended in results:
     print(privacy_extended)
 ```
@@ -1286,8 +1286,8 @@ range = client.Range()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `str` | Yes |  |
-| `num_range` | `str` | Yes |  |
-| `range` | `list` | Yes |  |
+| `num_ranges` | `str` | Yes |  |
+| `ranges` | `list` | Yes |  |
 | `redirects_to` | `str` | Yes |  |
 
 ### Operations
@@ -1459,7 +1459,7 @@ whois_asn = client.WhoisAsn()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.WhoisAsn().list()
+results = client.WhoisAsn().list({"asn": 1})
 for whois_asn in results:
     print(whois_asn)
 ```
@@ -1505,7 +1505,7 @@ whois_domain = client.WhoisDomain()
 | --- | --- | --- | --- |
 | `net` | `str` | No |  |
 | `page` | `int` | No |  |
-| `record` | `list` | No |  |
+| `records` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1559,7 +1559,7 @@ whois_ip = client.WhoisIp()
 | --- | --- | --- | --- |
 | `net` | `str` | No |  |
 | `page` | `int` | No |  |
-| `record` | `list` | No |  |
+| `records` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1613,7 +1613,7 @@ whois_net_id = client.WhoisNetId()
 | --- | --- | --- | --- |
 | `net` | `str` | No |  |
 | `page` | `int` | No |  |
-| `record` | `list` | No |  |
+| `records` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1667,7 +1667,7 @@ whois_org = client.WhoisOrg()
 | --- | --- | --- | --- |
 | `org` | `str` | No |  |
 | `page` | `int` | No |  |
-| `record` | `list` | No |  |
+| `records` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
@@ -1721,7 +1721,7 @@ whois_poc = client.WhoisPoc()
 | --- | --- | --- | --- |
 | `page` | `int` | No |  |
 | `poc` | `str` | No |  |
-| `record` | `list` | No |  |
+| `records` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

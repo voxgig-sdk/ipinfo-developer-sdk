@@ -37,7 +37,7 @@ class WhoisAsnEntity extends IpinfoDeveloperEntityBase<WhoisAsn> {
 
 
 
-  async list(this: any, reqmatch?: WhoisAsnListMatch, ctrl?: Control): Promise<WhoisAsn[]> {
+  async list(this: any, reqmatch?: WhoisAsnListMatch, ctrl?: Control): Promise<WhoisAsnEntity[]> {
 
     const utility = this._utility
 

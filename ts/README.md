@@ -58,8 +58,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const abuse = await client.Abuse().load()
-  console.log(abuse)
+  const domain = await client.Domain().load({ id: "example_id" })
+  console.log(domain)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpinfoDeveloperSDK.test()
 
-const abuse = await client.Abuse().load()
-// abuse is a bare entity populated with mock response data
-console.log(abuse)
+const domain = await client.Domain().load({ id: 'test01' })
+// domain is the entity, populated with mock response data
+// — call domain.data() for the record itself
+console.log(domain)
 ```
 
 You can also use the instance method:
@@ -142,10 +143,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Abuse()
+const entity = client.Domain()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -343,16 +344,16 @@ API path: `/{ip}/abuse`
 | `asn` |  |
 | `country` |  |
 | `domain` |  |
-| `downstream` |  |
+| `downstreams` |  |
 | `name` |  |
-| `num_ip` |  |
-| `peer` |  |
-| `prefix` |  |
+| `num_ips` |  |
+| `peers` |  |
+| `prefixes` |  |
 | `prefixes6` |  |
 | `registry` |  |
 | `route` |  |
 | `type` |  |
-| `upstream` |  |
+| `upstreams` |  |
 
 Operations: list.
 
@@ -404,7 +405,7 @@ API path: `/lookup/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -436,7 +437,7 @@ API path: `/tools/map`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -460,7 +461,7 @@ API path: `/`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -548,8 +549,8 @@ API path: `/max/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `feature` |  |
-| `request` |  |
+| `features` |  |
+| `requests` |  |
 | `token` |  |
 
 Operations: load.
@@ -610,7 +611,7 @@ API path: `/{ip}/privacy`
 | Field | Description |
 | --- | --- |
 | `census` |  |
-| `census_port` |  |
+| `census_ports` |  |
 | `confidence` |  |
 | `coverage` |  |
 | `device_activity` |  |
@@ -624,7 +625,7 @@ API path: `/{ip}/privacy`
 | `tor` |  |
 | `vpn` |  |
 | `vpn_config` |  |
-| `whoi` |  |
+| `whois` |  |
 
 Operations: list.
 
@@ -635,8 +636,8 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `num_range` |  |
-| `range` |  |
+| `num_ranges` |  |
+| `ranges` |  |
 | `redirects_to` |  |
 
 Operations: load.
@@ -693,7 +694,7 @@ API path: `/whois/net/AS{asn}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: load.
@@ -706,7 +707,7 @@ API path: `/whois/net/{domain}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: load.
@@ -719,7 +720,7 @@ API path: `/whois/net/{whoisip}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: load.
@@ -732,7 +733,7 @@ API path: `/whois/net/{whoisnetid}`
 | --- | --- |
 | `org` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: load.
@@ -745,7 +746,7 @@ API path: `/whois/org/{whoisorgid}`
 | --- | --- |
 | `page` |  |
 | `poc` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: load.
@@ -803,21 +804,21 @@ Create an instance: `const asn = client.Asn()`
 | `asn` | `string` |  |
 | `country` | `string` |  |
 | `domain` | `string` |  |
-| `downstream` | `any[]` |  |
+| `downstreams` | `any[]` |  |
 | `name` | `string` |  |
-| `num_ip` | `number` |  |
-| `peer` | `any[]` |  |
-| `prefix` | `any[]` |  |
+| `num_ips` | `number` |  |
+| `peers` | `any[]` |  |
+| `prefixes` | `any[]` |  |
 | `prefixes6` | `any[]` |  |
 | `registry` | `string` |  |
 | `route` | `string` |  |
 | `type` | `string` |  |
-| `upstream` | `any[]` |  |
+| `upstreams` | `any[]` |  |
 
 #### Example: List
 
 ```ts
-const asns = await client.Asn().list()
+const asns = await client.Asn().list({ asn: 1 })
 ```
 
 
@@ -916,7 +917,7 @@ Create an instance: `const domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `any[]` |  |
+| `domains` | `any[]` |  |
 | `ip` | `string` |  |
 | `page` | `number` |  |
 | `total` | `number` |  |
@@ -975,7 +976,7 @@ Create an instance: `const get_current_information = client.GetCurrentInformatio
 | `city` | `string` |  |
 | `company` | `Record<string, any>` |  |
 | `country` | `string` |  |
-| `domain` | `Record<string, any>` |  |
+| `domains` | `Record<string, any>` |  |
 | `hostname` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
@@ -1012,7 +1013,7 @@ Create an instance: `const get_information_by_ip = client.GetInformationByIp()`
 | `city` | `string` |  |
 | `company` | `Record<string, any>` |  |
 | `country` | `string` |  |
-| `domain` | `Record<string, any>` |  |
+| `domains` | `Record<string, any>` |  |
 | `hostname` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
@@ -1173,8 +1174,8 @@ Create an instance: `const men = client.Men()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | `Record<string, any>` |  |
-| `request` | `Record<string, any>` |  |
+| `features` | `Record<string, any>` |  |
+| `requests` | `Record<string, any>` |  |
 | `token` | `string` |  |
 
 #### Example: Load
@@ -1287,7 +1288,7 @@ Create an instance: `const privacy_extended = client.PrivacyExtended()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `census` | `boolean` |  |
-| `census_port` | `any[]` |  |
+| `census_ports` | `any[]` |  |
 | `confidence` | `number` |  |
 | `coverage` | `number` |  |
 | `device_activity` | `boolean` |  |
@@ -1301,12 +1302,12 @@ Create an instance: `const privacy_extended = client.PrivacyExtended()`
 | `tor` | `boolean` |  |
 | `vpn` | `boolean` |  |
 | `vpn_config` | `boolean` |  |
-| `whoi` | `boolean` |  |
+| `whois` | `boolean` |  |
 
 #### Example: List
 
 ```ts
-const privacy_extendeds = await client.PrivacyExtended().list()
+const privacy_extendeds = await client.PrivacyExtended().list({ ip: "example" })
 ```
 
 
@@ -1325,8 +1326,8 @@ Create an instance: `const range = client.Range()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `num_range` | `string` |  |
-| `range` | `any[]` |  |
+| `num_ranges` | `string` |  |
+| `ranges` | `any[]` |  |
 | `redirects_to` | `string` |  |
 
 #### Example: Load
@@ -1410,7 +1411,7 @@ Create an instance: `const whois_asn = client.WhoisAsn()`
 #### Example: List
 
 ```ts
-const whois_asns = await client.WhoisAsn().list()
+const whois_asns = await client.WhoisAsn().list({ asn: 1 })
 ```
 
 
@@ -1430,7 +1431,7 @@ Create an instance: `const whois_domain = client.WhoisDomain()`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `number` |  |
-| `record` | `any[]` |  |
+| `records` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1456,7 +1457,7 @@ Create an instance: `const whois_ip = client.WhoisIp()`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `number` |  |
-| `record` | `any[]` |  |
+| `records` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1482,7 +1483,7 @@ Create an instance: `const whois_net_id = client.WhoisNetId()`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `number` |  |
-| `record` | `any[]` |  |
+| `records` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1508,7 +1509,7 @@ Create an instance: `const whois_org = client.WhoisOrg()`
 | --- | --- | --- |
 | `org` | `string` |  |
 | `page` | `number` |  |
-| `record` | `any[]` |  |
+| `records` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1534,7 +1535,7 @@ Create an instance: `const whois_poc = client.WhoisPoc()`
 | --- | --- | --- |
 | `page` | `number` |  |
 | `poc` | `string` |  |
-| `record` | `any[]` |  |
+| `records` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: Load
@@ -1613,11 +1614,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const abuse = client.Abuse()
-await abuse.load()
+const domain = client.Domain()
+await domain.load({ id: "example_id" })
 
-// abuse.data() now returns the abuse data from the last `load`
-// abuse.match() returns the last match criteria
+// domain.data() now returns the domain data from the last `load`
+// domain.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

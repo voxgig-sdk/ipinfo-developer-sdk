@@ -2,20 +2,20 @@
   "existing": {
     "men": {
       "MEN00": {
-        "feature": {},
-        "request": {},
+        "features": {},
+        "requests": {},
         "token": "s20",
         "id": "MEN00"
       },
       "MEN01": {
-        "feature": {},
-        "request": {},
+        "features": {},
+        "requests": {},
         "token": "s3e",
         "id": "MEN01"
       },
       "MEN02": {
-        "feature": {},
-        "request": {},
+        "features": {},
+        "requests": {},
         "token": "s5c",
         "id": "MEN02"
       }
@@ -24,8 +24,8 @@
   "new": {
     "men": {
       "men_ref01": {
-        "feature": {},
-        "request": {},
+        "features": {},
+        "requests": {},
         "token": "s7a"
       }
     }

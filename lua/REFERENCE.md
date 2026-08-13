@@ -260,16 +260,16 @@ local asn = client:Asn(nil)
 | `asn` | `string` | Yes |  |
 | `country` | `string` | No |  |
 | `domain` | `string` | Yes |  |
-| `downstream` | `table` | No |  |
+| `downstreams` | `table` | No |  |
 | `name` | `string` | Yes |  |
-| `num_ip` | `number` | No |  |
-| `peer` | `table` | No |  |
-| `prefix` | `table` | No |  |
+| `num_ips` | `number` | No |  |
+| `peers` | `table` | No |  |
+| `prefixes` | `table` | No |  |
 | `prefixes6` | `table` | No |  |
 | `registry` | `string` | No |  |
 | `route` | `string` | No |  |
 | `type` | `string` | Yes |  |
-| `upstream` | `table` | No |  |
+| `upstreams` | `table` | No |  |
 
 ### Operations
 
@@ -489,7 +489,7 @@ local domain = client:Domain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `table` | No |  |
+| `domains` | `table` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `number` | No |  |
 | `total` | `number` | Yes |  |
@@ -606,7 +606,7 @@ local get_current_information = client:GetCurrentInformation(nil)
 | `city` | `string` | No |  |
 | `company` | `table` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `table` | Yes |  |
+| `domains` | `table` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -672,7 +672,7 @@ local get_information_by_ip = client:GetInformationByIp(nil)
 | `city` | `string` | No |  |
 | `company` | `table` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `table` | Yes |  |
+| `domains` | `table` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -1007,8 +1007,8 @@ local men = client:Men(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | `table` | Yes |  |
-| `request` | `table` | Yes |  |
+| `features` | `table` | Yes |  |
+| `requests` | `table` | Yes |  |
 | `token` | `string` | Yes |  |
 
 ### Operations
@@ -1237,7 +1237,7 @@ local privacy_extended = client:PrivacyExtended(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `census` | `boolean` | No |  |
-| `census_port` | `table` | No |  |
+| `census_ports` | `table` | No |  |
 | `confidence` | `number` | No |  |
 | `coverage` | `number` | No |  |
 | `device_activity` | `boolean` | No |  |
@@ -1251,7 +1251,7 @@ local privacy_extended = client:PrivacyExtended(nil)
 | `tor` | `boolean` | Yes |  |
 | `vpn` | `boolean` | Yes |  |
 | `vpn_config` | `boolean` | No |  |
-| `whoi` | `boolean` | No |  |
+| `whois` | `boolean` | No |  |
 
 ### Operations
 
@@ -1304,8 +1304,8 @@ local range = client:Range(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `num_range` | `string` | Yes |  |
-| `range` | `table` | Yes |  |
+| `num_ranges` | `string` | Yes |  |
+| `ranges` | `table` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
 
 ### Operations
@@ -1525,7 +1525,7 @@ local whois_domain = client:WhoisDomain(nil)
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `table` | No |  |
+| `records` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1580,7 +1580,7 @@ local whois_ip = client:WhoisIp(nil)
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `table` | No |  |
+| `records` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1635,7 +1635,7 @@ local whois_net_id = client:WhoisNetId(nil)
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `table` | No |  |
+| `records` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1690,7 +1690,7 @@ local whois_org = client:WhoisOrg(nil)
 | --- | --- | --- | --- |
 | `org` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `table` | No |  |
+| `records` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1745,7 +1745,7 @@ local whois_poc = client:WhoisPoc(nil)
 | --- | --- | --- | --- |
 | `page` | `number` | No |  |
 | `poc` | `string` | No |  |
-| `record` | `table` | No |  |
+| `records` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations

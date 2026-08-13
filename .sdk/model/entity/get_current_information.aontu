@@ -36,7 +36,7 @@ main: kit: entity: get_current_information: {
       type: "`$STRING`"
     }
     {
-      name: "domain"
+      name: "domains"
       req: true
       type: "`$OBJECT`"
     }

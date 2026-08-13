@@ -3,7 +3,7 @@
     "privacy_extended": {
       "PRIVACY_EXTENDED00": {
         "census": true,
-        "census_port": [],
+        "census_ports": [],
         "confidence": "sa2",
         "coverage": 163,
         "device_activity": true,
@@ -17,12 +17,12 @@
         "tor": true,
         "vpn": false,
         "vpn_config": true,
-        "whoi": false,
+        "whois": false,
         "ip": "IP01"
       },
       "PRIVACY_EXTENDED01": {
         "census": true,
-        "census_port": [],
+        "census_ports": [],
         "confidence": "s142",
         "coverage": 323,
         "device_activity": true,
@@ -36,12 +36,12 @@
         "tor": true,
         "vpn": false,
         "vpn_config": true,
-        "whoi": false,
+        "whois": false,
         "ip": "IP01"
       },
       "PRIVACY_EXTENDED02": {
         "census": true,
-        "census_port": [],
+        "census_ports": [],
         "confidence": "s1e2",
         "coverage": 483,
         "device_activity": true,
@@ -55,7 +55,7 @@
         "tor": true,
         "vpn": false,
         "vpn_config": true,
-        "whoi": false,
+        "whois": false,
         "ip": "IP01"
       }
     }
@@ -64,7 +64,7 @@
     "privacy_extended": {
       "privacy_extended_ref01": {
         "census": true,
-        "census_port": [],
+        "census_ports": [],
         "confidence": "s282",
         "coverage": 643,
         "device_activity": true,
@@ -78,7 +78,7 @@
         "tor": true,
         "vpn": false,
         "vpn_config": true,
-        "whoi": false
+        "whois": false
       }
     }
   }

@@ -500,16 +500,16 @@ const asn = client.Asn()
 | `asn` | `string` | Yes |  |
 | `country` | `string` | No |  |
 | `domain` | `string` | Yes |  |
-| `downstream` | `any[]` | No |  |
+| `downstreams` | `any[]` | No |  |
 | `name` | `string` | Yes |  |
-| `num_ip` | `number` | No |  |
-| `peer` | `any[]` | No |  |
-| `prefix` | `any[]` | No |  |
+| `num_ips` | `number` | No |  |
+| `peers` | `any[]` | No |  |
+| `prefixes` | `any[]` | No |  |
 | `prefixes6` | `any[]` | No |  |
 | `registry` | `string` | No |  |
 | `route` | `string` | No |  |
 | `type` | `string` | Yes |  |
-| `upstream` | `any[]` | No |  |
+| `upstreams` | `any[]` | No |  |
 
 ### Operations
 
@@ -518,7 +518,7 @@ const asn = client.Asn()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Asn().list()
+const results = await client.Asn().list({ asn: 1 })
 ```
 
 ### Common Methods
@@ -721,7 +721,7 @@ const domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `any[]` | No |  |
+| `domains` | `any[]` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `number` | No |  |
 | `total` | `number` | Yes |  |
@@ -834,7 +834,7 @@ const get_current_information = client.GetCurrentInformation()
 | `city` | `string` | No |  |
 | `company` | `Record<string, any>` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `Record<string, any>` | Yes |  |
+| `domains` | `Record<string, any>` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -898,7 +898,7 @@ const get_information_by_ip = client.GetInformationByIp()
 | `city` | `string` | No |  |
 | `company` | `Record<string, any>` | Yes |  |
 | `country` | `string` | No |  |
-| `domain` | `Record<string, any>` | Yes |  |
+| `domains` | `Record<string, any>` | Yes |  |
 | `hostname` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
@@ -1113,6 +1113,26 @@ const lite = client.Lite()
 | `country_code` | `string` | Yes |  |
 | `ip` | `string` | Yes |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `me` | `/lite/me` | `client.Lite().load({ $action: 'me', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Lite record — check the API definition for its shape.
+
+```ts
+const result = await client.Lite().load({
+  $action: 'me',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -1221,8 +1241,8 @@ const men = client.Men()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | `Record<string, any>` | Yes |  |
-| `request` | `Record<string, any>` | Yes |  |
+| `features` | `Record<string, any>` | Yes |  |
+| `requests` | `Record<string, any>` | Yes |  |
 | `token` | `string` | Yes |  |
 
 ### Operations
@@ -1339,6 +1359,26 @@ const plus = client.Plus()
 | `is_satellite` | `boolean` | No |  |
 | `mobile` | `Record<string, any>` | No |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `me` | `/plus/me` | `client.Plus().load({ $action: 'me', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Plus record — check the API definition for its shape.
+
+```ts
+const result = await client.Plus().load({
+  $action: 'me',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -1443,7 +1483,7 @@ const privacy_extended = client.PrivacyExtended()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `census` | `boolean` | No |  |
-| `census_port` | `any[]` | No |  |
+| `census_ports` | `any[]` | No |  |
 | `confidence` | `number` | No |  |
 | `coverage` | `number` | No |  |
 | `device_activity` | `boolean` | No |  |
@@ -1457,7 +1497,7 @@ const privacy_extended = client.PrivacyExtended()
 | `tor` | `boolean` | Yes |  |
 | `vpn` | `boolean` | Yes |  |
 | `vpn_config` | `boolean` | No |  |
-| `whoi` | `boolean` | No |  |
+| `whois` | `boolean` | No |  |
 
 ### Operations
 
@@ -1466,7 +1506,7 @@ const privacy_extended = client.PrivacyExtended()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.PrivacyExtended().list()
+const results = await client.PrivacyExtended().list({ ip: "example" })
 ```
 
 ### Common Methods
@@ -1508,8 +1548,8 @@ const range = client.Range()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `num_range` | `string` | Yes |  |
-| `range` | `any[]` | Yes |  |
+| `num_ranges` | `string` | Yes |  |
+| `ranges` | `any[]` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
 
 ### Operations
@@ -1678,7 +1718,7 @@ const whois_asn = client.WhoisAsn()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.WhoisAsn().list()
+const results = await client.WhoisAsn().list({ asn: 1 })
 ```
 
 ### Common Methods
@@ -1721,7 +1761,7 @@ const whois_domain = client.WhoisDomain()
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `any[]` | No |  |
+| `records` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1774,7 +1814,7 @@ const whois_ip = client.WhoisIp()
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `any[]` | No |  |
+| `records` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1827,7 +1867,7 @@ const whois_net_id = client.WhoisNetId()
 | --- | --- | --- | --- |
 | `net` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `any[]` | No |  |
+| `records` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1880,7 +1920,7 @@ const whois_org = client.WhoisOrg()
 | --- | --- | --- | --- |
 | `org` | `string` | No |  |
 | `page` | `number` | No |  |
-| `record` | `any[]` | No |  |
+| `records` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -1933,7 +1973,7 @@ const whois_poc = client.WhoisPoc()
 | --- | --- | --- | --- |
 | `page` | `number` | No |  |
 | `poc` | `string` | No |  |
-| `record` | `any[]` | No |  |
+| `records` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations

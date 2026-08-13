@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ IpinfoDeveloperUtility::setRegistrar(function (IpinfoDeveloperUtility $u): void 
     $u->prepare_params = [IpinfoDeveloperPrepareParams::class, 'call'];
     $u->prepare_path = [IpinfoDeveloperPreparePath::class, 'call'];
     $u->prepare_query = [IpinfoDeveloperPrepareQuery::class, 'call'];
+    $u->graphql_body = [IpinfoDeveloperGraphql::class, 'body'];
+    $u->graphql_errors = [IpinfoDeveloperGraphql::class, 'errors'];
     $u->result_basic = [IpinfoDeveloperResultBasic::class, 'call'];
     $u->result_body = [IpinfoDeveloperResultBody::class, 'call'];
     $u->result_headers = [IpinfoDeveloperResultHeaders::class, 'call'];

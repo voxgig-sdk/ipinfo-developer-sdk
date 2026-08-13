@@ -124,6 +124,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/abuse',
                   'parts' => [
@@ -181,7 +182,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'downstream',
+              'name' => 'downstreams',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 4,
@@ -195,21 +196,21 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'num_ip',
+              'name' => 'num_ips',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 6,
             ],
             [
               'active' => true,
-              'name' => 'peer',
+              'name' => 'peers',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'prefix',
+              'name' => 'prefixes',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 8,
@@ -244,7 +245,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'upstream',
+              'name' => 'upstreams',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 13,
@@ -271,6 +272,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/AS{asn}',
                   'parts' => [
@@ -340,6 +342,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/carrier',
                   'parts' => [
@@ -410,6 +413,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/company',
                   'parts' => [
@@ -522,6 +526,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lookup/{ip}',
                   'parts' => [
@@ -542,6 +547,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lookup/me',
                   'parts' => [
@@ -571,7 +577,7 @@ class IpinfoDeveloperConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'domain',
+              'name' => 'domains',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -638,6 +644,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/domains/{ip}',
                   'parts' => [
@@ -722,6 +729,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/tools/map',
                   'parts' => [
@@ -754,6 +762,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/tools/summarize-ips',
                   'parts' => [
@@ -774,6 +783,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/batch',
                   'parts' => [
@@ -840,7 +850,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'domain',
+              'name' => 'domains',
               'req' => true,
               'type' => '`$OBJECT`',
               'index$' => 6,
@@ -911,6 +921,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
                   'parts' => [],
@@ -975,7 +986,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'domain',
+              'name' => 'domains',
               'req' => true,
               'type' => '`$OBJECT`',
               'index$' => 6,
@@ -1058,6 +1069,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}',
                   'parts' => [
@@ -1141,6 +1153,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lookup/{ip}/{field}',
                   'parts' => [
@@ -1175,6 +1188,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lookup/me/{field}',
                   'parts' => [
@@ -1240,6 +1254,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lite/{ip}/{field}',
                   'parts' => [
@@ -1274,6 +1289,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lite/me/{field}',
                   'parts' => [
@@ -1307,6 +1323,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lite/{ip}',
                   'parts' => [
@@ -1398,6 +1415,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/plus/{ip}/{field}',
                   'parts' => [
@@ -1432,6 +1450,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/plus/me/{field}',
                   'parts' => [
@@ -1533,6 +1552,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lite/me',
                   'parts' => [
@@ -1657,6 +1677,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/max/{ip}',
                   'parts' => [
@@ -1691,14 +1712,14 @@ class IpinfoDeveloperConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'feature',
+              'name' => 'features',
               'req' => true,
               'type' => '`$OBJECT`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'request',
+              'name' => 'requests',
               'req' => true,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -1720,6 +1741,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/me',
                   'parts' => [
@@ -1806,6 +1828,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/places/{ip}',
                   'parts' => [
@@ -1930,6 +1953,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/plus/{ip}',
                   'parts' => [
@@ -1955,6 +1979,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/plus/me',
                   'parts' => [
@@ -2044,6 +2069,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/privacy',
                   'parts' => [
@@ -2080,7 +2106,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'census_port',
+              'name' => 'census_ports',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 1,
@@ -2178,7 +2204,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'whoi',
+              'name' => 'whois',
               'req' => false,
               'type' => '`$BOOLEAN`',
               'index$' => 15,
@@ -2205,6 +2231,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/privacy_extended',
                   'parts' => [
@@ -2218,7 +2245,7 @@ class IpinfoDeveloperConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.census_ports`',
                   ],
                   'index$' => 0,
                 ],
@@ -2241,14 +2268,14 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'num_range',
+              'name' => 'num_ranges',
               'req' => true,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'range',
+              'name' => 'ranges',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -2282,6 +2309,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ranges/{domain}',
                   'parts' => [
@@ -2364,6 +2392,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/resproxy',
                   'parts' => [
@@ -2412,6 +2441,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/city',
                   'parts' => [
@@ -2444,6 +2474,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/country',
                   'parts' => [
@@ -2476,6 +2507,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/hostname',
                   'parts' => [
@@ -2508,6 +2540,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/ip',
                   'parts' => [
@@ -2540,6 +2573,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/loc',
                   'parts' => [
@@ -2572,6 +2606,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/org',
                   'parts' => [
@@ -2604,6 +2639,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/postal',
                   'parts' => [
@@ -2636,6 +2672,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/region',
                   'parts' => [
@@ -2668,6 +2705,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}/timezone',
                   'parts' => [
@@ -2688,6 +2726,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/city',
                   'parts' => [
@@ -2703,6 +2742,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/country',
                   'parts' => [
@@ -2718,6 +2758,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/hostname',
                   'parts' => [
@@ -2733,6 +2774,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ip',
                   'parts' => [
@@ -2748,6 +2790,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/loc',
                   'parts' => [
@@ -2763,6 +2806,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/org',
                   'parts' => [
@@ -2778,6 +2822,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/postal',
                   'parts' => [
@@ -2793,6 +2838,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/region',
                   'parts' => [
@@ -2808,6 +2854,7 @@ class IpinfoDeveloperConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/timezone',
                   'parts' => [
@@ -2961,6 +3008,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois/net/AS{asn}',
                   'parts' => [
@@ -2977,7 +3025,7 @@ class IpinfoDeveloperConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.records`',
                   ],
                   'index$' => 0,
                 ],
@@ -3007,7 +3055,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'record',
+              'name' => 'records',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -3059,6 +3107,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois/net/{domain}',
                   'parts' => [
@@ -3109,7 +3158,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'record',
+              'name' => 'records',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -3161,6 +3210,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois/net/{whoisip}',
                   'parts' => [
@@ -3211,7 +3261,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'record',
+              'name' => 'records',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -3263,6 +3313,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois/net/{whoisnetid}',
                   'parts' => [
@@ -3313,7 +3364,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'record',
+              'name' => 'records',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -3365,6 +3416,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois/org/{whoisorgid}',
                   'parts' => [
@@ -3416,7 +3468,7 @@ class IpinfoDeveloperConfig
             ],
             [
               'active' => true,
-              'name' => 'record',
+              'name' => 'records',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -3468,6 +3520,7 @@ class IpinfoDeveloperConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois/poc/{whoispoc}',
                   'parts' => [

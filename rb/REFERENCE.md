@@ -263,16 +263,16 @@ asn = client.Asn
 | `asn` | `String` | Yes |  |
 | `country` | `String` | No |  |
 | `domain` | `String` | Yes |  |
-| `downstream` | `Array` | No |  |
+| `downstreams` | `Array` | No |  |
 | `name` | `String` | Yes |  |
-| `num_ip` | `Integer` | No |  |
-| `peer` | `Array` | No |  |
-| `prefix` | `Array` | No |  |
+| `num_ips` | `Integer` | No |  |
+| `peers` | `Array` | No |  |
+| `prefixes` | `Array` | No |  |
 | `prefixes6` | `Array` | No |  |
 | `registry` | `String` | No |  |
 | `route` | `String` | No |  |
 | `type` | `String` | Yes |  |
-| `upstream` | `Array` | No |  |
+| `upstreams` | `Array` | No |  |
 
 ### Operations
 
@@ -492,7 +492,7 @@ domain = client.Domain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `Array` | No |  |
+| `domains` | `Array` | No |  |
 | `ip` | `String` | No |  |
 | `page` | `Integer` | No |  |
 | `total` | `Integer` | Yes |  |
@@ -609,7 +609,7 @@ get_current_information = client.GetCurrentInformation
 | `city` | `String` | No |  |
 | `company` | `Hash` | Yes |  |
 | `country` | `String` | No |  |
-| `domain` | `Hash` | Yes |  |
+| `domains` | `Hash` | Yes |  |
 | `hostname` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `loc` | `String` | No |  |
@@ -675,7 +675,7 @@ get_information_by_ip = client.GetInformationByIp
 | `city` | `String` | No |  |
 | `company` | `Hash` | Yes |  |
 | `country` | `String` | No |  |
-| `domain` | `Hash` | Yes |  |
+| `domains` | `Hash` | Yes |  |
 | `hostname` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `loc` | `String` | No |  |
@@ -1010,8 +1010,8 @@ men = client.Men
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `feature` | `Hash` | Yes |  |
-| `request` | `Hash` | Yes |  |
+| `features` | `Hash` | Yes |  |
+| `requests` | `Hash` | Yes |  |
 | `token` | `String` | Yes |  |
 
 ### Operations
@@ -1240,7 +1240,7 @@ privacy_extended = client.PrivacyExtended
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `census` | `Boolean` | No |  |
-| `census_port` | `Array` | No |  |
+| `census_ports` | `Array` | No |  |
 | `confidence` | `Integer` | No |  |
 | `coverage` | `Float` | No |  |
 | `device_activity` | `Boolean` | No |  |
@@ -1254,7 +1254,7 @@ privacy_extended = client.PrivacyExtended
 | `tor` | `Boolean` | Yes |  |
 | `vpn` | `Boolean` | Yes |  |
 | `vpn_config` | `Boolean` | No |  |
-| `whoi` | `Boolean` | No |  |
+| `whois` | `Boolean` | No |  |
 
 ### Operations
 
@@ -1307,8 +1307,8 @@ range = client.Range
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `String` | Yes |  |
-| `num_range` | `String` | Yes |  |
-| `range` | `Array` | Yes |  |
+| `num_ranges` | `String` | Yes |  |
+| `ranges` | `Array` | Yes |  |
 | `redirects_to` | `String` | Yes |  |
 
 ### Operations
@@ -1528,7 +1528,7 @@ whois_domain = client.WhoisDomain
 | --- | --- | --- | --- |
 | `net` | `String` | No |  |
 | `page` | `Integer` | No |  |
-| `record` | `Array` | No |  |
+| `records` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations
@@ -1583,7 +1583,7 @@ whois_ip = client.WhoisIp
 | --- | --- | --- | --- |
 | `net` | `String` | No |  |
 | `page` | `Integer` | No |  |
-| `record` | `Array` | No |  |
+| `records` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations
@@ -1638,7 +1638,7 @@ whois_net_id = client.WhoisNetId
 | --- | --- | --- | --- |
 | `net` | `String` | No |  |
 | `page` | `Integer` | No |  |
-| `record` | `Array` | No |  |
+| `records` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations
@@ -1693,7 +1693,7 @@ whois_org = client.WhoisOrg
 | --- | --- | --- | --- |
 | `org` | `String` | No |  |
 | `page` | `Integer` | No |  |
-| `record` | `Array` | No |  |
+| `records` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations
@@ -1748,7 +1748,7 @@ whois_poc = client.WhoisPoc
 | --- | --- | --- | --- |
 | `page` | `Integer` | No |  |
 | `poc` | `String` | No |  |
-| `record` | `Array` | No |  |
+| `records` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations

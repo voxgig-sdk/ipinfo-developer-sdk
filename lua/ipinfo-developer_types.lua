@@ -22,16 +22,16 @@
 ---@field asn string
 ---@field country? string
 ---@field domain string
----@field downstream? table
+---@field downstreams? table
 ---@field name string
----@field num_ip? number
----@field peer? table
----@field prefix? table
+---@field num_ips? number
+---@field peers? table
+---@field prefixes? table
 ---@field prefixes6? table
 ---@field registry? string
 ---@field route? string
 ---@field type string
----@field upstream? table
+---@field upstreams? table
 
 ---@class AsnListMatch
 ---@field asn number
@@ -67,7 +67,7 @@
 ---@field ip? string
 
 ---@class Domain
----@field domain? table
+---@field domains? table
 ---@field ip? string
 ---@field page? number
 ---@field total number
@@ -94,7 +94,7 @@
 ---@field city? string
 ---@field company table
 ---@field country? string
----@field domain table
+---@field domains table
 ---@field hostname? string
 ---@field ip string
 ---@field loc? string
@@ -111,7 +111,7 @@
 ---@field city? string
 ---@field company? table
 ---@field country? string
----@field domain? table
+---@field domains? table
 ---@field hostname? string
 ---@field ip? string
 ---@field loc? string
@@ -128,7 +128,7 @@
 ---@field city? string
 ---@field company table
 ---@field country? string
----@field domain table
+---@field domains table
 ---@field hostname? string
 ---@field ip string
 ---@field loc? string
@@ -203,13 +203,13 @@
 ---@field id string
 
 ---@class Men
----@field feature table
----@field request table
+---@field features table
+---@field requests table
 ---@field token string
 
 ---@class MenLoadMatch
----@field feature? table
----@field request? table
+---@field features? table
+---@field requests? table
 ---@field token? string
 
 ---@class Place
@@ -251,7 +251,7 @@
 
 ---@class PrivacyExtended
 ---@field census? boolean
----@field census_port? table
+---@field census_ports? table
 ---@field confidence? number
 ---@field coverage? number
 ---@field device_activity? boolean
@@ -265,15 +265,15 @@
 ---@field tor boolean
 ---@field vpn boolean
 ---@field vpn_config? boolean
----@field whoi? boolean
+---@field whois? boolean
 
 ---@class PrivacyExtendedListMatch
 ---@field ip string
 
 ---@class Range
 ---@field domain string
----@field num_range string
----@field range table
+---@field num_ranges string
+---@field ranges table
 ---@field redirects_to string
 
 ---@class RangeLoadMatch
@@ -314,7 +314,7 @@
 ---@class WhoisDomain
 ---@field net? string
 ---@field page? number
----@field record? table
+---@field records? table
 ---@field total? number
 
 ---@class WhoisDomainLoadMatch
@@ -323,7 +323,7 @@
 ---@class WhoisIp
 ---@field net? string
 ---@field page? number
----@field record? table
+---@field records? table
 ---@field total? number
 
 ---@class WhoisIpLoadMatch
@@ -332,7 +332,7 @@
 ---@class WhoisNetId
 ---@field net? string
 ---@field page? number
----@field record? table
+---@field records? table
 ---@field total? number
 
 ---@class WhoisNetIdLoadMatch
@@ -341,7 +341,7 @@
 ---@class WhoisOrg
 ---@field org? string
 ---@field page? number
----@field record? table
+---@field records? table
 ---@field total? number
 
 ---@class WhoisOrgLoadMatch
@@ -350,7 +350,7 @@
 ---@class WhoisPoc
 ---@field page? number
 ---@field poc? string
----@field record? table
+---@field records? table
 ---@field total? number
 
 ---@class WhoisPocLoadMatch

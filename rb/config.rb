@@ -119,6 +119,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/abuse",
                   "parts" => [
@@ -176,7 +177,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "downstream",
+              "name" => "downstreams",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 4,
@@ -190,21 +191,21 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "num_ip",
+              "name" => "num_ips",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 6,
             },
             {
               "active" => true,
-              "name" => "peer",
+              "name" => "peers",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 7,
             },
             {
               "active" => true,
-              "name" => "prefix",
+              "name" => "prefixes",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 8,
@@ -239,7 +240,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "upstream",
+              "name" => "upstreams",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 13,
@@ -266,6 +267,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/AS{asn}",
                   "parts" => [
@@ -335,6 +337,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/carrier",
                   "parts" => [
@@ -405,6 +408,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/company",
                   "parts" => [
@@ -517,6 +521,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/{ip}",
                   "parts" => [
@@ -537,6 +542,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/me",
                   "parts" => [
@@ -566,7 +572,7 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "domain",
+              "name" => "domains",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -633,6 +639,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/domains/{ip}",
                   "parts" => [
@@ -717,6 +724,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/tools/map",
                   "parts" => [
@@ -749,6 +757,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/tools/summarize-ips",
                   "parts" => [
@@ -769,6 +778,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/batch",
                   "parts" => [
@@ -835,7 +845,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "domain",
+              "name" => "domains",
               "req" => true,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -906,6 +916,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
                   "parts" => [],
@@ -970,7 +981,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "domain",
+              "name" => "domains",
               "req" => true,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -1053,6 +1064,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}",
                   "parts" => [
@@ -1136,6 +1148,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/{ip}/{field}",
                   "parts" => [
@@ -1170,6 +1183,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/me/{field}",
                   "parts" => [
@@ -1235,6 +1249,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/{ip}/{field}",
                   "parts" => [
@@ -1269,6 +1284,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/me/{field}",
                   "parts" => [
@@ -1302,6 +1318,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/{ip}",
                   "parts" => [
@@ -1393,6 +1410,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/{ip}/{field}",
                   "parts" => [
@@ -1427,6 +1445,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/me/{field}",
                   "parts" => [
@@ -1528,6 +1547,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/me",
                   "parts" => [
@@ -1652,6 +1672,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/max/{ip}",
                   "parts" => [
@@ -1686,14 +1707,14 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "feature",
+              "name" => "features",
               "req" => true,
               "type" => "`$OBJECT`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "request",
+              "name" => "requests",
               "req" => true,
               "type" => "`$OBJECT`",
               "index$" => 1,
@@ -1715,6 +1736,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/me",
                   "parts" => [
@@ -1801,6 +1823,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/places/{ip}",
                   "parts" => [
@@ -1925,6 +1948,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/{ip}",
                   "parts" => [
@@ -1950,6 +1974,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/me",
                   "parts" => [
@@ -2039,6 +2064,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/privacy",
                   "parts" => [
@@ -2075,7 +2101,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "census_port",
+              "name" => "census_ports",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -2173,7 +2199,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "whoi",
+              "name" => "whois",
               "req" => false,
               "type" => "`$BOOLEAN`",
               "index$" => 15,
@@ -2200,6 +2226,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/privacy_extended",
                   "parts" => [
@@ -2213,7 +2240,7 @@ module IpinfoDeveloperConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.census_ports`",
                   },
                   "index$" => 0,
                 },
@@ -2236,14 +2263,14 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "num_range",
+              "name" => "num_ranges",
               "req" => true,
               "type" => "`$STRING`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "range",
+              "name" => "ranges",
               "req" => true,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -2277,6 +2304,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ranges/{domain}",
                   "parts" => [
@@ -2359,6 +2387,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/resproxy",
                   "parts" => [
@@ -2407,6 +2436,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/city",
                   "parts" => [
@@ -2439,6 +2469,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/country",
                   "parts" => [
@@ -2471,6 +2502,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/hostname",
                   "parts" => [
@@ -2503,6 +2535,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/ip",
                   "parts" => [
@@ -2535,6 +2568,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/loc",
                   "parts" => [
@@ -2567,6 +2601,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/org",
                   "parts" => [
@@ -2599,6 +2634,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/postal",
                   "parts" => [
@@ -2631,6 +2667,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/region",
                   "parts" => [
@@ -2663,6 +2700,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/timezone",
                   "parts" => [
@@ -2683,6 +2721,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/city",
                   "parts" => [
@@ -2698,6 +2737,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/country",
                   "parts" => [
@@ -2713,6 +2753,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/hostname",
                   "parts" => [
@@ -2728,6 +2769,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ip",
                   "parts" => [
@@ -2743,6 +2785,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/loc",
                   "parts" => [
@@ -2758,6 +2801,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/org",
                   "parts" => [
@@ -2773,6 +2817,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/postal",
                   "parts" => [
@@ -2788,6 +2833,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/region",
                   "parts" => [
@@ -2803,6 +2849,7 @@ module IpinfoDeveloperConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/timezone",
                   "parts" => [
@@ -2956,6 +3003,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/AS{asn}",
                   "parts" => [
@@ -2972,7 +3020,7 @@ module IpinfoDeveloperConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.records`",
                   },
                   "index$" => 0,
                 },
@@ -3002,7 +3050,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "record",
+              "name" => "records",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -3054,6 +3102,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/{domain}",
                   "parts" => [
@@ -3104,7 +3153,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "record",
+              "name" => "records",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -3156,6 +3205,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/{whoisip}",
                   "parts" => [
@@ -3206,7 +3256,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "record",
+              "name" => "records",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -3258,6 +3308,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/{whoisnetid}",
                   "parts" => [
@@ -3308,7 +3359,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "record",
+              "name" => "records",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -3360,6 +3411,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/org/{whoisorgid}",
                   "parts" => [
@@ -3411,7 +3463,7 @@ module IpinfoDeveloperConfig
             },
             {
               "active" => true,
-              "name" => "record",
+              "name" => "records",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -3463,6 +3515,7 @@ module IpinfoDeveloperConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/poc/{whoispoc}",
                   "parts" => [

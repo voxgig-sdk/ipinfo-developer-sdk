@@ -50,7 +50,8 @@ func TestWhoisDomainDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -115,21 +116,21 @@ func whois_domainDirectSetup(mockres any) *whois_domainDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"IPINFODEVELOPER_TEST_WHOIS_DOMAIN_ENTID": map[string]any{},
-		"IPINFODEVELOPER_TEST_LIVE":    "FALSE",
-		"IPINFODEVELOPER_APIKEY":       "NONE",
+		"IPINFO_DEVELOPER_TEST_WHOIS_DOMAIN_ENTID": map[string]any{},
+		"IPINFO_DEVELOPER_TEST_LIVE":    "FALSE",
+		"IPINFO_DEVELOPER_APIKEY":       "NONE",
 	})
 
-	live := env["IPINFODEVELOPER_TEST_LIVE"] == "TRUE"
+	live := env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPINFODEVELOPER_APIKEY"],
+			"apikey": env["IPINFO_DEVELOPER_APIKEY"],
 		}
 		client := sdk.NewIpinfoDeveloperSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["IPINFODEVELOPER_TEST_WHOIS_DOMAIN_ENTID"]; ok {
+		if entidRaw, ok := env["IPINFO_DEVELOPER_TEST_WHOIS_DOMAIN_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-abuse, err := client.Abuse(nil).Load(nil, nil)
+domain, err := client.Domain(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = abuse
+_ = domain
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-abuse, err := client.Abuse(nil).Load(
-    nil, nil,
+domain, err := client.Domain(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(abuse) // the returned mock data
+fmt.Println(domain) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -312,16 +312,16 @@ API path: `/{ip}/abuse`
 | `"asn"` |  |
 | `"country"` |  |
 | `"domain"` |  |
-| `"downstream"` |  |
+| `"downstreams"` |  |
 | `"name"` |  |
-| `"num_ip"` |  |
-| `"peer"` |  |
-| `"prefix"` |  |
+| `"num_ips"` |  |
+| `"peers"` |  |
+| `"prefixes"` |  |
 | `"prefixes6"` |  |
 | `"registry"` |  |
 | `"route"` |  |
 | `"type"` |  |
-| `"upstream"` |  |
+| `"upstreams"` |  |
 
 Operations: List.
 
@@ -373,7 +373,7 @@ API path: `/lookup/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `"domain"` |  |
+| `"domains"` |  |
 | `"ip"` |  |
 | `"page"` |  |
 | `"total"` |  |
@@ -405,7 +405,7 @@ API path: `/tools/map`
 | `"city"` |  |
 | `"company"` |  |
 | `"country"` |  |
-| `"domain"` |  |
+| `"domains"` |  |
 | `"hostname"` |  |
 | `"ip"` |  |
 | `"loc"` |  |
@@ -429,7 +429,7 @@ API path: `/`
 | `"city"` |  |
 | `"company"` |  |
 | `"country"` |  |
-| `"domain"` |  |
+| `"domains"` |  |
 | `"hostname"` |  |
 | `"ip"` |  |
 | `"loc"` |  |
@@ -517,8 +517,8 @@ API path: `/max/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `"feature"` |  |
-| `"request"` |  |
+| `"features"` |  |
+| `"requests"` |  |
 | `"token"` |  |
 
 Operations: Load.
@@ -579,7 +579,7 @@ API path: `/{ip}/privacy`
 | Field | Description |
 | --- | --- |
 | `"census"` |  |
-| `"census_port"` |  |
+| `"census_ports"` |  |
 | `"confidence"` |  |
 | `"coverage"` |  |
 | `"device_activity"` |  |
@@ -593,7 +593,7 @@ API path: `/{ip}/privacy`
 | `"tor"` |  |
 | `"vpn"` |  |
 | `"vpn_config"` |  |
-| `"whoi"` |  |
+| `"whois"` |  |
 
 Operations: List.
 
@@ -604,8 +604,8 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `"domain"` |  |
-| `"num_range"` |  |
-| `"range"` |  |
+| `"num_ranges"` |  |
+| `"ranges"` |  |
 | `"redirects_to"` |  |
 
 Operations: Load.
@@ -662,7 +662,7 @@ API path: `/whois/net/AS{asn}`
 | --- | --- |
 | `"net"` |  |
 | `"page"` |  |
-| `"record"` |  |
+| `"records"` |  |
 | `"total"` |  |
 
 Operations: Load.
@@ -675,7 +675,7 @@ API path: `/whois/net/{domain}`
 | --- | --- |
 | `"net"` |  |
 | `"page"` |  |
-| `"record"` |  |
+| `"records"` |  |
 | `"total"` |  |
 
 Operations: Load.
@@ -688,7 +688,7 @@ API path: `/whois/net/{whoisip}`
 | --- | --- |
 | `"net"` |  |
 | `"page"` |  |
-| `"record"` |  |
+| `"records"` |  |
 | `"total"` |  |
 
 Operations: Load.
@@ -701,7 +701,7 @@ API path: `/whois/net/{whoisnetid}`
 | --- | --- |
 | `"org"` |  |
 | `"page"` |  |
-| `"record"` |  |
+| `"records"` |  |
 | `"total"` |  |
 
 Operations: Load.
@@ -714,7 +714,7 @@ API path: `/whois/org/{whoisorgid}`
 | --- | --- |
 | `"page"` |  |
 | `"poc"` |  |
-| `"record"` |  |
+| `"records"` |  |
 | `"total"` |  |
 
 Operations: Load.
@@ -776,16 +776,16 @@ Create an instance: `asn := client.Asn(nil)`
 | `asn` | `string` |  |
 | `country` | `string` |  |
 | `domain` | `string` |  |
-| `downstream` | `[]any` |  |
+| `downstreams` | `[]any` |  |
 | `name` | `string` |  |
-| `num_ip` | `int` |  |
-| `peer` | `[]any` |  |
-| `prefix` | `[]any` |  |
+| `num_ips` | `int` |  |
+| `peers` | `[]any` |  |
+| `prefixes` | `[]any` |  |
 | `prefixes6` | `[]any` |  |
 | `registry` | `string` |  |
 | `route` | `string` |  |
 | `type` | `string` |  |
-| `upstream` | `[]any` |  |
+| `upstreams` | `[]any` |  |
 
 #### Example: List
 
@@ -905,7 +905,7 @@ Create an instance: `domain := client.Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `[]any` |  |
+| `domains` | `[]any` |  |
 | `ip` | `string` |  |
 | `page` | `int` |  |
 | `total` | `int` |  |
@@ -972,7 +972,7 @@ Create an instance: `getCurrentInformation := client.GetCurrentInformation(nil)`
 | `city` | `string` |  |
 | `company` | `map[string]any` |  |
 | `country` | `string` |  |
-| `domain` | `map[string]any` |  |
+| `domains` | `map[string]any` |  |
 | `hostname` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
@@ -1013,7 +1013,7 @@ Create an instance: `getInformationByIp := client.GetInformationByIp(nil)`
 | `city` | `string` |  |
 | `company` | `map[string]any` |  |
 | `country` | `string` |  |
-| `domain` | `map[string]any` |  |
+| `domains` | `map[string]any` |  |
 | `hostname` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
@@ -1198,8 +1198,8 @@ Create an instance: `men := client.Men(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | `map[string]any` |  |
-| `request` | `map[string]any` |  |
+| `features` | `map[string]any` |  |
+| `requests` | `map[string]any` |  |
 | `token` | `string` |  |
 
 #### Example: Load
@@ -1328,7 +1328,7 @@ Create an instance: `privacyExtended := client.PrivacyExtended(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `census` | `bool` |  |
-| `census_port` | `[]any` |  |
+| `census_ports` | `[]any` |  |
 | `confidence` | `int` |  |
 | `coverage` | `float64` |  |
 | `device_activity` | `bool` |  |
@@ -1342,7 +1342,7 @@ Create an instance: `privacyExtended := client.PrivacyExtended(nil)`
 | `tor` | `bool` |  |
 | `vpn` | `bool` |  |
 | `vpn_config` | `bool` |  |
-| `whoi` | `bool` |  |
+| `whois` | `bool` |  |
 
 #### Example: List
 
@@ -1370,8 +1370,8 @@ Create an instance: `range_ := client.Range(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `num_range` | `string` |  |
-| `range` | `[]any` |  |
+| `num_ranges` | `string` |  |
+| `ranges` | `[]any` |  |
 | `redirects_to` | `string` |  |
 
 #### Example: Load
@@ -1491,7 +1491,7 @@ Create an instance: `whoisDomain := client.WhoisDomain(nil)`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `int` |  |
-| `record` | `[]any` |  |
+| `records` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1521,7 +1521,7 @@ Create an instance: `whoisIp := client.WhoisIp(nil)`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `int` |  |
-| `record` | `[]any` |  |
+| `records` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1551,7 +1551,7 @@ Create an instance: `whoisNetId := client.WhoisNetId(nil)`
 | --- | --- | --- |
 | `net` | `string` |  |
 | `page` | `int` |  |
-| `record` | `[]any` |  |
+| `records` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1581,7 +1581,7 @@ Create an instance: `whoisOrg := client.WhoisOrg(nil)`
 | --- | --- | --- |
 | `org` | `string` |  |
 | `page` | `int` |  |
-| `record` | `[]any` |  |
+| `records` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1611,7 +1611,7 @@ Create an instance: `whoisPoc := client.WhoisPoc(nil)`
 | --- | --- | --- |
 | `page` | `int` |  |
 | `poc` | `string` |  |
-| `record` | `[]any` |  |
+| `records` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: Load
@@ -1698,11 +1698,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-abuse := client.Abuse(nil)
-abuse.Load(nil, nil)
+domain := client.Domain(nil)
+domain.Load(map[string]any{"id": "example_id"}, nil)
 
-// abuse.Data() now returns the abuse data from the last load
-// abuse.Match() returns the last match criteria
+// domain.Data() now returns the domain data from the last load
+// domain.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

@@ -26,8 +26,8 @@ import {
 describe('GeneralEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPINFODEVELOPER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPINFODEVELOPER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IPINFO_DEVELOPER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IPINFO_DEVELOPER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpinfoDeveloperSDK.test()
@@ -62,7 +62,7 @@ describe('GeneralEntity', async () => {
     const general_ref01_ent = client.General()
     let general_ref01_data = setup.data.new.general['general_ref01']
 
-    general_ref01_data = await general_ref01_ent.create(general_ref01_data)
+    general_ref01_data = (await general_ref01_ent.create(general_ref01_data)).data()
     assert(null != general_ref01_data)
 
 

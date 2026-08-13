@@ -38,7 +38,7 @@ IpinfoCore is nested under field, so provide the `field`.
 
 ```ruby
 begin
-  # load returns the bare IpinfoCore record (raises on error).
+  # load returns the ENTITY — call data_get for the IpinfoCore record (raises on error).
   ipinfocore = client.IpinfoCore.load({ "field" => "example_field" })
   puts ipinfocore
 rescue => err
@@ -53,7 +53,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  abuse = client.Abuse.load()
+  domain = client.Domain.load({ "id" => "example_id" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -116,14 +116,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = IpinfoDeveloperSDK.test
+client = IpinfoDeveloperSDK.test({
+  "entity" => { "domain" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-abuse = client.Abuse.load()
-puts abuse
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+domain = client.Domain.load({ "id" => "test01" })
+puts domain
 ```
 
 ### Use a custom fetch function
@@ -288,16 +292,16 @@ API path: `/{ip}/abuse`
 | `asn` |  |
 | `country` |  |
 | `domain` |  |
-| `downstream` |  |
+| `downstreams` |  |
 | `name` |  |
-| `num_ip` |  |
-| `peer` |  |
-| `prefix` |  |
+| `num_ips` |  |
+| `peers` |  |
+| `prefixes` |  |
 | `prefixes6` |  |
 | `registry` |  |
 | `route` |  |
 | `type` |  |
-| `upstream` |  |
+| `upstreams` |  |
 
 Operations: List.
 
@@ -349,7 +353,7 @@ API path: `/lookup/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -381,7 +385,7 @@ API path: `/tools/map`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -405,7 +409,7 @@ API path: `/`
 | `city` |  |
 | `company` |  |
 | `country` |  |
-| `domain` |  |
+| `domains` |  |
 | `hostname` |  |
 | `ip` |  |
 | `loc` |  |
@@ -493,8 +497,8 @@ API path: `/max/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `feature` |  |
-| `request` |  |
+| `features` |  |
+| `requests` |  |
 | `token` |  |
 
 Operations: Load.
@@ -555,7 +559,7 @@ API path: `/{ip}/privacy`
 | Field | Description |
 | --- | --- |
 | `census` |  |
-| `census_port` |  |
+| `census_ports` |  |
 | `confidence` |  |
 | `coverage` |  |
 | `device_activity` |  |
@@ -569,7 +573,7 @@ API path: `/{ip}/privacy`
 | `tor` |  |
 | `vpn` |  |
 | `vpn_config` |  |
-| `whoi` |  |
+| `whois` |  |
 
 Operations: List.
 
@@ -580,8 +584,8 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `num_range` |  |
-| `range` |  |
+| `num_ranges` |  |
+| `ranges` |  |
 | `redirects_to` |  |
 
 Operations: Load.
@@ -638,7 +642,7 @@ API path: `/whois/net/AS{asn}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -651,7 +655,7 @@ API path: `/whois/net/{domain}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -664,7 +668,7 @@ API path: `/whois/net/{whoisip}`
 | --- | --- |
 | `net` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -677,7 +681,7 @@ API path: `/whois/net/{whoisnetid}`
 | --- | --- |
 | `org` |  |
 | `page` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -690,7 +694,7 @@ API path: `/whois/org/{whoisorgid}`
 | --- | --- |
 | `page` |  |
 | `poc` |  |
-| `record` |  |
+| `records` |  |
 | `total` |  |
 
 Operations: Load.
@@ -726,7 +730,7 @@ Create an instance: `abuse = client.Abuse`
 #### Example: Load
 
 ```ruby
-# load returns the bare Abuse record (raises on error).
+# load returns the ENTITY — call data_get for the Abuse record (raises on error).
 abuse = client.Abuse.load({ "ip" => "ip" })
 ```
 
@@ -749,16 +753,16 @@ Create an instance: `asn = client.Asn`
 | `asn` | `String` |  |
 | `country` | `String` |  |
 | `domain` | `String` |  |
-| `downstream` | `Array` |  |
+| `downstreams` | `Array` |  |
 | `name` | `String` |  |
-| `num_ip` | `Integer` |  |
-| `peer` | `Array` |  |
-| `prefix` | `Array` |  |
+| `num_ips` | `Integer` |  |
+| `peers` | `Array` |  |
+| `prefixes` | `Array` |  |
 | `prefixes6` | `Array` |  |
 | `registry` | `String` |  |
 | `route` | `String` |  |
 | `type` | `String` |  |
-| `upstream` | `Array` |  |
+| `upstreams` | `Array` |  |
 
 #### Example: List
 
@@ -789,7 +793,7 @@ Create an instance: `carrier = client.Carrier`
 #### Example: Load
 
 ```ruby
-# load returns the bare Carrier record (raises on error).
+# load returns the ENTITY — call data_get for the Carrier record (raises on error).
 carrier = client.Carrier.load({ "ip" => "ip" })
 ```
 
@@ -815,7 +819,7 @@ Create an instance: `company = client.Company`
 #### Example: Load
 
 ```ruby
-# load returns the bare Company record (raises on error).
+# load returns the ENTITY — call data_get for the Company record (raises on error).
 company = client.Company.load({ "ip" => "ip" })
 ```
 
@@ -847,7 +851,7 @@ Create an instance: `core = client.Core`
 #### Example: Load
 
 ```ruby
-# load returns the bare Core record (raises on error).
+# load returns the ENTITY — call data_get for the Core record (raises on error).
 core = client.Core.load()
 ```
 
@@ -866,7 +870,7 @@ Create an instance: `domain = client.Domain`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `Array` |  |
+| `domains` | `Array` |  |
 | `ip` | `String` |  |
 | `page` | `Integer` |  |
 | `total` | `Integer` |  |
@@ -874,7 +878,7 @@ Create an instance: `domain = client.Domain`
 #### Example: Load
 
 ```ruby
-# load returns the bare Domain record (raises on error).
+# load returns the ENTITY — call data_get for the Domain record (raises on error).
 domain = client.Domain.load({ "id" => "domain_id" })
 ```
 
@@ -926,7 +930,7 @@ Create an instance: `get_current_information = client.GetCurrentInformation`
 | `city` | `String` |  |
 | `company` | `Hash` |  |
 | `country` | `String` |  |
-| `domain` | `Hash` |  |
+| `domains` | `Hash` |  |
 | `hostname` | `String` |  |
 | `ip` | `String` |  |
 | `loc` | `String` |  |
@@ -939,7 +943,7 @@ Create an instance: `get_current_information = client.GetCurrentInformation`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetCurrentInformation record (raises on error).
+# load returns the ENTITY — call data_get for the GetCurrentInformation record (raises on error).
 get_current_information = client.GetCurrentInformation.load()
 ```
 
@@ -964,7 +968,7 @@ Create an instance: `get_information_by_ip = client.GetInformationByIp`
 | `city` | `String` |  |
 | `company` | `Hash` |  |
 | `country` | `String` |  |
-| `domain` | `Hash` |  |
+| `domains` | `Hash` |  |
 | `hostname` | `String` |  |
 | `ip` | `String` |  |
 | `loc` | `String` |  |
@@ -977,7 +981,7 @@ Create an instance: `get_information_by_ip = client.GetInformationByIp`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetInformationByIp record (raises on error).
+# load returns the ENTITY — call data_get for the GetInformationByIp record (raises on error).
 get_information_by_ip = client.GetInformationByIp.load({ "id" => "get_information_by_ip_id" })
 ```
 
@@ -1003,7 +1007,7 @@ Create an instance: `ipinfo_core = client.IpinfoCore`
 #### Example: Load
 
 ```ruby
-# load returns the bare IpinfoCore record (raises on error).
+# load returns the ENTITY — call data_get for the IpinfoCore record (raises on error).
 ipinfo_core = client.IpinfoCore.load({ "field" => "field" })
 ```
 
@@ -1021,7 +1025,7 @@ Create an instance: `ipinfo_lite = client.IpinfoLite`
 #### Example: Load
 
 ```ruby
-# load returns the bare IpinfoLite record (raises on error).
+# load returns the ENTITY — call data_get for the IpinfoLite record (raises on error).
 ipinfo_lite = client.IpinfoLite.load({ "id" => "ipinfo_lite_id" })
 ```
 
@@ -1047,7 +1051,7 @@ Create an instance: `ipinfo_plus = client.IpinfoPlus`
 #### Example: Load
 
 ```ruby
-# load returns the bare IpinfoPlus record (raises on error).
+# load returns the ENTITY — call data_get for the IpinfoPlus record (raises on error).
 ipinfo_plus = client.IpinfoPlus.load({ "field" => "field" })
 ```
 
@@ -1078,7 +1082,7 @@ Create an instance: `lite = client.Lite`
 #### Example: Load
 
 ```ruby
-# load returns the bare Lite record (raises on error).
+# load returns the ENTITY — call data_get for the Lite record (raises on error).
 lite = client.Lite.load()
 ```
 
@@ -1112,7 +1116,7 @@ Create an instance: `max = client.Max`
 #### Example: Load
 
 ```ruby
-# load returns the bare Max record (raises on error).
+# load returns the ENTITY — call data_get for the Max record (raises on error).
 max = client.Max.load({ "id" => "max_id" })
 ```
 
@@ -1131,14 +1135,14 @@ Create an instance: `men = client.Men`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `feature` | `Hash` |  |
-| `request` | `Hash` |  |
+| `features` | `Hash` |  |
+| `requests` | `Hash` |  |
 | `token` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Men record (raises on error).
+# load returns the ENTITY — call data_get for the Men record (raises on error).
 men = client.Men.load()
 ```
 
@@ -1167,7 +1171,7 @@ Create an instance: `place = client.Place`
 #### Example: Load
 
 ```ruby
-# load returns the bare Place record (raises on error).
+# load returns the ENTITY — call data_get for the Place record (raises on error).
 place = client.Place.load({ "id" => "place_id" })
 ```
 
@@ -1200,7 +1204,7 @@ Create an instance: `plus = client.Plus`
 #### Example: Load
 
 ```ruby
-# load returns the bare Plus record (raises on error).
+# load returns the ENTITY — call data_get for the Plus record (raises on error).
 plus = client.Plus.load({ "id" => "plus_id" })
 ```
 
@@ -1229,7 +1233,7 @@ Create an instance: `privacy = client.Privacy`
 #### Example: Load
 
 ```ruby
-# load returns the bare Privacy record (raises on error).
+# load returns the ENTITY — call data_get for the Privacy record (raises on error).
 privacy = client.Privacy.load({ "ip" => "ip" })
 ```
 
@@ -1249,7 +1253,7 @@ Create an instance: `privacy_extended = client.PrivacyExtended`
 | Field | Type | Description |
 | --- | --- | --- |
 | `census` | `Boolean` |  |
-| `census_port` | `Array` |  |
+| `census_ports` | `Array` |  |
 | `confidence` | `Integer` |  |
 | `coverage` | `Float` |  |
 | `device_activity` | `Boolean` |  |
@@ -1263,7 +1267,7 @@ Create an instance: `privacy_extended = client.PrivacyExtended`
 | `tor` | `Boolean` |  |
 | `vpn` | `Boolean` |  |
 | `vpn_config` | `Boolean` |  |
-| `whoi` | `Boolean` |  |
+| `whois` | `Boolean` |  |
 
 #### Example: List
 
@@ -1288,14 +1292,14 @@ Create an instance: `range = client.Range`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `String` |  |
-| `num_range` | `String` |  |
-| `range` | `Array` |  |
+| `num_ranges` | `String` |  |
+| `ranges` | `Array` |  |
 | `redirects_to` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Range record (raises on error).
+# load returns the ENTITY — call data_get for the Range record (raises on error).
 range = client.Range.load({ "id" => "range_id" })
 ```
 
@@ -1322,7 +1326,7 @@ Create an instance: `residential_proxy = client.ResidentialProxy`
 #### Example: Load
 
 ```ruby
-# load returns the bare ResidentialProxy record (raises on error).
+# load returns the ENTITY — call data_get for the ResidentialProxy record (raises on error).
 residential_proxy = client.ResidentialProxy.load({ "ip" => "ip" })
 ```
 
@@ -1340,7 +1344,7 @@ Create an instance: `single = client.Single`
 #### Example: Load
 
 ```ruby
-# load returns the bare Single record (raises on error).
+# load returns the ENTITY — call data_get for the Single record (raises on error).
 single = client.Single.load()
 ```
 
@@ -1397,13 +1401,13 @@ Create an instance: `whois_domain = client.WhoisDomain`
 | --- | --- | --- |
 | `net` | `String` |  |
 | `page` | `Integer` |  |
-| `record` | `Array` |  |
+| `records` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WhoisDomain record (raises on error).
+# load returns the ENTITY — call data_get for the WhoisDomain record (raises on error).
 whois_domain = client.WhoisDomain.load({ "domain" => "domain" })
 ```
 
@@ -1424,13 +1428,13 @@ Create an instance: `whois_ip = client.WhoisIp`
 | --- | --- | --- |
 | `net` | `String` |  |
 | `page` | `Integer` |  |
-| `record` | `Array` |  |
+| `records` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WhoisIp record (raises on error).
+# load returns the ENTITY — call data_get for the WhoisIp record (raises on error).
 whois_ip = client.WhoisIp.load({ "whoisip" => "whoisip" })
 ```
 
@@ -1451,13 +1455,13 @@ Create an instance: `whois_net_id = client.WhoisNetId`
 | --- | --- | --- |
 | `net` | `String` |  |
 | `page` | `Integer` |  |
-| `record` | `Array` |  |
+| `records` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WhoisNetId record (raises on error).
+# load returns the ENTITY — call data_get for the WhoisNetId record (raises on error).
 whois_net_id = client.WhoisNetId.load({ "whoisnetid" => "whoisnetid" })
 ```
 
@@ -1478,13 +1482,13 @@ Create an instance: `whois_org = client.WhoisOrg`
 | --- | --- | --- |
 | `org` | `String` |  |
 | `page` | `Integer` |  |
-| `record` | `Array` |  |
+| `records` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WhoisOrg record (raises on error).
+# load returns the ENTITY — call data_get for the WhoisOrg record (raises on error).
 whois_org = client.WhoisOrg.load({ "id" => "whois_org_id" })
 ```
 
@@ -1505,13 +1509,13 @@ Create an instance: `whois_poc = client.WhoisPoc`
 | --- | --- | --- |
 | `page` | `Integer` |  |
 | `poc` | `String` |  |
-| `record` | `Array` |  |
+| `records` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WhoisPoc record (raises on error).
+# load returns the ENTITY — call data_get for the WhoisPoc record (raises on error).
 whois_poc = client.WhoisPoc.load({ "id" => "whois_poc_id" })
 ```
 
@@ -1592,11 +1596,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-abuse = client.Abuse
-abuse.load()
+domain = client.Domain
+domain.load({ "id" => "example_id" })
 
-# abuse.data_get now returns the abuse data from the last load
-# abuse.match_get returns the last match criteria
+# domain.data_get now returns the domain data from the last load
+# domain.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

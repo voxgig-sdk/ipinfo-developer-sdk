@@ -23,16 +23,16 @@ export interface Asn {
   asn: string
   country?: string
   domain: string
-  downstream?: any[]
+  downstreams?: any[]
   name: string
-  num_ip?: number
-  peer?: any[]
-  prefix?: any[]
+  num_ips?: number
+  peers?: any[]
+  prefixes?: any[]
   prefixes6?: any[]
   registry?: string
   route?: string
   type: string
-  upstream?: any[]
+  upstreams?: any[]
 }
 
 export interface AsnListMatch {
@@ -76,7 +76,7 @@ export interface CoreLoadMatch {
 }
 
 export interface Domain {
-  domain?: any[]
+  domains?: any[]
   ip?: string
   page?: number
   total: number
@@ -107,7 +107,7 @@ export interface GetCurrentInformation {
   city?: string
   company: Record<string, any>
   country?: string
-  domain: Record<string, any>
+  domains: Record<string, any>
   hostname?: string
   ip: string
   loc?: string
@@ -125,7 +125,7 @@ export interface GetCurrentInformationLoadMatch {
   city?: string
   company?: Record<string, any>
   country?: string
-  domain?: Record<string, any>
+  domains?: Record<string, any>
   hostname?: string
   ip?: string
   loc?: string
@@ -143,7 +143,7 @@ export interface GetInformationByIp {
   city?: string
   company: Record<string, any>
   country?: string
-  domain: Record<string, any>
+  domains: Record<string, any>
   hostname?: string
   ip: string
   loc?: string
@@ -209,6 +209,12 @@ export interface LiteLoadMatch {
   country?: string
   country_code?: string
   ip?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'me'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Max {
@@ -230,14 +236,14 @@ export interface MaxLoadMatch {
 }
 
 export interface Men {
-  feature: Record<string, any>
-  request: Record<string, any>
+  features: Record<string, any>
+  requests: Record<string, any>
   token: string
 }
 
 export interface MenLoadMatch {
-  feature?: Record<string, any>
-  request?: Record<string, any>
+  features?: Record<string, any>
+  requests?: Record<string, any>
   token?: string
 }
 
@@ -269,6 +275,12 @@ export interface Plus {
 
 export interface PlusLoadMatch {
   id: string
+
+  // Selects a custom action instead of the plain load:
+  //   'me'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Privacy {
@@ -286,7 +298,7 @@ export interface PrivacyLoadMatch {
 
 export interface PrivacyExtended {
   census?: boolean
-  census_port?: any[]
+  census_ports?: any[]
   confidence?: number
   coverage?: number
   device_activity?: boolean
@@ -300,7 +312,7 @@ export interface PrivacyExtended {
   tor: boolean
   vpn: boolean
   vpn_config?: boolean
-  whoi?: boolean
+  whois?: boolean
 }
 
 export interface PrivacyExtendedListMatch {
@@ -309,8 +321,8 @@ export interface PrivacyExtendedListMatch {
 
 export interface Range {
   domain: string
-  num_range: string
-  range: any[]
+  num_ranges: string
+  ranges: any[]
   redirects_to: string
 }
 
@@ -359,7 +371,7 @@ export interface WhoisAsnListMatch {
 export interface WhoisDomain {
   net?: string
   page?: number
-  record?: any[]
+  records?: any[]
   total?: number
 }
 
@@ -370,7 +382,7 @@ export interface WhoisDomainLoadMatch {
 export interface WhoisIp {
   net?: string
   page?: number
-  record?: any[]
+  records?: any[]
   total?: number
 }
 
@@ -381,7 +393,7 @@ export interface WhoisIpLoadMatch {
 export interface WhoisNetId {
   net?: string
   page?: number
-  record?: any[]
+  records?: any[]
   total?: number
 }
 
@@ -392,7 +404,7 @@ export interface WhoisNetIdLoadMatch {
 export interface WhoisOrg {
   org?: string
   page?: number
-  record?: any[]
+  records?: any[]
   total?: number
 }
 
@@ -403,7 +415,7 @@ export interface WhoisOrgLoadMatch {
 export interface WhoisPoc {
   page?: number
   poc?: string
-  record?: any[]
+  records?: any[]
   total?: number
 }
 

@@ -6,12 +6,12 @@ main: kit: entity: men: {
 
   fields: [
     {
-      name: "feature"
+      name: "features"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "request"
+      name: "requests"
       req: true
       type: "`$OBJECT`"
     }

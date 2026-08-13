@@ -33,7 +33,7 @@ class GeneralEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set IPINFODEVELOPER_TEST_GENERAL_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set IPINFO_DEVELOPER_TEST_GENERAL_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,7 +44,7 @@ class GeneralEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.general"), "general_ref01"));
 
         $general_ref01_data_result = $general_ref01_ent->create($general_ref01_data, null);
-        $general_ref01_data = Helpers::to_map($general_ref01_data_result);
+        $general_ref01_data = Helpers::to_map(is_object($general_ref01_data_result) && method_exists($general_ref01_data_result, 'data_get') ? $general_ref01_data_result->data_get() : $general_ref01_data_result);
         $this->assertNotNull($general_ref01_data);
 
     }
@@ -72,39 +72,39 @@ function general_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("IPINFODEVELOPER_TEST_GENERAL_ENTID");
+    $entid_env_raw = getenv("IPINFO_DEVELOPER_TEST_GENERAL_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "IPINFODEVELOPER_TEST_GENERAL_ENTID" => $idmap,
-        "IPINFODEVELOPER_TEST_LIVE" => "FALSE",
-        "IPINFODEVELOPER_TEST_EXPLAIN" => "FALSE",
-        "IPINFODEVELOPER_APIKEY" => "NONE",
+        "IPINFO_DEVELOPER_TEST_GENERAL_ENTID" => $idmap,
+        "IPINFO_DEVELOPER_TEST_LIVE" => "FALSE",
+        "IPINFO_DEVELOPER_TEST_EXPLAIN" => "FALSE",
+        "IPINFO_DEVELOPER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["IPINFODEVELOPER_TEST_GENERAL_ENTID"]);
+        $env["IPINFO_DEVELOPER_TEST_GENERAL_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["IPINFODEVELOPER_TEST_LIVE"] === "TRUE") {
+    if ($env["IPINFO_DEVELOPER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPINFODEVELOPER_APIKEY"],
+                "apikey" => $env["IPINFO_DEVELOPER_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new IpinfoDeveloperSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["IPINFODEVELOPER_TEST_LIVE"] === "TRUE";
+    $live = $env["IPINFO_DEVELOPER_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["IPINFODEVELOPER_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["IPINFO_DEVELOPER_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

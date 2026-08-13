@@ -37,7 +37,7 @@ class PrivacyExtendedEntity extends IpinfoDeveloperEntityBase<PrivacyExtended> {
 
 
 
-  async list(this: any, reqmatch?: PrivacyExtendedListMatch, ctrl?: Control): Promise<PrivacyExtended[]> {
+  async list(this: any, reqmatch?: PrivacyExtendedListMatch, ctrl?: Control): Promise<PrivacyExtendedEntity[]> {
 
     const utility = this._utility
 

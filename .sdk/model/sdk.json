@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "abuse": {
           "active": true,
@@ -82,6 +87,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/abuse",
                   "parts": [
@@ -137,7 +143,7 @@
             },
             {
               "active": true,
-              "name": "downstream",
+              "name": "downstreams",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -149,19 +155,19 @@
             },
             {
               "active": true,
-              "name": "num_ip",
+              "name": "num_ips",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "peer",
+              "name": "peers",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "prefix",
+              "name": "prefixes",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -191,7 +197,7 @@
             },
             {
               "active": true,
-              "name": "upstream",
+              "name": "upstreams",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -216,6 +222,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/AS{asn}",
                   "parts": [
@@ -283,6 +290,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/carrier",
                   "parts": [
@@ -351,6 +359,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/company",
                   "parts": [
@@ -455,6 +464,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/{ip}",
                   "parts": [
@@ -474,6 +484,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/me",
                   "parts": [
@@ -505,7 +516,7 @@
           "fields": [
             {
               "active": true,
-              "name": "domain",
+              "name": "domains",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -567,6 +578,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/domains/{ip}",
                   "parts": [
@@ -649,6 +661,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/tools/map",
                   "parts": [
@@ -680,6 +693,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/tools/summarize-ips",
                   "parts": [
@@ -699,6 +713,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/batch",
                   "parts": [
@@ -761,7 +776,7 @@
             },
             {
               "active": true,
-              "name": "domain",
+              "name": "domains",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -823,6 +838,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/",
                   "parts": [],
@@ -883,7 +899,7 @@
             },
             {
               "active": true,
-              "name": "domain",
+              "name": "domains",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -956,6 +972,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}",
                   "parts": [
@@ -1036,6 +1053,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/{ip}/{field}",
                   "parts": [
@@ -1068,6 +1086,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/me/{field}",
                   "parts": [
@@ -1133,6 +1152,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lite/{ip}/{field}",
                   "parts": [
@@ -1165,6 +1185,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lite/me/{field}",
                   "parts": [
@@ -1196,6 +1217,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lite/{ip}",
                   "parts": [
@@ -1284,6 +1306,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/plus/{ip}/{field}",
                   "parts": [
@@ -1316,6 +1339,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/plus/me/{field}",
                   "parts": [
@@ -1411,6 +1435,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/lite/me",
                   "parts": [
@@ -1525,6 +1550,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/max/{ip}",
                   "parts": [
@@ -1561,13 +1587,13 @@
           "fields": [
             {
               "active": true,
-              "name": "feature",
+              "name": "features",
               "req": true,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "request",
+              "name": "requests",
               "req": true,
               "type": "`$OBJECT`"
             },
@@ -1587,6 +1613,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/me",
                   "parts": [
@@ -1668,6 +1695,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/places/{ip}",
                   "parts": [
@@ -1783,6 +1811,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/plus/{ip}",
                   "parts": [
@@ -1807,6 +1836,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/plus/me",
                   "parts": [
@@ -1891,6 +1921,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/privacy",
                   "parts": [
@@ -1928,7 +1959,7 @@
             },
             {
               "active": true,
-              "name": "census_port",
+              "name": "census_ports",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -2012,7 +2043,7 @@
             },
             {
               "active": true,
-              "name": "whoi",
+              "name": "whois",
               "req": false,
               "type": "`$BOOLEAN`"
             }
@@ -2037,6 +2068,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/privacy_extended",
                   "parts": [
@@ -2050,7 +2082,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.census_ports`"
                   }
                 }
               ]
@@ -2074,13 +2106,13 @@
             },
             {
               "active": true,
-              "name": "num_range",
+              "name": "num_ranges",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "range",
+              "name": "ranges",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -2111,6 +2143,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ranges/{domain}",
                   "parts": [
@@ -2190,6 +2223,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/resproxy",
                   "parts": [
@@ -2239,6 +2273,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/city",
                   "parts": [
@@ -2269,6 +2304,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/country",
                   "parts": [
@@ -2299,6 +2335,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/hostname",
                   "parts": [
@@ -2329,6 +2366,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/ip",
                   "parts": [
@@ -2359,6 +2397,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/loc",
                   "parts": [
@@ -2389,6 +2428,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/org",
                   "parts": [
@@ -2419,6 +2459,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/postal",
                   "parts": [
@@ -2449,6 +2490,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/region",
                   "parts": [
@@ -2479,6 +2521,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/timezone",
                   "parts": [
@@ -2498,6 +2541,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/city",
                   "parts": [
@@ -2512,6 +2556,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/country",
                   "parts": [
@@ -2526,6 +2571,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/hostname",
                   "parts": [
@@ -2540,6 +2586,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ip",
                   "parts": [
@@ -2554,6 +2601,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/loc",
                   "parts": [
@@ -2568,6 +2616,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/org",
                   "parts": [
@@ -2582,6 +2631,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/postal",
                   "parts": [
@@ -2596,6 +2646,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/region",
                   "parts": [
@@ -2610,6 +2661,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/timezone",
                   "parts": [
@@ -2755,6 +2807,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois/net/AS{asn}",
                   "parts": [
@@ -2771,7 +2824,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.records`"
                   }
                 }
               ]
@@ -2801,7 +2854,7 @@
             },
             {
               "active": true,
-              "name": "record",
+              "name": "records",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -2850,6 +2903,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois/net/{domain}",
                   "parts": [
@@ -2900,7 +2954,7 @@
             },
             {
               "active": true,
-              "name": "record",
+              "name": "records",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -2949,6 +3003,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois/net/{whoisip}",
                   "parts": [
@@ -2999,7 +3054,7 @@
             },
             {
               "active": true,
-              "name": "record",
+              "name": "records",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -3048,6 +3103,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois/net/{whoisnetid}",
                   "parts": [
@@ -3098,7 +3154,7 @@
             },
             {
               "active": true,
-              "name": "record",
+              "name": "records",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -3147,6 +3203,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois/org/{whoisorgid}",
                   "parts": [
@@ -3198,7 +3255,7 @@
             },
             {
               "active": true,
-              "name": "record",
+              "name": "records",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -3247,6 +3304,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois/poc/{whoispoc}",
                   "parts": [
@@ -4267,18 +4325,41 @@
         "website": "https://ipinfo.io/developers"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4300,22 +4381,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -4354,21 +4453,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -4407,12 +4524,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -4424,10 +4546,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4449,22 +4584,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4486,13 +4639,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -4504,10 +4662,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4529,13 +4700,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -4552,10 +4728,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4577,13 +4766,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -4606,10 +4800,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ipinfo-developer"
+            "goversion": "",
+            "name": "ipinfo-developer",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -4631,9 +4838,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }
