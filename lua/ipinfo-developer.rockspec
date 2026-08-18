@@ -23,6 +23,7 @@ build = {
   modules = {
     ["ipinfo-developer_sdk"] = "ipinfo-developer_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

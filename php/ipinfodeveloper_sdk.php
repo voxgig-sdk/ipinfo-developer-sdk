@@ -40,7 +40,7 @@ class IpinfoDeveloperSDK
         $utility = new IpinfoDeveloperUtility();
         $this->_utility = $utility;
 
-        $config = IpinfoDeveloperConfig::make_config();
+        $config = IpinfoDeveloperConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

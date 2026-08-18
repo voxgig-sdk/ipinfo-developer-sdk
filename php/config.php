@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class IpinfoDeveloperConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -61,46 +84,28 @@ class IpinfoDeveloperConfig
         'abuse' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'address',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'email',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'network',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'phone',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'abuse',
@@ -110,17 +115,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -140,10 +142,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -153,102 +153,64 @@ class IpinfoDeveloperConfig
         'asn' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'allocated',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'asn',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'downstreams',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'num_ips',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'peers',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'prefixes',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'prefixes6',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'registry',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'route',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'upstreams',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 13,
             ],
           ],
           'name' => 'asn',
@@ -258,17 +220,14 @@ class IpinfoDeveloperConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'asn',
                         'orig' => 'asn',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -287,10 +246,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -300,25 +257,19 @@ class IpinfoDeveloperConfig
         'carrier' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'mcc',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'mnc',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'carrier',
@@ -328,17 +279,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -358,10 +306,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -371,25 +317,19 @@ class IpinfoDeveloperConfig
         'company' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'company',
@@ -399,17 +339,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -429,10 +366,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -442,67 +377,41 @@ class IpinfoDeveloperConfig
         'core' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'as',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'geo',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'hostname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'is_anonymous',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'is_anycast',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'is_hosting',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'is_mobile',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'is_satellite',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 8,
             ],
           ],
           'name' => 'core',
@@ -512,17 +421,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -542,10 +448,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -559,10 +463,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -576,32 +478,21 @@ class IpinfoDeveloperConfig
         'domain' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domains',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ip',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'page',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'domain',
@@ -611,35 +502,28 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'limit',
                         'orig' => 'limit',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -667,10 +551,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -680,32 +562,20 @@ class IpinfoDeveloperConfig
         'general' => [
           'fields' => [
             [
-              'active' => true,
               'name' => '8_8_8_8',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => '8_8_8_8city',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'summary',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'value',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 3,
             ],
           ],
           'name' => 'general',
@@ -715,16 +585,13 @@ class IpinfoDeveloperConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'cli',
                         'orig' => 'cli',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -745,19 +612,15 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'cli',
                         'orig' => 'cli',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -778,10 +641,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -794,10 +655,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -807,109 +666,70 @@ class IpinfoDeveloperConfig
         'get_current_information' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'asn',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'bogon',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'carrier',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'city',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'company',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'domains',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'hostname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'loc',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'org',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'postal',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'privacy',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'region',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'timezone',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 14,
             ],
           ],
           'name' => 'get_current_information',
@@ -919,7 +739,6 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -930,10 +749,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -943,109 +760,70 @@ class IpinfoDeveloperConfig
         'get_information_by_ip' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'asn',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'bogon',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'carrier',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'city',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'company',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'domains',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'hostname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'loc',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'org',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'postal',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'privacy',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'region',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'timezone',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 14,
             ],
           ],
           'name' => 'get_information_by_ip',
@@ -1055,17 +833,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1089,10 +864,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1102,25 +875,16 @@ class IpinfoDeveloperConfig
         'ipinfo_core' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'city',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'key',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'region',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'ipinfo_core',
@@ -1130,26 +894,21 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'field',
                         'orig' => 'field',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -1171,20 +930,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'field',
                         'orig' => 'field',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1205,10 +960,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1231,26 +984,21 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'field',
                         'orig' => 'field',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -1272,20 +1020,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'field',
                         'orig' => 'field',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1306,20 +1050,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1344,10 +1084,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1364,25 +1102,16 @@ class IpinfoDeveloperConfig
         'ipinfo_plus' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'city',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'key',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'region',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'ipinfo_plus',
@@ -1392,26 +1121,21 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'field',
                         'orig' => 'field',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -1433,20 +1157,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'field',
                         'orig' => 'field',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1467,10 +1187,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1487,60 +1205,44 @@ class IpinfoDeveloperConfig
         'lite' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'as_domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'as_name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'asn',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'continent',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'continent_code',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'country',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'country_code',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
           ],
           'name' => 'lite',
@@ -1550,7 +1252,6 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1566,10 +1267,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1579,81 +1278,52 @@ class IpinfoDeveloperConfig
         'max' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'anonymous',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'as',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'geo',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'hostname',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'is_anonymous',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'is_anycast',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'is_hosting',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'is_mobile',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'is_satellite',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'mobile',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 10,
             ],
           ],
           'name' => 'max',
@@ -1663,17 +1333,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1698,10 +1365,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1711,25 +1376,19 @@ class IpinfoDeveloperConfig
         'men' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'features',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'requests',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'token',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'men',
@@ -1739,7 +1398,6 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1752,10 +1410,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1765,46 +1421,34 @@ class IpinfoDeveloperConfig
         'place' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'category',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'latitude',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'longitude',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'ssid',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'place',
@@ -1814,17 +1458,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1849,10 +1490,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1862,74 +1501,45 @@ class IpinfoDeveloperConfig
         'plus' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'anonymous',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'as',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'geo',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'is_anonymous',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'is_anycast',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'is_hosting',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'is_mobile',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'is_satellite',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'mobile',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 9,
             ],
           ],
           'name' => 'plus',
@@ -1939,17 +1549,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1974,10 +1581,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1993,10 +1598,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2006,46 +1609,34 @@ class IpinfoDeveloperConfig
         'privacy' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'hosting',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'proxy',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'relay',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'service',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'tor',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'vpn',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
           ],
           'name' => 'privacy',
@@ -2055,17 +1646,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2085,10 +1673,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2098,116 +1684,74 @@ class IpinfoDeveloperConfig
         'privacy_extended' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'census',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'census_ports',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'confidence',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'coverage',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'device_activity',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'first_seen',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'hosting',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'inferred',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'last_seen',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'proxy',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'relay',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'service',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'tor',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'vpn',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'vpn_config',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'whois',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 15,
             ],
           ],
           'name' => 'privacy_extended',
@@ -2217,17 +1761,14 @@ class IpinfoDeveloperConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2247,10 +1788,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body.census_ports`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -2260,32 +1799,24 @@ class IpinfoDeveloperConfig
         'range' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'num_ranges',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'ranges',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'redirects_to',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'range',
@@ -2295,17 +1826,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2330,10 +1858,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2343,32 +1869,24 @@ class IpinfoDeveloperConfig
         'residential_proxy' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'last_seen',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'percent_days_seen',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'service',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'residential_proxy',
@@ -2378,17 +1896,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2408,10 +1923,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2427,17 +1940,14 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2457,20 +1967,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2490,20 +1996,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2523,20 +2025,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2556,20 +2054,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 3,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2589,20 +2083,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 4,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2622,20 +2112,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 5,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2655,20 +2141,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 6,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2688,20 +2170,16 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 7,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2721,10 +2199,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 8,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2737,10 +2213,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 9,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2753,10 +2227,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 10,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2769,10 +2241,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 11,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2785,10 +2255,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 12,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2801,10 +2269,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 13,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2817,10 +2283,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 14,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2833,10 +2297,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 15,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2849,10 +2311,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 16,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2865,10 +2325,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 17,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2878,95 +2336,56 @@ class IpinfoDeveloperConfig
         'whois_asn' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'abuse',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'admin',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'maintainer',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'org',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'range',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'raw',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'source',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'status',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'tech',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'updated',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 12,
             ],
           ],
           'name' => 'whois_asn',
@@ -2976,34 +2395,27 @@ class IpinfoDeveloperConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'asn',
                         'orig' => 'asn',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'whoissource',
                         'orig' => 'whoissource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3027,10 +2439,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body.records`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -3040,32 +2450,20 @@ class IpinfoDeveloperConfig
         'whois_domain' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'net',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'page',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'records',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'whois_domain',
@@ -3075,34 +2473,27 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'domain',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'whoissource',
                         'orig' => 'whoissource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3126,10 +2517,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3143,32 +2532,20 @@ class IpinfoDeveloperConfig
         'whois_ip' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'net',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'page',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'records',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'whois_ip',
@@ -3178,34 +2555,27 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'whoisip',
                         'orig' => 'whoisip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'whoissource',
                         'orig' => 'whoissource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3229,10 +2599,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3246,32 +2614,20 @@ class IpinfoDeveloperConfig
         'whois_net_id' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'net',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'page',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'records',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'whois_net_id',
@@ -3281,34 +2637,27 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'whoisnetid',
                         'orig' => 'whoisnetid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'whoissource',
                         'orig' => 'whoissource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3332,10 +2681,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3349,32 +2696,20 @@ class IpinfoDeveloperConfig
         'whois_org' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'org',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'page',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'records',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'whois_org',
@@ -3384,34 +2719,27 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'whoisorgid',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'whoissource',
                         'orig' => 'whoissource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3440,10 +2768,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -3453,32 +2779,20 @@ class IpinfoDeveloperConfig
         'whois_poc' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'page',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'poc',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'records',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'whois_poc',
@@ -3488,34 +2802,27 @@ class IpinfoDeveloperConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'whoispoc',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'page',
                         'orig' => 'page',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'whoissource',
                         'orig' => 'whoissource',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -3544,10 +2851,8 @@ class IpinfoDeveloperConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [

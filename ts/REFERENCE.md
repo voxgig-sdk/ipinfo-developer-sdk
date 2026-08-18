@@ -680,7 +680,7 @@ const core = client.Core()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Core().load()
+const result = await client.Core().load({ ip: 'ip' })
 ```
 
 ### Common Methods

@@ -450,7 +450,7 @@ fmt.Println(core.GetName()) // "core"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Core(nil).Load(nil, nil)
+result, err := client.Core(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }

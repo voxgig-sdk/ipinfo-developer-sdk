@@ -87,7 +87,7 @@ class Core(CoreRequired, total=False):
     is_satellite: bool
 
 
-class CoreLoadMatch(TypedDict, total=False):
+class CoreLoadMatch(TypedDict):
     ip: str
 
 
@@ -197,9 +197,7 @@ class IpinfoLite(TypedDict):
     pass
 
 
-class IpinfoLiteLoadMatch(TypedDict, total=False):
-    field: str
-    ip: str
+class IpinfoLiteLoadMatch(TypedDict):
     id: str
 
 
@@ -368,8 +366,8 @@ class Single(TypedDict):
     pass
 
 
-class SingleLoadMatch(TypedDict, total=False):
-    ip: str
+class SingleLoadMatch(TypedDict):
+    pass
 
 
 class WhoisAsn(TypedDict, total=False):

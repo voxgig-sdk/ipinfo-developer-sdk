@@ -446,7 +446,7 @@ local core = client:Core(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Core():load()
+local result, err = client:Core():load({ ip = "ip" })
 ```
 
 ### Common Methods

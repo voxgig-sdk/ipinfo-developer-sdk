@@ -15,7 +15,7 @@ require_relative "../IpinfoDeveloper_sdk"
 module IpinfoDeveloperFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = IpinfoDeveloperConfig.make_config["feature"]
+    f = IpinfoDeveloperConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

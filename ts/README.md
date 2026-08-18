@@ -35,17 +35,17 @@ const client = new IpinfoDeveloperSDK({
 })
 ```
 
-### 3. Load an ipinfocore
+### 3. Load a core
 
-IpinfoCore is nested under field, so provide the `field`.
+Core is nested under ip, so provide the `ip`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const ipinfocore = await client.IpinfoCore().load({
-    field: 'example_field',
+  const core = await client.Core().load({
+    ip: 'example_ip',
   })
-  console.log(ipinfocore)
+  console.log(core)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -899,7 +899,7 @@ Create an instance: `const core = client.Core()`
 #### Example: Load
 
 ```ts
-const core = await client.Core().load()
+const core = await client.Core().load({ ip: 'ip' })
 ```
 
 

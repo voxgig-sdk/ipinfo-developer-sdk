@@ -72,7 +72,7 @@ export interface Core {
 }
 
 export interface CoreLoadMatch {
-  ip?: string
+  ip: string
 }
 
 export interface Domain {
@@ -173,9 +173,7 @@ export interface IpinfoLite {
 }
 
 export interface IpinfoLiteLoadMatch {
-  field?: string
-  ip?: string
-  id?: string
+  id: string
 }
 
 export interface IpinfoPlus {
@@ -345,7 +343,6 @@ export interface Single {
 }
 
 export interface SingleLoadMatch {
-  ip?: string
 }
 
 export interface WhoisAsn {

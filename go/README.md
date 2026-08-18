@@ -883,7 +883,7 @@ Create an instance: `core := client.Core(nil)`
 #### Example: Load
 
 ```go
-core, err := client.Core(nil).Load(nil, nil)
+core, err := client.Core(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }

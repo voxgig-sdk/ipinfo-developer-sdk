@@ -122,11 +122,11 @@ const client = new IpinfoDeveloperSDK({
 })
 
 
-// Load a specific ipinfocore (returns a IpinfoCore)
-const ipinfocore = await client.IpinfoCore().load({
-  field: 'example_field',
+// Load a specific core (returns a Core)
+const core = await client.Core().load({
+  ip: 'example_ip',
 })
-console.log(ipinfocore)
+console.log(core)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -243,14 +243,14 @@ client := sdk.NewIpinfoDeveloperSDK(map[string]any{
 })
 
 
-// Load a specific ipinfocore
-ipinfoCore, err := client.IpinfoCore(nil).Load(
-    map[string]any{"field": "example_field"}, nil,
+// Load a specific core
+core, err := client.Core(nil).Load(
+    map[string]any{"ip": "example_ip"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(ipinfoCore)
+fmt.Println(core)
 ```
 
 ### Ruby

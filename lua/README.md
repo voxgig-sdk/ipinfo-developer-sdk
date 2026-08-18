@@ -35,14 +35,14 @@ local client = sdk.new({
 })
 ```
 
-### 3. Load an ipinfocore
+### 3. Load a core
 
-IpinfoCore is nested under field, so provide the `field`.
+Core is nested under ip, so provide the `ip`.
 
 ```lua
-local ipinfocore, err = client:IpinfoCore():load({ field = "example_field" })
+local core, err = client:Core():load({ ip = "example_ip" })
 if err then error(err) end
-print(ipinfocore)
+print(core)
 ```
 
 
@@ -835,7 +835,7 @@ Create an instance: `local core = client:Core(nil)`
 #### Example: Load
 
 ```lua
-local core, err = client:Core():load()
+local core, err = client:Core():load({ ip = "ip" })
 ```
 
 

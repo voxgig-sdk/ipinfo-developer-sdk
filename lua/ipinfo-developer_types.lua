@@ -64,7 +64,7 @@
 ---@field is_satellite? boolean
 
 ---@class CoreLoadMatch
----@field ip? string
+---@field ip string
 
 ---@class Domain
 ---@field domains? table
@@ -153,9 +153,7 @@
 ---@class IpinfoLite
 
 ---@class IpinfoLiteLoadMatch
----@field field? string
----@field ip? string
----@field id? string
+---@field id string
 
 ---@class IpinfoPlus
 ---@field city? string
@@ -291,7 +289,6 @@
 ---@class Single
 
 ---@class SingleLoadMatch
----@field ip? string
 
 ---@class WhoisAsn
 ---@field abuse? string

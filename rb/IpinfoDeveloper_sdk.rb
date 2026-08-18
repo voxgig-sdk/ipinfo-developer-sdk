@@ -28,7 +28,7 @@ class IpinfoDeveloperSDK
     utility = IpinfoDeveloperUtility.new
     @_utility = utility
 
-    config = IpinfoDeveloperConfig.make_config
+    config = IpinfoDeveloperConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

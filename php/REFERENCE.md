@@ -448,7 +448,7 @@ $core = $client->Core();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Core()->load();
+$result = $client->Core()->load(["ip" => "ip"]);
 ```
 
 ### Common Methods

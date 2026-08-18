@@ -32,15 +32,15 @@ client = IpinfoDeveloperSDK.new({
 })
 ```
 
-### 3. Load an ipinfocore
+### 3. Load a core
 
-IpinfoCore is nested under field, so provide the `field`.
+Core is nested under ip, so provide the `ip`.
 
 ```ruby
 begin
-  # load returns the ENTITY — call data_get for the IpinfoCore record (raises on error).
-  ipinfocore = client.IpinfoCore.load({ "field" => "example_field" })
-  puts ipinfocore
+  # load returns the ENTITY — call data_get for the Core record (raises on error).
+  core = client.Core.load({ "ip" => "example_ip" })
+  puts core
 rescue => err
   warn "load failed: #{err}"
 end
@@ -852,7 +852,7 @@ Create an instance: `core = client.Core`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Core record (raises on error).
-core = client.Core.load()
+core = client.Core.load({ "ip" => "ip" })
 ```
 
 

@@ -212,7 +212,7 @@ Core = Struct.new(
 # Request payload for Core#load.
 #
 # @!attribute [rw] ip
-#   @return [String, nil]
+#   @return [String]
 CoreLoadMatch = Struct.new(
   :ip,
   keyword_init: true
@@ -530,17 +530,9 @@ end
 
 # Request payload for IpinfoLite#load.
 #
-# @!attribute [rw] field
-#   @return [String, nil]
-#
-# @!attribute [rw] ip
-#   @return [String, nil]
-#
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 IpinfoLiteLoadMatch = Struct.new(
-  :field,
-  :ip,
   :id,
   keyword_init: true
 )
@@ -1014,13 +1006,8 @@ class Single
 end
 
 # Request payload for Single#load.
-#
-# @!attribute [rw] ip
-#   @return [String, nil]
-SingleLoadMatch = Struct.new(
-  :ip,
-  keyword_init: true
-)
+class SingleLoadMatch
+end
 
 # WhoisAsn entity data model.
 #
