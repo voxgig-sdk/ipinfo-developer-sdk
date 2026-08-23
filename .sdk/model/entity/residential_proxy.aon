@@ -8,21 +8,25 @@ main: kit: entity: residential_proxy: {
     {
       name: "ip"
       req: true
+      short: "The IPv4 or IPv6 address associated with a residential proxy"
       type: "`$STRING`"
     }
     {
       name: "last_seen"
       req: true
+      short: "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)"
       type: "`$STRING`"
     }
     {
       name: "percent_days_seen"
       req: true
+      short: "The percentage of days the IP was active in the last 7-day period"
       type: "`$INTEGER`"
     }
     {
       name: "service"
       req: true
+      short: "The name of the residential proxy service."
       type: "`$STRING`"
     }
   ]

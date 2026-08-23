@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "IpinfoDeveloper",
+            "slug": "ipinfo-developer",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -1680,72 +1683,88 @@ def make_config():
         "fields": [
           {
             "name": "census",
+            "short": "Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "census_ports",
+            "short": "The ports we've gotten positive results for when running our VPN detection census",
             "type": "`$ARRAY`",
           },
           {
             "name": "confidence",
+            "short": "The level of confidence attributed to the best source associated with this range.",
             "type": "`$INTEGER`",
           },
           {
             "name": "coverage",
+            "short": "For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on.",
             "type": "`$NUMBER`",
           },
           {
             "name": "device_activity",
+            "short": "Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "first_seen",
+            "short": "Date when the activity on an anonymous IP address was first observed.",
             "type": "`$STRING`",
           },
           {
             "name": "hosting",
             "req": True,
+            "short": "Indicates a hosting/cloud service/data center IP address",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "inferred",
+            "short": "Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "last_seen",
+            "short": "Date when the activity on an anonymous IP address was last/recently observed.",
             "type": "`$STRING`",
           },
           {
             "name": "proxy",
             "req": True,
+            "short": "Indicates an open web proxy IP address",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "relay",
             "req": True,
+            "short": "Indicates a location-preserving anonymous relay service",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "service",
             "req": True,
+            "short": "Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names",
             "type": "`$STRING`",
           },
           {
             "name": "tor",
             "req": True,
+            "short": "Indicates a Tor (The Onion Router) exit node IP address",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "vpn",
             "req": True,
+            "short": "Indicates Virtual Private Network (VPN) service exit node IP address",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "vpn_config",
+            "short": "Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "whois",
+            "short": "Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -1866,21 +1885,25 @@ def make_config():
           {
             "name": "ip",
             "req": True,
+            "short": "The IPv4 or IPv6 address associated with a residential proxy",
             "type": "`$STRING`",
           },
           {
             "name": "last_seen",
             "req": True,
+            "short": "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)",
             "type": "`$STRING`",
           },
           {
             "name": "percent_days_seen",
             "req": True,
+            "short": "The percentage of days the IP was active in the last 7-day period",
             "type": "`$INTEGER`",
           },
           {
             "name": "service",
             "req": True,
+            "short": "The name of the residential proxy service.",
             "type": "`$STRING`",
           },
         ],

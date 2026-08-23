@@ -1226,22 +1226,22 @@ fmt.Println(privacyExtended.GetName()) // "privacy_extended"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `census` | `bool` | No |  |
-| `census_ports` | `[]any` | No |  |
-| `confidence` | `int` | No |  |
-| `coverage` | `float64` | No |  |
-| `device_activity` | `bool` | No |  |
-| `first_seen` | `string` | No |  |
-| `hosting` | `bool` | Yes |  |
-| `inferred` | `bool` | No |  |
-| `last_seen` | `string` | No |  |
-| `proxy` | `bool` | Yes |  |
-| `relay` | `bool` | Yes |  |
-| `service` | `string` | Yes |  |
-| `tor` | `bool` | Yes |  |
-| `vpn` | `bool` | Yes |  |
-| `vpn_config` | `bool` | No |  |
-| `whois` | `bool` | No |  |
+| `census` | `bool` | No | Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software. |
+| `census_ports` | `[]any` | No | The ports we've gotten positive results for when running our VPN detection census |
+| `confidence` | `int` | No | The level of confidence attributed to the best source associated with this range. |
+| `coverage` | `float64` | No | For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on. |
+| `device_activity` | `bool` | No | Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers) |
+| `first_seen` | `string` | No | Date when the activity on an anonymous IP address was first observed. |
+| `hosting` | `bool` | Yes | Indicates a hosting/cloud service/data center IP address |
+| `inferred` | `bool` | No | Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs |
+| `last_seen` | `string` | No | Date when the activity on an anonymous IP address was last/recently observed. |
+| `proxy` | `bool` | Yes | Indicates an open web proxy IP address |
+| `relay` | `bool` | Yes | Indicates a location-preserving anonymous relay service |
+| `service` | `string` | Yes | Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names |
+| `tor` | `bool` | Yes | Indicates a Tor (The Onion Router) exit node IP address |
+| `vpn` | `bool` | Yes | Indicates Virtual Private Network (VPN) service exit node IP address |
+| `vpn_config` | `bool` | No | Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs |
+| `whois` | `bool` | No | Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers |
 
 ### Operations
 
@@ -1346,10 +1346,10 @@ fmt.Println(residentialProxy.GetName()) // "residential_proxy"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | Yes |  |
-| `last_seen` | `string` | Yes |  |
-| `percent_days_seen` | `int` | Yes |  |
-| `service` | `string` | Yes |  |
+| `ip` | `string` | Yes | The IPv4 or IPv6 address associated with a residential proxy |
+| `last_seen` | `string` | Yes | The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC) |
+| `percent_days_seen` | `int` | Yes | The percentage of days the IP was active in the last 7-day period |
+| `service` | `string` | Yes | The name of the residential proxy service. |
 
 ### Operations
 

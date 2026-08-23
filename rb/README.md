@@ -558,22 +558,22 @@ API path: `/{ip}/privacy`
 
 | Field | Description |
 | --- | --- |
-| `census` |  |
-| `census_ports` |  |
-| `confidence` |  |
-| `coverage` |  |
-| `device_activity` |  |
-| `first_seen` |  |
-| `hosting` |  |
-| `inferred` |  |
-| `last_seen` |  |
-| `proxy` |  |
-| `relay` |  |
-| `service` |  |
-| `tor` |  |
-| `vpn` |  |
-| `vpn_config` |  |
-| `whois` |  |
+| `census` | Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software. |
+| `census_ports` | The ports we've gotten positive results for when running our VPN detection census |
+| `confidence` | The level of confidence attributed to the best source associated with this range. |
+| `coverage` | For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on. |
+| `device_activity` | Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers) |
+| `first_seen` | Date when the activity on an anonymous IP address was first observed. |
+| `hosting` | Indicates a hosting/cloud service/data center IP address |
+| `inferred` | Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs |
+| `last_seen` | Date when the activity on an anonymous IP address was last/recently observed. |
+| `proxy` | Indicates an open web proxy IP address |
+| `relay` | Indicates a location-preserving anonymous relay service |
+| `service` | Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names |
+| `tor` | Indicates a Tor (The Onion Router) exit node IP address |
+| `vpn` | Indicates Virtual Private Network (VPN) service exit node IP address |
+| `vpn_config` | Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs |
+| `whois` | Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers |
 
 Operations: List.
 
@@ -596,10 +596,10 @@ API path: `/ranges/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `last_seen` |  |
-| `percent_days_seen` |  |
-| `service` |  |
+| `ip` | The IPv4 or IPv6 address associated with a residential proxy |
+| `last_seen` | The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC) |
+| `percent_days_seen` | The percentage of days the IP was active in the last 7-day period |
+| `service` | The name of the residential proxy service. |
 
 Operations: Load.
 
@@ -1252,22 +1252,22 @@ Create an instance: `privacy_extended = client.PrivacyExtended`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `census` | `Boolean` |  |
-| `census_ports` | `Array` |  |
-| `confidence` | `Integer` |  |
-| `coverage` | `Float` |  |
-| `device_activity` | `Boolean` |  |
-| `first_seen` | `String` |  |
-| `hosting` | `Boolean` |  |
-| `inferred` | `Boolean` |  |
-| `last_seen` | `String` |  |
-| `proxy` | `Boolean` |  |
-| `relay` | `Boolean` |  |
-| `service` | `String` |  |
-| `tor` | `Boolean` |  |
-| `vpn` | `Boolean` |  |
-| `vpn_config` | `Boolean` |  |
-| `whois` | `Boolean` |  |
+| `census` | `Boolean` | Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software. |
+| `census_ports` | `Array` | The ports we've gotten positive results for when running our VPN detection census |
+| `confidence` | `Integer` | The level of confidence attributed to the best source associated with this range. |
+| `coverage` | `Float` | For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on. |
+| `device_activity` | `Boolean` | Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers) |
+| `first_seen` | `String` | Date when the activity on an anonymous IP address was first observed. |
+| `hosting` | `Boolean` | Indicates a hosting/cloud service/data center IP address |
+| `inferred` | `Boolean` | Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs |
+| `last_seen` | `String` | Date when the activity on an anonymous IP address was last/recently observed. |
+| `proxy` | `Boolean` | Indicates an open web proxy IP address |
+| `relay` | `Boolean` | Indicates a location-preserving anonymous relay service |
+| `service` | `String` | Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names |
+| `tor` | `Boolean` | Indicates a Tor (The Onion Router) exit node IP address |
+| `vpn` | `Boolean` | Indicates Virtual Private Network (VPN) service exit node IP address |
+| `vpn_config` | `Boolean` | Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs |
+| `whois` | `Boolean` | Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers |
 
 #### Example: List
 
@@ -1318,10 +1318,10 @@ Create an instance: `residential_proxy = client.ResidentialProxy`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `String` |  |
-| `last_seen` | `String` |  |
-| `percent_days_seen` | `Integer` |  |
-| `service` | `String` |  |
+| `ip` | `String` | The IPv4 or IPv6 address associated with a residential proxy |
+| `last_seen` | `String` | The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC) |
+| `percent_days_seen` | `Integer` | The percentage of days the IP was active in the last 7-day period |
+| `service` | `String` | The name of the residential proxy service. |
 
 #### Example: Load
 
