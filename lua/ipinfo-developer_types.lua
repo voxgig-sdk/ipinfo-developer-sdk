@@ -68,6 +68,7 @@
 
 ---@class Domain
 ---@field domains? table
+---@field id? string
 ---@field ip? string
 ---@field page? number
 ---@field total number
@@ -130,6 +131,7 @@
 ---@field country? string
 ---@field domains table
 ---@field hostname? string
+---@field id? string
 ---@field ip string
 ---@field loc? string
 ---@field org? string
@@ -151,6 +153,7 @@
 ---@field ip? string
 
 ---@class IpinfoLite
+---@field id? string
 
 ---@class IpinfoLiteLoadMatch
 ---@field id string
@@ -189,6 +192,7 @@
 ---@field as table
 ---@field geo table
 ---@field hostname? string
+---@field id? string
 ---@field ip string
 ---@field is_anonymous? boolean
 ---@field is_anycast? boolean
@@ -212,6 +216,7 @@
 
 ---@class Place
 ---@field category string
+---@field id? string
 ---@field ip string
 ---@field latitude number
 ---@field longitude number
@@ -225,6 +230,7 @@
 ---@field anonymous? table
 ---@field as? table
 ---@field geo? table
+---@field id? string
 ---@field ip string
 ---@field is_anonymous? boolean
 ---@field is_anycast? boolean
@@ -270,6 +276,7 @@
 
 ---@class Range
 ---@field domain string
+---@field id? string
 ---@field num_ranges string
 ---@field ranges table
 ---@field redirects_to string
@@ -336,6 +343,7 @@
 ---@field whoisnetid string
 
 ---@class WhoisOrg
+---@field id? string
 ---@field org? string
 ---@field page? number
 ---@field records? table
@@ -345,6 +353,7 @@
 ---@field id string
 
 ---@class WhoisPoc
+---@field id? string
 ---@field page? number
 ---@field poc? string
 ---@field records? table

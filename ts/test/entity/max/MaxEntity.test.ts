@@ -59,9 +59,12 @@ describe('MaxEntity', async () => {
 
     let max_ref01_data = Object.values(setup.data.existing.max)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const max_ref01_ent = client.Max()
+    const max_ref01_match_dt0: any = {}
+    max_ref01_match_dt0.id = max_ref01_data.id
+    const max_ref01_data_dt0 = (await max_ref01_ent.load(max_ref01_match_dt0)).data()
+    assert(max_ref01_data_dt0.id === max_ref01_data.id)
 
 
   })

@@ -48,9 +48,13 @@ class TestWhoisOrgEntity:
 
         # LOAD
         whois_org_ref01_ent = client.WhoisOrg(None)
-        whois_org_ref01_match_dt0 = {}
+        whois_org_ref01_match_dt0 = {
+            "id": whois_org_ref01_data["id"],
+        }
         whois_org_ref01_data_dt0_loaded = whois_org_ref01_ent.load(whois_org_ref01_match_dt0, None)
-        assert whois_org_ref01_data_dt0_loaded is not None
+        whois_org_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(whois_org_ref01_data_dt0_loaded))
+        assert whois_org_ref01_data_dt0_load_result is not None
+        assert whois_org_ref01_data_dt0_load_result["id"] == whois_org_ref01_data["id"]
 
 
 

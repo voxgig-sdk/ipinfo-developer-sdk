@@ -61,13 +61,19 @@ func TestMaxEntity(t *testing.T) {
 
 		// LOAD
 		maxRef01Ent := client.Max(nil)
-		maxRef01MatchDt0 := map[string]any{}
+		maxRef01MatchDt0 := map[string]any{
+			"id": maxRef01Data["id"],
+		}
 		maxRef01DataDt0Loaded, err := maxRef01Ent.Load(maxRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if maxRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		maxRef01DataDt0LoadResult := core.ToMapAny(entityData(maxRef01DataDt0Loaded))
+		if maxRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if maxRef01DataDt0LoadResult["id"] != maxRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

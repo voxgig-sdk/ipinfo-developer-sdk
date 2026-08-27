@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -480,6 +481,10 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "ip",
             "type": "`$STRING`",
           },
@@ -794,6 +799,10 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "ip",
             "req": True,
             "type": "`$STRING`",
@@ -974,7 +983,12 @@ def make_config():
         },
       },
       "ipinfo_lite": {
-        "fields": [],
+        "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+        ],
         "name": "ipinfo_lite",
         "op": {
           "load": {
@@ -1295,6 +1309,10 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "ip",
             "req": True,
             "type": "`$STRING`",
@@ -1424,6 +1442,10 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "ip",
             "req": True,
             "type": "`$STRING`",
@@ -1509,6 +1531,10 @@ def make_config():
           {
             "name": "geo",
             "type": "`$OBJECT`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "ip",
@@ -1815,6 +1841,10 @@ def make_config():
           {
             "name": "domain",
             "req": True,
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -2714,6 +2744,10 @@ def make_config():
       "whois_org": {
         "fields": [
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "org",
             "type": "`$STRING`",
           },
@@ -2796,6 +2830,10 @@ def make_config():
       },
       "whois_poc": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "page",
             "type": "`$INTEGER`",

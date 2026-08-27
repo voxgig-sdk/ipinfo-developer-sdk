@@ -11,6 +11,11 @@ main: kit: entity: place: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: true
       type: "`$STRING`"
@@ -36,6 +41,11 @@ main: kit: entity: place: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "place"
   op: {

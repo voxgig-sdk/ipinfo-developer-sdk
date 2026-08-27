@@ -150,7 +150,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -406,6 +406,7 @@ API path: `/lookup/{ip}`
 | Field | Description |
 | --- | --- |
 | `domains` |  |
+| `id` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -463,6 +464,7 @@ API path: `/`
 | `country` |  |
 | `domains` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `loc` |  |
 | `org` |  |
@@ -491,6 +493,7 @@ API path: `/lookup/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: load.
 
@@ -533,6 +536,7 @@ API path: `/lite/me`
 | `as` |  |
 | `geo` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -562,6 +566,7 @@ API path: `/me`
 | Field | Description |
 | --- | --- |
 | `category` |  |
+| `id` |  |
 | `ip` |  |
 | `latitude` |  |
 | `longitude` |  |
@@ -579,6 +584,7 @@ API path: `/places/{ip}`
 | `anonymous` |  |
 | `as` |  |
 | `geo` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -636,6 +642,7 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
+| `id` |  |
 | `num_ranges` |  |
 | `ranges` |  |
 | `redirects_to` |  |
@@ -731,6 +738,7 @@ API path: `/whois/net/{whoisnetid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `org` |  |
 | `page` |  |
 | `records` |  |
@@ -744,6 +752,7 @@ API path: `/whois/org/{whoisorgid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `page` |  |
 | `poc` |  |
 | `records` |  |
@@ -918,6 +927,7 @@ Create an instance: `const domain = client.Domain()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domains` | `any[]` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `page` | `number` |  |
 | `total` | `number` |  |
@@ -1015,6 +1025,7 @@ Create an instance: `const get_information_by_ip = client.GetInformationByIp()`
 | `country` | `string` |  |
 | `domains` | `Record<string, any>` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
 | `org` | `string` |  |
@@ -1064,6 +1075,12 @@ Create an instance: `const ipinfo_lite = client.IpinfoLite()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1145,6 +1162,7 @@ Create an instance: `const max = client.Max()`
 | `as` | `Record<string, any>` |  |
 | `geo` | `Record<string, any>` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `boolean` |  |
 | `is_anycast` | `boolean` |  |
@@ -1200,6 +1218,7 @@ Create an instance: `const place = client.Place()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
@@ -1230,6 +1249,7 @@ Create an instance: `const plus = client.Plus()`
 | `anonymous` | `Record<string, any>` |  |
 | `as` | `Record<string, any>` |  |
 | `geo` | `Record<string, any>` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `boolean` |  |
 | `is_anycast` | `boolean` |  |
@@ -1326,6 +1346,7 @@ Create an instance: `const range = client.Range()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
+| `id` | `string` |  |
 | `num_ranges` | `string` |  |
 | `ranges` | `any[]` |  |
 | `redirects_to` | `string` |  |
@@ -1507,6 +1528,7 @@ Create an instance: `const whois_org = client.WhoisOrg()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `org` | `string` |  |
 | `page` | `number` |  |
 | `records` | `any[]` |  |
@@ -1533,6 +1555,7 @@ Create an instance: `const whois_poc = client.WhoisPoc()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `page` | `number` |  |
 | `poc` | `string` |  |
 | `records` | `any[]` |  |

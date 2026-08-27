@@ -61,13 +61,19 @@ func TestIpinfoLiteEntity(t *testing.T) {
 
 		// LOAD
 		ipinfoLiteRef01Ent := client.IpinfoLite(nil)
-		ipinfoLiteRef01MatchDt0 := map[string]any{}
+		ipinfoLiteRef01MatchDt0 := map[string]any{
+			"id": ipinfoLiteRef01Data["id"],
+		}
 		ipinfoLiteRef01DataDt0Loaded, err := ipinfoLiteRef01Ent.Load(ipinfoLiteRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if ipinfoLiteRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		ipinfoLiteRef01DataDt0LoadResult := core.ToMapAny(entityData(ipinfoLiteRef01DataDt0Loaded))
+		if ipinfoLiteRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if ipinfoLiteRef01DataDt0LoadResult["id"] != ipinfoLiteRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

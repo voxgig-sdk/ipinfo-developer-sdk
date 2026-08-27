@@ -48,9 +48,13 @@ class WhoisOrgEntityTest extends TestCase
 
         // LOAD
         $whois_org_ref01_ent = $client->WhoisOrg(null);
-        $whois_org_ref01_match_dt0 = [];
+        $whois_org_ref01_match_dt0 = [
+            "id" => $whois_org_ref01_data["id"],
+        ];
         $whois_org_ref01_data_dt0_loaded = $whois_org_ref01_ent->load($whois_org_ref01_match_dt0, null);
-        $this->assertNotNull($whois_org_ref01_data_dt0_loaded);
+        $whois_org_ref01_data_dt0_load_result = Helpers::to_map(is_object($whois_org_ref01_data_dt0_loaded) && method_exists($whois_org_ref01_data_dt0_loaded, 'data_get') ? $whois_org_ref01_data_dt0_loaded->data_get() : $whois_org_ref01_data_dt0_loaded);
+        $this->assertNotNull($whois_org_ref01_data_dt0_load_result);
+        $this->assertEquals($whois_org_ref01_data_dt0_load_result["id"], $whois_org_ref01_data["id"]);
 
     }
 }

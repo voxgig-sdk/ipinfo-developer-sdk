@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -549,6 +550,10 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "ip",
           "type": "`$STRING`"
         },
@@ -863,6 +868,10 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "ip",
           "req": true,
           "type": "`$STRING`"
@@ -1043,7 +1052,12 @@ class Config {
       }
     },
     "ipinfo_lite": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "ipinfo_lite",
       "op": {
         "load": {
@@ -1364,6 +1378,10 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "ip",
           "req": true,
           "type": "`$STRING`"
@@ -1493,6 +1511,10 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "ip",
           "req": true,
           "type": "`$STRING`"
@@ -1578,6 +1600,10 @@ class Config {
         {
           "name": "geo",
           "type": "`$OBJECT`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "ip",
@@ -1884,6 +1910,10 @@ class Config {
         {
           "name": "domain",
           "req": true,
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {
@@ -2783,6 +2813,10 @@ class Config {
     "whois_org": {
       "fields": [
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "org",
           "type": "`$STRING`"
         },
@@ -2865,6 +2899,10 @@ class Config {
     },
     "whois_poc": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "page",
           "type": "`$INTEGER`"

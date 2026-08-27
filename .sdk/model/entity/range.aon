@@ -11,6 +11,11 @@ main: kit: entity: range: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "num_ranges"
       req: true
       type: "`$STRING`"
@@ -26,6 +31,11 @@ main: kit: entity: range: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "range"
   op: {

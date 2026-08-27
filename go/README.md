@@ -374,6 +374,7 @@ API path: `/lookup/{ip}`
 | Field | Description |
 | --- | --- |
 | `"domains"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"page"` |  |
 | `"total"` |  |
@@ -431,6 +432,7 @@ API path: `/`
 | `"country"` |  |
 | `"domains"` |  |
 | `"hostname"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"loc"` |  |
 | `"org"` |  |
@@ -459,6 +461,7 @@ API path: `/lookup/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -501,6 +504,7 @@ API path: `/lite/me`
 | `"as"` |  |
 | `"geo"` |  |
 | `"hostname"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"is_anonymous"` |  |
 | `"is_anycast"` |  |
@@ -530,6 +534,7 @@ API path: `/me`
 | Field | Description |
 | --- | --- |
 | `"category"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"latitude"` |  |
 | `"longitude"` |  |
@@ -547,6 +552,7 @@ API path: `/places/{ip}`
 | `"anonymous"` |  |
 | `"as"` |  |
 | `"geo"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"is_anonymous"` |  |
 | `"is_anycast"` |  |
@@ -604,6 +610,7 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `"domain"` |  |
+| `"id"` |  |
 | `"num_ranges"` |  |
 | `"ranges"` |  |
 | `"redirects_to"` |  |
@@ -699,6 +706,7 @@ API path: `/whois/net/{whoisnetid}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"org"` |  |
 | `"page"` |  |
 | `"records"` |  |
@@ -712,6 +720,7 @@ API path: `/whois/org/{whoisorgid}`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"page"` |  |
 | `"poc"` |  |
 | `"records"` |  |
@@ -906,6 +915,7 @@ Create an instance: `domain := client.Domain(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domains` | `[]any` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `page` | `int` |  |
 | `total` | `int` |  |
@@ -1015,6 +1025,7 @@ Create an instance: `getInformationByIp := client.GetInformationByIp(nil)`
 | `country` | `string` |  |
 | `domains` | `map[string]any` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
 | `org` | `string` |  |
@@ -1072,6 +1083,12 @@ Create an instance: `ipinfoLite := client.IpinfoLite(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1165,6 +1182,7 @@ Create an instance: `max := client.Max(nil)`
 | `as` | `map[string]any` |  |
 | `geo` | `map[string]any` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `bool` |  |
 | `is_anycast` | `bool` |  |
@@ -1228,6 +1246,7 @@ Create an instance: `place := client.Place(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `latitude` | `float64` |  |
 | `longitude` | `float64` |  |
@@ -1262,6 +1281,7 @@ Create an instance: `plus := client.Plus(nil)`
 | `anonymous` | `map[string]any` |  |
 | `as` | `map[string]any` |  |
 | `geo` | `map[string]any` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `bool` |  |
 | `is_anycast` | `bool` |  |
@@ -1370,6 +1390,7 @@ Create an instance: `range_ := client.Range(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
+| `id` | `string` |  |
 | `num_ranges` | `string` |  |
 | `ranges` | `[]any` |  |
 | `redirects_to` | `string` |  |
@@ -1579,6 +1600,7 @@ Create an instance: `whoisOrg := client.WhoisOrg(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `org` | `string` |  |
 | `page` | `int` |  |
 | `records` | `[]any` |  |
@@ -1609,6 +1631,7 @@ Create an instance: `whoisPoc := client.WhoisPoc(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `page` | `int` |  |
 | `poc` | `string` |  |
 | `records` | `[]any` |  |

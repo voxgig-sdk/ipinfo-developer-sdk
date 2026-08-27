@@ -6,6 +6,11 @@ main: kit: entity: whois_org: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "org"
       req: false
       type: "`$STRING`"
@@ -26,6 +31,11 @@ main: kit: entity: whois_org: {
       type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "whois_org"
   op: {

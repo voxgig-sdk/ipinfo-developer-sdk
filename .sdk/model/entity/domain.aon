@@ -11,6 +11,11 @@ main: kit: entity: domain: {
       type: "`$ARRAY`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: false
       type: "`$STRING`"
@@ -26,6 +31,11 @@ main: kit: entity: domain: {
       type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "domain"
   op: {

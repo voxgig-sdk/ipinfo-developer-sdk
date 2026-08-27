@@ -61,13 +61,19 @@ func TestRangeEntity(t *testing.T) {
 
 		// LOAD
 		rangeRef01Ent := client.Range(nil)
-		rangeRef01MatchDt0 := map[string]any{}
+		rangeRef01MatchDt0 := map[string]any{
+			"id": rangeRef01Data["id"],
+		}
 		rangeRef01DataDt0Loaded, err := rangeRef01Ent.Load(rangeRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if rangeRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		rangeRef01DataDt0LoadResult := core.ToMapAny(entityData(rangeRef01DataDt0Loaded))
+		if rangeRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if rangeRef01DataDt0LoadResult["id"] != rangeRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -48,9 +48,13 @@ class TestPlusEntity:
 
         # LOAD
         plus_ref01_ent = client.Plus(None)
-        plus_ref01_match_dt0 = {}
+        plus_ref01_match_dt0 = {
+            "id": plus_ref01_data["id"],
+        }
         plus_ref01_data_dt0_loaded = plus_ref01_ent.load(plus_ref01_match_dt0, None)
-        assert plus_ref01_data_dt0_loaded is not None
+        plus_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(plus_ref01_data_dt0_loaded))
+        assert plus_ref01_data_dt0_load_result is not None
+        assert plus_ref01_data_dt0_load_result["id"] == plus_ref01_data["id"]
 
 
 

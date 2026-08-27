@@ -48,9 +48,13 @@ class TestMaxEntity:
 
         # LOAD
         max_ref01_ent = client.Max(None)
-        max_ref01_match_dt0 = {}
+        max_ref01_match_dt0 = {
+            "id": max_ref01_data["id"],
+        }
         max_ref01_data_dt0_loaded = max_ref01_ent.load(max_ref01_match_dt0, None)
-        assert max_ref01_data_dt0_loaded is not None
+        max_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(max_ref01_data_dt0_loaded))
+        assert max_ref01_data_dt0_load_result is not None
+        assert max_ref01_data_dt0_load_result["id"] == max_ref01_data["id"]
 
 
 

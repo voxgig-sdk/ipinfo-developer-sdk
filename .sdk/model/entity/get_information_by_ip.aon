@@ -46,6 +46,11 @@ main: kit: entity: get_information_by_ip: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: true
       type: "`$STRING`"
@@ -81,6 +86,11 @@ main: kit: entity: get_information_by_ip: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "get_information_by_ip"
   op: {

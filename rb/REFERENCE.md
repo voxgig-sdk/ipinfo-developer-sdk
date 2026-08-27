@@ -493,6 +493,7 @@ domain = client.Domain
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domains` | `Array` | No |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | No |  |
 | `page` | `Integer` | No |  |
 | `total` | `Integer` | Yes |  |
@@ -677,6 +678,7 @@ get_information_by_ip = client.GetInformationByIp
 | `country` | `String` | No |  |
 | `domains` | `Hash` | Yes |  |
 | `hostname` | `String` | No |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `loc` | `String` | No |  |
 | `org` | `String` | No |  |
@@ -784,6 +786,12 @@ Return the entity name.
 ```ruby
 ipinfo_lite = client.IpinfoLite
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
 
 ### Operations
 
@@ -952,6 +960,7 @@ max = client.Max
 | `as` | `Hash` | Yes |  |
 | `geo` | `Hash` | Yes |  |
 | `hostname` | `String` | No |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `is_anonymous` | `Boolean` | No |  |
 | `is_anycast` | `Boolean` | No |  |
@@ -1065,6 +1074,7 @@ place = client.Place
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `String` | Yes |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `latitude` | `Float` | Yes |  |
 | `longitude` | `Float` | Yes |  |
@@ -1124,6 +1134,7 @@ plus = client.Plus
 | `anonymous` | `Hash` | No |  |
 | `as` | `Hash` | No |  |
 | `geo` | `Hash` | No |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `is_anonymous` | `Boolean` | No |  |
 | `is_anycast` | `Boolean` | No |  |
@@ -1307,6 +1318,7 @@ range = client.Range
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `String` | Yes |  |
+| `id` | `String` | No |  |
 | `num_ranges` | `String` | Yes |  |
 | `ranges` | `Array` | Yes |  |
 | `redirects_to` | `String` | Yes |  |
@@ -1691,6 +1703,7 @@ whois_org = client.WhoisOrg
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `org` | `String` | No |  |
 | `page` | `Integer` | No |  |
 | `records` | `Array` | No |  |
@@ -1746,6 +1759,7 @@ whois_poc = client.WhoisPoc
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `page` | `Integer` | No |  |
 | `poc` | `String` | No |  |
 | `records` | `Array` | No |  |

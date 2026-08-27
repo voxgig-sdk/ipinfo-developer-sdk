@@ -42,6 +42,7 @@ class IpinfoDeveloperConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -485,6 +486,10 @@ class IpinfoDeveloperConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'ip',
               'type' => '`$STRING`',
             ],
@@ -799,6 +804,10 @@ class IpinfoDeveloperConfig
               'type' => '`$STRING`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
@@ -979,7 +988,12 @@ class IpinfoDeveloperConfig
           ],
         ],
         'ipinfo_lite' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'ipinfo_lite',
           'op' => [
             'load' => [
@@ -1300,6 +1314,10 @@ class IpinfoDeveloperConfig
               'type' => '`$STRING`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
@@ -1429,6 +1447,10 @@ class IpinfoDeveloperConfig
               'type' => '`$STRING`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
@@ -1514,6 +1536,10 @@ class IpinfoDeveloperConfig
             [
               'name' => 'geo',
               'type' => '`$OBJECT`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'ip',
@@ -1820,6 +1846,10 @@ class IpinfoDeveloperConfig
             [
               'name' => 'domain',
               'req' => true,
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [
@@ -2719,6 +2749,10 @@ class IpinfoDeveloperConfig
         'whois_org' => [
           'fields' => [
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'org',
               'type' => '`$STRING`',
             ],
@@ -2801,6 +2835,10 @@ class IpinfoDeveloperConfig
         ],
         'whois_poc' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'page',
               'type' => '`$INTEGER`',

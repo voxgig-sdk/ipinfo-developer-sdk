@@ -97,6 +97,7 @@ class DomainRequired(TypedDict):
 
 class Domain(DomainRequired, total=False):
     domains: list
+    id: str
     ip: str
     page: int
 
@@ -168,6 +169,7 @@ class GetInformationByIp(GetInformationByIpRequired, total=False):
     city: str
     country: str
     hostname: str
+    id: str
     loc: str
     org: str
     postal: str
@@ -193,8 +195,8 @@ class IpinfoCoreLoadMatch(IpinfoCoreLoadMatchRequired, total=False):
     ip: str
 
 
-class IpinfoLite(TypedDict):
-    pass
+class IpinfoLite(TypedDict, total=False):
+    id: str
 
 
 class IpinfoLiteLoadMatch(TypedDict):
@@ -245,6 +247,7 @@ class MaxRequired(TypedDict):
 
 class Max(MaxRequired, total=False):
     hostname: str
+    id: str
     is_anonymous: bool
     is_anycast: bool
     is_hosting: bool
@@ -269,13 +272,17 @@ class MenLoadMatch(TypedDict, total=False):
     token: str
 
 
-class Place(TypedDict):
+class PlaceRequired(TypedDict):
     category: str
     ip: str
     latitude: float
     longitude: float
     name: str
     ssid: str
+
+
+class Place(PlaceRequired, total=False):
+    id: str
 
 
 class PlaceLoadMatch(TypedDict):
@@ -289,6 +296,7 @@ class PlusRequired(TypedDict):
 class Plus(PlusRequired, total=False):
     anonymous: dict
     geo: dict
+    id: str
     is_anonymous: bool
     is_anycast: bool
     is_hosting: bool
@@ -340,11 +348,15 @@ class PrivacyExtendedListMatch(TypedDict):
     ip: str
 
 
-class Range(TypedDict):
+class RangeRequired(TypedDict):
     domain: str
     num_ranges: str
     ranges: list
     redirects_to: str
+
+
+class Range(RangeRequired, total=False):
+    id: str
 
 
 class RangeLoadMatch(TypedDict):
@@ -424,6 +436,7 @@ class WhoisNetIdLoadMatch(TypedDict):
 
 
 class WhoisOrg(TypedDict, total=False):
+    id: str
     org: str
     page: int
     records: list
@@ -435,6 +448,7 @@ class WhoisOrgLoadMatch(TypedDict):
 
 
 class WhoisPoc(TypedDict, total=False):
+    id: str
     page: int
     poc: str
     records: list

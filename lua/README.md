@@ -342,6 +342,7 @@ API path: `/lookup/{ip}`
 | Field | Description |
 | --- | --- |
 | `domains` |  |
+| `id` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -399,6 +400,7 @@ API path: `/`
 | `country` |  |
 | `domains` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `loc` |  |
 | `org` |  |
@@ -427,6 +429,7 @@ API path: `/lookup/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Load.
 
@@ -469,6 +472,7 @@ API path: `/lite/me`
 | `as` |  |
 | `geo` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -498,6 +502,7 @@ API path: `/me`
 | Field | Description |
 | --- | --- |
 | `category` |  |
+| `id` |  |
 | `ip` |  |
 | `latitude` |  |
 | `longitude` |  |
@@ -515,6 +520,7 @@ API path: `/places/{ip}`
 | `anonymous` |  |
 | `as` |  |
 | `geo` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -572,6 +578,7 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
+| `id` |  |
 | `num_ranges` |  |
 | `ranges` |  |
 | `redirects_to` |  |
@@ -667,6 +674,7 @@ API path: `/whois/net/{whoisnetid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `org` |  |
 | `page` |  |
 | `records` |  |
@@ -680,6 +688,7 @@ API path: `/whois/org/{whoisorgid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `page` |  |
 | `poc` |  |
 | `records` |  |
@@ -854,6 +863,7 @@ Create an instance: `local domain = client:Domain(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domains` | `table` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `page` | `number` |  |
 | `total` | `number` |  |
@@ -951,6 +961,7 @@ Create an instance: `local get_information_by_ip = client:GetInformationByIp(nil
 | `country` | `string` |  |
 | `domains` | `table` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
 | `org` | `string` |  |
@@ -1000,6 +1011,12 @@ Create an instance: `local ipinfo_lite = client:IpinfoLite(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1081,6 +1098,7 @@ Create an instance: `local max = client:Max(nil)`
 | `as` | `table` |  |
 | `geo` | `table` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `boolean` |  |
 | `is_anycast` | `boolean` |  |
@@ -1136,6 +1154,7 @@ Create an instance: `local place = client:Place(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
@@ -1166,6 +1185,7 @@ Create an instance: `local plus = client:Plus(nil)`
 | `anonymous` | `table` |  |
 | `as` | `table` |  |
 | `geo` | `table` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `boolean` |  |
 | `is_anycast` | `boolean` |  |
@@ -1262,6 +1282,7 @@ Create an instance: `local range = client:Range(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
+| `id` | `string` |  |
 | `num_ranges` | `string` |  |
 | `ranges` | `table` |  |
 | `redirects_to` | `string` |  |
@@ -1443,6 +1464,7 @@ Create an instance: `local whois_org = client:WhoisOrg(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `org` | `string` |  |
 | `page` | `number` |  |
 | `records` | `table` |  |
@@ -1469,6 +1491,7 @@ Create an instance: `local whois_poc = client:WhoisPoc(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `page` | `number` |  |
 | `poc` | `string` |  |
 | `records` | `table` |  |

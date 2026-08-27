@@ -48,9 +48,13 @@ class PlusEntityTest extends TestCase
 
         // LOAD
         $plus_ref01_ent = $client->Plus(null);
-        $plus_ref01_match_dt0 = [];
+        $plus_ref01_match_dt0 = [
+            "id" => $plus_ref01_data["id"],
+        ];
         $plus_ref01_data_dt0_loaded = $plus_ref01_ent->load($plus_ref01_match_dt0, null);
-        $this->assertNotNull($plus_ref01_data_dt0_loaded);
+        $plus_ref01_data_dt0_load_result = Helpers::to_map(is_object($plus_ref01_data_dt0_loaded) && method_exists($plus_ref01_data_dt0_loaded, 'data_get') ? $plus_ref01_data_dt0_loaded->data_get() : $plus_ref01_data_dt0_loaded);
+        $this->assertNotNull($plus_ref01_data_dt0_load_result);
+        $this->assertEquals($plus_ref01_data_dt0_load_result["id"], $plus_ref01_data["id"]);
 
     }
 }

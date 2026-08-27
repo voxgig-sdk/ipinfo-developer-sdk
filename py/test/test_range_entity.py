@@ -48,9 +48,13 @@ class TestRangeEntity:
 
         # LOAD
         range_ref01_ent = client.Range(None)
-        range_ref01_match_dt0 = {}
+        range_ref01_match_dt0 = {
+            "id": range_ref01_data["id"],
+        }
         range_ref01_data_dt0_loaded = range_ref01_ent.load(range_ref01_match_dt0, None)
-        assert range_ref01_data_dt0_loaded is not None
+        range_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(range_ref01_data_dt0_loaded))
+        assert range_ref01_data_dt0_load_result is not None
+        assert range_ref01_data_dt0_load_result["id"] == range_ref01_data["id"]
 
 
 

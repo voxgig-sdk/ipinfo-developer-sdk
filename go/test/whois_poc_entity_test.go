@@ -61,13 +61,19 @@ func TestWhoisPocEntity(t *testing.T) {
 
 		// LOAD
 		whoisPocRef01Ent := client.WhoisPoc(nil)
-		whoisPocRef01MatchDt0 := map[string]any{}
+		whoisPocRef01MatchDt0 := map[string]any{
+			"id": whoisPocRef01Data["id"],
+		}
 		whoisPocRef01DataDt0Loaded, err := whoisPocRef01Ent.Load(whoisPocRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if whoisPocRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		whoisPocRef01DataDt0LoadResult := core.ToMapAny(entityData(whoisPocRef01DataDt0Loaded))
+		if whoisPocRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if whoisPocRef01DataDt0LoadResult["id"] != whoisPocRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

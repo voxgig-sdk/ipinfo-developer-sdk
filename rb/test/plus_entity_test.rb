@@ -41,9 +41,13 @@ class PlusEntityTest < Minitest::Test
 
     # LOAD
     plus_ref01_ent = client.Plus(nil)
-    plus_ref01_match_dt0 = {}
+    plus_ref01_match_dt0 = {
+      "id" => plus_ref01_data["id"],
+    }
     plus_ref01_data_dt0_loaded = plus_ref01_ent.load(plus_ref01_match_dt0, nil)
-    assert !plus_ref01_data_dt0_loaded.nil?
+    plus_ref01_data_dt0_load_result = Helpers.to_map(plus_ref01_data_dt0_loaded.respond_to?(:data_get) ? plus_ref01_data_dt0_loaded.data_get : plus_ref01_data_dt0_loaded)
+    assert !plus_ref01_data_dt0_load_result.nil?
+    assert_equal plus_ref01_data_dt0_load_result["id"], plus_ref01_data["id"]
 
   end
 end

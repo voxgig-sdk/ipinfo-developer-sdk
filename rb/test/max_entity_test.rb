@@ -41,9 +41,13 @@ class MaxEntityTest < Minitest::Test
 
     # LOAD
     max_ref01_ent = client.Max(nil)
-    max_ref01_match_dt0 = {}
+    max_ref01_match_dt0 = {
+      "id" => max_ref01_data["id"],
+    }
     max_ref01_data_dt0_loaded = max_ref01_ent.load(max_ref01_match_dt0, nil)
-    assert !max_ref01_data_dt0_loaded.nil?
+    max_ref01_data_dt0_load_result = Helpers.to_map(max_ref01_data_dt0_loaded.respond_to?(:data_get) ? max_ref01_data_dt0_loaded.data_get : max_ref01_data_dt0_loaded)
+    assert !max_ref01_data_dt0_load_result.nil?
+    assert_equal max_ref01_data_dt0_load_result["id"], max_ref01_data["id"]
 
   end
 end

@@ -95,6 +95,7 @@ type CoreLoadMatch struct {
 // Domain is the typed data model for the domain entity.
 type Domain struct {
 	Domains *[]any `json:"domains,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip *string `json:"ip,omitempty"`
 	Page *int `json:"page,omitempty"`
 	Total int `json:"total"`
@@ -169,6 +170,7 @@ type GetInformationByIp struct {
 	Country *string `json:"country,omitempty"`
 	Domains map[string]any `json:"domains"`
 	Hostname *string `json:"hostname,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	Loc *string `json:"loc,omitempty"`
 	Org *string `json:"org,omitempty"`
@@ -198,6 +200,7 @@ type IpinfoCoreLoadMatch struct {
 
 // IpinfoLite is the typed data model for the ipinfo_lite entity.
 type IpinfoLite struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // IpinfoLiteLoadMatch is the typed request payload for IpinfoLite.LoadTyped.
@@ -248,6 +251,7 @@ type Max struct {
 	As map[string]any `json:"as"`
 	Geo map[string]any `json:"geo"`
 	Hostname *string `json:"hostname,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	IsAnonymous *bool `json:"is_anonymous,omitempty"`
 	IsAnycast *bool `json:"is_anycast,omitempty"`
@@ -279,6 +283,7 @@ type MenLoadMatch struct {
 // Place is the typed data model for the place entity.
 type Place struct {
 	Category string `json:"category"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	Latitude float64 `json:"latitude"`
 	Longitude float64 `json:"longitude"`
@@ -296,6 +301,7 @@ type Plus struct {
 	Anonymous *map[string]any `json:"anonymous,omitempty"`
 	As *map[string]any `json:"as,omitempty"`
 	Geo *map[string]any `json:"geo,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	IsAnonymous *bool `json:"is_anonymous,omitempty"`
 	IsAnycast *bool `json:"is_anycast,omitempty"`
@@ -353,6 +359,7 @@ type PrivacyExtendedListMatch struct {
 // Range is the typed data model for the range entity.
 type Range struct {
 	Domain string `json:"domain"`
+	Id *string `json:"id,omitempty"`
 	NumRanges string `json:"num_ranges"`
 	Ranges []any `json:"ranges"`
 	RedirectsTo string `json:"redirects_to"`
@@ -447,6 +454,7 @@ type WhoisNetIdLoadMatch struct {
 
 // WhoisOrg is the typed data model for the whois_org entity.
 type WhoisOrg struct {
+	Id *string `json:"id,omitempty"`
 	Org *string `json:"org,omitempty"`
 	Page *int `json:"page,omitempty"`
 	Records *[]any `json:"records,omitempty"`
@@ -460,6 +468,7 @@ type WhoisOrgLoadMatch struct {
 
 // WhoisPoc is the typed data model for the whois_poc entity.
 type WhoisPoc struct {
+	Id *string `json:"id,omitempty"`
 	Page *int `json:"page,omitempty"`
 	Poc *string `json:"poc,omitempty"`
 	Records *[]any `json:"records,omitempty"`

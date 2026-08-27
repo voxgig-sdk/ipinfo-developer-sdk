@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -459,6 +460,10 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "ip",
             ["type"] = "`$STRING`",
           },
@@ -773,6 +778,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "ip",
             ["req"] = true,
             ["type"] = "`$STRING`",
@@ -953,7 +962,12 @@ local function make_config()
         },
       },
       ["ipinfo_lite"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "ipinfo_lite",
         ["op"] = {
           ["load"] = {
@@ -1274,6 +1288,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "ip",
             ["req"] = true,
             ["type"] = "`$STRING`",
@@ -1403,6 +1421,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "ip",
             ["req"] = true,
             ["type"] = "`$STRING`",
@@ -1488,6 +1510,10 @@ local function make_config()
           {
             ["name"] = "geo",
             ["type"] = "`$OBJECT`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip",
@@ -1794,6 +1820,10 @@ local function make_config()
           {
             ["name"] = "domain",
             ["req"] = true,
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -2693,6 +2723,10 @@ local function make_config()
       ["whois_org"] = {
         ["fields"] = {
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "org",
             ["type"] = "`$STRING`",
           },
@@ -2775,6 +2809,10 @@ local function make_config()
       },
       ["whois_poc"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "page",
             ["type"] = "`$INTEGER`",

@@ -48,9 +48,13 @@ class MaxEntityTest extends TestCase
 
         // LOAD
         $max_ref01_ent = $client->Max(null);
-        $max_ref01_match_dt0 = [];
+        $max_ref01_match_dt0 = [
+            "id" => $max_ref01_data["id"],
+        ];
         $max_ref01_data_dt0_loaded = $max_ref01_ent->load($max_ref01_match_dt0, null);
-        $this->assertNotNull($max_ref01_data_dt0_loaded);
+        $max_ref01_data_dt0_load_result = Helpers::to_map(is_object($max_ref01_data_dt0_loaded) && method_exists($max_ref01_data_dt0_loaded, 'data_get') ? $max_ref01_data_dt0_loaded->data_get() : $max_ref01_data_dt0_loaded);
+        $this->assertNotNull($max_ref01_data_dt0_load_result);
+        $this->assertEquals($max_ref01_data_dt0_load_result["id"], $max_ref01_data["id"]);
 
     }
 }

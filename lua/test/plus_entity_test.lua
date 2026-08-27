@@ -44,10 +44,14 @@ describe("PlusEntity", function()
 
     -- LOAD
     local plus_ref01_ent = client:Plus(nil)
-    local plus_ref01_match_dt0 = {}
+    local plus_ref01_match_dt0 = {
+      id = plus_ref01_data["id"],
+    }
     local plus_ref01_data_dt0_loaded, err = plus_ref01_ent:load(plus_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(plus_ref01_data_dt0_loaded)
+    local plus_ref01_data_dt0_load_result = helpers.to_map(type(plus_ref01_data_dt0_loaded) == 'table' and plus_ref01_data_dt0_loaded.data_get and plus_ref01_data_dt0_loaded:data_get() or plus_ref01_data_dt0_loaded)
+    assert.is_not_nil(plus_ref01_data_dt0_load_result)
+    assert.are.equal(plus_ref01_data_dt0_load_result["id"], plus_ref01_data["id"])
 
   end)
 end)

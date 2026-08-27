@@ -48,9 +48,13 @@ class TestIpinfoLiteEntity:
 
         # LOAD
         ipinfo_lite_ref01_ent = client.IpinfoLite(None)
-        ipinfo_lite_ref01_match_dt0 = {}
+        ipinfo_lite_ref01_match_dt0 = {
+            "id": ipinfo_lite_ref01_data["id"],
+        }
         ipinfo_lite_ref01_data_dt0_loaded = ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0, None)
-        assert ipinfo_lite_ref01_data_dt0_loaded is not None
+        ipinfo_lite_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(ipinfo_lite_ref01_data_dt0_loaded))
+        assert ipinfo_lite_ref01_data_dt0_load_result is not None
+        assert ipinfo_lite_ref01_data_dt0_load_result["id"] == ipinfo_lite_ref01_data["id"]
 
 
 

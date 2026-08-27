@@ -364,6 +364,7 @@ API path: `/lookup/{ip}`
 | Field | Description |
 | --- | --- |
 | `domains` |  |
+| `id` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -421,6 +422,7 @@ API path: `/`
 | `country` |  |
 | `domains` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `loc` |  |
 | `org` |  |
@@ -449,6 +451,7 @@ API path: `/lookup/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Load.
 
@@ -491,6 +494,7 @@ API path: `/lite/me`
 | `as` |  |
 | `geo` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -520,6 +524,7 @@ API path: `/me`
 | Field | Description |
 | --- | --- |
 | `category` |  |
+| `id` |  |
 | `ip` |  |
 | `latitude` |  |
 | `longitude` |  |
@@ -537,6 +542,7 @@ API path: `/places/{ip}`
 | `anonymous` |  |
 | `as` |  |
 | `geo` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -594,6 +600,7 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
+| `id` |  |
 | `num_ranges` |  |
 | `ranges` |  |
 | `redirects_to` |  |
@@ -689,6 +696,7 @@ API path: `/whois/net/{whoisnetid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `org` |  |
 | `page` |  |
 | `records` |  |
@@ -702,6 +710,7 @@ API path: `/whois/org/{whoisorgid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `page` |  |
 | `poc` |  |
 | `records` |  |
@@ -881,6 +890,7 @@ Create an instance: `$domain = $client->Domain();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domains` | `array` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `page` | `int` |  |
 | `total` | `int` |  |
@@ -980,6 +990,7 @@ Create an instance: `$get_information_by_ip = $client->GetInformationByIp();`
 | `country` | `string` |  |
 | `domains` | `array` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `loc` | `string` |  |
 | `org` | `string` |  |
@@ -1031,6 +1042,12 @@ Create an instance: `$ipinfo_lite = $client->IpinfoLite();`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -1115,6 +1132,7 @@ Create an instance: `$max = $client->Max();`
 | `as` | `array` |  |
 | `geo` | `array` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `bool` |  |
 | `is_anycast` | `bool` |  |
@@ -1172,6 +1190,7 @@ Create an instance: `$place = $client->Place();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `latitude` | `float` |  |
 | `longitude` | `float` |  |
@@ -1203,6 +1222,7 @@ Create an instance: `$plus = $client->Plus();`
 | `anonymous` | `array` |  |
 | `as` | `array` |  |
 | `geo` | `array` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_anonymous` | `bool` |  |
 | `is_anycast` | `bool` |  |
@@ -1302,6 +1322,7 @@ Create an instance: `$range = $client->Range();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
+| `id` | `string` |  |
 | `num_ranges` | `string` |  |
 | `ranges` | `array` |  |
 | `redirects_to` | `string` |  |
@@ -1490,6 +1511,7 @@ Create an instance: `$whois_org = $client->WhoisOrg();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `org` | `string` |  |
 | `page` | `int` |  |
 | `records` | `array` |  |
@@ -1517,6 +1539,7 @@ Create an instance: `$whois_poc = $client->WhoisPoc();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `page` | `int` |  |
 | `poc` | `string` |  |
 | `records` | `array` |  |

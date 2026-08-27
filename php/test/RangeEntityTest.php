@@ -48,9 +48,13 @@ class RangeEntityTest extends TestCase
 
         // LOAD
         $range_ref01_ent = $client->Range(null);
-        $range_ref01_match_dt0 = [];
+        $range_ref01_match_dt0 = [
+            "id" => $range_ref01_data["id"],
+        ];
         $range_ref01_data_dt0_loaded = $range_ref01_ent->load($range_ref01_match_dt0, null);
-        $this->assertNotNull($range_ref01_data_dt0_loaded);
+        $range_ref01_data_dt0_load_result = Helpers::to_map(is_object($range_ref01_data_dt0_loaded) && method_exists($range_ref01_data_dt0_loaded, 'data_get') ? $range_ref01_data_dt0_loaded->data_get() : $range_ref01_data_dt0_loaded);
+        $this->assertNotNull($range_ref01_data_dt0_load_result);
+        $this->assertEquals($range_ref01_data_dt0_load_result["id"], $range_ref01_data["id"]);
 
     }
 }

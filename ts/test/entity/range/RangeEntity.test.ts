@@ -59,9 +59,12 @@ describe('RangeEntity', async () => {
 
     let range_ref01_data = Object.values(setup.data.existing.range)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const range_ref01_ent = client.Range()
+    const range_ref01_match_dt0: any = {}
+    range_ref01_match_dt0.id = range_ref01_data.id
+    const range_ref01_data_dt0 = (await range_ref01_ent.load(range_ref01_match_dt0)).data()
+    assert(range_ref01_data_dt0.id === range_ref01_data.id)
 
 
   })

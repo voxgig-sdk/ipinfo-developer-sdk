@@ -61,13 +61,19 @@ func TestPlusEntity(t *testing.T) {
 
 		// LOAD
 		plusRef01Ent := client.Plus(nil)
-		plusRef01MatchDt0 := map[string]any{}
+		plusRef01MatchDt0 := map[string]any{
+			"id": plusRef01Data["id"],
+		}
 		plusRef01DataDt0Loaded, err := plusRef01Ent.Load(plusRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if plusRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		plusRef01DataDt0LoadResult := core.ToMapAny(entityData(plusRef01DataDt0Loaded))
+		if plusRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if plusRef01DataDt0LoadResult["id"] != plusRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

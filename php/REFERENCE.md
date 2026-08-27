@@ -492,6 +492,7 @@ $domain = $client->Domain();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domains` | `array` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `int` | No |  |
 | `total` | `int` | Yes |  |
@@ -676,6 +677,7 @@ $get_information_by_ip = $client->GetInformationByIp();
 | `country` | `string` | No |  |
 | `domains` | `array` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
 | `org` | `string` | No |  |
@@ -783,6 +785,12 @@ Return the entity name.
 ```php
 $ipinfo_lite = $client->IpinfoLite();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -951,6 +959,7 @@ $max = $client->Max();
 | `as` | `array` | Yes |  |
 | `geo` | `array` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `bool` | No |  |
 | `is_anycast` | `bool` | No |  |
@@ -1064,6 +1073,7 @@ $place = $client->Place();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `latitude` | `float` | Yes |  |
 | `longitude` | `float` | Yes |  |
@@ -1123,6 +1133,7 @@ $plus = $client->Plus();
 | `anonymous` | `array` | No |  |
 | `as` | `array` | No |  |
 | `geo` | `array` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `bool` | No |  |
 | `is_anycast` | `bool` | No |  |
@@ -1306,6 +1317,7 @@ $range = $client->Range();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `num_ranges` | `string` | Yes |  |
 | `ranges` | `array` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
@@ -1690,6 +1702,7 @@ $whois_org = $client->WhoisOrg();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `org` | `string` | No |  |
 | `page` | `int` | No |  |
 | `records` | `array` | No |  |
@@ -1745,6 +1758,7 @@ $whois_poc = $client->WhoisPoc();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `page` | `int` | No |  |
 | `poc` | `string` | No |  |
 | `records` | `array` | No |  |

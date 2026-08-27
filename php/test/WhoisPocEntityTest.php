@@ -48,9 +48,13 @@ class WhoisPocEntityTest extends TestCase
 
         // LOAD
         $whois_poc_ref01_ent = $client->WhoisPoc(null);
-        $whois_poc_ref01_match_dt0 = [];
+        $whois_poc_ref01_match_dt0 = [
+            "id" => $whois_poc_ref01_data["id"],
+        ];
         $whois_poc_ref01_data_dt0_loaded = $whois_poc_ref01_ent->load($whois_poc_ref01_match_dt0, null);
-        $this->assertNotNull($whois_poc_ref01_data_dt0_loaded);
+        $whois_poc_ref01_data_dt0_load_result = Helpers::to_map(is_object($whois_poc_ref01_data_dt0_loaded) && method_exists($whois_poc_ref01_data_dt0_loaded, 'data_get') ? $whois_poc_ref01_data_dt0_loaded->data_get() : $whois_poc_ref01_data_dt0_loaded);
+        $this->assertNotNull($whois_poc_ref01_data_dt0_load_result);
+        $this->assertEquals($whois_poc_ref01_data_dt0_load_result["id"], $whois_poc_ref01_data["id"]);
 
     }
 }

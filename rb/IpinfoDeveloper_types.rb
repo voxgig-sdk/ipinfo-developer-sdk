@@ -223,6 +223,9 @@ CoreLoadMatch = Struct.new(
 # @!attribute [rw] domains
 #   @return [Array, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String, nil]
 #
@@ -233,6 +236,7 @@ CoreLoadMatch = Struct.new(
 #   @return [Integer]
 Domain = Struct.new(
   :domains,
+  :id,
   :ip,
   :page,
   :total,
@@ -446,6 +450,9 @@ GetCurrentInformationLoadMatch = Struct.new(
 # @!attribute [rw] hostname
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -475,6 +482,7 @@ GetInformationByIp = Struct.new(
   :country,
   :domains,
   :hostname,
+  :id,
   :ip,
   :loc,
   :org,
@@ -525,8 +533,13 @@ IpinfoCoreLoadMatch = Struct.new(
 )
 
 # IpinfoLite entity data model.
-class IpinfoLite
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+IpinfoLite = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for IpinfoLite#load.
 #
@@ -655,6 +668,9 @@ LiteLoadMatch = Struct.new(
 # @!attribute [rw] hostname
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -680,6 +696,7 @@ Max = Struct.new(
   :as,
   :geo,
   :hostname,
+  :id,
   :ip,
   :is_anonymous,
   :is_anycast,
@@ -738,6 +755,9 @@ MenLoadMatch = Struct.new(
 # @!attribute [rw] category
 #   @return [String]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -754,6 +774,7 @@ MenLoadMatch = Struct.new(
 #   @return [String]
 Place = Struct.new(
   :category,
+  :id,
   :ip,
   :latitude,
   :longitude,
@@ -782,6 +803,9 @@ PlaceLoadMatch = Struct.new(
 # @!attribute [rw] geo
 #   @return [Hash, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -806,6 +830,7 @@ Plus = Struct.new(
   :anonymous,
   :as,
   :geo,
+  :id,
   :ip,
   :is_anonymous,
   :is_anycast,
@@ -946,6 +971,9 @@ PrivacyExtendedListMatch = Struct.new(
 # @!attribute [rw] domain
 #   @return [String]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] num_ranges
 #   @return [String]
 #
@@ -956,6 +984,7 @@ PrivacyExtendedListMatch = Struct.new(
 #   @return [String]
 RangeType = Struct.new(
   :domain,
+  :id,
   :num_ranges,
   :ranges,
   :redirects_to,
@@ -1167,6 +1196,9 @@ WhoisNetIdLoadMatch = Struct.new(
 
 # WhoisOrg entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] org
 #   @return [String, nil]
 #
@@ -1179,6 +1211,7 @@ WhoisNetIdLoadMatch = Struct.new(
 # @!attribute [rw] total
 #   @return [Integer, nil]
 WhoisOrg = Struct.new(
+  :id,
   :org,
   :page,
   :records,
@@ -1197,6 +1230,9 @@ WhoisOrgLoadMatch = Struct.new(
 
 # WhoisPoc entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
@@ -1209,6 +1245,7 @@ WhoisOrgLoadMatch = Struct.new(
 # @!attribute [rw] total
 #   @return [Integer, nil]
 WhoisPoc = Struct.new(
+  :id,
   :page,
   :poc,
   :records,

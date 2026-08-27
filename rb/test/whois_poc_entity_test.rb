@@ -41,9 +41,13 @@ class WhoisPocEntityTest < Minitest::Test
 
     # LOAD
     whois_poc_ref01_ent = client.WhoisPoc(nil)
-    whois_poc_ref01_match_dt0 = {}
+    whois_poc_ref01_match_dt0 = {
+      "id" => whois_poc_ref01_data["id"],
+    }
     whois_poc_ref01_data_dt0_loaded = whois_poc_ref01_ent.load(whois_poc_ref01_match_dt0, nil)
-    assert !whois_poc_ref01_data_dt0_loaded.nil?
+    whois_poc_ref01_data_dt0_load_result = Helpers.to_map(whois_poc_ref01_data_dt0_loaded.respond_to?(:data_get) ? whois_poc_ref01_data_dt0_loaded.data_get : whois_poc_ref01_data_dt0_loaded)
+    assert !whois_poc_ref01_data_dt0_load_result.nil?
+    assert_equal whois_poc_ref01_data_dt0_load_result["id"], whois_poc_ref01_data["id"]
 
   end
 end

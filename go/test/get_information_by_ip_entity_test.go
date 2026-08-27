@@ -61,13 +61,19 @@ func TestGetInformationByIpEntity(t *testing.T) {
 
 		// LOAD
 		getInformationByIpRef01Ent := client.GetInformationByIp(nil)
-		getInformationByIpRef01MatchDt0 := map[string]any{}
+		getInformationByIpRef01MatchDt0 := map[string]any{
+			"id": getInformationByIpRef01Data["id"],
+		}
 		getInformationByIpRef01DataDt0Loaded, err := getInformationByIpRef01Ent.Load(getInformationByIpRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if getInformationByIpRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		getInformationByIpRef01DataDt0LoadResult := core.ToMapAny(entityData(getInformationByIpRef01DataDt0Loaded))
+		if getInformationByIpRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if getInformationByIpRef01DataDt0LoadResult["id"] != getInformationByIpRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

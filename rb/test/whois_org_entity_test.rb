@@ -41,9 +41,13 @@ class WhoisOrgEntityTest < Minitest::Test
 
     # LOAD
     whois_org_ref01_ent = client.WhoisOrg(nil)
-    whois_org_ref01_match_dt0 = {}
+    whois_org_ref01_match_dt0 = {
+      "id" => whois_org_ref01_data["id"],
+    }
     whois_org_ref01_data_dt0_loaded = whois_org_ref01_ent.load(whois_org_ref01_match_dt0, nil)
-    assert !whois_org_ref01_data_dt0_loaded.nil?
+    whois_org_ref01_data_dt0_load_result = Helpers.to_map(whois_org_ref01_data_dt0_loaded.respond_to?(:data_get) ? whois_org_ref01_data_dt0_loaded.data_get : whois_org_ref01_data_dt0_loaded)
+    assert !whois_org_ref01_data_dt0_load_result.nil?
+    assert_equal whois_org_ref01_data_dt0_load_result["id"], whois_org_ref01_data["id"]
 
   end
 end

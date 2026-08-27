@@ -493,6 +493,7 @@ fmt.Println(domain.GetName()) // "domain"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domains` | `[]any` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `int` | No |  |
 | `total` | `int` | Yes |  |
@@ -674,6 +675,7 @@ fmt.Println(getInformationByIp.GetName()) // "get_information_by_ip"
 | `country` | `string` | No |  |
 | `domains` | `map[string]any` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
 | `org` | `string` | No |  |
@@ -779,6 +781,12 @@ Return the entity name.
 ipinfoLite := client.IpinfoLite(nil)
 fmt.Println(ipinfoLite.GetName()) // "ipinfo_lite"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -944,6 +952,7 @@ fmt.Println(max.GetName()) // "max"
 | `as` | `map[string]any` | Yes |  |
 | `geo` | `map[string]any` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `bool` | No |  |
 | `is_anycast` | `bool` | No |  |
@@ -1055,6 +1064,7 @@ fmt.Println(place.GetName()) // "place"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `latitude` | `float64` | Yes |  |
 | `longitude` | `float64` | Yes |  |
@@ -1113,6 +1123,7 @@ fmt.Println(plus.GetName()) // "plus"
 | `anonymous` | `map[string]any` | No |  |
 | `as` | `map[string]any` | No |  |
 | `geo` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `bool` | No |  |
 | `is_anycast` | `bool` | No |  |
@@ -1293,6 +1304,7 @@ fmt.Println(range_.GetName()) // "range"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `num_ranges` | `string` | Yes |  |
 | `ranges` | `[]any` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
@@ -1670,6 +1682,7 @@ fmt.Println(whoisOrg.GetName()) // "whois_org"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `org` | `string` | No |  |
 | `page` | `int` | No |  |
 | `records` | `[]any` | No |  |
@@ -1724,6 +1737,7 @@ fmt.Println(whoisPoc.GetName()) // "whois_poc"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `page` | `int` | No |  |
 | `poc` | `string` | No |  |
 | `records` | `[]any` | No |  |

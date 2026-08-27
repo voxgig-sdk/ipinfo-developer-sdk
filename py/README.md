@@ -357,6 +357,7 @@ API path: `/lookup/{ip}`
 | Field | Description |
 | --- | --- |
 | `domains` |  |
+| `id` |  |
 | `ip` |  |
 | `page` |  |
 | `total` |  |
@@ -414,6 +415,7 @@ API path: `/`
 | `country` |  |
 | `domains` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `loc` |  |
 | `org` |  |
@@ -442,6 +444,7 @@ API path: `/lookup/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: Load.
 
@@ -484,6 +487,7 @@ API path: `/lite/me`
 | `as` |  |
 | `geo` |  |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -513,6 +517,7 @@ API path: `/me`
 | Field | Description |
 | --- | --- |
 | `category` |  |
+| `id` |  |
 | `ip` |  |
 | `latitude` |  |
 | `longitude` |  |
@@ -530,6 +535,7 @@ API path: `/places/{ip}`
 | `anonymous` |  |
 | `as` |  |
 | `geo` |  |
+| `id` |  |
 | `ip` |  |
 | `is_anonymous` |  |
 | `is_anycast` |  |
@@ -587,6 +593,7 @@ API path: `/{ip}/privacy_extended`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
+| `id` |  |
 | `num_ranges` |  |
 | `ranges` |  |
 | `redirects_to` |  |
@@ -682,6 +689,7 @@ API path: `/whois/net/{whoisnetid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `org` |  |
 | `page` |  |
 | `records` |  |
@@ -695,6 +703,7 @@ API path: `/whois/org/{whoisorgid}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `page` |  |
 | `poc` |  |
 | `records` |  |
@@ -869,6 +878,7 @@ Create an instance: `domain = client.Domain()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domains` | `list` |  |
+| `id` | `str` |  |
 | `ip` | `str` |  |
 | `page` | `int` |  |
 | `total` | `int` |  |
@@ -966,6 +976,7 @@ Create an instance: `get_information_by_ip = client.GetInformationByIp()`
 | `country` | `str` |  |
 | `domains` | `dict` |  |
 | `hostname` | `str` |  |
+| `id` | `str` |  |
 | `ip` | `str` |  |
 | `loc` | `str` |  |
 | `org` | `str` |  |
@@ -1015,6 +1026,12 @@ Create an instance: `ipinfo_lite = client.IpinfoLite()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `str` |  |
 
 #### Example: Load
 
@@ -1096,6 +1113,7 @@ Create an instance: `max = client.Max()`
 | `as` | `dict` |  |
 | `geo` | `dict` |  |
 | `hostname` | `str` |  |
+| `id` | `str` |  |
 | `ip` | `str` |  |
 | `is_anonymous` | `bool` |  |
 | `is_anycast` | `bool` |  |
@@ -1151,6 +1169,7 @@ Create an instance: `place = client.Place()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `str` |  |
+| `id` | `str` |  |
 | `ip` | `str` |  |
 | `latitude` | `float` |  |
 | `longitude` | `float` |  |
@@ -1181,6 +1200,7 @@ Create an instance: `plus = client.Plus()`
 | `anonymous` | `dict` |  |
 | `as` | `dict` |  |
 | `geo` | `dict` |  |
+| `id` | `str` |  |
 | `ip` | `str` |  |
 | `is_anonymous` | `bool` |  |
 | `is_anycast` | `bool` |  |
@@ -1277,6 +1297,7 @@ Create an instance: `range = client.Range()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `str` |  |
+| `id` | `str` |  |
 | `num_ranges` | `str` |  |
 | `ranges` | `list` |  |
 | `redirects_to` | `str` |  |
@@ -1458,6 +1479,7 @@ Create an instance: `whois_org = client.WhoisOrg()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `org` | `str` |  |
 | `page` | `int` |  |
 | `records` | `list` |  |
@@ -1484,6 +1506,7 @@ Create an instance: `whois_poc = client.WhoisPoc()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `page` | `int` |  |
 | `poc` | `str` |  |
 | `records` | `list` |  |

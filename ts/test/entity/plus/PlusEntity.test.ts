@@ -59,9 +59,12 @@ describe('PlusEntity', async () => {
 
     let plus_ref01_data = Object.values(setup.data.existing.plus)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const plus_ref01_ent = client.Plus()
+    const plus_ref01_match_dt0: any = {}
+    plus_ref01_match_dt0.id = plus_ref01_data.id
+    const plus_ref01_data_dt0 = (await plus_ref01_ent.load(plus_ref01_match_dt0)).data()
+    assert(plus_ref01_data_dt0.id === plus_ref01_data.id)
 
 
   })

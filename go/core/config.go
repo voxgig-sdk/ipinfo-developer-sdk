@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -463,6 +464,10 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ip",
 						"type": "`$STRING`",
 					},
@@ -777,6 +782,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ip",
 						"req": true,
 						"type": "`$STRING`",
@@ -957,7 +966,12 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"ipinfo_lite": map[string]any{
-				"fields": []any{},
+				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+				},
 				"name": "ipinfo_lite",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -1278,6 +1292,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ip",
 						"req": true,
 						"type": "`$STRING`",
@@ -1407,6 +1425,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ip",
 						"req": true,
 						"type": "`$STRING`",
@@ -1492,6 +1514,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "geo",
 						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip",
@@ -1798,6 +1824,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "domain",
 						"req": true,
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -2697,6 +2727,10 @@ func MakeConfig() map[string]any {
 			"whois_org": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "org",
 						"type": "`$STRING`",
 					},
@@ -2779,6 +2813,10 @@ func MakeConfig() map[string]any {
 			},
 			"whois_poc": map[string]any{
 				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 					map[string]any{
 						"name": "page",
 						"type": "`$INTEGER`",

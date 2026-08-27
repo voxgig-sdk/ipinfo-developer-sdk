@@ -28,6 +28,7 @@ module IpinfoDeveloperConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -471,6 +472,10 @@ module IpinfoDeveloperConfig
               "type" => "`$ARRAY`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ip",
               "type" => "`$STRING`",
             },
@@ -785,6 +790,10 @@ module IpinfoDeveloperConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ip",
               "req" => true,
               "type" => "`$STRING`",
@@ -965,7 +974,12 @@ module IpinfoDeveloperConfig
           },
         },
         "ipinfo_lite" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "ipinfo_lite",
           "op" => {
             "load" => {
@@ -1286,6 +1300,10 @@ module IpinfoDeveloperConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ip",
               "req" => true,
               "type" => "`$STRING`",
@@ -1415,6 +1433,10 @@ module IpinfoDeveloperConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ip",
               "req" => true,
               "type" => "`$STRING`",
@@ -1500,6 +1522,10 @@ module IpinfoDeveloperConfig
             {
               "name" => "geo",
               "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "ip",
@@ -1806,6 +1832,10 @@ module IpinfoDeveloperConfig
             {
               "name" => "domain",
               "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -2705,6 +2735,10 @@ module IpinfoDeveloperConfig
         "whois_org" => {
           "fields" => [
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "org",
               "type" => "`$STRING`",
             },
@@ -2787,6 +2821,10 @@ module IpinfoDeveloperConfig
         },
         "whois_poc" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "page",
               "type" => "`$INTEGER`",

@@ -6,6 +6,11 @@ main: kit: entity: whois_poc: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "page"
       req: false
       type: "`$INTEGER`"
@@ -26,6 +31,11 @@ main: kit: entity: whois_poc: {
       type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "whois_poc"
   op: {

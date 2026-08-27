@@ -722,6 +722,7 @@ const domain = client.Domain()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domains` | `any[]` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `number` | No |  |
 | `total` | `number` | Yes |  |
@@ -900,6 +901,7 @@ const get_information_by_ip = client.GetInformationByIp()
 | `country` | `string` | No |  |
 | `domains` | `Record<string, any>` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
 | `org` | `string` | No |  |
@@ -1003,6 +1005,12 @@ Return a copy of the entity options.
 ```ts
 const ipinfo_lite = client.IpinfoLite()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -1185,6 +1193,7 @@ const max = client.Max()
 | `as` | `Record<string, any>` | Yes |  |
 | `geo` | `Record<string, any>` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `boolean` | No |  |
 | `is_anycast` | `boolean` | No |  |
@@ -1294,6 +1303,7 @@ const place = client.Place()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `latitude` | `number` | Yes |  |
 | `longitude` | `number` | Yes |  |
@@ -1351,6 +1361,7 @@ const plus = client.Plus()
 | `anonymous` | `Record<string, any>` | No |  |
 | `as` | `Record<string, any>` | No |  |
 | `geo` | `Record<string, any>` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `boolean` | No |  |
 | `is_anycast` | `boolean` | No |  |
@@ -1548,6 +1559,7 @@ const range = client.Range()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `num_ranges` | `string` | Yes |  |
 | `ranges` | `any[]` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
@@ -1918,6 +1930,7 @@ const whois_org = client.WhoisOrg()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `org` | `string` | No |  |
 | `page` | `number` | No |  |
 | `records` | `any[]` | No |  |
@@ -1971,6 +1984,7 @@ const whois_poc = client.WhoisPoc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `page` | `number` | No |  |
 | `poc` | `string` | No |  |
 | `records` | `any[]` | No |  |

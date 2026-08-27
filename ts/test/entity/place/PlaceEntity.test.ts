@@ -59,9 +59,12 @@ describe('PlaceEntity', async () => {
 
     let place_ref01_data = Object.values(setup.data.existing.place)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const place_ref01_ent = client.Place()
+    const place_ref01_match_dt0: any = {}
+    place_ref01_match_dt0.id = place_ref01_data.id
+    const place_ref01_data_dt0 = (await place_ref01_ent.load(place_ref01_match_dt0)).data()
+    assert(place_ref01_data_dt0.id === place_ref01_data.id)
 
 
   })

@@ -2,35 +2,35 @@
   "existing": {
     "range": {
       "RANGE00": {
-        "domain": "s28",
-        "num_ranges": "s29",
+        "domain": "s32",
+        "id": "RANGE00",
+        "num_ranges": "s34",
         "ranges": [],
-        "redirects_to": "s2b",
-        "id": "RANGE00"
+        "redirects_to": "s36"
       },
       "RANGE01": {
-        "domain": "s50",
-        "num_ranges": "s51",
+        "domain": "s64",
+        "id": "RANGE01",
+        "num_ranges": "s66",
         "ranges": [],
-        "redirects_to": "s53",
-        "id": "RANGE01"
+        "redirects_to": "s68"
       },
       "RANGE02": {
-        "domain": "s78",
-        "num_ranges": "s79",
+        "domain": "s96",
+        "id": "RANGE02",
+        "num_ranges": "s98",
         "ranges": [],
-        "redirects_to": "s7b",
-        "id": "RANGE02"
+        "redirects_to": "s9a"
       }
     }
   },
   "new": {
     "range": {
       "range_ref01": {
-        "domain": "sa0",
-        "num_ranges": "sa1",
+        "domain": "sc8",
+        "num_ranges": "sca",
         "ranges": [],
-        "redirects_to": "sa3"
+        "redirects_to": "scc"
       }
     }
   }

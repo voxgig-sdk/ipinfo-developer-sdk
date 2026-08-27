@@ -41,9 +41,13 @@ class IpinfoLiteEntityTest < Minitest::Test
 
     # LOAD
     ipinfo_lite_ref01_ent = client.IpinfoLite(nil)
-    ipinfo_lite_ref01_match_dt0 = {}
+    ipinfo_lite_ref01_match_dt0 = {
+      "id" => ipinfo_lite_ref01_data["id"],
+    }
     ipinfo_lite_ref01_data_dt0_loaded = ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0, nil)
-    assert !ipinfo_lite_ref01_data_dt0_loaded.nil?
+    ipinfo_lite_ref01_data_dt0_load_result = Helpers.to_map(ipinfo_lite_ref01_data_dt0_loaded.respond_to?(:data_get) ? ipinfo_lite_ref01_data_dt0_loaded.data_get : ipinfo_lite_ref01_data_dt0_loaded)
+    assert !ipinfo_lite_ref01_data_dt0_load_result.nil?
+    assert_equal ipinfo_lite_ref01_data_dt0_load_result["id"], ipinfo_lite_ref01_data["id"]
 
   end
 end

@@ -44,10 +44,14 @@ describe("IpinfoLiteEntity", function()
 
     -- LOAD
     local ipinfo_lite_ref01_ent = client:IpinfoLite(nil)
-    local ipinfo_lite_ref01_match_dt0 = {}
+    local ipinfo_lite_ref01_match_dt0 = {
+      id = ipinfo_lite_ref01_data["id"],
+    }
     local ipinfo_lite_ref01_data_dt0_loaded, err = ipinfo_lite_ref01_ent:load(ipinfo_lite_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(ipinfo_lite_ref01_data_dt0_loaded)
+    local ipinfo_lite_ref01_data_dt0_load_result = helpers.to_map(type(ipinfo_lite_ref01_data_dt0_loaded) == 'table' and ipinfo_lite_ref01_data_dt0_loaded.data_get and ipinfo_lite_ref01_data_dt0_loaded:data_get() or ipinfo_lite_ref01_data_dt0_loaded)
+    assert.is_not_nil(ipinfo_lite_ref01_data_dt0_load_result)
+    assert.are.equal(ipinfo_lite_ref01_data_dt0_load_result["id"], ipinfo_lite_ref01_data["id"])
 
   end)
 end)

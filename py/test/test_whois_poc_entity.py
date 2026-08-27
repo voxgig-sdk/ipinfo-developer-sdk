@@ -48,9 +48,13 @@ class TestWhoisPocEntity:
 
         # LOAD
         whois_poc_ref01_ent = client.WhoisPoc(None)
-        whois_poc_ref01_match_dt0 = {}
+        whois_poc_ref01_match_dt0 = {
+            "id": whois_poc_ref01_data["id"],
+        }
         whois_poc_ref01_data_dt0_loaded = whois_poc_ref01_ent.load(whois_poc_ref01_match_dt0, None)
-        assert whois_poc_ref01_data_dt0_loaded is not None
+        whois_poc_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(whois_poc_ref01_data_dt0_loaded))
+        assert whois_poc_ref01_data_dt0_load_result is not None
+        assert whois_poc_ref01_data_dt0_load_result["id"] == whois_poc_ref01_data["id"]
 
 
 

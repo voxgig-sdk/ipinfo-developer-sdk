@@ -48,9 +48,13 @@ class IpinfoLiteEntityTest extends TestCase
 
         // LOAD
         $ipinfo_lite_ref01_ent = $client->IpinfoLite(null);
-        $ipinfo_lite_ref01_match_dt0 = [];
+        $ipinfo_lite_ref01_match_dt0 = [
+            "id" => $ipinfo_lite_ref01_data["id"],
+        ];
         $ipinfo_lite_ref01_data_dt0_loaded = $ipinfo_lite_ref01_ent->load($ipinfo_lite_ref01_match_dt0, null);
-        $this->assertNotNull($ipinfo_lite_ref01_data_dt0_loaded);
+        $ipinfo_lite_ref01_data_dt0_load_result = Helpers::to_map(is_object($ipinfo_lite_ref01_data_dt0_loaded) && method_exists($ipinfo_lite_ref01_data_dt0_loaded, 'data_get') ? $ipinfo_lite_ref01_data_dt0_loaded->data_get() : $ipinfo_lite_ref01_data_dt0_loaded);
+        $this->assertNotNull($ipinfo_lite_ref01_data_dt0_load_result);
+        $this->assertEquals($ipinfo_lite_ref01_data_dt0_load_result["id"], $ipinfo_lite_ref01_data["id"]);
 
     }
 }

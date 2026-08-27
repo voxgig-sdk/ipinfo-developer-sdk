@@ -106,6 +106,7 @@ class CoreLoadMatch
 class Domain
 {
     public ?array $domains = null;
+    public ?string $id = null;
     public ?string $ip = null;
     public ?int $page = null;
     public int $total;
@@ -182,6 +183,7 @@ class GetInformationByIp
     public ?string $country = null;
     public array $domains;
     public ?string $hostname = null;
+    public ?string $id = null;
     public string $ip;
     public ?string $loc = null;
     public ?string $org = null;
@@ -215,6 +217,7 @@ class IpinfoCoreLoadMatch
 /** IpinfoLite entity data model. */
 class IpinfoLite
 {
+    public ?string $id = null;
 }
 
 /** Request payload for IpinfoLite#load. */
@@ -271,6 +274,7 @@ class Max
     public array $as;
     public array $geo;
     public ?string $hostname = null;
+    public ?string $id = null;
     public string $ip;
     public ?bool $is_anonymous = null;
     public ?bool $is_anycast = null;
@@ -306,6 +310,7 @@ class MenLoadMatch
 class Place
 {
     public string $category;
+    public ?string $id = null;
     public string $ip;
     public float $latitude;
     public float $longitude;
@@ -325,6 +330,7 @@ class Plus
     public ?array $anonymous = null;
     public ?array $as = null;
     public ?array $geo = null;
+    public ?string $id = null;
     public string $ip;
     public ?bool $is_anonymous = null;
     public ?bool $is_anycast = null;
@@ -388,6 +394,7 @@ class PrivacyExtendedListMatch
 class Range
 {
     public string $domain;
+    public ?string $id = null;
     public string $num_ranges;
     public array $ranges;
     public string $redirects_to;
@@ -496,6 +503,7 @@ class WhoisNetIdLoadMatch
 /** WhoisOrg entity data model. */
 class WhoisOrg
 {
+    public ?string $id = null;
     public ?string $org = null;
     public ?int $page = null;
     public ?array $records = null;
@@ -511,6 +519,7 @@ class WhoisOrgLoadMatch
 /** WhoisPoc entity data model. */
 class WhoisPoc
 {
+    public ?string $id = null;
     public ?int $page = null;
     public ?string $poc = null;
     public ?array $records = null;

@@ -59,9 +59,12 @@ describe('IpinfoLiteEntity', async () => {
 
     let ipinfo_lite_ref01_data = Object.values(setup.data.existing.ipinfo_lite)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const ipinfo_lite_ref01_ent = client.IpinfoLite()
+    const ipinfo_lite_ref01_match_dt0: any = {}
+    ipinfo_lite_ref01_match_dt0.id = ipinfo_lite_ref01_data.id
+    const ipinfo_lite_ref01_data_dt0 = (await ipinfo_lite_ref01_ent.load(ipinfo_lite_ref01_match_dt0)).data()
+    assert(ipinfo_lite_ref01_data_dt0.id === ipinfo_lite_ref01_data.id)
 
 
   })

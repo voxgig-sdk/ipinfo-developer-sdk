@@ -44,10 +44,14 @@ describe("MaxEntity", function()
 
     -- LOAD
     local max_ref01_ent = client:Max(nil)
-    local max_ref01_match_dt0 = {}
+    local max_ref01_match_dt0 = {
+      id = max_ref01_data["id"],
+    }
     local max_ref01_data_dt0_loaded, err = max_ref01_ent:load(max_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(max_ref01_data_dt0_loaded)
+    local max_ref01_data_dt0_load_result = helpers.to_map(type(max_ref01_data_dt0_loaded) == 'table' and max_ref01_data_dt0_loaded.data_get and max_ref01_data_dt0_loaded:data_get() or max_ref01_data_dt0_loaded)
+    assert.is_not_nil(max_ref01_data_dt0_load_result)
+    assert.are.equal(max_ref01_data_dt0_load_result["id"], max_ref01_data["id"])
 
   end)
 end)

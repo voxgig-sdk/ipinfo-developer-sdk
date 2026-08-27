@@ -77,6 +77,7 @@ export interface CoreLoadMatch {
 
 export interface Domain {
   domains?: any[]
+  id?: string
   ip?: string
   page?: number
   total: number
@@ -145,6 +146,7 @@ export interface GetInformationByIp {
   country?: string
   domains: Record<string, any>
   hostname?: string
+  id?: string
   ip: string
   loc?: string
   org?: string
@@ -170,6 +172,7 @@ export interface IpinfoCoreLoadMatch {
 }
 
 export interface IpinfoLite {
+  id?: string
 }
 
 export interface IpinfoLiteLoadMatch {
@@ -220,6 +223,7 @@ export interface Max {
   as: Record<string, any>
   geo: Record<string, any>
   hostname?: string
+  id?: string
   ip: string
   is_anonymous?: boolean
   is_anycast?: boolean
@@ -247,6 +251,7 @@ export interface MenLoadMatch {
 
 export interface Place {
   category: string
+  id?: string
   ip: string
   latitude: number
   longitude: number
@@ -262,6 +267,7 @@ export interface Plus {
   anonymous?: Record<string, any>
   as?: Record<string, any>
   geo?: Record<string, any>
+  id?: string
   ip: string
   is_anonymous?: boolean
   is_anycast?: boolean
@@ -319,6 +325,7 @@ export interface PrivacyExtendedListMatch {
 
 export interface Range {
   domain: string
+  id?: string
   num_ranges: string
   ranges: any[]
   redirects_to: string
@@ -399,6 +406,7 @@ export interface WhoisNetIdLoadMatch {
 }
 
 export interface WhoisOrg {
+  id?: string
   org?: string
   page?: number
   records?: any[]
@@ -410,6 +418,7 @@ export interface WhoisOrgLoadMatch {
 }
 
 export interface WhoisPoc {
+  id?: string
   page?: number
   poc?: string
   records?: any[]

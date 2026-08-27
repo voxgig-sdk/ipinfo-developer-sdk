@@ -48,9 +48,13 @@ class GetInformationByIpEntityTest extends TestCase
 
         // LOAD
         $get_information_by_ip_ref01_ent = $client->GetInformationByIp(null);
-        $get_information_by_ip_ref01_match_dt0 = [];
+        $get_information_by_ip_ref01_match_dt0 = [
+            "id" => $get_information_by_ip_ref01_data["id"],
+        ];
         $get_information_by_ip_ref01_data_dt0_loaded = $get_information_by_ip_ref01_ent->load($get_information_by_ip_ref01_match_dt0, null);
-        $this->assertNotNull($get_information_by_ip_ref01_data_dt0_loaded);
+        $get_information_by_ip_ref01_data_dt0_load_result = Helpers::to_map(is_object($get_information_by_ip_ref01_data_dt0_loaded) && method_exists($get_information_by_ip_ref01_data_dt0_loaded, 'data_get') ? $get_information_by_ip_ref01_data_dt0_loaded->data_get() : $get_information_by_ip_ref01_data_dt0_loaded);
+        $this->assertNotNull($get_information_by_ip_ref01_data_dt0_load_result);
+        $this->assertEquals($get_information_by_ip_ref01_data_dt0_load_result["id"], $get_information_by_ip_ref01_data["id"]);
 
     }
 }

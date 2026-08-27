@@ -484,6 +484,7 @@ domain = client.Domain()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domains` | `list` | No |  |
+| `id` | `str` | No |  |
 | `ip` | `str` | No |  |
 | `page` | `int` | No |  |
 | `total` | `int` | Yes |  |
@@ -665,6 +666,7 @@ get_information_by_ip = client.GetInformationByIp()
 | `country` | `str` | No |  |
 | `domains` | `dict` | Yes |  |
 | `hostname` | `str` | No |  |
+| `id` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `loc` | `str` | No |  |
 | `org` | `str` | No |  |
@@ -770,6 +772,12 @@ Return the entity name.
 ```python
 ipinfo_lite = client.IpinfoLite()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 
@@ -935,6 +943,7 @@ max = client.Max()
 | `as` | `dict` | Yes |  |
 | `geo` | `dict` | Yes |  |
 | `hostname` | `str` | No |  |
+| `id` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `is_anonymous` | `bool` | No |  |
 | `is_anycast` | `bool` | No |  |
@@ -1046,6 +1055,7 @@ place = client.Place()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `str` | Yes |  |
+| `id` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `latitude` | `float` | Yes |  |
 | `longitude` | `float` | Yes |  |
@@ -1104,6 +1114,7 @@ plus = client.Plus()
 | `anonymous` | `dict` | No |  |
 | `as` | `dict` | No |  |
 | `geo` | `dict` | No |  |
+| `id` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `is_anonymous` | `bool` | No |  |
 | `is_anycast` | `bool` | No |  |
@@ -1286,6 +1297,7 @@ range = client.Range()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `str` | Yes |  |
+| `id` | `str` | No |  |
 | `num_ranges` | `str` | Yes |  |
 | `ranges` | `list` | Yes |  |
 | `redirects_to` | `str` | Yes |  |
@@ -1665,6 +1677,7 @@ whois_org = client.WhoisOrg()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `org` | `str` | No |  |
 | `page` | `int` | No |  |
 | `records` | `list` | No |  |
@@ -1719,6 +1732,7 @@ whois_poc = client.WhoisPoc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `page` | `int` | No |  |
 | `poc` | `str` | No |  |
 | `records` | `list` | No |  |

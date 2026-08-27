@@ -44,10 +44,14 @@ describe("RangeEntity", function()
 
     -- LOAD
     local range_ref01_ent = client:Range(nil)
-    local range_ref01_match_dt0 = {}
+    local range_ref01_match_dt0 = {
+      id = range_ref01_data["id"],
+    }
     local range_ref01_data_dt0_loaded, err = range_ref01_ent:load(range_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(range_ref01_data_dt0_loaded)
+    local range_ref01_data_dt0_load_result = helpers.to_map(type(range_ref01_data_dt0_loaded) == 'table' and range_ref01_data_dt0_loaded.data_get and range_ref01_data_dt0_loaded:data_get() or range_ref01_data_dt0_loaded)
+    assert.is_not_nil(range_ref01_data_dt0_load_result)
+    assert.are.equal(range_ref01_data_dt0_load_result["id"], range_ref01_data["id"])
 
   end)
 end)

@@ -490,6 +490,7 @@ local domain = client:Domain(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domains` | `table` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | No |  |
 | `page` | `number` | No |  |
 | `total` | `number` | Yes |  |
@@ -674,6 +675,7 @@ local get_information_by_ip = client:GetInformationByIp(nil)
 | `country` | `string` | No |  |
 | `domains` | `table` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `loc` | `string` | No |  |
 | `org` | `string` | No |  |
@@ -781,6 +783,12 @@ Return the entity name.
 ```lua
 local ipinfo_lite = client:IpinfoLite(nil)
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -949,6 +957,7 @@ local max = client:Max(nil)
 | `as` | `table` | Yes |  |
 | `geo` | `table` | Yes |  |
 | `hostname` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `boolean` | No |  |
 | `is_anycast` | `boolean` | No |  |
@@ -1062,6 +1071,7 @@ local place = client:Place(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `latitude` | `number` | Yes |  |
 | `longitude` | `number` | Yes |  |
@@ -1121,6 +1131,7 @@ local plus = client:Plus(nil)
 | `anonymous` | `table` | No |  |
 | `as` | `table` | No |  |
 | `geo` | `table` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_anonymous` | `boolean` | No |  |
 | `is_anycast` | `boolean` | No |  |
@@ -1304,6 +1315,7 @@ local range = client:Range(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
+| `id` | `string` | No |  |
 | `num_ranges` | `string` | Yes |  |
 | `ranges` | `table` | Yes |  |
 | `redirects_to` | `string` | Yes |  |
@@ -1688,6 +1700,7 @@ local whois_org = client:WhoisOrg(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `org` | `string` | No |  |
 | `page` | `number` | No |  |
 | `records` | `table` | No |  |
@@ -1743,6 +1756,7 @@ local whois_poc = client:WhoisPoc(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `page` | `number` | No |  |
 | `poc` | `string` | No |  |
 | `records` | `table` | No |  |

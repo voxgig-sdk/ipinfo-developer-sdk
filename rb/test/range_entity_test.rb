@@ -41,9 +41,13 @@ class RangeEntityTest < Minitest::Test
 
     # LOAD
     range_ref01_ent = client.Range(nil)
-    range_ref01_match_dt0 = {}
+    range_ref01_match_dt0 = {
+      "id" => range_ref01_data["id"],
+    }
     range_ref01_data_dt0_loaded = range_ref01_ent.load(range_ref01_match_dt0, nil)
-    assert !range_ref01_data_dt0_loaded.nil?
+    range_ref01_data_dt0_load_result = Helpers.to_map(range_ref01_data_dt0_loaded.respond_to?(:data_get) ? range_ref01_data_dt0_loaded.data_get : range_ref01_data_dt0_loaded)
+    assert !range_ref01_data_dt0_load_result.nil?
+    assert_equal range_ref01_data_dt0_load_result["id"], range_ref01_data["id"]
 
   end
 end
