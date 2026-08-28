@@ -85,6 +85,7 @@ function directSetup(mockres?: any) {
     'IPINFO_DEVELOPER_TEST_DOMAIN_ENTID': {},
     'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
     'IPINFO_DEVELOPER_APIKEY': 'NONE',
+    'IPINFO_DEVELOPER_SECRET': 'NONE',
   })
 
   const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE
@@ -92,6 +93,7 @@ function directSetup(mockres?: any) {
   if (live) {
     const client = new IpinfoDeveloperSDK({
       apikey: env.IPINFO_DEVELOPER_APIKEY,
+      secret: env.IPINFO_DEVELOPER_SECRET,
     })
 
     let idmap: any = env['IPINFO_DEVELOPER_TEST_DOMAIN_ENTID']

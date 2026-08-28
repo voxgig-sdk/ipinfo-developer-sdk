@@ -32,6 +32,7 @@ import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
 
 const client = new IpinfoDeveloperSDK({
   apikey: process.env.IPINFO_DEVELOPER_APIKEY,
+  secret: process.env.IPINFO_DEVELOPER_SECRET,
 })
 ```
 
@@ -134,7 +135,7 @@ console.log(domain)
 You can also use the instance method:
 
 ```ts
-const client = new IpinfoDeveloperSDK({ apikey: '...' })
+const client = new IpinfoDeveloperSDK({ apikey: '...', secret: '...' })
 const testClient = client.tester()
 ```
 
@@ -171,6 +172,7 @@ const logger = {
 
 const client = new IpinfoDeveloperSDK({
   apikey: '...',
+  secret: '...',
   extend: [logger],
 })
 ```
@@ -182,6 +184,7 @@ Create a `.env.local` file at the project root:
 ```
 IPINFO_DEVELOPER_TEST_LIVE=TRUE
 IPINFO_DEVELOPER_APIKEY=<your-key>
+IPINFO_DEVELOPER_SECRET=<your-secret>
 ```
 
 Then run:
@@ -200,6 +203,7 @@ cd ts && npm test
 ```ts
 new IpinfoDeveloperSDK(options?: {
   apikey?: string
+  secret?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -211,6 +215,7 @@ new IpinfoDeveloperSDK(options?: {
 | Option | Type | Description |
 | --- | --- | --- |
 | `apikey` | `string` | API key for authentication. |
+| `secret` | `string` | API secret for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -1566,6 +1571,29 @@ Create an instance: `const whois_poc = client.WhoisPoc()`
 ```ts
 const whois_poc = await client.WhoisPoc().load({ id: 'whois_poc_id' })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

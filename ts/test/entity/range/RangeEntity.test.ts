@@ -115,6 +115,7 @@ function basicSetup(extra?: any) {
     'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
     'IPINFO_DEVELOPER_TEST_EXPLAIN': 'FALSE',
     'IPINFO_DEVELOPER_APIKEY': 'NONE',
+    'IPINFO_DEVELOPER_SECRET': 'NONE',
   })
 
   idmap = env['IPINFO_DEVELOPER_TEST_RANGE_ENTID']
@@ -125,6 +126,7 @@ function basicSetup(extra?: any) {
     client = new IpinfoDeveloperSDK(merge([
       {
         apikey: env.IPINFO_DEVELOPER_APIKEY,
+        secret: env.IPINFO_DEVELOPER_SECRET,
       },
       extra
     ]))

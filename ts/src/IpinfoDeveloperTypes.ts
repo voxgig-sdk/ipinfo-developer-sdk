@@ -85,6 +85,8 @@ export interface Domain {
 
 export interface DomainLoadMatch {
   id: string
+  limit?: number
+  page?: number
 }
 
 export interface General {
@@ -370,6 +372,8 @@ export interface WhoisAsn {
 
 export interface WhoisAsnListMatch {
   asn: number
+  page?: number
+  whoissource?: string
 }
 
 export interface WhoisDomain {
@@ -381,6 +385,8 @@ export interface WhoisDomain {
 
 export interface WhoisDomainLoadMatch {
   domain: string
+  page?: number
+  whoissource?: string
 }
 
 export interface WhoisIp {
@@ -392,6 +398,8 @@ export interface WhoisIp {
 
 export interface WhoisIpLoadMatch {
   whoisip: string
+  page?: number
+  whoissource?: string
 }
 
 export interface WhoisNetId {
@@ -403,6 +411,8 @@ export interface WhoisNetId {
 
 export interface WhoisNetIdLoadMatch {
   whoisnetid: string
+  page?: number
+  whoissource?: string
 }
 
 export interface WhoisOrg {
@@ -415,6 +425,8 @@ export interface WhoisOrg {
 
 export interface WhoisOrgLoadMatch {
   id: string
+  page?: number
+  whoissource?: string
 }
 
 export interface WhoisPoc {
@@ -427,5 +439,7 @@ export interface WhoisPoc {
 
 export interface WhoisPocLoadMatch {
   id: string
+  page?: number
+  whoissource?: string
 }
 

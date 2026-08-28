@@ -102,8 +102,13 @@ class Domain(DomainRequired, total=False):
     page: int
 
 
-class DomainLoadMatch(TypedDict):
+class DomainLoadMatchRequired(TypedDict):
     id: str
+
+
+class DomainLoadMatch(DomainLoadMatchRequired, total=False):
+    limit: int
+    page: int
 
 
 class General(TypedDict, total=False):
@@ -398,8 +403,13 @@ class WhoisAsn(TypedDict, total=False):
     updated: str
 
 
-class WhoisAsnListMatch(TypedDict):
+class WhoisAsnListMatchRequired(TypedDict):
     asn: int
+
+
+class WhoisAsnListMatch(WhoisAsnListMatchRequired, total=False):
+    page: int
+    whoissource: str
 
 
 class WhoisDomain(TypedDict, total=False):
@@ -409,8 +419,13 @@ class WhoisDomain(TypedDict, total=False):
     total: int
 
 
-class WhoisDomainLoadMatch(TypedDict):
+class WhoisDomainLoadMatchRequired(TypedDict):
     domain: str
+
+
+class WhoisDomainLoadMatch(WhoisDomainLoadMatchRequired, total=False):
+    page: int
+    whoissource: str
 
 
 class WhoisIp(TypedDict, total=False):
@@ -420,8 +435,13 @@ class WhoisIp(TypedDict, total=False):
     total: int
 
 
-class WhoisIpLoadMatch(TypedDict):
+class WhoisIpLoadMatchRequired(TypedDict):
     whoisip: str
+
+
+class WhoisIpLoadMatch(WhoisIpLoadMatchRequired, total=False):
+    page: int
+    whoissource: str
 
 
 class WhoisNetId(TypedDict, total=False):
@@ -431,8 +451,13 @@ class WhoisNetId(TypedDict, total=False):
     total: int
 
 
-class WhoisNetIdLoadMatch(TypedDict):
+class WhoisNetIdLoadMatchRequired(TypedDict):
     whoisnetid: str
+
+
+class WhoisNetIdLoadMatch(WhoisNetIdLoadMatchRequired, total=False):
+    page: int
+    whoissource: str
 
 
 class WhoisOrg(TypedDict, total=False):
@@ -443,8 +468,13 @@ class WhoisOrg(TypedDict, total=False):
     total: int
 
 
-class WhoisOrgLoadMatch(TypedDict):
+class WhoisOrgLoadMatchRequired(TypedDict):
     id: str
+
+
+class WhoisOrgLoadMatch(WhoisOrgLoadMatchRequired, total=False):
+    page: int
+    whoissource: str
 
 
 class WhoisPoc(TypedDict, total=False):
@@ -455,5 +485,10 @@ class WhoisPoc(TypedDict, total=False):
     total: int
 
 
-class WhoisPocLoadMatch(TypedDict):
+class WhoisPocLoadMatchRequired(TypedDict):
     id: str
+
+
+class WhoisPocLoadMatch(WhoisPocLoadMatchRequired, total=False):
+    page: int
+    whoissource: str

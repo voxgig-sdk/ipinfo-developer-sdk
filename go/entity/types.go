@@ -104,6 +104,8 @@ type Domain struct {
 // DomainLoadMatch is the typed request payload for Domain.LoadTyped.
 type DomainLoadMatch struct {
 	Id string `json:"id"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // General is the typed data model for the general entity.
@@ -411,6 +413,8 @@ type WhoisAsn struct {
 // WhoisAsnListMatch is the typed request payload for WhoisAsn.ListTyped.
 type WhoisAsnListMatch struct {
 	Asn int `json:"asn"`
+	Page *int `json:"page,omitempty"`
+	Whoissource *string `json:"whoissource,omitempty"`
 }
 
 // WhoisDomain is the typed data model for the whois_domain entity.
@@ -424,6 +428,8 @@ type WhoisDomain struct {
 // WhoisDomainLoadMatch is the typed request payload for WhoisDomain.LoadTyped.
 type WhoisDomainLoadMatch struct {
 	Domain string `json:"domain"`
+	Page *int `json:"page,omitempty"`
+	Whoissource *string `json:"whoissource,omitempty"`
 }
 
 // WhoisIp is the typed data model for the whois_ip entity.
@@ -437,6 +443,8 @@ type WhoisIp struct {
 // WhoisIpLoadMatch is the typed request payload for WhoisIp.LoadTyped.
 type WhoisIpLoadMatch struct {
 	Whoisip string `json:"whoisip"`
+	Page *int `json:"page,omitempty"`
+	Whoissource *string `json:"whoissource,omitempty"`
 }
 
 // WhoisNetId is the typed data model for the whois_net_id entity.
@@ -450,6 +458,8 @@ type WhoisNetId struct {
 // WhoisNetIdLoadMatch is the typed request payload for WhoisNetId.LoadTyped.
 type WhoisNetIdLoadMatch struct {
 	Whoisnetid string `json:"whoisnetid"`
+	Page *int `json:"page,omitempty"`
+	Whoissource *string `json:"whoissource,omitempty"`
 }
 
 // WhoisOrg is the typed data model for the whois_org entity.
@@ -464,6 +474,8 @@ type WhoisOrg struct {
 // WhoisOrgLoadMatch is the typed request payload for WhoisOrg.LoadTyped.
 type WhoisOrgLoadMatch struct {
 	Id string `json:"id"`
+	Page *int `json:"page,omitempty"`
+	Whoissource *string `json:"whoissource,omitempty"`
 }
 
 // WhoisPoc is the typed data model for the whois_poc entity.
@@ -478,6 +490,8 @@ type WhoisPoc struct {
 // WhoisPocLoadMatch is the typed request payload for WhoisPoc.LoadTyped.
 type WhoisPocLoadMatch struct {
 	Id string `json:"id"`
+	Page *int `json:"page,omitempty"`
+	Whoissource *string `json:"whoissource,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

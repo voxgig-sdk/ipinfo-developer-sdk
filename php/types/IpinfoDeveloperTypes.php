@@ -116,6 +116,8 @@ class Domain
 class DomainLoadMatch
 {
     public string $id;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 
 /** General entity data model. */
@@ -453,6 +455,8 @@ class WhoisAsn
 class WhoisAsnListMatch
 {
     public int $asn;
+    public ?int $page = null;
+    public ?string $whoissource = null;
 }
 
 /** WhoisDomain entity data model. */
@@ -468,6 +472,8 @@ class WhoisDomain
 class WhoisDomainLoadMatch
 {
     public string $domain;
+    public ?int $page = null;
+    public ?string $whoissource = null;
 }
 
 /** WhoisIp entity data model. */
@@ -483,6 +489,8 @@ class WhoisIp
 class WhoisIpLoadMatch
 {
     public string $whoisip;
+    public ?int $page = null;
+    public ?string $whoissource = null;
 }
 
 /** WhoisNetId entity data model. */
@@ -498,6 +506,8 @@ class WhoisNetId
 class WhoisNetIdLoadMatch
 {
     public string $whoisnetid;
+    public ?int $page = null;
+    public ?string $whoissource = null;
 }
 
 /** WhoisOrg entity data model. */
@@ -514,6 +524,8 @@ class WhoisOrg
 class WhoisOrgLoadMatch
 {
     public string $id;
+    public ?int $page = null;
+    public ?string $whoissource = null;
 }
 
 /** WhoisPoc entity data model. */
@@ -530,5 +542,7 @@ class WhoisPoc
 class WhoisPocLoadMatch
 {
     public string $id;
+    public ?int $page = null;
+    public ?string $whoissource = null;
 }
 

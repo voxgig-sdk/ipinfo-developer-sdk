@@ -75,6 +75,8 @@
 
 ---@class DomainLoadMatch
 ---@field id string
+---@field limit? number
+---@field page? number
 
 ---@class General
 ---@field ["8_8_8_8"]? table
@@ -314,6 +316,8 @@
 
 ---@class WhoisAsnListMatch
 ---@field asn number
+---@field page? number
+---@field whoissource? string
 
 ---@class WhoisDomain
 ---@field net? string
@@ -323,6 +327,8 @@
 
 ---@class WhoisDomainLoadMatch
 ---@field domain string
+---@field page? number
+---@field whoissource? string
 
 ---@class WhoisIp
 ---@field net? string
@@ -332,6 +338,8 @@
 
 ---@class WhoisIpLoadMatch
 ---@field whoisip string
+---@field page? number
+---@field whoissource? string
 
 ---@class WhoisNetId
 ---@field net? string
@@ -341,6 +349,8 @@
 
 ---@class WhoisNetIdLoadMatch
 ---@field whoisnetid string
+---@field page? number
+---@field whoissource? string
 
 ---@class WhoisOrg
 ---@field id? string
@@ -351,6 +361,8 @@
 
 ---@class WhoisOrgLoadMatch
 ---@field id string
+---@field page? number
+---@field whoissource? string
 
 ---@class WhoisPoc
 ---@field id? string
@@ -361,6 +373,8 @@
 
 ---@class WhoisPocLoadMatch
 ---@field id string
+---@field page? number
+---@field whoissource? string
 
 local M = {}
 

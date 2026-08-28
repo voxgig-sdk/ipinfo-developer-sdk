@@ -247,8 +247,16 @@ Domain = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
 DomainLoadMatch = Struct.new(
   :id,
+  :limit,
+  :page,
   keyword_init: true
 )
 
@@ -1099,8 +1107,16 @@ WhoisAsn = Struct.new(
 #
 # @!attribute [rw] asn
 #   @return [Integer]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] whoissource
+#   @return [String, nil]
 WhoisAsnListMatch = Struct.new(
   :asn,
+  :page,
+  :whoissource,
   keyword_init: true
 )
 
@@ -1129,8 +1145,16 @@ WhoisDomain = Struct.new(
 #
 # @!attribute [rw] domain
 #   @return [String]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] whoissource
+#   @return [String, nil]
 WhoisDomainLoadMatch = Struct.new(
   :domain,
+  :page,
+  :whoissource,
   keyword_init: true
 )
 
@@ -1159,8 +1183,16 @@ WhoisIp = Struct.new(
 #
 # @!attribute [rw] whoisip
 #   @return [String]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] whoissource
+#   @return [String, nil]
 WhoisIpLoadMatch = Struct.new(
   :whoisip,
+  :page,
+  :whoissource,
   keyword_init: true
 )
 
@@ -1189,8 +1221,16 @@ WhoisNetId = Struct.new(
 #
 # @!attribute [rw] whoisnetid
 #   @return [String]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] whoissource
+#   @return [String, nil]
 WhoisNetIdLoadMatch = Struct.new(
   :whoisnetid,
+  :page,
+  :whoissource,
   keyword_init: true
 )
 
@@ -1223,8 +1263,16 @@ WhoisOrg = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] whoissource
+#   @return [String, nil]
 WhoisOrgLoadMatch = Struct.new(
   :id,
+  :page,
+  :whoissource,
   keyword_init: true
 )
 
@@ -1257,8 +1305,16 @@ WhoisPoc = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] whoissource
+#   @return [String, nil]
 WhoisPocLoadMatch = Struct.new(
   :id,
+  :page,
+  :whoissource,
   keyword_init: true
 )
 
