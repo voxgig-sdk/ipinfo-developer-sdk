@@ -86,15 +86,19 @@ main: kit: entity: plus: {
           }
           method: "GET"
           orig: "/plus/{ip}"
-          parts: [
-            "plus"
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              lit: "plus"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -108,9 +112,13 @@ main: kit: entity: plus: {
         {
           method: "GET"
           orig: "/plus/me"
-          parts: [
-            "plus"
-            "me"
+          segments: [
+            {
+              lit: "plus"
+            }
+            {
+              lit: "me"
+            }
           ]
           select: {
             "$action": "me"

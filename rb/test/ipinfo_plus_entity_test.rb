@@ -41,9 +41,13 @@ class IpinfoPlusEntityTest < Minitest::Test
 
     # LOAD
     ipinfo_plus_ref01_ent = client.IpinfoPlus(nil)
-    ipinfo_plus_ref01_match_dt0 = {}
+    ipinfo_plus_ref01_match_dt0 = {
+      "id" => ipinfo_plus_ref01_data["id"],
+    }
     ipinfo_plus_ref01_data_dt0_loaded = ipinfo_plus_ref01_ent.load(ipinfo_plus_ref01_match_dt0, nil)
-    assert !ipinfo_plus_ref01_data_dt0_loaded.nil?
+    ipinfo_plus_ref01_data_dt0_load_result = Helpers.to_map(ipinfo_plus_ref01_data_dt0_loaded.respond_to?(:data_get) ? ipinfo_plus_ref01_data_dt0_loaded.data_get : ipinfo_plus_ref01_data_dt0_loaded)
+    assert !ipinfo_plus_ref01_data_dt0_load_result.nil?
+    assert_equal ipinfo_plus_ref01_data_dt0_load_result["id"], ipinfo_plus_ref01_data["id"]
 
   end
 end
@@ -81,7 +85,7 @@ def ipinfo_plus_basic_setup(extra)
     "IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID" => idmap,
     "IPINFO_DEVELOPER_TEST_LIVE" => "FALSE",
     "IPINFO_DEVELOPER_TEST_EXPLAIN" => "FALSE",
-    "IPINFO_DEVELOPER_APIKEY" => "NONE",
+    "IPINFO_DEVELOPER_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -92,6 +96,9 @@ def ipinfo_plus_basic_setup(extra)
 
   if env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["IPINFO_DEVELOPER_APIKEY"],
       },

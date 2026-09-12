@@ -36,6 +36,7 @@ main: kit: entity: privacy_extended: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "date"
       name: "first_seen"
       req: false
       short: "Date when the activity on an anonymous IP address was first observed."
@@ -54,6 +55,7 @@ main: kit: entity: privacy_extended: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "date"
       name: "last_seen"
       req: false
       short: "Date when the activity on an anonymous IP address was last/recently observed."
@@ -122,9 +124,13 @@ main: kit: entity: privacy_extended: {
           }
           method: "GET"
           orig: "/{ip}/privacy_extended"
-          parts: [
-            "{ip}"
-            "privacy_extended"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "privacy_extended"
+            }
           ]
           select: {
             exist: [

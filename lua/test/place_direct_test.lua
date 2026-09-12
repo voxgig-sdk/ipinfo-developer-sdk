@@ -72,7 +72,7 @@ function place_direct_setup(mockres)
   local env = runner.env_override({
     ["IPINFO_DEVELOPER_TEST_PLACE_ENTID"] = {},
     ["IPINFO_DEVELOPER_TEST_LIVE"] = "FALSE",
-    ["IPINFO_DEVELOPER_APIKEY"] = "NONE",
+    ["IPINFO_DEVELOPER_APIKEY"] = "",
   })
 
   local live = env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE"
@@ -81,6 +81,13 @@ function place_direct_setup(mockres)
     local merged_opts = {
       apikey = env["IPINFO_DEVELOPER_APIKEY"],
     }
+    -- sdk-test-control.json's test.client.options goes UNDER the generated
+    -- fields: it adds to the live client, it does not redirect it.
+    for _k, _v in pairs(runner.live_client_options()) do
+      if merged_opts[_k] == nil then
+        merged_opts[_k] = _v
+      end
+    end
     local client = sdk.new(merged_opts)
     return {
       client = client,

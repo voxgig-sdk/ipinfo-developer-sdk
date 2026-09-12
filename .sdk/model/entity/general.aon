@@ -47,9 +47,13 @@ main: kit: entity: general: {
           }
           method: "POST"
           orig: "/tools/map"
-          parts: [
-            "tools"
-            "map"
+          segments: [
+            {
+              lit: "tools"
+            }
+            {
+              lit: "map"
+            }
           ]
           select: {
             exist: [
@@ -76,9 +80,13 @@ main: kit: entity: general: {
           }
           method: "POST"
           orig: "/tools/summarize-ips"
-          parts: [
-            "tools"
-            "summarize-ips"
+          segments: [
+            {
+              lit: "tools"
+            }
+            {
+              lit: "summarize-ips"
+            }
           ]
           select: {
             exist: [
@@ -93,8 +101,10 @@ main: kit: entity: general: {
         {
           method: "POST"
           orig: "/batch"
-          parts: [
-            "batch"
+          segments: [
+            {
+              lit: "batch"
+            }
           ]
           transform: {
             req: "`reqdata`"

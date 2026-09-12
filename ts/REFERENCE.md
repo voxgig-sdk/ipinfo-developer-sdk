@@ -960,6 +960,7 @@ const ipinfo_core = client.IpinfoCore()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `string` | No |  |
+| `id` | `string` | No |  |
 | `key` | `string` | No |  |
 | `region` | `string` | No |  |
 
@@ -1062,6 +1063,7 @@ const ipinfo_plus = client.IpinfoPlus()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `string` | No |  |
+| `id` | `string` | No |  |
 | `key` | `string` | No |  |
 | `region` | `string` | No |  |
 

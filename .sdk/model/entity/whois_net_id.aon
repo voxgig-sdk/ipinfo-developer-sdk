@@ -62,10 +62,16 @@ main: kit: entity: whois_net_id: {
           }
           method: "GET"
           orig: "/whois/net/{whoisnetid}"
-          parts: [
-            "whois"
-            "net"
-            "{whoisnetid}"
+          segments: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "net"
+            }
+            {
+              var: "whoisnetid"
+            }
           ]
           select: {
             exist: [

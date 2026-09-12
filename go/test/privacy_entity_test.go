@@ -50,7 +50,7 @@ func TestPrivacyEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		privacyRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.privacy", setup.data)))
+		privacyRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.privacy")))
 		var privacyRef01Data map[string]any
 		if len(privacyRef01DataRaw) > 0 {
 			privacyRef01Data = core.ToMapAny(privacyRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func privacyBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"privacy01", "privacy02", "privacy03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func privacyBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPINFO_DEVELOPER_TEST_PRIVACY_ENTID": idmap,
 		"IPINFO_DEVELOPER_TEST_LIVE":      "FALSE",
 		"IPINFO_DEVELOPER_TEST_EXPLAIN":   "FALSE",
-		"IPINFO_DEVELOPER_APIKEY":         "NONE",
+		"IPINFO_DEVELOPER_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPINFO_DEVELOPER_TEST_PRIVACY_ENTID"])
@@ -126,11 +126,23 @@ func privacyBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["IPINFO_DEVELOPER_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpinfoDeveloperSDK(core.ToMapAny(mergedOpts))
 	}

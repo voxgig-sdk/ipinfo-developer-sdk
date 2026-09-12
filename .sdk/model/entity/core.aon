@@ -71,9 +71,13 @@ main: kit: entity: core: {
           }
           method: "GET"
           orig: "/lookup/{ip}"
-          parts: [
-            "lookup"
-            "{ip}"
+          segments: [
+            {
+              lit: "lookup"
+            }
+            {
+              var: "ip"
+            }
           ]
           select: {
             exist: [
@@ -88,9 +92,13 @@ main: kit: entity: core: {
         {
           method: "GET"
           orig: "/lookup/me"
-          parts: [
-            "lookup"
-            "me"
+          segments: [
+            {
+              lit: "lookup"
+            }
+            {
+              lit: "me"
+            }
           ]
           transform: {
             req: "`reqdata`"

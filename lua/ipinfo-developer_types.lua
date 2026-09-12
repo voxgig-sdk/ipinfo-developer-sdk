@@ -147,6 +147,7 @@
 
 ---@class IpinfoCore
 ---@field city? string
+---@field id? string
 ---@field key? string
 ---@field region? string
 
@@ -162,6 +163,7 @@
 
 ---@class IpinfoPlus
 ---@field city? string
+---@field id? string
 ---@field key? string
 ---@field region? string
 

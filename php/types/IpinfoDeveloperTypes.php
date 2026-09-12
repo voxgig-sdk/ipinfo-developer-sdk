@@ -205,6 +205,7 @@ class GetInformationByIpLoadMatch
 class IpinfoCore
 {
     public ?string $city = null;
+    public ?string $id = null;
     public ?string $key = null;
     public ?string $region = null;
 }
@@ -232,6 +233,7 @@ class IpinfoLiteLoadMatch
 class IpinfoPlus
 {
     public ?string $city = null;
+    public ?string $id = null;
     public ?string $key = null;
     public ?string $region = null;
 }

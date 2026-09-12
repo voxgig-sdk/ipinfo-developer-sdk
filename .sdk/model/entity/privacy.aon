@@ -56,9 +56,13 @@ main: kit: entity: privacy: {
           }
           method: "GET"
           orig: "/{ip}/privacy"
-          parts: [
-            "{ip}"
-            "privacy"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "privacy"
+            }
           ]
           select: {
             exist: [

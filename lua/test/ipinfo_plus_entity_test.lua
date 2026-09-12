@@ -44,10 +44,14 @@ describe("IpinfoPlusEntity", function()
 
     -- LOAD
     local ipinfo_plus_ref01_ent = client:IpinfoPlus(nil)
-    local ipinfo_plus_ref01_match_dt0 = {}
+    local ipinfo_plus_ref01_match_dt0 = {
+      id = ipinfo_plus_ref01_data["id"],
+    }
     local ipinfo_plus_ref01_data_dt0_loaded, err = ipinfo_plus_ref01_ent:load(ipinfo_plus_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(ipinfo_plus_ref01_data_dt0_loaded)
+    local ipinfo_plus_ref01_data_dt0_load_result = helpers.to_map(type(ipinfo_plus_ref01_data_dt0_loaded) == 'table' and ipinfo_plus_ref01_data_dt0_loaded.data_get and ipinfo_plus_ref01_data_dt0_loaded:data_get() or ipinfo_plus_ref01_data_dt0_loaded)
+    assert.is_not_nil(ipinfo_plus_ref01_data_dt0_load_result)
+    assert.are.equal(ipinfo_plus_ref01_data_dt0_load_result["id"], ipinfo_plus_ref01_data["id"])
 
   end)
 end)
@@ -91,7 +95,7 @@ function ipinfo_plus_basic_setup(extra)
     ["IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID"] = idmap,
     ["IPINFO_DEVELOPER_TEST_LIVE"] = "FALSE",
     ["IPINFO_DEVELOPER_TEST_EXPLAIN"] = "FALSE",
-    ["IPINFO_DEVELOPER_APIKEY"] = "NONE",
+    ["IPINFO_DEVELOPER_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +106,9 @@ function ipinfo_plus_basic_setup(extra)
 
   if env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["IPINFO_DEVELOPER_APIKEY"],
       },

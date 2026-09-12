@@ -23,9 +23,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/city"
-          parts: [
-            "{ip}"
-            "city"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "city"
+            }
           ]
           select: {
             exist: [
@@ -51,9 +55,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/country"
-          parts: [
-            "{ip}"
-            "country"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "country"
+            }
           ]
           select: {
             exist: [
@@ -79,9 +87,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/hostname"
-          parts: [
-            "{ip}"
-            "hostname"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "hostname"
+            }
           ]
           select: {
             exist: [
@@ -107,9 +119,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/ip"
-          parts: [
-            "{ip}"
-            "ip"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "ip"
+            }
           ]
           select: {
             exist: [
@@ -135,9 +151,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/loc"
-          parts: [
-            "{ip}"
-            "loc"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "loc"
+            }
           ]
           select: {
             exist: [
@@ -163,9 +183,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/org"
-          parts: [
-            "{ip}"
-            "org"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "org"
+            }
           ]
           select: {
             exist: [
@@ -191,9 +215,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/postal"
-          parts: [
-            "{ip}"
-            "postal"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "postal"
+            }
           ]
           select: {
             exist: [
@@ -219,9 +247,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/region"
-          parts: [
-            "{ip}"
-            "region"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "region"
+            }
           ]
           select: {
             exist: [
@@ -247,9 +279,13 @@ main: kit: entity: single: {
           }
           method: "GET"
           orig: "/{ip}/timezone"
-          parts: [
-            "{ip}"
-            "timezone"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "timezone"
+            }
           ]
           select: {
             exist: [
@@ -264,8 +300,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/city"
-          parts: [
-            "city"
+          segments: [
+            {
+              lit: "city"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -275,8 +313,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/country"
-          parts: [
-            "country"
+          segments: [
+            {
+              lit: "country"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -286,8 +326,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/hostname"
-          parts: [
-            "hostname"
+          segments: [
+            {
+              lit: "hostname"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -297,8 +339,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/ip"
-          parts: [
-            "ip"
+          segments: [
+            {
+              lit: "ip"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -308,8 +352,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/loc"
-          parts: [
-            "loc"
+          segments: [
+            {
+              lit: "loc"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -319,8 +365,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/org"
-          parts: [
-            "org"
+          segments: [
+            {
+              lit: "org"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -330,8 +378,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/postal"
-          parts: [
-            "postal"
+          segments: [
+            {
+              lit: "postal"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -341,8 +391,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/region"
-          parts: [
-            "region"
+          segments: [
+            {
+              lit: "region"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -352,8 +404,10 @@ main: kit: entity: single: {
         {
           method: "GET"
           orig: "/timezone"
-          parts: [
-            "timezone"
+          segments: [
+            {
+              lit: "timezone"
+            }
           ]
           transform: {
             req: "`reqdata`"

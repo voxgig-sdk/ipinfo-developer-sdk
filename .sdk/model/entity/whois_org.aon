@@ -72,16 +72,22 @@ main: kit: entity: whois_org: {
           }
           method: "GET"
           orig: "/whois/org/{whoisorgid}"
-          parts: [
-            "whois"
-            "org"
-            "{id}"
-          ]
           rename: {
             param: {
               whoisorgid: "id"
             }
           }
+          segments: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "org"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

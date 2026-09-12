@@ -164,6 +164,7 @@ export interface GetInformationByIpLoadMatch {
 
 export interface IpinfoCore {
   city?: string
+  id?: string
   key?: string
   region?: string
 }
@@ -183,6 +184,7 @@ export interface IpinfoLiteLoadMatch {
 
 export interface IpinfoPlus {
   city?: string
+  id?: string
   key?: string
   region?: string
 }

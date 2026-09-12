@@ -30,8 +30,10 @@ main: kit: entity: men: {
         {
           method: "GET"
           orig: "/me"
-          parts: [
-            "me"
+          segments: [
+            {
+              lit: "me"
+            }
           ]
           transform: {
             req: "`reqdata`"

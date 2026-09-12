@@ -50,7 +50,7 @@ func TestIpinfoPlusEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		ipinfoPlusRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.ipinfo_plus", setup.data)))
+		ipinfoPlusRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.ipinfo_plus")))
 		var ipinfoPlusRef01Data map[string]any
 		if len(ipinfoPlusRef01DataRaw) > 0 {
 			ipinfoPlusRef01Data = core.ToMapAny(ipinfoPlusRef01DataRaw[0][1])
@@ -61,13 +61,19 @@ func TestIpinfoPlusEntity(t *testing.T) {
 
 		// LOAD
 		ipinfoPlusRef01Ent := client.IpinfoPlus(nil)
-		ipinfoPlusRef01MatchDt0 := map[string]any{}
+		ipinfoPlusRef01MatchDt0 := map[string]any{
+			"id": ipinfoPlusRef01Data["id"],
+		}
 		ipinfoPlusRef01DataDt0Loaded, err := ipinfoPlusRef01Ent.Load(ipinfoPlusRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if ipinfoPlusRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		ipinfoPlusRef01DataDt0LoadResult := core.ToMapAny(entityData(ipinfoPlusRef01DataDt0Loaded))
+		if ipinfoPlusRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if ipinfoPlusRef01DataDt0LoadResult["id"] != ipinfoPlusRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -97,7 +103,7 @@ func ipinfo_plusBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"ipinfo_plus01", "ipinfo_plus02", "ipinfo_plus03", "me01", "me02", "me03", "plus01", "plus02", "plus03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +123,7 @@ func ipinfo_plusBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID": idmap,
 		"IPINFO_DEVELOPER_TEST_LIVE":      "FALSE",
 		"IPINFO_DEVELOPER_TEST_EXPLAIN":   "FALSE",
-		"IPINFO_DEVELOPER_APIKEY":         "NONE",
+		"IPINFO_DEVELOPER_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID"])
@@ -126,11 +132,23 @@ func ipinfo_plusBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["IPINFO_DEVELOPER_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpinfoDeveloperSDK(core.ToMapAny(mergedOpts))
 	}

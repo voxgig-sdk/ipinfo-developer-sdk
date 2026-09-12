@@ -515,6 +515,9 @@ GetInformationByIpLoadMatch = Struct.new(
 # @!attribute [rw] city
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] key
 #   @return [String, nil]
 #
@@ -522,6 +525,7 @@ GetInformationByIpLoadMatch = Struct.new(
 #   @return [String, nil]
 IpinfoCore = Struct.new(
   :city,
+  :id,
   :key,
   :region,
   keyword_init: true
@@ -563,6 +567,9 @@ IpinfoLiteLoadMatch = Struct.new(
 # @!attribute [rw] city
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] key
 #   @return [String, nil]
 #
@@ -570,6 +577,7 @@ IpinfoLiteLoadMatch = Struct.new(
 #   @return [String, nil]
 IpinfoPlus = Struct.new(
   :city,
+  :id,
   :key,
   :region,
   keyword_init: true

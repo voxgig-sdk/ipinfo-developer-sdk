@@ -43,10 +43,16 @@ main: kit: entity: ipinfo_lite: {
           }
           method: "GET"
           orig: "/lite/{ip}/{field}"
-          parts: [
-            "lite"
-            "{ip}"
-            "{field}"
+          segments: [
+            {
+              lit: "lite"
+            }
+            {
+              var: "ip"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -73,10 +79,16 @@ main: kit: entity: ipinfo_lite: {
           }
           method: "GET"
           orig: "/lite/me/{field}"
-          parts: [
-            "lite"
-            "me"
-            "{field}"
+          segments: [
+            {
+              lit: "lite"
+            }
+            {
+              lit: "me"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -102,15 +114,19 @@ main: kit: entity: ipinfo_lite: {
           }
           method: "GET"
           orig: "/lite/{ip}"
-          parts: [
-            "lite"
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              lit: "lite"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

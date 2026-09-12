@@ -487,6 +487,7 @@ API path: `/{ip}`
 | Field | Description |
 | --- | --- |
 | `city` |  |
+| `id` |  |
 | `key` |  |
 | `region` |  |
 
@@ -509,6 +510,7 @@ API path: `/lite/{ip}/{field}`
 | Field | Description |
 | --- | --- |
 | `city` |  |
+| `id` |  |
 | `key` |  |
 | `region` |  |
 
@@ -1061,6 +1063,7 @@ Create an instance: `const ipinfo_core = client.IpinfoCore()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `city` | `string` |  |
+| `id` | `string` |  |
 | `key` | `string` |  |
 | `region` | `string` |  |
 
@@ -1109,6 +1112,7 @@ Create an instance: `const ipinfo_plus = client.IpinfoPlus()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `city` | `string` |  |
+| `id` | `string` |  |
 | `key` | `string` |  |
 | `region` | `string` |  |
 

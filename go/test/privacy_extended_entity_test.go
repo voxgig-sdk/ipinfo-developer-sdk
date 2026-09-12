@@ -98,7 +98,7 @@ func TestPrivacyExtendedEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		privacyExtendedRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.privacy_extended", setup.data)))
+		privacyExtendedRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.privacy_extended")))
 		var privacyExtendedRef01Data map[string]any
 		if len(privacyExtendedRef01DataRaw) > 0 {
 			privacyExtendedRef01Data = core.ToMapAny(privacyExtendedRef01DataRaw[0][1])
@@ -149,7 +149,7 @@ func privacy_extendedBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"privacy_extended01", "privacy_extended02", "privacy_extended03", "ip01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -169,7 +169,7 @@ func privacy_extendedBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPINFO_DEVELOPER_TEST_PRIVACY_EXTENDED_ENTID": idmap,
 		"IPINFO_DEVELOPER_TEST_LIVE":      "FALSE",
 		"IPINFO_DEVELOPER_TEST_EXPLAIN":   "FALSE",
-		"IPINFO_DEVELOPER_APIKEY":         "NONE",
+		"IPINFO_DEVELOPER_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPINFO_DEVELOPER_TEST_PRIVACY_EXTENDED_ENTID"])
@@ -178,11 +178,23 @@ func privacy_extendedBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["IPINFO_DEVELOPER_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpinfoDeveloperSDK(core.ToMapAny(mergedOpts))
 	}

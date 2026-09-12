@@ -48,9 +48,13 @@ class TestIpinfoCoreEntity:
 
         # LOAD
         ipinfo_core_ref01_ent = client.IpinfoCore(None)
-        ipinfo_core_ref01_match_dt0 = {}
+        ipinfo_core_ref01_match_dt0 = {
+            "id": ipinfo_core_ref01_data["id"],
+        }
         ipinfo_core_ref01_data_dt0_loaded = ipinfo_core_ref01_ent.load(ipinfo_core_ref01_match_dt0, None)
-        assert ipinfo_core_ref01_data_dt0_loaded is not None
+        ipinfo_core_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(ipinfo_core_ref01_data_dt0_loaded))
+        assert ipinfo_core_ref01_data_dt0_load_result is not None
+        assert ipinfo_core_ref01_data_dt0_load_result["id"] == ipinfo_core_ref01_data["id"]
 
 
 
@@ -90,7 +94,7 @@ def _ipinfo_core_basic_setup(extra):
         "IPINFO_DEVELOPER_TEST_IPINFO_CORE_ENTID": idmap,
         "IPINFO_DEVELOPER_TEST_LIVE": "FALSE",
         "IPINFO_DEVELOPER_TEST_EXPLAIN": "FALSE",
-        "IPINFO_DEVELOPER_APIKEY": "NONE",
+        "IPINFO_DEVELOPER_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -100,6 +104,10 @@ def _ipinfo_core_basic_setup(extra):
 
     if env.get("IPINFO_DEVELOPER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("IPINFO_DEVELOPER_APIKEY"),
             },

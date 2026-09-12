@@ -72,16 +72,22 @@ main: kit: entity: whois_poc: {
           }
           method: "GET"
           orig: "/whois/poc/{whoispoc}"
-          parts: [
-            "whois"
-            "poc"
-            "{id}"
-          ]
           rename: {
             param: {
               whoispoc: "id"
             }
           }
+          segments: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "poc"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

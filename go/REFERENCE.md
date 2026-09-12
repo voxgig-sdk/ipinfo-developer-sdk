@@ -734,6 +734,7 @@ fmt.Println(ipinfoCore.GetName()) // "ipinfo_core"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `string` | No |  |
+| `id` | `string` | No |  |
 | `key` | `string` | No |  |
 | `region` | `string` | No |  |
 
@@ -838,6 +839,7 @@ fmt.Println(ipinfoPlus.GetName()) // "ipinfo_plus"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `string` | No |  |
+| `id` | `string` | No |  |
 | `key` | `string` | No |  |
 | `region` | `string` | No |  |
 

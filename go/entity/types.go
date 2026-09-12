@@ -190,6 +190,7 @@ type GetInformationByIpLoadMatch struct {
 // IpinfoCore is the typed data model for the ipinfo_core entity.
 type IpinfoCore struct {
 	City *string `json:"city,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Key *string `json:"key,omitempty"`
 	Region *string `json:"region,omitempty"`
 }
@@ -213,6 +214,7 @@ type IpinfoLiteLoadMatch struct {
 // IpinfoPlus is the typed data model for the ipinfo_plus entity.
 type IpinfoPlus struct {
 	City *string `json:"city,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Key *string `json:"key,omitempty"`
 	Region *string `json:"region,omitempty"`
 }

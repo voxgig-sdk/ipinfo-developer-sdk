@@ -107,9 +107,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/abuse",
-                ["parts"] = {
-                  "{ip}",
-                  "abuse",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "abuse",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -119,6 +123,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "abuse",
                 },
               },
             },
@@ -212,8 +220,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/AS{asn}",
-                ["parts"] = {
-                  "AS{asn}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "AS{asn}",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -223,6 +233,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "AS{asn}",
                 },
               },
             },
@@ -271,9 +284,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/carrier",
-                ["parts"] = {
-                  "{ip}",
-                  "carrier",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "carrier",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -283,6 +300,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "carrier",
                 },
               },
             },
@@ -331,9 +352,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/company",
-                ["parts"] = {
-                  "{ip}",
-                  "company",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "company",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -343,6 +368,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "company",
                 },
               },
             },
@@ -413,9 +442,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/{ip}",
-                ["parts"] = {
-                  "lookup",
-                  "{ip}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lookup",
+                  },
+                  {
+                    ["var"] = "ip",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -426,20 +459,32 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "lookup",
+                  "{ip}",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/me",
-                ["parts"] = {
-                  "lookup",
-                  "me",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lookup",
+                  },
+                  {
+                    ["lit"] = "me",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lookup",
+                  "me",
                 },
               },
             },
@@ -477,6 +522,10 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "domain",
         ["op"] = {
           ["load"] = {
@@ -513,13 +562,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/domains/{ip}",
-                ["parts"] = {
-                  "domains",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "domains",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -532,6 +585,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "domains",
+                  "{id}",
                 },
               },
             },
@@ -581,9 +638,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/tools/map",
-                ["parts"] = {
-                  "tools",
-                  "map",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tools",
+                  },
+                  {
+                    ["lit"] = "map",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -593,6 +654,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "tools",
+                  "map",
                 },
               },
               {
@@ -610,9 +675,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/tools/summarize-ips",
-                ["parts"] = {
-                  "tools",
-                  "summarize-ips",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tools",
+                  },
+                  {
+                    ["lit"] = "summarize-ips",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -623,19 +692,28 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "tools",
+                  "summarize-ips",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/batch",
-                ["parts"] = {
-                  "batch",
+                ["segments"] = {
+                  {
+                    ["lit"] = "batch",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "batch",
                 },
               },
             },
@@ -725,12 +803,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
-                ["parts"] = {},
+                ["segments"] = {},
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {},
               },
             },
           },
@@ -812,6 +891,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "get_information_by_ip",
         ["op"] = {
           ["load"] = {
@@ -833,12 +916,14 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}",
-                ["parts"] = {
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -849,6 +934,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{id}",
                 },
               },
             },
@@ -865,6 +953,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "key",
             ["type"] = "`$STRING`",
           },
@@ -872,6 +964,15 @@ local function make_config()
             ["name"] = "region",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+          ["parts"] = {
+            "ip",
+            "field",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "ipinfo_core",
         ["op"] = {
@@ -901,10 +1002,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/{ip}/{field}",
-                ["parts"] = {
-                  "lookup",
-                  "{ip}",
-                  "{field}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lookup",
+                  },
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["var"] = "field",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -915,6 +1022,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lookup",
+                  "{ip}",
+                  "{field}",
                 },
               },
               {
@@ -932,10 +1044,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lookup/me/{field}",
-                ["parts"] = {
-                  "lookup",
-                  "me",
-                  "{field}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lookup",
+                  },
+                  {
+                    ["lit"] = "me",
+                  },
+                  {
+                    ["var"] = "field",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -945,6 +1063,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lookup",
+                  "me",
+                  "{field}",
                 },
               },
             },
@@ -967,6 +1090,10 @@ local function make_config()
             ["name"] = "id",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "ipinfo_lite",
         ["op"] = {
@@ -996,10 +1123,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/{ip}/{field}",
-                ["parts"] = {
-                  "lite",
-                  "{ip}",
-                  "{field}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lite",
+                  },
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["var"] = "field",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1010,6 +1143,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lite",
+                  "{ip}",
+                  "{field}",
                 },
               },
               {
@@ -1027,10 +1165,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/me/{field}",
-                ["parts"] = {
-                  "lite",
-                  "me",
-                  "{field}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lite",
+                  },
+                  {
+                    ["lit"] = "me",
+                  },
+                  {
+                    ["var"] = "field",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1040,6 +1184,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lite",
+                  "me",
+                  "{field}",
                 },
               },
               {
@@ -1057,13 +1206,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/{ip}",
-                ["parts"] = {
-                  "lite",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "lite",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1074,6 +1227,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lite",
+                  "{id}",
                 },
               },
             },
@@ -1097,6 +1254,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "key",
             ["type"] = "`$STRING`",
           },
@@ -1104,6 +1265,15 @@ local function make_config()
             ["name"] = "region",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+          ["parts"] = {
+            "ip",
+            "field",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "ipinfo_plus",
         ["op"] = {
@@ -1133,10 +1303,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/{ip}/{field}",
-                ["parts"] = {
-                  "plus",
-                  "{ip}",
-                  "{field}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "plus",
+                  },
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["var"] = "field",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1147,6 +1323,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "plus",
+                  "{ip}",
+                  "{field}",
                 },
               },
               {
@@ -1164,10 +1345,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/me/{field}",
-                ["parts"] = {
-                  "plus",
-                  "me",
-                  "{field}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "plus",
+                  },
+                  {
+                    ["lit"] = "me",
+                  },
+                  {
+                    ["var"] = "field",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1177,6 +1364,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "plus",
+                  "me",
+                  "{field}",
                 },
               },
             },
@@ -1247,9 +1439,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lite/me",
-                ["parts"] = {
-                  "lite",
-                  "me",
+                ["segments"] = {
+                  {
+                    ["lit"] = "lite",
+                  },
+                  {
+                    ["lit"] = "me",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "me",
@@ -1257,6 +1453,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "lite",
+                  "me",
                 },
               },
             },
@@ -1321,6 +1521,10 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "max",
         ["op"] = {
           ["load"] = {
@@ -1342,13 +1546,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/max/{ip}",
-                ["parts"] = {
-                  "max",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "max",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1359,6 +1567,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "max",
+                  "{id}",
                 },
               },
             },
@@ -1397,13 +1609,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/me",
-                ["parts"] = {
-                  "me",
+                ["segments"] = {
+                  {
+                    ["lit"] = "me",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "me",
                 },
               },
             },
@@ -1450,6 +1667,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "place",
         ["op"] = {
           ["load"] = {
@@ -1471,13 +1692,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/places/{ip}",
-                ["parts"] = {
-                  "places",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "places",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1488,6 +1713,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "places",
+                  "{id}",
                 },
               },
             },
@@ -1545,6 +1774,10 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "plus",
         ["op"] = {
           ["load"] = {
@@ -1566,13 +1799,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/{ip}",
-                ["parts"] = {
-                  "plus",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["ip"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "plus",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1584,15 +1821,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "plus",
+                  "{id}",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/plus/me",
-                ["parts"] = {
-                  "plus",
-                  "me",
+                ["segments"] = {
+                  {
+                    ["lit"] = "plus",
+                  },
+                  {
+                    ["lit"] = "me",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "me",
@@ -1600,6 +1845,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "plus",
+                  "me",
                 },
               },
             },
@@ -1663,9 +1912,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/privacy",
-                ["parts"] = {
-                  "{ip}",
-                  "privacy",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "privacy",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1675,6 +1928,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "privacy",
                 },
               },
             },
@@ -1712,6 +1969,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "date",
             ["name"] = "first_seen",
             ["short"] = "Date when the activity on an anonymous IP address was first observed.",
             ["type"] = "`$STRING`",
@@ -1728,6 +1986,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "date",
             ["name"] = "last_seen",
             ["short"] = "Date when the activity on an anonymous IP address was last/recently observed.",
             ["type"] = "`$STRING`",
@@ -1794,9 +2053,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/privacy_extended",
-                ["parts"] = {
-                  "{ip}",
-                  "privacy_extended",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "privacy_extended",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1806,6 +2069,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.census_ports`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "privacy_extended",
                 },
               },
             },
@@ -1842,6 +2109,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "range",
         ["op"] = {
           ["load"] = {
@@ -1863,13 +2134,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ranges/{domain}",
-                ["parts"] = {
-                  "ranges",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["domain"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "ranges",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1880,6 +2155,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "ranges",
+                  "{id}",
                 },
               },
             },
@@ -1898,6 +2177,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "last_seen",
             ["req"] = true,
             ["short"] = "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)",
@@ -1937,9 +2217,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/resproxy",
-                ["parts"] = {
-                  "{ip}",
-                  "resproxy",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "resproxy",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1949,6 +2233,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "resproxy",
                 },
               },
             },
@@ -1981,9 +2269,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/city",
-                ["parts"] = {
-                  "{ip}",
-                  "city",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "city",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1993,6 +2285,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "city",
                 },
               },
               {
@@ -2010,9 +2306,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/country",
-                ["parts"] = {
-                  "{ip}",
-                  "country",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "country",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2022,6 +2322,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "country",
                 },
               },
               {
@@ -2039,9 +2343,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/hostname",
-                ["parts"] = {
-                  "{ip}",
-                  "hostname",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "hostname",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2051,6 +2359,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "hostname",
                 },
               },
               {
@@ -2068,9 +2380,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/ip",
-                ["parts"] = {
-                  "{ip}",
-                  "ip",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "ip",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2080,6 +2396,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "ip",
                 },
               },
               {
@@ -2097,9 +2417,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/loc",
-                ["parts"] = {
-                  "{ip}",
-                  "loc",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "loc",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2109,6 +2433,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "loc",
                 },
               },
               {
@@ -2126,9 +2454,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/org",
-                ["parts"] = {
-                  "{ip}",
-                  "org",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "org",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2138,6 +2470,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "org",
                 },
               },
               {
@@ -2155,9 +2491,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/postal",
-                ["parts"] = {
-                  "{ip}",
-                  "postal",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "postal",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2167,6 +2507,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "postal",
                 },
               },
               {
@@ -2184,9 +2528,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/region",
-                ["parts"] = {
-                  "{ip}",
-                  "region",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "region",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2196,6 +2544,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{ip}",
+                  "region",
                 },
               },
               {
@@ -2213,9 +2565,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{ip}/timezone",
-                ["parts"] = {
-                  "{ip}",
-                  "timezone",
+                ["segments"] = {
+                  {
+                    ["var"] = "ip",
+                  },
+                  {
+                    ["lit"] = "timezone",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2226,19 +2582,28 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "{ip}",
+                  "timezone",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/city",
-                ["parts"] = {
-                  "city",
+                ["segments"] = {
+                  {
+                    ["lit"] = "city",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "city",
                 },
               },
               {
@@ -2246,13 +2611,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/country",
-                ["parts"] = {
-                  "country",
+                ["segments"] = {
+                  {
+                    ["lit"] = "country",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "country",
                 },
               },
               {
@@ -2260,13 +2630,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hostname",
-                ["parts"] = {
-                  "hostname",
+                ["segments"] = {
+                  {
+                    ["lit"] = "hostname",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "hostname",
                 },
               },
               {
@@ -2274,13 +2649,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ip",
-                ["parts"] = {
-                  "ip",
+                ["segments"] = {
+                  {
+                    ["lit"] = "ip",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "ip",
                 },
               },
               {
@@ -2288,13 +2668,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/loc",
-                ["parts"] = {
-                  "loc",
+                ["segments"] = {
+                  {
+                    ["lit"] = "loc",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "loc",
                 },
               },
               {
@@ -2302,13 +2687,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/org",
-                ["parts"] = {
-                  "org",
+                ["segments"] = {
+                  {
+                    ["lit"] = "org",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "org",
                 },
               },
               {
@@ -2316,13 +2706,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/postal",
-                ["parts"] = {
-                  "postal",
+                ["segments"] = {
+                  {
+                    ["lit"] = "postal",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "postal",
                 },
               },
               {
@@ -2330,13 +2725,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/region",
-                ["parts"] = {
-                  "region",
+                ["segments"] = {
+                  {
+                    ["lit"] = "region",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "region",
                 },
               },
               {
@@ -2344,13 +2744,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/timezone",
-                ["parts"] = {
-                  "timezone",
+                ["segments"] = {
+                  {
+                    ["lit"] = "timezone",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "timezone",
                 },
               },
             },
@@ -2411,9 +2816,14 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "updated",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "whois_asn",
         ["op"] = {
@@ -2450,10 +2860,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/AS{asn}",
-                ["parts"] = {
-                  "whois",
-                  "net",
-                  "AS{asn}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
+                  {
+                    ["lit"] = "net",
+                  },
+                  {
+                    ["lit"] = "AS{asn}",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2465,6 +2881,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.records`",
+                },
+                ["parts"] = {
+                  "whois",
+                  "net",
+                  "AS{asn}",
                 },
               },
             },
@@ -2528,10 +2949,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/{domain}",
-                ["parts"] = {
-                  "whois",
-                  "net",
-                  "{domain}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
+                  {
+                    ["lit"] = "net",
+                  },
+                  {
+                    ["var"] = "domain",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2543,6 +2970,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "whois",
+                  "net",
+                  "{domain}",
                 },
               },
             },
@@ -2610,10 +3042,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/{whoisip}",
-                ["parts"] = {
-                  "whois",
-                  "net",
-                  "{whoisip}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
+                  {
+                    ["lit"] = "net",
+                  },
+                  {
+                    ["var"] = "whoisip",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2625,6 +3063,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "whois",
+                  "net",
+                  "{whoisip}",
                 },
               },
             },
@@ -2692,10 +3135,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/net/{whoisnetid}",
-                ["parts"] = {
-                  "whois",
-                  "net",
-                  "{whoisnetid}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
+                  {
+                    ["lit"] = "net",
+                  },
+                  {
+                    ["var"] = "whoisnetid",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -2707,6 +3156,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "whois",
+                  "net",
+                  "{whoisnetid}",
                 },
               },
             },
@@ -2743,6 +3197,10 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "whois_org",
         ["op"] = {
           ["load"] = {
@@ -2778,14 +3236,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/org/{whoisorgid}",
-                ["parts"] = {
-                  "whois",
-                  "org",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["whoisorgid"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
+                  {
+                    ["lit"] = "org",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2798,6 +3262,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "whois",
+                  "org",
+                  "{id}",
                 },
               },
             },
@@ -2829,6 +3298,10 @@ local function make_config()
             ["name"] = "total",
             ["type"] = "`$INTEGER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "whois_poc",
         ["op"] = {
@@ -2865,14 +3338,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois/poc/{whoispoc}",
-                ["parts"] = {
-                  "whois",
-                  "poc",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["whoispoc"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
+                  {
+                    ["lit"] = "poc",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -2885,6 +3364,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "whois",
+                  "poc",
+                  "{id}",
                 },
               },
             },

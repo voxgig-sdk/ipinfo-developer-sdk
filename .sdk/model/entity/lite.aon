@@ -55,9 +55,13 @@ main: kit: entity: lite: {
         {
           method: "GET"
           orig: "/lite/me"
-          parts: [
-            "lite"
-            "me"
+          segments: [
+            {
+              lit: "lite"
+            }
+            {
+              lit: "me"
+            }
           ]
           select: {
             "$action": "me"

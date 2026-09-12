@@ -188,6 +188,7 @@ class GetInformationByIpLoadMatch(TypedDict):
 
 class IpinfoCore(TypedDict, total=False):
     city: str
+    id: str
     key: str
     region: str
 
@@ -210,6 +211,7 @@ class IpinfoLiteLoadMatch(TypedDict):
 
 class IpinfoPlus(TypedDict, total=False):
     city: str
+    id: str
     key: str
     region: str
 

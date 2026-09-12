@@ -66,15 +66,19 @@ main: kit: entity: place: {
           }
           method: "GET"
           orig: "/places/{ip}"
-          parts: [
-            "places"
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              lit: "places"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -56,9 +56,13 @@ main: kit: entity: abuse: {
           }
           method: "GET"
           orig: "/{ip}/abuse"
-          parts: [
-            "{ip}"
-            "abuse"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "abuse"
+            }
           ]
           select: {
             exist: [

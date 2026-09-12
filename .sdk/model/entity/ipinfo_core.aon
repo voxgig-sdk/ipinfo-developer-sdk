@@ -11,6 +11,11 @@ main: kit: entity: ipinfo_core: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "key"
       req: false
       type: "`$STRING`"
@@ -21,6 +26,16 @@ main: kit: entity: ipinfo_core: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "ip"
+      "field"
+    ]
+    sep: "/"
+  }
 
   name: "ipinfo_core"
   op: {
@@ -48,10 +63,16 @@ main: kit: entity: ipinfo_core: {
           }
           method: "GET"
           orig: "/lookup/{ip}/{field}"
-          parts: [
-            "lookup"
-            "{ip}"
-            "{field}"
+          segments: [
+            {
+              lit: "lookup"
+            }
+            {
+              var: "ip"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -78,10 +99,16 @@ main: kit: entity: ipinfo_core: {
           }
           method: "GET"
           orig: "/lookup/me/{field}"
-          parts: [
-            "lookup"
-            "me"
-            "{field}"
+          segments: [
+            {
+              lit: "lookup"
+            }
+            {
+              lit: "me"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [

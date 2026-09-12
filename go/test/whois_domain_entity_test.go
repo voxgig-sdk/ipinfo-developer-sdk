@@ -50,7 +50,7 @@ func TestWhoisDomainEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		whoisDomainRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.whois_domain", setup.data)))
+		whoisDomainRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.whois_domain")))
 		var whoisDomainRef01Data map[string]any
 		if len(whoisDomainRef01DataRaw) > 0 {
 			whoisDomainRef01Data = core.ToMapAny(whoisDomainRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func whois_domainBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"whois_domain01", "whois_domain02", "whois_domain03", "net01", "net02", "net03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func whois_domainBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPINFO_DEVELOPER_TEST_WHOIS_DOMAIN_ENTID": idmap,
 		"IPINFO_DEVELOPER_TEST_LIVE":      "FALSE",
 		"IPINFO_DEVELOPER_TEST_EXPLAIN":   "FALSE",
-		"IPINFO_DEVELOPER_APIKEY":         "NONE",
+		"IPINFO_DEVELOPER_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPINFO_DEVELOPER_TEST_WHOIS_DOMAIN_ENTID"])
@@ -126,11 +126,23 @@ func whois_domainBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IPINFO_DEVELOPER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["IPINFO_DEVELOPER_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpinfoDeveloperSDK(core.ToMapAny(mergedOpts))
 	}

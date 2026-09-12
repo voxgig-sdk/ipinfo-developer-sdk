@@ -12,6 +12,7 @@ main: kit: entity: residential_proxy: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "last_seen"
       req: true
       short: "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)"
@@ -50,9 +51,13 @@ main: kit: entity: residential_proxy: {
           }
           method: "GET"
           orig: "/{ip}/resproxy"
-          parts: [
-            "{ip}"
-            "resproxy"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "resproxy"
+            }
           ]
           select: {
             exist: [

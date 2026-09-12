@@ -91,15 +91,19 @@ main: kit: entity: max: {
           }
           method: "GET"
           orig: "/max/{ip}"
-          parts: [
-            "max"
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              lit: "max"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

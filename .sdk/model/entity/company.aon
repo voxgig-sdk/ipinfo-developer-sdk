@@ -41,9 +41,13 @@ main: kit: entity: company: {
           }
           method: "GET"
           orig: "/{ip}/company"
-          parts: [
-            "{ip}"
-            "company"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "company"
+            }
           ]
           select: {
             exist: [

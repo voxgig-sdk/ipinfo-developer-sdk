@@ -96,8 +96,10 @@ main: kit: entity: asn: {
           }
           method: "GET"
           orig: "/AS{asn}"
-          parts: [
-            "AS{asn}"
+          segments: [
+            {
+              lit: "AS{asn}"
+            }
           ]
           select: {
             exist: [

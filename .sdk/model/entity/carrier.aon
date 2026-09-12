@@ -41,9 +41,13 @@ main: kit: entity: carrier: {
           }
           method: "GET"
           orig: "/{ip}/carrier"
-          parts: [
-            "{ip}"
-            "carrier"
+          segments: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "carrier"
+            }
           ]
           select: {
             exist: [

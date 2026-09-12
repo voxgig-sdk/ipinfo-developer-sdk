@@ -735,6 +735,7 @@ local ipinfo_core = client:IpinfoCore(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `string` | No |  |
+| `id` | `string` | No |  |
 | `key` | `string` | No |  |
 | `region` | `string` | No |  |
 
@@ -841,6 +842,7 @@ local ipinfo_plus = client:IpinfoPlus(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `string` | No |  |
+| `id` | `string` | No |  |
 | `key` | `string` | No |  |
 | `region` | `string` | No |  |
 

@@ -738,6 +738,7 @@ ipinfo_core = client.IpinfoCore
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `String` | No |  |
+| `id` | `String` | No |  |
 | `key` | `String` | No |  |
 | `region` | `String` | No |  |
 
@@ -844,6 +845,7 @@ ipinfo_plus = client.IpinfoPlus
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `city` | `String` | No |  |
+| `id` | `String` | No |  |
 | `key` | `String` | No |  |
 | `region` | `String` | No |  |
 

@@ -66,6 +66,7 @@ main: kit: entity: whois_asn: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "updated"
       req: false
       type: "`$STRING`"
@@ -112,10 +113,16 @@ main: kit: entity: whois_asn: {
           }
           method: "GET"
           orig: "/whois/net/AS{asn}"
-          parts: [
-            "whois"
-            "net"
-            "AS{asn}"
+          segments: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "net"
+            }
+            {
+              lit: "AS{asn}"
+            }
           ]
           select: {
             exist: [

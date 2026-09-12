@@ -11,6 +11,11 @@ main: kit: entity: ipinfo_plus: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "key"
       req: false
       type: "`$STRING`"
@@ -21,6 +26,16 @@ main: kit: entity: ipinfo_plus: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "ip"
+      "field"
+    ]
+    sep: "/"
+  }
 
   name: "ipinfo_plus"
   op: {
@@ -48,10 +63,16 @@ main: kit: entity: ipinfo_plus: {
           }
           method: "GET"
           orig: "/plus/{ip}/{field}"
-          parts: [
-            "plus"
-            "{ip}"
-            "{field}"
+          segments: [
+            {
+              lit: "plus"
+            }
+            {
+              var: "ip"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
@@ -78,10 +99,16 @@ main: kit: entity: ipinfo_plus: {
           }
           method: "GET"
           orig: "/plus/me/{field}"
-          parts: [
-            "plus"
-            "me"
-            "{field}"
+          segments: [
+            {
+              lit: "plus"
+            }
+            {
+              lit: "me"
+            }
+            {
+              var: "field"
+            }
           ]
           select: {
             exist: [
