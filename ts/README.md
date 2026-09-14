@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
+import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer-sdk'
 
 const client = new IpinfoDeveloperSDK({
   apikey: process.env.IPINFO_DEVELOPER_APIKEY,
@@ -1659,7 +1659,7 @@ ipinfo-developer/
 Import the SDK from the package root:
 
 ```ts
-import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
+import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer-sdk'
 ```
 
 ### Entity state

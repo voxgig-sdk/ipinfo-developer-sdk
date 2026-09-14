@@ -105,7 +105,7 @@ local result, err = client:Domain():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
 | Python | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
 | PHP | `voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ipinfo-developer-sdk/go` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Domain():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer'
+import { IpinfoDeveloperSDK } from '@voxgig-sdk/ipinfo-developer-sdk'
 
 const client = new IpinfoDeveloperSDK({
   apikey: process.env.IPINFO_DEVELOPER_APIKEY,
