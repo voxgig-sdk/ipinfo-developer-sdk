@@ -3,25 +3,25 @@
     "whois_net_id": {
       "WHOIS_NET_ID00": {
         "net": "s28",
-        "page": "s29",
+        "page": 41,
         "records": [],
-        "total": "s2b",
+        "total": 43,
         "whoisnetid": "WHOISNETID01",
         "id": "WHOIS_NET_ID00"
       },
       "WHOIS_NET_ID01": {
         "net": "s50",
-        "page": "s51",
+        "page": 81,
         "records": [],
-        "total": "s53",
+        "total": 83,
         "whoisnetid": "WHOISNETID01",
         "id": "WHOIS_NET_ID01"
       },
       "WHOIS_NET_ID02": {
         "net": "s78",
-        "page": "s79",
+        "page": 121,
         "records": [],
-        "total": "s7b",
+        "total": 123,
         "whoisnetid": "WHOISNETID01",
         "id": "WHOIS_NET_ID02"
       }
@@ -31,9 +31,187 @@
     "whois_net_id": {
       "whois_net_id_ref01": {
         "net": "sa0",
-        "page": "sa1",
+        "page": 161,
         "records": [],
-        "total": "sa3"
+        "total": 163
+      }
+    }
+  },
+  "requests": {
+    "GET /whois/net/{whoisnetid}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "The Network (NET) ID of an internet organization.",
+            "in": "path",
+            "name": "whoisnetid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Source query parameter to filter records by provided Whois source.",
+            "in": "query",
+            "name": "whoissource",
+            "schema": {
+              "enum": [
+                "arin",
+                "ripe",
+                "afrinic",
+                "apnic",
+                "lacnic"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "net": "NEW-ENGLAND-5",
+                    "page": 0,
+                    "records": [
+                      {
+                        "abuse": "POC object or null",
+                        "admin": "POC object or null",
+                        "country": "US",
+                        "id": "",
+                        "maintainer": "POC object or null",
+                        "name": "Comcast Cable Communications Holdings, Inc",
+                        "org": "POC object or null",
+                        "range": "24.62.0.0/15",
+                        "raw": "<raw data>",
+                        "source": "arin",
+                        "status": "REASSIGNMENT",
+                        "tech": "POC object or null",
+                        "updated": "2010-10-18"
+                      }
+                    ],
+                    "total": 100
+                  },
+                  "properties": {
+                    "net": {
+                      "type": "string"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "records": {
+                      "items": {
+                        "example": {
+                          "abuse": "POC object or null",
+                          "admin": "POC object or null",
+                          "country": "US",
+                          "id": "",
+                          "maintainer": "POC object or null",
+                          "name": "Comcast Cable Communications Holdings, Inc",
+                          "org": "POC object or null",
+                          "range": "24.62.0.0/15",
+                          "raw": "<raw data>",
+                          "source": "arin",
+                          "status": "REASSIGNMENT",
+                          "tech": "POC object or null",
+                          "updated": "2010-10-18"
+                        },
+                        "properties": {
+                          "abuse": {
+                            "type": "string"
+                          },
+                          "admin": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "maintainer": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "org": {
+                            "type": "string"
+                          },
+                          "range": {
+                            "type": "string"
+                          },
+                          "raw": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "tech": {
+                            "type": "string"
+                          },
+                          "updated": {
+                            "format": "date",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "WHOIS Network (NET) ID response."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

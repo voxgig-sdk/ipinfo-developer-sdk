@@ -1,12 +1,18 @@
 # IpinfoDeveloper SDK feature factory
 
 from ipinfodeveloper_sdk.feature.base_feature import IpinfoDeveloperBaseFeature
+from ipinfodeveloper_sdk.feature.ratelimit_feature import IpinfoDeveloperRatelimitFeature
+from ipinfodeveloper_sdk.feature.retry_feature import IpinfoDeveloperRetryFeature
 from ipinfodeveloper_sdk.feature.test_feature import IpinfoDeveloperTestFeature
+from ipinfodeveloper_sdk.feature.timeout_feature import IpinfoDeveloperTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: IpinfoDeveloperBaseFeature(),
+    "ratelimit": lambda: IpinfoDeveloperRatelimitFeature(),
+    "retry": lambda: IpinfoDeveloperRetryFeature(),
     "test": lambda: IpinfoDeveloperTestFeature(),
+    "timeout": lambda: IpinfoDeveloperTimeoutFeature(),
 }
 
 

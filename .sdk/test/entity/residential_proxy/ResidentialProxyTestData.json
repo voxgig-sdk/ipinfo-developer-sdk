@@ -4,21 +4,21 @@
       "RESIDENTIAL_PROXY00": {
         "ip": "s28",
         "last_seen": "s29",
-        "percent_days_seen": "s2a",
+        "percent_days_seen": 42,
         "service": "s2b",
         "id": "RESIDENTIAL_PROXY00"
       },
       "RESIDENTIAL_PROXY01": {
         "ip": "s50",
         "last_seen": "s51",
-        "percent_days_seen": "s52",
+        "percent_days_seen": 82,
         "service": "s53",
         "id": "RESIDENTIAL_PROXY01"
       },
       "RESIDENTIAL_PROXY02": {
         "ip": "s78",
         "last_seen": "s79",
-        "percent_days_seen": "s7a",
+        "percent_days_seen": 122,
         "service": "s7b",
         "id": "RESIDENTIAL_PROXY02"
       }
@@ -29,8 +29,194 @@
       "residential_proxy_ref01": {
         "ip": "sa0",
         "last_seen": "sa1",
-        "percent_days_seen": "sa2",
+        "percent_days_seen": 162,
         "service": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /{ip}/resproxy": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getResidentialProxyByIp",
+        "parameters": [
+          {
+            "description": "A single IPv4 or IPv6 IP address.",
+            "in": "path",
+            "name": "ip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "ip": {
+                      "description": "The IPv4 or IPv6 address associated with a residential proxy",
+                      "example": "175.107.211.204",
+                      "type": "string"
+                    },
+                    "last_seen": {
+                      "description": "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)",
+                      "example": "2025-06-24",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "percent_days_seen": {
+                      "description": "The percentage of days the IP was active in the last 7-day period",
+                      "example": 14,
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "service": {
+                      "description": "The name of the residential proxy service. Suffixed with _mobile for carrier/mobile or _datacenter for datacenter proxies",
+                      "example": "ipfoxy",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ip",
+                    "last_seen",
+                    "percent_days_seen",
+                    "service"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Residential Proxy detection response."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "example": "Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help",
+                      "type": "string"
+                    },
+                    "title": {
+                      "example": "Unknown token",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "message": {
+                          "example": "Please provide a valid IP address",
+                          "type": "string"
+                        },
+                        "title": {
+                          "example": "Wrong ip",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 404,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Wrong ip. Please provide a valid IP address."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "example": "Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support",
+                      "type": "string"
+                    },
+                    "title": {
+                      "example": "Rate limit exceeded",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit."
+          },
+          "500": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error or server unavailable."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

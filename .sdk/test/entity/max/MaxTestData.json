@@ -61,5 +61,324 @@
         "mobile": {}
       }
     }
+  },
+  "requests": {
+    "GET /max/{ip}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMaxInformationByIp",
+        "parameters": [
+          {
+            "description": "A single IPv4 or IPv6 IP address.",
+            "in": "path",
+            "name": "ip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "anonymous": {
+                      "properties": {
+                        "is_proxy": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "is_relay": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "is_res_proxy": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "is_tor": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "is_vpn": {
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "last_seen": {
+                          "example": "2026-03-29",
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "name": {
+                          "example": "Ping Proxies",
+                          "type": "string"
+                        },
+                        "percent_days_seen": {
+                          "example": 63,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "as": {
+                      "properties": {
+                        "asn": {
+                          "example": "AS18144",
+                          "type": "string"
+                        },
+                        "domain": {
+                          "example": "enecom.co.jp",
+                          "type": "string"
+                        },
+                        "last_changed": {
+                          "example": "2021-05-01",
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "name": {
+                          "example": "Enecom,Inc.",
+                          "type": "string"
+                        },
+                        "type": {
+                          "example": "business",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "geo": {
+                      "properties": {
+                        "city": {
+                          "example": "Izumo",
+                          "type": "string"
+                        },
+                        "continent": {
+                          "example": "Asia",
+                          "type": "string"
+                        },
+                        "continent_code": {
+                          "example": "AS",
+                          "type": "string"
+                        },
+                        "country": {
+                          "example": "Japan",
+                          "type": "string"
+                        },
+                        "country_code": {
+                          "example": "JP",
+                          "type": "string"
+                        },
+                        "dma_code": {
+                          "example": "501",
+                          "type": "string"
+                        },
+                        "geoname_id": {
+                          "example": "1861084",
+                          "type": "string"
+                        },
+                        "last_changed": {
+                          "example": "2026-03-22",
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "example": 35.36667,
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "example": 132.76667,
+                          "type": "number"
+                        },
+                        "postal_code": {
+                          "example": "693-0001",
+                          "type": "string"
+                        },
+                        "radius": {
+                          "example": 50,
+                          "type": "integer"
+                        },
+                        "region": {
+                          "example": "Shimane",
+                          "type": "string"
+                        },
+                        "region_code": {
+                          "example": "32",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "example": "Asia/Tokyo",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "hostname": {
+                      "example": "158.126.0.1.megaegg.ne.jp",
+                      "type": "string"
+                    },
+                    "ip": {
+                      "example": "1.0.126.158",
+                      "type": "string"
+                    },
+                    "is_anonymous": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "is_anycast": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "is_hosting": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "is_mobile": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "is_satellite": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "mobile": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "ip",
+                    "geo",
+                    "as",
+                    "anonymous"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Max API response object."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Please provide a valid IP address",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request error (invalid IP format)."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "message": {
+                          "example": "Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help",
+                          "type": "string"
+                        },
+                        "title": {
+                          "example": "Unknown token",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 403,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden error (authentication issues)."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "example": "Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support",
+                      "type": "string"
+                    },
+                    "title": {
+                      "example": "Rate limit exceeded",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit."
+          },
+          "500": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error or server unavailable."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

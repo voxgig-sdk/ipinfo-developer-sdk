@@ -33,5 +33,296 @@
         "value": {}
       }
     }
+  },
+  "requests": {
+    "POST /tools/map": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "map",
+        "parameters": [
+          {
+            "description": "CLI flag parameter",
+            "in": "query",
+            "name": "cli",
+            "required": false,
+            "schema": {
+              "example": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "text/plain": {
+              "schema": {
+                "example": "46.95.248.61\n215.113.215.175\n27.7.158.28\n209.99.186.255\n192.40.165.85\n2a02:c7f:f8c4:ca00:356d:ac4c:954c:e46\n2001:16a2:9432:8126:2dbf:9aa0:8057:1246\n2600:8807:a788:7c00:c828:264:8dcf:b37f\n181.200.55.93\n77.222.8.184\n",
+                "type": "string"
+              }
+            }
+          },
+          "description": "A file containing IP addresses with each IP on a separate line.",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "summary": "Example of mapping IP addresses",
+                    "value": {
+                      "reportUrl": "https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8",
+                      "status": "Report Generated"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Map response object."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /tools/summarize-ips": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "summarize",
+        "parameters": [
+          {
+            "description": "CLI flag parameter",
+            "in": "query",
+            "name": "cli",
+            "required": false,
+            "schema": {
+              "example": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "text/plain": {
+              "schema": {
+                "example": "42.77.204.9\n2a02:1811:1424:a200:a307:b776:645b:46b5\n84.74.205.0\n2601:19b:4980:2270:8869:1575:ffd0:5ba0\n2a01:e0a:a2d:fd70::8056:6278\n75.136.126.2\n2400:4052:244:a900:8b5:16e9:badb:a2bd\n104.103.81.185\n2603:7000:8d40:47d7:64fc:6:56cf:1b54\n216.211.59.51\n",
+                "type": "string"
+              }
+            }
+          },
+          "description": "A file containing IP addresses with each IP on a separate line.",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "summary": "Example of summarizing IP addresses",
+                    "value": {
+                      "reportUrl": "https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718",
+                      "status": "Report Generated"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Summarize response object."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "example": "There were no valid IPs in the text.",
+                      "type": "string"
+                    },
+                    "title": {
+                      "example": "No IPs Found",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The input payload does not meet the specification."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Rate limit exceeded. You can use the Summarize IPs tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /batch": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "batch",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": [
+                  "8.8.8.8/city",
+                  "8.8.8.8"
+                ],
+                "type": "array"
+              }
+            }
+          },
+          "description": "A JSON array containing IP addresses.",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "8.8.8.8": {
+                      "city": "Mountain View",
+                      "country": "US",
+                      "hostname": "dns.google",
+                      "ip": "8.8.8.8",
+                      "loc": "37.4056,-122.0775",
+                      "org": "AS15169 Google LLC",
+                      "postal": 94043,
+                      "region": "California",
+                      "timezone": "America/Los_Angeles"
+                    },
+                    "8.8.8.8/city": "Mountain View"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Batch response object."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

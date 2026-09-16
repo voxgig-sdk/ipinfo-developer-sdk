@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { IpinfoDeveloperSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('WhoisIpEntity', async () => {
 
     const live = 'TRUE' === process.env.IPINFO_DEVELOPER_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'whois_ip.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'whois_ip.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set IPINFO_DEVELOPER_TEST_WHOIS_IP_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"net","req":false,"type":"`$STRING`","index$":0},{"active":true,"name":"page","req":false,"type":"`$INTEGER`","index$":1},{"active":true,"name":"records","req":false,"type":"`$ARRAY`","index$":2},{"active":true,"name":"total","req":false,"type":"`$INTEGER`","index$":3}],"name":"whois_ip","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"whoisip","orig":"whoisip","reqd":true,"type":"`$STRING`","index$":0}],"query":[{"active":true,"kind":"query","name":"page","orig":"page","reqd":false,"type":"`$INTEGER`","index$":0},{"active":true,"kind":"query","name":"whoissource","orig":"whoissource","reqd":false,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /whois/net/{whoisip}","json":"{\"parameters\":[{\"description\":\"The IP address or an IP address range of an internet organization.\",\"in\":\"path\",\"name\":\"whoisip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"net\":\"24.62.0.0/15\",\"page\":0,\"records\":[{\"country\":\"US\",\"id\":\"NEW-ENGLAND-5\",\"name\":\"Comcast Cable Communications Holdings, Inc\",\"org\":\"C02610695\",\"range\":\"24.62.0.0/15\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"status\":\"REASSIGNMENT\",\"updated\":\"2010-10-18\"}],\"total\":100},\"properties\":{\"net\":{\"example\":\"24.62.0.0/15\",\"type\":\"string\"},\"page\":{\"example\":0,\"type\":\"integer\"},\"records\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"id\":{\"example\":\"NEW-ENGLAND-5\",\"type\":\"string\"},\"name\":{\"example\":\"Comcast Cable Communications Holdings, Inc\",\"type\":\"string\"},\"org\":{\"example\":\"C02610695\",\"type\":\"string\"},\"range\":{\"example\":\"24.62.0.0/15\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"arin\",\"type\":\"string\"},\"status\":{\"example\":\"REASSIGNMENT\",\"type\":\"string\"},\"updated\":{\"example\":\"2010-10-18\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":100,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS IP  and IP range response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/whois/net/{whoisip}","segments":[{"lit":"whois"},{"lit":"net"},{"var":"whoisip"}],"select":{"exist":["page","whoisip","whoissource"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["net"]]},"key$":"whois_ip","name__orig":"whois_ip","Name":"WhoisIp","name_":"whois_ip","name-":"whois-ip","NAME":"WHOIS_IP","index$":24}, {"active":true,"entity":"whois_ip","key$":"BasicWhoisIpFlow","kind":"basic","name":"BasicWhoisIpFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"whois_ip_ref01","srcdatavar":"whois_ip_ref01_data","suffix":"_dt0"},"match":{"id":"whois_ip01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-whois_ip_ref01"}}],"index$":0}]}, 'WhoisIp')
     }
     const client = setup.client
     const struct = setup.struct
@@ -107,13 +106,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['IPINFO_DEVELOPER_TEST_WHOIS_IP_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'IPINFO_DEVELOPER_TEST_WHOIS_IP_ENTID': idmap,
     'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['IPINFO_DEVELOPER_TEST_WHOIS_IP_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new IpinfoDeveloperSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -140,7 +138,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -153,7 +152,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.IPINFO_DEVELOPER_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

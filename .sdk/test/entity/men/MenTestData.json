@@ -29,5 +29,275 @@
         "token": "s7a"
       }
     }
+  },
+  "requests": {
+    "GET /me": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMe",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "features": {
+                      "properties": {
+                        "core": {
+                          "properties": {
+                            "daily": {
+                              "example": 50000,
+                              "type": "integer"
+                            },
+                            "monthly": {
+                              "example": 50000,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "hostio": {
+                          "properties": {
+                            "abuse": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "asn": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "carrier": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "company": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "firmographics": {
+                                  "example": false,
+                                  "type": "boolean"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "org_additional": {
+                                  "example": false,
+                                  "type": "boolean"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "daily": {
+                              "example": 50000,
+                              "type": "integer"
+                            },
+                            "hosted_domains": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "result_limit": {
+                                  "example": 5,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "monthly": {
+                              "example": 50000,
+                              "type": "integer"
+                            },
+                            "privacy": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "vpn_provider": {
+                                  "example": false,
+                                  "type": "boolean"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "ranges": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "result_limit": {
+                              "example": 5,
+                              "type": "integer"
+                            },
+                            "whois": {
+                              "properties": {
+                                "daily": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                },
+                                "monthly": {
+                                  "example": 50000,
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "requests": {
+                      "properties": {
+                        "day": {
+                          "example": 0,
+                          "type": "integer"
+                        },
+                        "limit": {
+                          "example": 50000,
+                          "type": "integer"
+                        },
+                        "month": {
+                          "example": 69,
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "example": 2147483578,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "token": {
+                      "example": "TOKEN",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token",
+                    "requests",
+                    "features"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "IPinfo access token rate and access information."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Invalid API token",
+                      "type": "string"
+                    },
+                    "token": {
+                      "example": "TOKEN",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "If the passed IPinfo access token is not present or is invalid."
+          },
+          "500": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error or server unavailable."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

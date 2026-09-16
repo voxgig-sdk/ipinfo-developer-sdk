@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IPINFO_DEVELOPER_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'place.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'place.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IPINFO_DEVELOPER_TEST_PLACE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "category", "req": true, "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "ip", "req": true, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "latitude", "req": true, "type": "`$NUMBER`", "index$": 3 }, { "active": true, "name": "longitude", "req": true, "type": "`$NUMBER`", "index$": 4 }, { "active": true, "name": "name", "req": true, "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "ssid", "req": true, "type": "`$STRING`", "index$": 6 }], "id": { "field": "id", "name": "id" }, "name": "place", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "ip", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /places/{ip}", "json": "{\"operationId\":\"getPlaceByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"category\":{\"example\":\"museum\",\"type\":\"string\"},\"ip\":{\"example\":\"65.144.40.106\",\"type\":\"string\"},\"latitude\":{\"example\":47.6275,\"type\":\"number\"},\"longitude\":{\"example\":-122.3367,\"type\":\"number\"},\"name\":{\"example\":\"Museum of History and Industry (MOHAI)\",\"type\":\"string\"},\"ssid\":{\"example\":\"MOHAI-Guest\",\"type\":\"string\"}},\"required\":[\"ip\",\"name\",\"category\",\"ssid\",\"latitude\",\"longitude\"],\"type\":\"object\"}}},\"description\":\"Places API response object.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/places/{ip}", "rename": { "param": { "ip": "id" } }, "segments": [{ "lit": "places" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "place", "name__orig": "place", "Name": "Place", "name_": "place", "name-": "place", "NAME": "PLACE", "index$": 15 }, { "active": true, "entity": "place", "key$": "BasicPlaceFlow", "kind": "basic", "name": "BasicPlaceFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "place_ref01", "srcdatavar": "place_ref01_data", "suffix": "_dt0" }, "match": { "id": "place01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-place_ref01" } }], "index$": 0 }] }, 'Place');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -103,12 +101,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IPINFO_DEVELOPER_TEST_PLACE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IPINFO_DEVELOPER_TEST_PLACE_ENTID': idmap,
         'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
@@ -118,7 +110,13 @@ function basicSetup(extra) {
     });
     idmap = env['IPINFO_DEVELOPER_TEST_PLACE_ENTID'];
     const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IPINFO_DEVELOPER_TEST_PLACE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpinfoDeveloperSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -132,7 +130,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -144,7 +143,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IPINFO_DEVELOPER_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

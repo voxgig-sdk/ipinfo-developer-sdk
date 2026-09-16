@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "abuse": {
           "active": true,
@@ -88,6 +152,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/abuse",
+                    "json": "{\"operationId\":\"getAbuse\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"address\":{\"example\":\"US, CA, Mountain View, 1600 Amphitheatre Parkway, 94043\",\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"email\":{\"example\":\"network-abuse@google.com\",\"type\":\"string\"},\"name\":{\"example\":\"Abuse\",\"type\":\"string\"},\"network\":{\"example\":\"8.8.8.0/24\",\"type\":\"string\"},\"phone\":{\"example\":\"+1-650-253-0000\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Abuse response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -228,6 +298,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /AS{asn}",
+                    "json": "{\"operationId\":\"getAsn\",\"parameters\":[{\"description\":\"an ASN number.\",\"in\":\"path\",\"name\":\"asn\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"allocated\":{\"example\":\"1997-02-14\",\"type\":\"string\"},\"asn\":{\"example\":\"AS10507\",\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"sprint.net\",\"type\":\"string\"},\"downstreams\":{\"items\":{\"example\":\"109\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"example\":\"Sprint Personal Communications Systems\",\"type\":\"string\"},\"num_ips\":{\"example\":71224576,\"type\":\"integer\"},\"peers\":{\"items\":{\"example\":\"1299\",\"type\":\"string\"},\"type\":\"array\"},\"prefixes\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"quadranet.com\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"AKAMAI\",\"type\":\"string\"},\"name\":{\"example\":\"Akamai Technologies, Inc.\",\"type\":\"string\"},\"netblock\":{\"example\":\"104.69.216.0/22\",\"type\":\"string\"},\"size\":{\"example\":\"256\",\"type\":\"string\"},\"status\":{\"example\":\"ALLOCATION\",\"type\":\"string\"}},\"required\":[\"netblock\",\"id\",\"name\",\"country\"],\"type\":\"object\"},\"type\":\"array\"},\"prefixes6\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"comcast.com\",\"type\":\"string\"},\"id\":{\"example\":\"COMCAST6NET\",\"type\":\"string\"},\"name\":{\"example\":\"Comcast Cable Communications, LLC\",\"type\":\"string\"},\"netblock\":{\"example\":\"2601::/20\",\"type\":\"string\"},\"size\":{\"example\":\"20282409603651670423947251286016\",\"type\":\"string\"},\"status\":{\"example\":\"ASSIGNMENT\",\"type\":\"string\"}},\"required\":[\"netblock\",\"id\",\"name\",\"country\"],\"type\":\"object\"},\"type\":\"array\"},\"registry\":{\"example\":\"arin\",\"type\":\"string\"},\"route\":{\"example\":\"66.87.125.0/24\",\"type\":\"string\"},\"type\":{\"enum\":[\"isp\",\"business\",\"education\",\"hosting\",\"inactive\"],\"example\":\"isp\",\"type\":\"string\"},\"upstreams\":{\"items\":{\"example\":\"1299\",\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"asn\",\"name\",\"domain\",\"type\"],\"type\":\"object\"}}},\"description\":\"ASN response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"ASN Not Found!\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"ASN not found.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/AS{asn}",
@@ -297,6 +373,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/carrier",
+                    "json": "{\"operationId\":\"getCarrier\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"mcc\":{\"example\":\"310\",\"type\":\"string\"},\"mnc\":{\"example\":\"120\",\"type\":\"string\"},\"name\":{\"example\":\"Sprint Corporation\",\"type\":\"string\"}},\"required\":[\"name\",\"mcc\",\"mnc\"],\"type\":\"object\"}}},\"description\":\"Carrier detection response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -370,6 +452,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/company",
+                    "json": "{\"operationId\":\"getCompany\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domain\":{\"example\":\"sprint.com\",\"type\":\"string\"},\"name\":{\"example\":\"Sprint Springfield POP\",\"type\":\"string\"},\"type\":{\"enum\":[\"isp\",\"business\",\"education\",\"hosting\"],\"example\":\"isp\",\"type\":\"string\"}},\"required\":[\"name\",\"domain\",\"type\"],\"type\":\"object\"}}},\"description\":\"Company response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -480,6 +568,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /lookup/{ip}",
+                    "json": "{\"operationId\":\"getCoreInformationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"as\":{\"properties\":{\"asn\":{\"example\":\"AS15169\",\"type\":\"string\"},\"domain\":{\"example\":\"google.com\",\"type\":\"string\"},\"name\":{\"example\":\"Google LLC\",\"type\":\"string\"},\"type\":{\"example\":\"hosting\",\"type\":\"string\"}},\"type\":\"object\"},\"geo\":{\"properties\":{\"city\":{\"example\":\"Mountain View\",\"type\":\"string\"},\"continent\":{\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"example\":37.4056,\"type\":\"number\"},\"longitude\":{\"example\":-122.0775,\"type\":\"number\"},\"postal_code\":{\"example\":\"94043\",\"type\":\"string\"},\"region\":{\"example\":\"California\",\"type\":\"string\"},\"region_code\":{\"example\":\"CA\",\"type\":\"string\"},\"timezone\":{\"example\":\"America/Los_Angeles\",\"type\":\"string\"}},\"type\":\"object\"},\"hostname\":{\"example\":\"dns.google\",\"type\":\"string\"},\"ip\":{\"example\":\"8.8.8.8\",\"type\":\"string\"},\"is_anonymous\":{\"example\":false,\"type\":\"boolean\"},\"is_anycast\":{\"example\":true,\"type\":\"boolean\"},\"is_hosting\":{\"example\":true,\"type\":\"boolean\"},\"is_mobile\":{\"example\":false,\"type\":\"boolean\"},\"is_satellite\":{\"example\":false,\"type\":\"boolean\"}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Core response object.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/{ip}",
@@ -504,6 +598,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /lookup/me",
+                    "json": "{\"operationId\":\"getCurrentCoreInformation\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"as\":{\"properties\":{\"asn\":{\"example\":\"AS15169\",\"type\":\"string\"},\"domain\":{\"example\":\"google.com\",\"type\":\"string\"},\"name\":{\"example\":\"Google LLC\",\"type\":\"string\"},\"type\":{\"example\":\"hosting\",\"type\":\"string\"}},\"type\":\"object\"},\"geo\":{\"properties\":{\"city\":{\"example\":\"Mountain View\",\"type\":\"string\"},\"continent\":{\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"example\":37.4056,\"type\":\"number\"},\"longitude\":{\"example\":-122.0775,\"type\":\"number\"},\"postal_code\":{\"example\":\"94043\",\"type\":\"string\"},\"region\":{\"example\":\"California\",\"type\":\"string\"},\"region_code\":{\"example\":\"CA\",\"type\":\"string\"},\"timezone\":{\"example\":\"America/Los_Angeles\",\"type\":\"string\"}},\"type\":\"object\"},\"hostname\":{\"example\":\"dns.google\",\"type\":\"string\"},\"ip\":{\"example\":\"8.8.8.8\",\"type\":\"string\"},\"is_anonymous\":{\"example\":false,\"type\":\"boolean\"},\"is_anycast\":{\"example\":true,\"type\":\"boolean\"},\"is_hosting\":{\"example\":true,\"type\":\"boolean\"},\"is_mobile\":{\"example\":false,\"type\":\"boolean\"},\"is_satellite\":{\"example\":false,\"type\":\"boolean\"}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Core response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/me",
@@ -612,6 +712,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /domains/{ip}",
+                    "json": "{\"operationId\":\"getDomains\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"The API returns 100 domains per page and has a limit of 1000 domains per page. We return up to 10 million results. The limit parameter can be used to control the number of domains per page.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":100,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domains\":{\"items\":{\"example\":\"udemy.com\",\"type\":\"string\"},\"type\":\"array\"},\"ip\":{\"example\":\"1.1.1.1\",\"type\":\"string\"},\"page\":{\"example\":1,\"type\":\"integer\"},\"total\":{\"example\":17939,\"type\":\"integer\"}},\"required\":[\"total\"],\"type\":\"object\"}}},\"description\":\"Domains response object.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/domains/{ip}",
@@ -699,6 +805,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /tools/map",
+                    "json": "{\"operationId\":\"map\",\"parameters\":[{\"description\":\"CLI flag parameter\",\"in\":\"query\",\"name\":\"cli\",\"required\":false,\"schema\":{\"example\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"46.95.248.61\\n215.113.215.175\\n27.7.158.28\\n209.99.186.255\\n192.40.165.85\\n2a02:c7f:f8c4:ca00:356d:ac4c:954c:e46\\n2001:16a2:9432:8126:2dbf:9aa0:8057:1246\\n2600:8807:a788:7c00:c828:264:8dcf:b37f\\n181.200.55.93\\n77.222.8.184\\n\",\"type\":\"string\"}}},\"description\":\"A file containing IP addresses with each IP on a separate line.\",\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"summary\":\"Example of mapping IP addresses\",\"value\":{\"reportUrl\":\"https://ipinfo.io/tools/map/40c04638-a340-44b8-90de-f95afdff99d8\",\"status\":\"Report Generated\"}},\"type\":\"object\"}}},\"description\":\"Map response object.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Rate limit exceeded. You can use the IP Map tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/tools/map",
@@ -735,6 +847,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /tools/summarize-ips",
+                    "json": "{\"operationId\":\"summarize\",\"parameters\":[{\"description\":\"CLI flag parameter\",\"in\":\"query\",\"name\":\"cli\",\"required\":false,\"schema\":{\"example\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"42.77.204.9\\n2a02:1811:1424:a200:a307:b776:645b:46b5\\n84.74.205.0\\n2601:19b:4980:2270:8869:1575:ffd0:5ba0\\n2a01:e0a:a2d:fd70::8056:6278\\n75.136.126.2\\n2400:4052:244:a900:8b5:16e9:badb:a2bd\\n104.103.81.185\\n2603:7000:8d40:47d7:64fc:6:56cf:1b54\\n216.211.59.51\\n\",\"type\":\"string\"}}},\"description\":\"A file containing IP addresses with each IP on a separate line.\",\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"summary\":\"Example of summarizing IP addresses\",\"value\":{\"reportUrl\":\"https://ipinfo.io/tools/summarize-ips/3ea606f3-b3ad-4a37-a875-b897a0c2e718\",\"status\":\"Report Generated\"}},\"type\":\"object\"}}},\"description\":\"Summarize response object.\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"There were no valid IPs in the text.\",\"type\":\"string\"},\"title\":{\"example\":\"No IPs Found\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"The input payload does not meet the specification.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Rate limit exceeded. You can use the Summarize IPs tool up to 5 times per day. Please wait 24 hours or use our IPinfo Lite API service\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/tools/summarize-ips",
@@ -759,6 +877,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /batch",
+                    "json": "{\"operationId\":\"batch\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"example\":[\"8.8.8.8/city\",\"8.8.8.8\"],\"type\":\"array\"}}},\"description\":\"A JSON array containing IP addresses.\",\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":{\"type\":\"object\"},\"example\":{\"8.8.8.8\":{\"city\":\"Mountain View\",\"country\":\"US\",\"hostname\":\"dns.google\",\"ip\":\"8.8.8.8\",\"loc\":\"37.4056,-122.0775\",\"org\":\"AS15169 Google LLC\",\"postal\":94043,\"region\":\"California\",\"timezone\":\"America/Los_Angeles\"},\"8.8.8.8/city\":\"Mountain View\"},\"type\":\"object\"}}},\"description\":\"Batch response object.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/batch",
@@ -886,6 +1010,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /",
+                    "json": "{\"operationId\":\"getCurrentInformation\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"properties\":{\"allocated\":{\"example\":\"1997-02-14\",\"type\":\"string\"},\"asn\":{\"example\":\"AS10507\",\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"sprint.net\",\"type\":\"string\"},\"downstreams\":{\"items\":{\"example\":\"109\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"example\":\"Sprint Personal Communications Systems\",\"type\":\"string\"},\"num_ips\":{\"example\":71224576,\"type\":\"integer\"},\"peers\":{\"items\":{\"example\":\"1299\",\"type\":\"string\"},\"type\":\"array\"},\"prefixes\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"quadranet.com\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"AKAMAI\",\"type\":\"string\"},\"name\":{\"example\":\"Akamai Technologies, Inc.\",\"type\":\"string\"},\"netblock\":{\"example\":\"104.69.216.0/22\",\"type\":\"string\"},\"size\":{\"example\":\"256\",\"type\":\"string\"},\"status\":{\"example\":\"ALLOCATION\",\"type\":\"string\"}},\"required\":[\"netblock\",\"id\",\"name\",\"country\"],\"type\":\"object\"},\"type\":\"array\"},\"prefixes6\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"comcast.com\",\"type\":\"string\"},\"id\":{\"example\":\"COMCAST6NET\",\"type\":\"string\"},\"name\":{\"example\":\"Comcast Cable Communications, LLC\",\"type\":\"string\"},\"netblock\":{\"example\":\"2601::/20\",\"type\":\"string\"},\"size\":{\"example\":\"20282409603651670423947251286016\",\"type\":\"string\"},\"status\":{\"example\":\"ASSIGNMENT\",\"type\":\"string\"}},\"required\":[\"netblock\",\"id\",\"name\",\"country\"],\"type\":\"object\"},\"type\":\"array\"},\"registry\":{\"example\":\"arin\",\"type\":\"string\"},\"route\":{\"example\":\"66.87.125.0/24\",\"type\":\"string\"},\"type\":{\"enum\":[\"isp\",\"business\",\"education\",\"hosting\",\"inactive\"],\"example\":\"isp\",\"type\":\"string\"},\"upstreams\":{\"items\":{\"example\":\"1299\",\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"asn\",\"name\",\"domain\",\"type\"],\"type\":\"object\"},\"bogon\":{\"example\":false,\"type\":\"boolean\"},\"carrier\":{\"properties\":{\"mcc\":{\"example\":\"310\",\"type\":\"string\"},\"mnc\":{\"example\":\"120\",\"type\":\"string\"},\"name\":{\"example\":\"Sprint Corporation\",\"type\":\"string\"}},\"required\":[\"name\",\"mcc\",\"mnc\"],\"type\":\"object\"},\"city\":{\"example\":\"Springfield\",\"type\":\"string\"},\"company\":{\"properties\":{\"domain\":{\"example\":\"sprint.com\",\"type\":\"string\"},\"name\":{\"example\":\"Sprint Springfield POP\",\"type\":\"string\"},\"type\":{\"enum\":[\"isp\",\"business\",\"education\",\"hosting\"],\"example\":\"isp\",\"type\":\"string\"}},\"required\":[\"name\",\"domain\",\"type\"],\"type\":\"object\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domains\":{\"properties\":{\"domains\":{\"items\":{\"example\":\"udemy.com\",\"type\":\"string\"},\"type\":\"array\"},\"ip\":{\"example\":\"1.1.1.1\",\"type\":\"string\"},\"page\":{\"example\":1,\"type\":\"integer\"},\"total\":{\"example\":17939,\"type\":\"integer\"}},\"required\":[\"total\"],\"type\":\"object\"},\"hostname\":{\"example\":\"ip-66-87-125-72.spfdma.spcsdns.net\",\"type\":\"string\"},\"ip\":{\"example\":\"66.87.125.72\",\"type\":\"string\"},\"loc\":{\"example\":\"42.0999,-72.5783\",\"type\":\"string\"},\"org\":{\"example\":\"AS51501 Khabarovsk home networks Ltd\",\"type\":\"string\"},\"postal\":{\"example\":\"01105\",\"type\":\"string\"},\"privacy\":{\"properties\":{\"hosting\":{\"example\":false,\"type\":\"boolean\"},\"proxy\":{\"example\":false,\"type\":\"boolean\"},\"relay\":{\"example\":false,\"type\":\"boolean\"},\"service\":{\"example\":\"\",\"type\":\"string\"},\"tor\":{\"example\":false,\"type\":\"boolean\"},\"vpn\":{\"example\":true,\"type\":\"boolean\"}},\"required\":[\"vpn\",\"proxy\",\"tor\",\"hosting\",\"relay\",\"service\"],\"type\":\"object\"},\"region\":{\"example\":\"Massachusetts\",\"type\":\"string\"},\"timezone\":{\"example\":\"America/New_York\",\"type\":\"string\"}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Full response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/",
@@ -1030,6 +1160,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}",
+                    "json": "{\"operationId\":\"getInformationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"properties\":{\"allocated\":{\"example\":\"1997-02-14\",\"type\":\"string\"},\"asn\":{\"example\":\"AS10507\",\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"sprint.net\",\"type\":\"string\"},\"downstreams\":{\"items\":{\"example\":\"109\",\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"example\":\"Sprint Personal Communications Systems\",\"type\":\"string\"},\"num_ips\":{\"example\":71224576,\"type\":\"integer\"},\"peers\":{\"items\":{\"example\":\"1299\",\"type\":\"string\"},\"type\":\"array\"},\"prefixes\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"quadranet.com\",\"nullable\":true,\"type\":\"string\"},\"id\":{\"example\":\"AKAMAI\",\"type\":\"string\"},\"name\":{\"example\":\"Akamai Technologies, Inc.\",\"type\":\"string\"},\"netblock\":{\"example\":\"104.69.216.0/22\",\"type\":\"string\"},\"size\":{\"example\":\"256\",\"type\":\"string\"},\"status\":{\"example\":\"ALLOCATION\",\"type\":\"string\"}},\"required\":[\"netblock\",\"id\",\"name\",\"country\"],\"type\":\"object\"},\"type\":\"array\"},\"prefixes6\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"comcast.com\",\"type\":\"string\"},\"id\":{\"example\":\"COMCAST6NET\",\"type\":\"string\"},\"name\":{\"example\":\"Comcast Cable Communications, LLC\",\"type\":\"string\"},\"netblock\":{\"example\":\"2601::/20\",\"type\":\"string\"},\"size\":{\"example\":\"20282409603651670423947251286016\",\"type\":\"string\"},\"status\":{\"example\":\"ASSIGNMENT\",\"type\":\"string\"}},\"required\":[\"netblock\",\"id\",\"name\",\"country\"],\"type\":\"object\"},\"type\":\"array\"},\"registry\":{\"example\":\"arin\",\"type\":\"string\"},\"route\":{\"example\":\"66.87.125.0/24\",\"type\":\"string\"},\"type\":{\"enum\":[\"isp\",\"business\",\"education\",\"hosting\",\"inactive\"],\"example\":\"isp\",\"type\":\"string\"},\"upstreams\":{\"items\":{\"example\":\"1299\",\"type\":\"string\"},\"type\":\"array\"}},\"required\":[\"asn\",\"name\",\"domain\",\"type\"],\"type\":\"object\"},\"bogon\":{\"example\":false,\"type\":\"boolean\"},\"carrier\":{\"properties\":{\"mcc\":{\"example\":\"310\",\"type\":\"string\"},\"mnc\":{\"example\":\"120\",\"type\":\"string\"},\"name\":{\"example\":\"Sprint Corporation\",\"type\":\"string\"}},\"required\":[\"name\",\"mcc\",\"mnc\"],\"type\":\"object\"},\"city\":{\"example\":\"Springfield\",\"type\":\"string\"},\"company\":{\"properties\":{\"domain\":{\"example\":\"sprint.com\",\"type\":\"string\"},\"name\":{\"example\":\"Sprint Springfield POP\",\"type\":\"string\"},\"type\":{\"enum\":[\"isp\",\"business\",\"education\",\"hosting\"],\"example\":\"isp\",\"type\":\"string\"}},\"required\":[\"name\",\"domain\",\"type\"],\"type\":\"object\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domains\":{\"properties\":{\"domains\":{\"items\":{\"example\":\"udemy.com\",\"type\":\"string\"},\"type\":\"array\"},\"ip\":{\"example\":\"1.1.1.1\",\"type\":\"string\"},\"page\":{\"example\":1,\"type\":\"integer\"},\"total\":{\"example\":17939,\"type\":\"integer\"}},\"required\":[\"total\"],\"type\":\"object\"},\"hostname\":{\"example\":\"ip-66-87-125-72.spfdma.spcsdns.net\",\"type\":\"string\"},\"ip\":{\"example\":\"66.87.125.72\",\"type\":\"string\"},\"loc\":{\"example\":\"42.0999,-72.5783\",\"type\":\"string\"},\"org\":{\"example\":\"AS51501 Khabarovsk home networks Ltd\",\"type\":\"string\"},\"postal\":{\"example\":\"01105\",\"type\":\"string\"},\"privacy\":{\"properties\":{\"hosting\":{\"example\":false,\"type\":\"boolean\"},\"proxy\":{\"example\":false,\"type\":\"boolean\"},\"relay\":{\"example\":false,\"type\":\"boolean\"},\"service\":{\"example\":\"\",\"type\":\"string\"},\"tor\":{\"example\":false,\"type\":\"boolean\"},\"vpn\":{\"example\":true,\"type\":\"boolean\"}},\"required\":[\"vpn\",\"proxy\",\"tor\",\"hosting\",\"relay\",\"service\"],\"type\":\"object\"},\"region\":{\"example\":\"Massachusetts\",\"type\":\"string\"},\"timezone\":{\"example\":\"America/New_York\",\"type\":\"string\"}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Full response object.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}",
@@ -1128,6 +1264,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /lookup/{ip}/{field}",
+                    "json": "{\"operationId\":\"getCoreFieldByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"A specific field from the core response or nested geo/as fields.\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"hostname\",\"geo\",\"geo/city\",\"geo/region\",\"geo/region_code\",\"geo/country\",\"geo/country_code\",\"geo/continent\",\"geo/continent_code\",\"geo/latitude\",\"geo/longitude\",\"geo/timezone\",\"geo/postal_code\",\"as\",\"as/asn\",\"as/name\",\"as/domain\",\"as/type\",\"is_anonymous\",\"is_anycast\",\"is_hosting\",\"is_mobile\",\"is_satellite\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"city\":\"Mountain View\",\"region\":\"California\"},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"Mountain View\",\"type\":\"string\"}}},\"description\":\"A specific field value from the core response.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lookup/{ip}/{field}",
@@ -1166,6 +1308,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /lookup/me/{field}",
+                    "json": "{\"operationId\":\"getCurrentCoreField\",\"parameters\":[{\"description\":\"A specific field from the core response or nested geo/as fields.\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"hostname\",\"geo\",\"geo/city\",\"geo/region\",\"geo/region_code\",\"geo/country\",\"geo/country_code\",\"geo/continent\",\"geo/continent_code\",\"geo/latitude\",\"geo/longitude\",\"geo/timezone\",\"geo/postal_code\",\"as\",\"as/asn\",\"as/name\",\"as/domain\",\"as/type\",\"is_anonymous\",\"is_anycast\",\"is_hosting\",\"is_mobile\",\"is_satellite\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"city\":\"Mountain View\",\"region\":\"California\"},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"Mountain View\",\"type\":\"string\"}}},\"description\":\"A specific field value from the core response.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1250,6 +1398,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /lite/{ip}/{field}",
+                    "json": "{\"operationId\":\"getLiteFieldByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent).\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"asn\",\"as_name\",\"as_domain\",\"country_code\",\"country\",\"continent_code\",\"continent\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"United States\",\"type\":\"string\"}}},\"description\":\"A specific field value from the lite response.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lite/{ip}/{field}",
@@ -1289,6 +1443,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /lite/me/{field}",
+                    "json": "{\"operationId\":\"getCurrentLiteField\",\"parameters\":[{\"description\":\"A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent).\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"asn\",\"as_name\",\"as_domain\",\"country_code\",\"country\",\"continent_code\",\"continent\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"United States\",\"type\":\"string\"}}},\"description\":\"A specific field value from the lite response.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lite/me/{field}",
@@ -1326,6 +1486,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /lite/{ip}",
+                    "json": "{\"operationId\":\"getLiteInformationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"as_domain\":{\"example\":\"google.com\",\"type\":\"string\"},\"as_name\":{\"example\":\"Google LLC\",\"type\":\"string\"},\"asn\":{\"example\":\"AS15169\",\"type\":\"string\"},\"continent\":{\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"example\":\"US\",\"type\":\"string\"},\"ip\":{\"example\":\"8.8.8.8\",\"type\":\"string\"}},\"required\":[\"ip\",\"asn\",\"as_name\",\"as_domain\",\"country_code\",\"country\",\"continent_code\",\"continent\"],\"type\":\"object\"},{\"properties\":{\"bogon\":{\"example\":true,\"type\":\"boolean\"},\"ip\":{\"example\":\"192.168.1.1\",\"type\":\"string\"}},\"required\":[\"ip\",\"bogon\"],\"type\":\"object\"}]}}},\"description\":\"Lite response object or bogon response.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1435,6 +1601,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /plus/{ip}/{field}",
+                    "json": "{\"operationId\":\"getPlusFieldByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"A specific field from the plus response or nested geo/as/mobile/anonymous fields.\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"geo\",\"geo/city\",\"geo/region\",\"geo/region_code\",\"geo/country\",\"geo/country_code\",\"geo/continent\",\"geo/continent_code\",\"geo/latitude\",\"geo/longitude\",\"geo/timezone\",\"geo/postal_code\",\"geo/dma_code\",\"geo/geoname_id\",\"geo/radius\",\"geo/last_changed\",\"as\",\"as/asn\",\"as/name\",\"as/domain\",\"as/type\",\"as/last_changed\",\"mobile\",\"mobile/name\",\"mobile/mcc\",\"mobile/mnc\",\"anonymous\",\"anonymous/name\",\"anonymous/is_proxy\",\"anonymous/is_relay\",\"anonymous/is_tor\",\"anonymous/is_vpn\",\"is_anonymous\",\"is_anycast\",\"is_hosting\",\"is_mobile\",\"is_satellite\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"city\":\"Toronto\",\"region\":\"Ontario\"},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"Toronto\",\"type\":\"string\"}}},\"description\":\"A specific field value from the plus response.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/plus/{ip}/{field}",
@@ -1473,6 +1645,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /plus/me/{field}",
+                    "json": "{\"operationId\":\"getCurrentPlusField\",\"parameters\":[{\"description\":\"A specific field from the plus response or nested geo/as/mobile/anonymous fields.\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"geo\",\"geo/city\",\"geo/region\",\"geo/region_code\",\"geo/country\",\"geo/country_code\",\"geo/continent\",\"geo/continent_code\",\"geo/latitude\",\"geo/longitude\",\"geo/timezone\",\"geo/postal_code\",\"geo/dma_code\",\"geo/geoname_id\",\"geo/radius\",\"geo/last_changed\",\"as\",\"as/asn\",\"as/name\",\"as/domain\",\"as/type\",\"as/last_changed\",\"mobile\",\"mobile/name\",\"mobile/mcc\",\"mobile/mnc\",\"anonymous\",\"anonymous/name\",\"anonymous/is_proxy\",\"anonymous/is_relay\",\"anonymous/is_tor\",\"anonymous/is_vpn\",\"is_anonymous\",\"is_anycast\",\"is_hosting\",\"is_mobile\",\"is_satellite\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"city\":\"Toronto\",\"region\":\"Ontario\"},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"Toronto\",\"type\":\"string\"}}},\"description\":\"A specific field value from the plus response.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1576,6 +1754,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /lite/me",
+                    "json": "{\"operationId\":\"getCurrentLiteInformation\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"as_domain\":{\"example\":\"google.com\",\"type\":\"string\"},\"as_name\":{\"example\":\"Google LLC\",\"type\":\"string\"},\"asn\":{\"example\":\"AS15169\",\"type\":\"string\"},\"continent\":{\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"example\":\"US\",\"type\":\"string\"},\"ip\":{\"example\":\"8.8.8.8\",\"type\":\"string\"}},\"required\":[\"ip\",\"asn\",\"as_name\",\"as_domain\",\"country_code\",\"country\",\"continent_code\",\"continent\"],\"type\":\"object\"}}},\"description\":\"Lite response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lite/me",
@@ -1705,6 +1889,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /max/{ip}",
+                    "json": "{\"operationId\":\"getMaxInformationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"anonymous\":{\"properties\":{\"is_proxy\":{\"example\":false,\"type\":\"boolean\"},\"is_relay\":{\"example\":false,\"type\":\"boolean\"},\"is_res_proxy\":{\"example\":true,\"type\":\"boolean\"},\"is_tor\":{\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"example\":false,\"type\":\"boolean\"},\"last_seen\":{\"example\":\"2026-03-29\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"example\":\"Ping Proxies\",\"type\":\"string\"},\"percent_days_seen\":{\"example\":63,\"type\":\"integer\"}},\"type\":\"object\"},\"as\":{\"properties\":{\"asn\":{\"example\":\"AS18144\",\"type\":\"string\"},\"domain\":{\"example\":\"enecom.co.jp\",\"type\":\"string\"},\"last_changed\":{\"example\":\"2021-05-01\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"example\":\"Enecom,Inc.\",\"type\":\"string\"},\"type\":{\"example\":\"business\",\"type\":\"string\"}},\"type\":\"object\"},\"geo\":{\"properties\":{\"city\":{\"example\":\"Izumo\",\"type\":\"string\"},\"continent\":{\"example\":\"Asia\",\"type\":\"string\"},\"continent_code\":{\"example\":\"AS\",\"type\":\"string\"},\"country\":{\"example\":\"Japan\",\"type\":\"string\"},\"country_code\":{\"example\":\"JP\",\"type\":\"string\"},\"dma_code\":{\"example\":\"501\",\"type\":\"string\"},\"geoname_id\":{\"example\":\"1861084\",\"type\":\"string\"},\"last_changed\":{\"example\":\"2026-03-22\",\"format\":\"date\",\"type\":\"string\"},\"latitude\":{\"example\":35.36667,\"type\":\"number\"},\"longitude\":{\"example\":132.76667,\"type\":\"number\"},\"postal_code\":{\"example\":\"693-0001\",\"type\":\"string\"},\"radius\":{\"example\":50,\"type\":\"integer\"},\"region\":{\"example\":\"Shimane\",\"type\":\"string\"},\"region_code\":{\"example\":\"32\",\"type\":\"string\"},\"timezone\":{\"example\":\"Asia/Tokyo\",\"type\":\"string\"}},\"type\":\"object\"},\"hostname\":{\"example\":\"158.126.0.1.megaegg.ne.jp\",\"type\":\"string\"},\"ip\":{\"example\":\"1.0.126.158\",\"type\":\"string\"},\"is_anonymous\":{\"example\":true,\"type\":\"boolean\"},\"is_anycast\":{\"example\":false,\"type\":\"boolean\"},\"is_hosting\":{\"example\":false,\"type\":\"boolean\"},\"is_mobile\":{\"example\":false,\"type\":\"boolean\"},\"is_satellite\":{\"example\":false,\"type\":\"boolean\"},\"mobile\":{\"type\":\"object\"}},\"required\":[\"ip\",\"geo\",\"as\",\"anonymous\"],\"type\":\"object\"}}},\"description\":\"Max API response object.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/max/{ip}",
@@ -1772,6 +1962,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /me",
+                    "json": "{\"operationId\":\"getMe\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"features\":{\"properties\":{\"core\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"hostio\":{\"properties\":{\"abuse\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"asn\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"carrier\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"company\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"firmographics\":{\"example\":false,\"type\":\"boolean\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"org_additional\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"},\"daily\":{\"example\":50000,\"type\":\"integer\"},\"hosted_domains\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"result_limit\":{\"example\":5,\"type\":\"integer\"}},\"type\":\"object\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"privacy\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"vpn_provider\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"},\"ranges\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"result_limit\":{\"example\":5,\"type\":\"integer\"},\"whois\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}},\"type\":\"object\"},\"requests\":{\"properties\":{\"day\":{\"example\":0,\"type\":\"integer\"},\"limit\":{\"example\":50000,\"type\":\"integer\"},\"month\":{\"example\":69,\"type\":\"integer\"},\"remaining\":{\"example\":2147483578,\"type\":\"integer\"}},\"type\":\"object\"},\"token\":{\"example\":\"TOKEN\",\"type\":\"string\"}},\"required\":[\"token\",\"requests\",\"features\"],\"type\":\"object\"}}},\"description\":\"IPinfo access token rate and access information.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Invalid API token\",\"type\":\"string\"},\"token\":{\"example\":\"TOKEN\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"If the passed IPinfo access token is not present or is invalid.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/me",
@@ -1865,6 +2061,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /places/{ip}",
+                    "json": "{\"operationId\":\"getPlaceByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"category\":{\"example\":\"museum\",\"type\":\"string\"},\"ip\":{\"example\":\"65.144.40.106\",\"type\":\"string\"},\"latitude\":{\"example\":47.6275,\"type\":\"number\"},\"longitude\":{\"example\":-122.3367,\"type\":\"number\"},\"name\":{\"example\":\"Museum of History and Industry (MOHAI)\",\"type\":\"string\"},\"ssid\":{\"example\":\"MOHAI-Guest\",\"type\":\"string\"}},\"required\":[\"ip\",\"name\",\"category\",\"ssid\",\"latitude\",\"longitude\"],\"type\":\"object\"}}},\"description\":\"Places API response object.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1996,6 +2198,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /plus/{ip}",
+                    "json": "{\"operationId\":\"getPlusInformationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"anonymous\":{\"properties\":{\"is_proxy\":{\"example\":false,\"type\":\"boolean\"},\"is_relay\":{\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"example\":false,\"type\":\"boolean\"},\"name\":{\"example\":\"Google One VPN\",\"type\":\"string\"}},\"type\":\"object\"},\"as\":{\"properties\":{\"asn\":{\"example\":\"AS577\",\"type\":\"string\"},\"domain\":{\"example\":\"bell.ca\",\"type\":\"string\"},\"last_changed\":{\"example\":\"2025-09-28\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"example\":\"Bell Canada\",\"type\":\"string\"},\"type\":{\"example\":\"isp\",\"type\":\"string\"}},\"type\":\"object\"},\"geo\":{\"properties\":{\"city\":{\"example\":\"Toronto\",\"type\":\"string\"},\"continent\":{\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"example\":\"Canada\",\"type\":\"string\"},\"country_code\":{\"example\":\"CA\",\"type\":\"string\"},\"dma_code\":{\"example\":\"57\",\"type\":\"string\"},\"geoname_id\":{\"example\":\"6167865\",\"type\":\"string\"},\"last_changed\":{\"example\":\"2025-09-21\",\"format\":\"date\",\"type\":\"string\"},\"latitude\":{\"example\":43.6561,\"type\":\"number\"},\"longitude\":{\"example\":-79.3406,\"type\":\"number\"},\"postal_code\":{\"example\":\"M4M\",\"type\":\"string\"},\"radius\":{\"example\":50,\"type\":\"integer\"},\"region\":{\"example\":\"Ontario\",\"type\":\"string\"},\"region_code\":{\"example\":\"ON\",\"type\":\"string\"},\"timezone\":{\"example\":\"America/Toronto\",\"type\":\"string\"}},\"type\":\"object\"},\"ip\":{\"example\":\"206.47.33.149\",\"type\":\"string\"},\"is_anonymous\":{\"example\":false,\"type\":\"boolean\"},\"is_anycast\":{\"example\":false,\"type\":\"boolean\"},\"is_hosting\":{\"example\":false,\"type\":\"boolean\"},\"is_mobile\":{\"example\":true,\"type\":\"boolean\"},\"is_satellite\":{\"example\":false,\"type\":\"boolean\"},\"mobile\":{\"properties\":{\"mcc\":{\"example\":\"302\",\"type\":\"string\"},\"mnc\":{\"example\":\"610\",\"type\":\"string\"},\"name\":{\"example\":\"Bell Mobility\",\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Plus response object.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/plus/{ip}",
@@ -2025,6 +2233,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /plus/me",
+                    "json": "{\"operationId\":\"getCurrentPlusInformation\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"anonymous\":{\"properties\":{\"is_proxy\":{\"example\":false,\"type\":\"boolean\"},\"is_relay\":{\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"example\":false,\"type\":\"boolean\"},\"name\":{\"example\":\"Google One VPN\",\"type\":\"string\"}},\"type\":\"object\"},\"as\":{\"properties\":{\"asn\":{\"example\":\"AS577\",\"type\":\"string\"},\"domain\":{\"example\":\"bell.ca\",\"type\":\"string\"},\"last_changed\":{\"example\":\"2025-09-28\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"example\":\"Bell Canada\",\"type\":\"string\"},\"type\":{\"example\":\"isp\",\"type\":\"string\"}},\"type\":\"object\"},\"geo\":{\"properties\":{\"city\":{\"example\":\"Toronto\",\"type\":\"string\"},\"continent\":{\"example\":\"North America\",\"type\":\"string\"},\"continent_code\":{\"example\":\"NA\",\"type\":\"string\"},\"country\":{\"example\":\"Canada\",\"type\":\"string\"},\"country_code\":{\"example\":\"CA\",\"type\":\"string\"},\"dma_code\":{\"example\":\"57\",\"type\":\"string\"},\"geoname_id\":{\"example\":\"6167865\",\"type\":\"string\"},\"last_changed\":{\"example\":\"2025-09-21\",\"format\":\"date\",\"type\":\"string\"},\"latitude\":{\"example\":43.6561,\"type\":\"number\"},\"longitude\":{\"example\":-79.3406,\"type\":\"number\"},\"postal_code\":{\"example\":\"M4M\",\"type\":\"string\"},\"radius\":{\"example\":50,\"type\":\"integer\"},\"region\":{\"example\":\"Ontario\",\"type\":\"string\"},\"region_code\":{\"example\":\"ON\",\"type\":\"string\"},\"timezone\":{\"example\":\"America/Toronto\",\"type\":\"string\"}},\"type\":\"object\"},\"ip\":{\"example\":\"206.47.33.149\",\"type\":\"string\"},\"is_anonymous\":{\"example\":false,\"type\":\"boolean\"},\"is_anycast\":{\"example\":false,\"type\":\"boolean\"},\"is_hosting\":{\"example\":false,\"type\":\"boolean\"},\"is_mobile\":{\"example\":true,\"type\":\"boolean\"},\"is_satellite\":{\"example\":false,\"type\":\"boolean\"},\"mobile\":{\"properties\":{\"mcc\":{\"example\":\"302\",\"type\":\"string\"},\"mnc\":{\"example\":\"610\",\"type\":\"string\"},\"name\":{\"example\":\"Bell Mobility\",\"type\":\"string\"}},\"type\":\"object\"}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Plus response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/plus/me",
@@ -2113,6 +2327,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/privacy",
+                    "json": "{\"operationId\":\"getPrivacyInformationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hosting\":{\"example\":false,\"type\":\"boolean\"},\"proxy\":{\"example\":false,\"type\":\"boolean\"},\"relay\":{\"example\":false,\"type\":\"boolean\"},\"service\":{\"example\":\"\",\"type\":\"string\"},\"tor\":{\"example\":false,\"type\":\"boolean\"},\"vpn\":{\"example\":true,\"type\":\"boolean\"}},\"required\":[\"vpn\",\"proxy\",\"tor\",\"hosting\",\"relay\",\"service\"],\"type\":\"object\"}}},\"description\":\"Privacy response.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2283,6 +2503,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/privacy_extended",
+                    "json": "{\"operationId\":\"getPrivacyExtendedByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"census\":{\"description\":\"Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software. Ranges with the census flag are those where these scans obtained positive results\",\"example\":false,\"type\":\"boolean\"},\"census_ports\":{\"description\":\"The ports we've gotten positive results for when running our VPN detection census\",\"example\":[],\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"confidence\":{\"description\":\"The level of confidence attributed to the best source associated with this range. Level 3 - Direct observation of commercial use (vpn_config). Level 2 - Direct observation of VPN software running on the range (census) + registrar information associated with VPNs or specific providers OR highly convincing device activity. Level 1 - Direct observation of VPN software running on the range (census) without known association to specific providers or VPNs in general OR suspicious device data not associated with hosting ranges\",\"example\":3,\"maximum\":3,\"minimum\":1,\"type\":\"integer\"},\"coverage\":{\"description\":\"For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on. For IPs/ranges we've fully directly observed VPN evidence on, this value is 1.0\",\"example\":1,\"maximum\":1,\"minimum\":0,\"type\":\"number\"},\"device_activity\":{\"description\":\"Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)\",\"example\":false,\"type\":\"boolean\"},\"first_seen\":{\"description\":\"Date when the activity on an anonymous IP address was first observed. Date in YYYY-MM-DD format, ISO-8601. Within the 3-month lookback period\",\"example\":\"2025-09-19\",\"format\":\"date\",\"type\":\"string\"},\"hosting\":{\"description\":\"Indicates a hosting/cloud service/data center IP address\",\"example\":true,\"type\":\"boolean\"},\"inferred\":{\"description\":\"Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs\",\"example\":false,\"type\":\"boolean\"},\"last_seen\":{\"description\":\"Date when the activity on an anonymous IP address was last/recently observed. Date in YYYY-MM-DD format, ISO-8601\",\"example\":\"2025-11-06\",\"format\":\"date\",\"type\":\"string\"},\"proxy\":{\"description\":\"Indicates an open web proxy IP address\",\"example\":false,\"type\":\"boolean\"},\"relay\":{\"description\":\"Indicates a location-preserving anonymous relay service\",\"example\":false,\"type\":\"boolean\"},\"service\":{\"description\":\"Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names\",\"example\":\"NordVPN\",\"type\":\"string\"},\"tor\":{\"description\":\"Indicates a Tor (The Onion Router) exit node IP address\",\"example\":false,\"type\":\"boolean\"},\"vpn\":{\"description\":\"Indicates Virtual Private Network (VPN) service exit node IP address\",\"example\":true,\"type\":\"boolean\"},\"vpn_config\":{\"description\":\"Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs\",\"example\":false,\"type\":\"boolean\"},\"whois\":{\"description\":\"Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers\",\"example\":false,\"type\":\"boolean\"}},\"required\":[\"vpn\",\"proxy\",\"tor\",\"relay\",\"hosting\",\"service\"],\"type\":\"object\"}}},\"description\":\"Privacy Detection Extended response with detailed methodologies.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/privacy_extended",
@@ -2371,6 +2597,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /ranges/{domain}",
+                    "json": "{\"operationId\":\"getRanges\",\"parameters\":[{\"description\":\"a domain.\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domain\":{\"example\":\"comcast.net\",\"type\":\"string\"},\"num_ranges\":{\"example\":\"37330\",\"type\":\"string\"},\"ranges\":{\"items\":{\"example\":\"23.24.240.0/29\",\"type\":\"string\"},\"type\":\"array\"},\"redirects_to\":{\"example\":\"xfinity.com\",\"type\":\"string\"}},\"required\":[\"domain\",\"redirects_to\",\"num_ranges\",\"ranges\"],\"type\":\"object\"}}},\"description\":\"Ranges response object.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2461,6 +2693,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/resproxy",
+                    "json": "{\"operationId\":\"getResidentialProxyByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ip\":{\"description\":\"The IPv4 or IPv6 address associated with a residential proxy\",\"example\":\"175.107.211.204\",\"type\":\"string\"},\"last_seen\":{\"description\":\"The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)\",\"example\":\"2025-06-24\",\"format\":\"date\",\"type\":\"string\"},\"percent_days_seen\":{\"description\":\"The percentage of days the IP was active in the last 7-day period\",\"example\":14,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"},\"service\":{\"description\":\"The name of the residential proxy service. Suffixed with _mobile for carrier/mobile or _datacenter for datacenter proxies\",\"example\":\"ipfoxy\",\"type\":\"string\"}},\"required\":[\"ip\",\"last_seen\",\"percent_days_seen\",\"service\"],\"type\":\"object\"}}},\"description\":\"Residential Proxy detection response.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/resproxy",
@@ -2515,6 +2753,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/city",
+                    "json": "{\"operationId\":\"getCityByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Springfield\",\"type\":\"string\"}}},\"description\":\"The city name of the IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/city",
@@ -2549,6 +2793,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/country",
+                    "json": "{\"operationId\":\"getCountryByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"US\",\"type\":\"string\"}}},\"description\":\"Name of the country in the 2 letter ISO 3166-1 alpha-2 for the IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2585,6 +2835,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/hostname",
+                    "json": "{\"operationId\":\"getHostnameByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"ip-66-87-125-72.spfdma.spcsdns.net\",\"type\":\"string\"}}},\"description\":\"Hostname of the IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/hostname",
@@ -2619,6 +2875,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/ip",
+                    "json": "{\"operationId\":\"getIpByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"66.87.125.72\",\"type\":\"string\"}}},\"description\":\"Public IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2655,6 +2917,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/loc",
+                    "json": "{\"operationId\":\"getLocationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"42.0999,-72.5783\",\"type\":\"string\"}}},\"description\":\"Geographic coordinate of the IP address in the format of `<latitude>, <longitude>`.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/loc",
@@ -2689,6 +2957,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/org",
+                    "json": "{\"operationId\":\"getOrganizationByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"AS51501 Khabarovsk home networks Ltd\",\"type\":\"string\"}}},\"description\":\"ASN and AS organization name for the IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2725,6 +2999,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/postal",
+                    "json": "{\"operationId\":\"getPostalByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"01105\",\"type\":\"string\"}}},\"description\":\"Postal code or zip code for the IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/postal",
@@ -2759,6 +3039,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{ip}/region",
+                    "json": "{\"operationId\":\"getRegionByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Massachusetts\",\"type\":\"string\"}}},\"description\":\"The name of the region or state of the IP address.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -2795,6 +3081,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{ip}/timezone",
+                    "json": "{\"operationId\":\"getTimezoneByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"America/New_York\",\"type\":\"string\"}}},\"description\":\"Timezone of the located IP address in the format of IANA Time Zones.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"No module or field of type exists for the provided field. Please check our documentation https://ipinfo.io/developers.\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong module or field type\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"If users try to access a field type that does not exist or do not have permissions to access it, they will encounter a wrong module or field type error.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{ip}/timezone",
@@ -2819,6 +3111,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /city",
+                    "json": "{\"operationId\":\"getCurrentCity\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Springfield\",\"type\":\"string\"}}},\"description\":\"The city name of the IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/city",
@@ -2836,6 +3134,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /country",
+                    "json": "{\"operationId\":\"getCurrentCountry\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"US\",\"type\":\"string\"}}},\"description\":\"Name of the country in the 2 letter ISO 3166-1 alpha-2 for the IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/country",
@@ -2853,6 +3157,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /hostname",
+                    "json": "{\"operationId\":\"getCurrentHostname\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"ip-66-87-125-72.spfdma.spcsdns.net\",\"type\":\"string\"}}},\"description\":\"Hostname of the IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/hostname",
@@ -2870,6 +3180,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /ip",
+                    "json": "{\"operationId\":\"getCurrentIp\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"66.87.125.72\",\"type\":\"string\"}}},\"description\":\"Public IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ip",
@@ -2887,6 +3203,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /loc",
+                    "json": "{\"operationId\":\"getCurrentLocation\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"42.0999,-72.5783\",\"type\":\"string\"}}},\"description\":\"Geographic coordinate of the IP address in the format of `<latitude>, <longitude>`.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/loc",
@@ -2904,6 +3226,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /org",
+                    "json": "{\"operationId\":\"getCurrentOrganization\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"AS51501 Khabarovsk home networks Ltd\",\"type\":\"string\"}}},\"description\":\"ASN and AS organization name for the IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"},\"title\":{\"example\":\"Wrong ip\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Wrong ip. Please provide a valid IP address.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/org",
@@ -2921,6 +3249,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /postal",
+                    "json": "{\"operationId\":\"getCurrentPostal\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"01105\",\"type\":\"string\"}}},\"description\":\"Postal code or zip code for the IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/postal",
@@ -2938,6 +3272,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /region",
+                    "json": "{\"operationId\":\"getCurrentRegion\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Massachusetts\",\"type\":\"string\"}}},\"description\":\"The name of the region or state of the IP address.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/region",
@@ -2955,6 +3295,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /timezone",
+                    "json": "{\"operationId\":\"getCurrentTimezone\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"America/New_York\",\"type\":\"string\"}}},\"description\":\"Timezone of the located IP address in the format of IANA Time Zones.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Unknown token or invalid permission. We return the same error for blocking malicious IP addresses as well.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/timezone",
@@ -3104,6 +3450,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /whois/net/AS{asn}",
+                    "json": "{\"parameters\":[{\"description\":\"an ASN number.\",\"in\":\"path\",\"name\":\"asn\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"net\":\"AS9541\",\"page\":0,\"records\":[{\"abuse\":\"POC object or null\",\"admin\":\"POC object or null\",\"country\":\"PK\",\"id\":\"CYBERNET\",\"maintainer\":\"POC object or null\",\"name\":\"Broadband Services\",\"org\":null,\"range\":\"58.65.203.0/24\",\"raw\":\"<raw data>\",\"source\":\"apnic\",\"status\":\"ALLOCATED NON-PORTABLE\",\"tech\":\"POC object or null\",\"updated\":\"2021-01-27\"}],\"total\":47},\"properties\":{\"net\":{\"example\":\"AS9541\",\"type\":\"string\"},\"page\":{\"example\":0,\"type\":\"integer\"},\"records\":{\"items\":{\"properties\":{\"abuse\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"admin\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"country\":{\"example\":\"PK\",\"type\":\"string\"},\"id\":{\"example\":\"CYBERNET\",\"type\":\"string\"},\"maintainer\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"name\":{\"example\":\"Broadband Services\",\"type\":\"string\"},\"org\":{\"example\":null,\"type\":\"string\"},\"range\":{\"example\":\"58.65.203.0/24\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"apnic\",\"type\":\"string\"},\"status\":{\"example\":\"ALLOCATED NON-PORTABLE\",\"type\":\"string\"},\"tech\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"updated\":{\"example\":\"2021-01-27\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":47,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS ASN response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/whois/net/AS{asn}",
@@ -3205,6 +3557,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /whois/net/{domain}",
+                    "json": "{\"parameters\":[{\"description\":\"a domain.\",\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"net\":\"comcast.net\",\"page\":0,\"records\":[{\"abuse\":null,\"admin\":null,\"country\":\"US\",\"domain\":\"comcast.net\",\"id\":\"NEW-ENGLAND-10\",\"maintainer\":null,\"name\":\"Comcast Cable Communications Holdings, Inc\",\"org\":\"C02610737\",\"range\":\"24.147.0.0/17\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"status\":\"REASSIGNMENT\",\"tech\":null,\"updated\":\"2010-10-18\"}],\"total\":80},\"properties\":{\"net\":{\"example\":\"comcast.net\",\"type\":\"string\"},\"page\":{\"example\":0,\"type\":\"integer\"},\"records\":{\"items\":{\"properties\":{\"abuse\":{\"example\":null,\"type\":\"string\"},\"admin\":{\"example\":null,\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"domain\":{\"example\":\"comcast.net\",\"type\":\"string\"},\"id\":{\"example\":\"NEW-ENGLAND-10\",\"type\":\"string\"},\"maintainer\":{\"example\":null,\"type\":\"string\"},\"name\":{\"example\":\"Comcast Cable Communications Holdings, Inc\",\"type\":\"string\"},\"org\":{\"example\":\"C02610737\",\"type\":\"string\"},\"range\":{\"example\":\"24.147.0.0/17\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"arin\",\"type\":\"string\"},\"status\":{\"example\":\"REASSIGNMENT\",\"type\":\"string\"},\"tech\":{\"example\":null,\"type\":\"string\"},\"updated\":{\"example\":\"2010-10-18\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":80,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS Domain response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -3312,6 +3670,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /whois/net/{whoisip}",
+                    "json": "{\"parameters\":[{\"description\":\"The IP address or an IP address range of an internet organization.\",\"in\":\"path\",\"name\":\"whoisip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"net\":\"24.62.0.0/15\",\"page\":0,\"records\":[{\"country\":\"US\",\"id\":\"NEW-ENGLAND-5\",\"name\":\"Comcast Cable Communications Holdings, Inc\",\"org\":\"C02610695\",\"range\":\"24.62.0.0/15\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"status\":\"REASSIGNMENT\",\"updated\":\"2010-10-18\"}],\"total\":100},\"properties\":{\"net\":{\"example\":\"24.62.0.0/15\",\"type\":\"string\"},\"page\":{\"example\":0,\"type\":\"integer\"},\"records\":{\"items\":{\"properties\":{\"country\":{\"example\":\"US\",\"type\":\"string\"},\"id\":{\"example\":\"NEW-ENGLAND-5\",\"type\":\"string\"},\"name\":{\"example\":\"Comcast Cable Communications Holdings, Inc\",\"type\":\"string\"},\"org\":{\"example\":\"C02610695\",\"type\":\"string\"},\"range\":{\"example\":\"24.62.0.0/15\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"arin\",\"type\":\"string\"},\"status\":{\"example\":\"REASSIGNMENT\",\"type\":\"string\"},\"updated\":{\"example\":\"2010-10-18\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":100,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS IP  and IP range response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/whois/net/{whoisip}",
@@ -3417,6 +3781,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /whois/net/{whoisnetid}",
+                    "json": "{\"parameters\":[{\"description\":\"The Network (NET) ID of an internet organization.\",\"in\":\"path\",\"name\":\"whoisnetid\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"net\":\"NEW-ENGLAND-5\",\"page\":0,\"records\":[{\"abuse\":\"POC object or null\",\"admin\":\"POC object or null\",\"country\":\"US\",\"id\":\"\",\"maintainer\":\"POC object or null\",\"name\":\"Comcast Cable Communications Holdings, Inc\",\"org\":\"POC object or null\",\"range\":\"24.62.0.0/15\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"status\":\"REASSIGNMENT\",\"tech\":\"POC object or null\",\"updated\":\"2010-10-18\"}],\"total\":100},\"properties\":{\"net\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\"},\"records\":{\"items\":{\"example\":{\"abuse\":\"POC object or null\",\"admin\":\"POC object or null\",\"country\":\"US\",\"id\":\"\",\"maintainer\":\"POC object or null\",\"name\":\"Comcast Cable Communications Holdings, Inc\",\"org\":\"POC object or null\",\"range\":\"24.62.0.0/15\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"status\":\"REASSIGNMENT\",\"tech\":\"POC object or null\",\"updated\":\"2010-10-18\"},\"properties\":{\"abuse\":{\"type\":\"string\"},\"admin\":{\"type\":\"string\"},\"country\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"maintainer\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"org\":{\"type\":\"string\"},\"range\":{\"type\":\"string\"},\"raw\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"tech\":{\"type\":\"string\"},\"updated\":{\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS Network (NET) ID response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -3533,6 +3903,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /whois/org/{whoisorgid}",
+                    "json": "{\"parameters\":[{\"description\":\"The WHOIS organization (ORG) ID of an internet organization.\",\"in\":\"path\",\"name\":\"whoisorgid\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"org\":\"PINEAP\",\"page\":0,\"records\":[{\"abuse\":\"POC object or null\",\"address\":null,\"admin\":\"POC object or null\",\"country\":\"US\",\"created\":\"2000-03-25\",\"id\":\"PINEAP\",\"maintainer\":\"POC object or null\",\"name\":\"Pineapple Houser\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"tech\":\"POC object or null\",\"updated\":\"2011-09-24\"}],\"total\":100},\"properties\":{\"org\":{\"example\":\"PINEAP\",\"type\":\"string\"},\"page\":{\"example\":0,\"type\":\"integer\"},\"records\":{\"items\":{\"properties\":{\"abuse\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"address\":{\"example\":null,\"type\":\"string\"},\"admin\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"created\":{\"example\":\"2000-03-25\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"example\":\"PINEAP\",\"type\":\"string\"},\"maintainer\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"name\":{\"example\":\"Pineapple Houser\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"arin\",\"type\":\"string\"},\"tech\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"updated\":{\"example\":\"2011-09-24\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":100,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS organization (ORG) ID response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -3651,6 +4027,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /whois/poc/{whoispoc}",
+                    "json": "{\"parameters\":[{\"description\":\"The WHOIS Point of Contact (POC) value of an internet organization.\",\"in\":\"path\",\"name\":\"whoispoc\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"page\":0,\"poc\":\"CP312-ARIN\",\"records\":[{\"address\":\"US, GA, Atlanta, Pineapple Houser\\n2131 Plaster Bridge Rd Ne, 303244036\",\"country\":\"US\",\"created\":\"2000-03-25\",\"email\":\"spararo@mindspring.com\",\"fax\":\"\",\"id\":\"CP312-ARIN\",\"name\":\"Cynthia Pararo\",\"phone\":\"\",\"raw\":\"<raw data>\",\"source\":\"arin\",\"updated\":\"2000-03-25\"}],\"total\":1},\"properties\":{\"page\":{\"example\":0,\"type\":\"integer\"},\"poc\":{\"example\":\"CP312-ARIN\",\"type\":\"string\"},\"records\":{\"items\":{\"properties\":{\"address\":{\"example\":\"US, GA, Atlanta, Pineapple Houser\\n2131 Plaster Bridge Rd Ne, 303244036\",\"type\":\"string\"},\"country\":{\"example\":\"US\",\"type\":\"string\"},\"created\":{\"example\":\"2000-03-25\",\"format\":\"date\",\"type\":\"string\"},\"email\":{\"example\":\"spararo@mindspring.com\",\"type\":\"string\"},\"fax\":{\"example\":\"\",\"type\":\"string\"},\"id\":{\"example\":\"CP312-ARIN\",\"type\":\"string\"},\"name\":{\"example\":\"Cynthia Pararo\",\"type\":\"string\"},\"phone\":{\"example\":\"\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"arin\",\"type\":\"string\"},\"updated\":{\"example\":\"2000-03-25\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":1,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS Point of Contact (POC) response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/whois/poc/{whoispoc}",
@@ -3691,13 +4073,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -3787,6 +4379,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -4685,6 +5373,48 @@
         "website": "https://ipinfo.io/developers"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -5239,6 +5969,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -5280,7 +6011,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

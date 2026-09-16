@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IPINFO_DEVELOPER_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'whois_asn.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'whois_asn.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IPINFO_DEVELOPER_TEST_WHOIS_ASN_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "abuse", "req": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "admin", "req": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "country", "req": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "maintainer", "req": false, "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "name", "req": false, "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "org", "req": false, "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "range", "req": false, "type": "`$STRING`", "index$": 7 }, { "active": true, "name": "raw", "req": false, "type": "`$STRING`", "index$": 8 }, { "active": true, "name": "source", "req": false, "type": "`$STRING`", "index$": 9 }, { "active": true, "name": "status", "req": false, "type": "`$STRING`", "index$": 10 }, { "active": true, "name": "tech", "req": false, "type": "`$STRING`", "index$": 11 }, { "active": true, "format": "date", "name": "updated", "req": false, "type": "`$STRING`", "index$": 12 }], "id": { "field": "id", "name": "id" }, "name": "whois_asn", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "asn", "orig": "asn", "reqd": true, "type": "`$INTEGER`", "index$": 0 }], "query": [{ "active": true, "kind": "query", "name": "page", "orig": "page", "reqd": false, "type": "`$INTEGER`", "index$": 0 }, { "active": true, "kind": "query", "name": "whoissource", "orig": "whoissource", "reqd": false, "type": "`$STRING`", "index$": 1 }] }, "contract": { "id": "GET /whois/net/AS{asn}", "json": "{\"parameters\":[{\"description\":\"an ASN number.\",\"in\":\"path\",\"name\":\"asn\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Source query parameter to filter records by provided Whois source.\",\"in\":\"query\",\"name\":\"whoissource\",\"schema\":{\"enum\":[\"arin\",\"ripe\",\"afrinic\",\"apnic\",\"lacnic\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"net\":\"AS9541\",\"page\":0,\"records\":[{\"abuse\":\"POC object or null\",\"admin\":\"POC object or null\",\"country\":\"PK\",\"id\":\"CYBERNET\",\"maintainer\":\"POC object or null\",\"name\":\"Broadband Services\",\"org\":null,\"range\":\"58.65.203.0/24\",\"raw\":\"<raw data>\",\"source\":\"apnic\",\"status\":\"ALLOCATED NON-PORTABLE\",\"tech\":\"POC object or null\",\"updated\":\"2021-01-27\"}],\"total\":47},\"properties\":{\"net\":{\"example\":\"AS9541\",\"type\":\"string\"},\"page\":{\"example\":0,\"type\":\"integer\"},\"records\":{\"items\":{\"properties\":{\"abuse\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"admin\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"country\":{\"example\":\"PK\",\"type\":\"string\"},\"id\":{\"example\":\"CYBERNET\",\"type\":\"string\"},\"maintainer\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"name\":{\"example\":\"Broadband Services\",\"type\":\"string\"},\"org\":{\"example\":null,\"type\":\"string\"},\"range\":{\"example\":\"58.65.203.0/24\",\"type\":\"string\"},\"raw\":{\"example\":\"<raw data>\",\"type\":\"string\"},\"source\":{\"example\":\"apnic\",\"type\":\"string\"},\"status\":{\"example\":\"ALLOCATED NON-PORTABLE\",\"type\":\"string\"},\"tech\":{\"example\":\"POC object or null\",\"type\":\"string\"},\"updated\":{\"example\":\"2021-01-27\",\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":47,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"WHOIS ASN response.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/whois/net/AS{asn}", "segments": [{ "lit": "whois" }, { "lit": "net" }, { "lit": "AS{asn}" }], "select": { "exist": ["asn", "page", "whoissource"] }, "transform": { "req": "`reqdata`", "res": "`body.records`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "whois_asn", "name__orig": "whois_asn", "Name": "WhoisAsn", "name_": "whois_asn", "name-": "whois-asn", "NAME": "WHOIS_ASN", "index$": 22 }, { "active": true, "entity": "whois_asn", "key$": "BasicWhoisAsnFlow", "kind": "basic", "name": "BasicWhoisAsnFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": { "asn": "asn01" }, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "whois_asn_ref01" } }], "index$": 0 }] }, 'WhoisAsn');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IPINFO_DEVELOPER_TEST_WHOIS_ASN_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IPINFO_DEVELOPER_TEST_WHOIS_ASN_ENTID': idmap,
         'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
@@ -117,7 +109,13 @@ function basicSetup(extra) {
     });
     idmap = env['IPINFO_DEVELOPER_TEST_WHOIS_ASN_ENTID'];
     const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IPINFO_DEVELOPER_TEST_WHOIS_ASN_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpinfoDeveloperSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -131,7 +129,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -143,7 +142,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IPINFO_DEVELOPER_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

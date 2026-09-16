@@ -71,6 +71,12 @@ main: kit: entity: domain: {
               }
             ]
           }
+          contract: {
+            id: "GET /domains/{ip}"
+            json: "{\"operationId\":\"getDomains\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"The API returns 100 domains per page and has a limit of 1000 domains per page. We return up to 10 million results. The limit parameter can be used to control the number of domains per page.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":100,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"domains\":{\"items\":{\"example\":\"udemy.com\",\"type\":\"string\"},\"type\":\"array\"},\"ip\":{\"example\":\"1.1.1.1\",\"type\":\"string\"},\"page\":{\"example\":1,\"type\":\"integer\"},\"total\":{\"example\":17939,\"type\":\"integer\"}},\"required\":[\"total\"],\"type\":\"object\"}}},\"description\":\"Domains response object.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/domains/{ip}"
           rename: {

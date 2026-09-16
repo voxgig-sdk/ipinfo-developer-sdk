@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IPINFO_DEVELOPER_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'ipinfo_plus.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'ipinfo_plus.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "city", "req": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "key", "req": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "region", "req": false, "type": "`$STRING`", "index$": 3 }], "id": { "field": "id", "name": "id", "parts": ["ip", "field"], "sep": "/" }, "name": "ipinfo_plus", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "field", "orig": "field", "reqd": true, "type": "`$STRING`", "index$": 0 }, { "active": true, "kind": "param", "name": "ip", "orig": "ip", "reqd": true, "type": "`$STRING`", "index$": 1 }] }, "contract": { "id": "GET /plus/{ip}/{field}", "json": "{\"operationId\":\"getPlusFieldByIp\",\"parameters\":[{\"description\":\"A single IPv4 or IPv6 IP address.\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"A specific field from the plus response or nested geo/as/mobile/anonymous fields.\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"geo\",\"geo/city\",\"geo/region\",\"geo/region_code\",\"geo/country\",\"geo/country_code\",\"geo/continent\",\"geo/continent_code\",\"geo/latitude\",\"geo/longitude\",\"geo/timezone\",\"geo/postal_code\",\"geo/dma_code\",\"geo/geoname_id\",\"geo/radius\",\"geo/last_changed\",\"as\",\"as/asn\",\"as/name\",\"as/domain\",\"as/type\",\"as/last_changed\",\"mobile\",\"mobile/name\",\"mobile/mcc\",\"mobile/mnc\",\"anonymous\",\"anonymous/name\",\"anonymous/is_proxy\",\"anonymous/is_relay\",\"anonymous/is_tor\",\"anonymous/is_vpn\",\"is_anonymous\",\"is_anycast\",\"is_hosting\",\"is_mobile\",\"is_satellite\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"city\":\"Toronto\",\"region\":\"Ontario\"},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"Toronto\",\"type\":\"string\"}}},\"description\":\"A specific field value from the plus response.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Please provide a valid IP address\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request error (invalid IP format).\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/plus/{ip}/{field}", "segments": [{ "lit": "plus" }, { "var": "ip" }, { "var": "field" }], "select": { "exist": ["field", "ip"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "field", "orig": "field", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /plus/me/{field}", "json": "{\"operationId\":\"getCurrentPlusField\",\"parameters\":[{\"description\":\"A specific field from the plus response or nested geo/as/mobile/anonymous fields.\",\"in\":\"path\",\"name\":\"field\",\"required\":true,\"schema\":{\"enum\":[\"ip\",\"geo\",\"geo/city\",\"geo/region\",\"geo/region_code\",\"geo/country\",\"geo/country_code\",\"geo/continent\",\"geo/continent_code\",\"geo/latitude\",\"geo/longitude\",\"geo/timezone\",\"geo/postal_code\",\"geo/dma_code\",\"geo/geoname_id\",\"geo/radius\",\"geo/last_changed\",\"as\",\"as/asn\",\"as/name\",\"as/domain\",\"as/type\",\"as/last_changed\",\"mobile\",\"mobile/name\",\"mobile/mcc\",\"mobile/mnc\",\"anonymous\",\"anonymous/name\",\"anonymous/is_proxy\",\"anonymous/is_relay\",\"anonymous/is_tor\",\"anonymous/is_vpn\",\"is_anonymous\",\"is_anycast\",\"is_hosting\",\"is_mobile\",\"is_satellite\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":{\"city\":\"Toronto\",\"region\":\"Ontario\"},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"Toronto\",\"type\":\"string\"}}},\"description\":\"A specific field value from the plus response.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"message\":{\"example\":\"Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help\",\"type\":\"string\"},\"title\":{\"example\":\"Unknown token\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"},\"status\":{\"example\":403,\"type\":\"integer\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"Forbidden error (authentication issues).\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"invalid_field is not a valid field.\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Invalid field name error.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Upgrade to increase your usage limits at https://ipinfo.io/pricing, or contact us via https://ipinfo.io/support\",\"type\":\"string\"},\"title\":{\"example\":\"Rate limit exceeded\",\"type\":\"string\"}},\"required\":[\"title\",\"message\"],\"type\":\"object\"}}},\"description\":\"Allocated API rate limit has been reached for the token. The user will be prompted with options to increase their API limit.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/plus/me/{field}", "segments": [{ "lit": "plus" }, { "lit": "me" }, { "var": "field" }], "select": { "exist": ["field"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "load" } }, "relations": { "ancestors": [["me"], ["plus"]] }, "key$": "ipinfo_plus", "name__orig": "ipinfo_plus", "Name": "IpinfoPlus", "name_": "ipinfo_plus", "name-": "ipinfo-plus", "NAME": "IPINFO_PLUS", "index$": 11 }, { "active": true, "entity": "ipinfo_plus", "key$": "BasicIpinfoPlusFlow", "kind": "basic", "name": "BasicIpinfoPlusFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "ipinfo_plus_ref01", "srcdatavar": "ipinfo_plus_ref01_data", "suffix": "_dt0" }, "match": { "id": "ipinfo_plus01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-ipinfo_plus_ref01" } }], "index$": 0 }] }, 'IpinfoPlus');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -103,12 +101,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID': idmap,
         'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
@@ -118,7 +110,13 @@ function basicSetup(extra) {
     });
     idmap = env['IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID'];
     const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IPINFO_DEVELOPER_TEST_IPINFO_PLUS_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpinfoDeveloperSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -132,7 +130,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -144,7 +143,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IPINFO_DEVELOPER_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

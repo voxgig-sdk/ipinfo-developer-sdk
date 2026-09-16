@@ -4,7 +4,10 @@ declare(strict_types=1);
 // IpinfoDeveloper SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class IpinfoDeveloperFeatures
@@ -14,8 +17,14 @@ class IpinfoDeveloperFeatures
         switch ($name) {
             case "base":
                 return new IpinfoDeveloperBaseFeature();
+            case "ratelimit":
+                return new IpinfoDeveloperRatelimitFeature();
+            case "retry":
+                return new IpinfoDeveloperRetryFeature();
             case "test":
                 return new IpinfoDeveloperTestFeature();
+            case "timeout":
+                return new IpinfoDeveloperTimeoutFeature();
             default:
                 return new IpinfoDeveloperBaseFeature();
         }
@@ -31,7 +40,10 @@ class IpinfoDeveloperFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

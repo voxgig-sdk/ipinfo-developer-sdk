@@ -3,34 +3,204 @@
     "whois_poc": {
       "WHOIS_POC00": {
         "id": "WHOIS_POC00",
-        "page": "s33",
+        "page": 51,
         "poc": "s34",
         "records": [],
-        "total": "s36"
+        "total": 54
       },
       "WHOIS_POC01": {
         "id": "WHOIS_POC01",
-        "page": "s65",
+        "page": 101,
         "poc": "s66",
         "records": [],
-        "total": "s68"
+        "total": 104
       },
       "WHOIS_POC02": {
         "id": "WHOIS_POC02",
-        "page": "s97",
+        "page": 151,
         "poc": "s98",
         "records": [],
-        "total": "s9a"
+        "total": 154
       }
     }
   },
   "new": {
     "whois_poc": {
       "whois_poc_ref01": {
-        "page": "sc9",
+        "page": 201,
         "poc": "sca",
         "records": [],
-        "total": "scc"
+        "total": 204
+      }
+    }
+  },
+  "requests": {
+    "GET /whois/poc/{whoispoc}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "The WHOIS Point of Contact (POC) value of an internet organization.",
+            "in": "path",
+            "name": "whoispoc",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page query parameter can be used to go through paginated records. page starts at 0 and the parameter is part of the response when included in request.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Source query parameter to filter records by provided Whois source.",
+            "in": "query",
+            "name": "whoissource",
+            "schema": {
+              "enum": [
+                "arin",
+                "ripe",
+                "afrinic",
+                "apnic",
+                "lacnic"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "page": 0,
+                    "poc": "CP312-ARIN",
+                    "records": [
+                      {
+                        "address": "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036",
+                        "country": "US",
+                        "created": "2000-03-25",
+                        "email": "spararo@mindspring.com",
+                        "fax": "",
+                        "id": "CP312-ARIN",
+                        "name": "Cynthia Pararo",
+                        "phone": "",
+                        "raw": "<raw data>",
+                        "source": "arin",
+                        "updated": "2000-03-25"
+                      }
+                    ],
+                    "total": 1
+                  },
+                  "properties": {
+                    "page": {
+                      "example": 0,
+                      "type": "integer"
+                    },
+                    "poc": {
+                      "example": "CP312-ARIN",
+                      "type": "string"
+                    },
+                    "records": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "example": "US, GA, Atlanta, Pineapple Houser\n2131 Plaster Bridge Rd Ne, 303244036",
+                            "type": "string"
+                          },
+                          "country": {
+                            "example": "US",
+                            "type": "string"
+                          },
+                          "created": {
+                            "example": "2000-03-25",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "email": {
+                            "example": "spararo@mindspring.com",
+                            "type": "string"
+                          },
+                          "fax": {
+                            "example": "",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "CP312-ARIN",
+                            "type": "string"
+                          },
+                          "name": {
+                            "example": "Cynthia Pararo",
+                            "type": "string"
+                          },
+                          "phone": {
+                            "example": "",
+                            "type": "string"
+                          },
+                          "raw": {
+                            "example": "<raw data>",
+                            "type": "string"
+                          },
+                          "source": {
+                            "example": "arin",
+                            "type": "string"
+                          },
+                          "updated": {
+                            "example": "2000-03-25",
+                            "format": "date",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "example": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "WHOIS Point of Contact (POC) response."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

@@ -22,5 +22,494 @@
     "ipinfo_lite": {
       "ipinfo_lite_ref01": {}
     }
+  },
+  "requests": {
+    "GET /lite/{ip}/{field}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getLiteFieldByIp",
+        "parameters": [
+          {
+            "description": "A single IPv4 or IPv6 IP address.",
+            "in": "path",
+            "name": "ip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent).",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": {
+              "enum": [
+                "ip",
+                "asn",
+                "as_name",
+                "as_domain",
+                "country_code",
+                "country",
+                "continent_code",
+                "continent"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "United States",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "A specific field value from the lite response."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Please provide a valid IP address",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request error (invalid IP format)."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "message": {
+                          "example": "Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help",
+                          "type": "string"
+                        },
+                        "title": {
+                          "example": "Unknown token",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 403,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden error (authentication issues)."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "invalid_field is not a valid field.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid field name error."
+          },
+          "500": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error or server unavailable."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /lite/me/{field}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCurrentLiteField",
+        "parameters": [
+          {
+            "description": "A specific field from the lite response (ip, asn, as_name, as_domain, country_code, country, continent_code, continent).",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "schema": {
+              "enum": [
+                "ip",
+                "asn",
+                "as_name",
+                "as_domain",
+                "country_code",
+                "country",
+                "continent_code",
+                "continent"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "United States",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "A specific field value from the lite response."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "message": {
+                          "example": "Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help",
+                          "type": "string"
+                        },
+                        "title": {
+                          "example": "Unknown token",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 403,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden error (authentication issues)."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "invalid_field is not a valid field.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid field name error."
+          },
+          "500": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error or server unavailable."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /lite/{ip}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getLiteInformationByIp",
+        "parameters": [
+          {
+            "description": "A single IPv4 or IPv6 IP address.",
+            "in": "path",
+            "name": "ip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "as_domain": {
+                          "example": "google.com",
+                          "type": "string"
+                        },
+                        "as_name": {
+                          "example": "Google LLC",
+                          "type": "string"
+                        },
+                        "asn": {
+                          "example": "AS15169",
+                          "type": "string"
+                        },
+                        "continent": {
+                          "example": "North America",
+                          "type": "string"
+                        },
+                        "continent_code": {
+                          "example": "NA",
+                          "type": "string"
+                        },
+                        "country": {
+                          "example": "United States",
+                          "type": "string"
+                        },
+                        "country_code": {
+                          "example": "US",
+                          "type": "string"
+                        },
+                        "ip": {
+                          "example": "8.8.8.8",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "ip",
+                        "asn",
+                        "as_name",
+                        "as_domain",
+                        "country_code",
+                        "country",
+                        "continent_code",
+                        "continent"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "bogon": {
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "ip": {
+                          "example": "192.168.1.1",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "ip",
+                        "bogon"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Lite response object or bogon response."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Please provide a valid IP address",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request error (invalid IP format)."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "message": {
+                          "example": "Please ensure you've entered your token correctly. Refer to https://ipinfo.io/developers for details, or contact us at support@ipinfo.io for help",
+                          "type": "string"
+                        },
+                        "title": {
+                          "example": "Unknown token",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": 403,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forbidden error (authentication issues)."
+          },
+          "500": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error or server unavailable."
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          },
+          {
+            "BearerAuth": []
+          },
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "scheme": "basic",
+            "type": "http"
+          },
+          "BearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

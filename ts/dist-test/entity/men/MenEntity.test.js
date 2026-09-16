@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IPINFO_DEVELOPER_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'men.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'men.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IPINFO_DEVELOPER_TEST_MEN_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "features", "req": true, "type": "`$OBJECT`", "index$": 0 }, { "active": true, "name": "requests", "req": true, "type": "`$OBJECT`", "index$": 1 }, { "active": true, "name": "token", "req": true, "type": "`$STRING`", "index$": 2 }], "name": "men", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": {}, "contract": { "id": "GET /me", "json": "{\"operationId\":\"getMe\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"features\":{\"properties\":{\"core\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"hostio\":{\"properties\":{\"abuse\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"asn\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"carrier\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"company\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"firmographics\":{\"example\":false,\"type\":\"boolean\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"org_additional\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"},\"daily\":{\"example\":50000,\"type\":\"integer\"},\"hosted_domains\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"result_limit\":{\"example\":5,\"type\":\"integer\"}},\"type\":\"object\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"privacy\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"},\"vpn_provider\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"},\"ranges\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"},\"result_limit\":{\"example\":5,\"type\":\"integer\"},\"whois\":{\"properties\":{\"daily\":{\"example\":50000,\"type\":\"integer\"},\"monthly\":{\"example\":50000,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}},\"type\":\"object\"},\"requests\":{\"properties\":{\"day\":{\"example\":0,\"type\":\"integer\"},\"limit\":{\"example\":50000,\"type\":\"integer\"},\"month\":{\"example\":69,\"type\":\"integer\"},\"remaining\":{\"example\":2147483578,\"type\":\"integer\"}},\"type\":\"object\"},\"token\":{\"example\":\"TOKEN\",\"type\":\"string\"}},\"required\":[\"token\",\"requests\",\"features\"],\"type\":\"object\"}}},\"description\":\"IPinfo access token rate and access information.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Invalid API token\",\"type\":\"string\"},\"token\":{\"example\":\"TOKEN\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"If the passed IPinfo access token is not present or is invalid.\"},\"500\":{\"content\":{\"text/plain\":{\"schema\":{\"example\":\"Internal server error\",\"type\":\"string\"}}},\"description\":\"Internal server error or server unavailable.\"}},\"security\":[{\"BasicAuth\":[]},{\"BearerAuth\":[]},{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"},\"BasicAuth\":{\"scheme\":\"basic\",\"type\":\"http\"},\"BearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/me", "segments": [{ "lit": "me" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "men", "name__orig": "men", "Name": "Men", "name_": "men", "name-": "men", "NAME": "MEN", "index$": 14 }, { "active": true, "entity": "men", "key$": "BasicMenFlow", "kind": "basic", "name": "BasicMenFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "men_ref01", "srcdatavar": "men_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-men_ref01" } }], "index$": 0 }] }, 'Men');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IPINFO_DEVELOPER_TEST_MEN_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IPINFO_DEVELOPER_TEST_MEN_ENTID': idmap,
         'IPINFO_DEVELOPER_TEST_LIVE': 'FALSE',
@@ -117,7 +109,13 @@ function basicSetup(extra) {
     });
     idmap = env['IPINFO_DEVELOPER_TEST_MEN_ENTID'];
     const live = 'TRUE' === env.IPINFO_DEVELOPER_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IPINFO_DEVELOPER_TEST_MEN_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpinfoDeveloperSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -131,7 +129,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -143,7 +142,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IPINFO_DEVELOPER_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;
