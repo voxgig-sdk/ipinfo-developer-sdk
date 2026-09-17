@@ -879,19 +879,6 @@ Return the entity name.
 lite = client.Lite()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `as_domain` | `str` | Yes |  |
-| `as_name` | `str` | Yes |  |
-| `asn` | `str` | Yes |  |
-| `continent` | `str` | Yes |  |
-| `continent_code` | `str` | Yes |  |
-| `country` | `str` | Yes |  |
-| `country_code` | `str` | Yes |  |
-| `ip` | `str` | Yes |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`

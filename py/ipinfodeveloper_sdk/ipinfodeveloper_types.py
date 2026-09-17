@@ -225,25 +225,11 @@ class IpinfoPlusLoadMatch(IpinfoPlusLoadMatchRequired, total=False):
 
 
 class Lite(TypedDict):
-    as_domain: str
-    as_name: str
-    asn: str
-    continent: str
-    continent_code: str
-    country: str
-    country_code: str
-    ip: str
+    pass
 
 
-class LiteLoadMatch(TypedDict, total=False):
-    as_domain: str
-    as_name: str
-    asn: str
-    continent: str
-    continent_code: str
-    country: str
-    country_code: str
-    ip: str
+class LiteLoadMatch(TypedDict):
+    pass
 
 
 class MaxRequired(TypedDict):

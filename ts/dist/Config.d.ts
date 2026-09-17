@@ -761,11 +761,7 @@ declare class Config {
             };
         };
         lite: {
-            fields: {
-                name: string;
-                req: boolean;
-                type: string;
-            }[];
+            fields: never[];
             name: string;
             op: {
                 load: {

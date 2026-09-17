@@ -172,24 +172,8 @@
 ---@field ip? string
 
 ---@class Lite
----@field as_domain string
----@field as_name string
----@field asn string
----@field continent string
----@field continent_code string
----@field country string
----@field country_code string
----@field ip string
 
 ---@class LiteLoadMatch
----@field as_domain? string
----@field as_name? string
----@field asn? string
----@field continent? string
----@field continent_code? string
----@field country? string
----@field country_code? string
----@field ip? string
 
 ---@class Max
 ---@field anonymous table

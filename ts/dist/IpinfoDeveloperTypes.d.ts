@@ -164,24 +164,8 @@ export interface IpinfoPlusLoadMatch {
     ip?: string;
 }
 export interface Lite {
-    as_domain: string;
-    as_name: string;
-    asn: string;
-    continent: string;
-    continent_code: string;
-    country: string;
-    country_code: string;
-    ip: string;
 }
 export interface LiteLoadMatch {
-    as_domain?: string;
-    as_name?: string;
-    asn?: string;
-    continent?: string;
-    continent_code?: string;
-    country?: string;
-    country_code?: string;
-    ip?: string;
     $action?: string;
     [action: string]: any;
 }

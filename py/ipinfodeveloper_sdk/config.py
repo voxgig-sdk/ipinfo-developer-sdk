@@ -1469,48 +1469,7 @@ def make_config():
         },
       },
       "lite": {
-        "fields": [
-          {
-            "name": "as_domain",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "as_name",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "asn",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "continent",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "continent_code",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "country",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "country_code",
-            "req": True,
-            "type": "`$STRING`",
-          },
-          {
-            "name": "ip",
-            "req": True,
-            "type": "`$STRING`",
-          },
-        ],
+        "fields": [],
         "name": "lite",
         "op": {
           "load": {

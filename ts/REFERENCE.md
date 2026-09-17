@@ -1111,19 +1111,6 @@ Return a copy of the entity options.
 const lite = client.Lite()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `as_domain` | `string` | Yes |  |
-| `as_name` | `string` | Yes |  |
-| `asn` | `string` | Yes |  |
-| `continent` | `string` | Yes |  |
-| `continent_code` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `country_code` | `string` | Yes |  |
-| `ip` | `string` | Yes |  |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard

@@ -465,14 +465,6 @@ API path: `/plus/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
-| `as_domain` |  |
-| `as_name` |  |
-| `asn` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `ip` |  |
 
 Operations: Load.
 
@@ -1087,19 +1079,6 @@ Create an instance: `lite = client.Lite`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `as_domain` | `String` |  |
-| `as_name` | `String` |  |
-| `asn` | `String` |  |
-| `continent` | `String` |  |
-| `continent_code` | `String` |  |
-| `country` | `String` |  |
-| `country_code` | `String` |  |
-| `ip` | `String` |  |
-
 #### Example: Load
 
 ```ruby
@@ -1689,6 +1668,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── IpinfoDeveloper_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

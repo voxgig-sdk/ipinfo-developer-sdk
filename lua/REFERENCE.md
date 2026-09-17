@@ -892,19 +892,6 @@ Return the entity name.
 local lite = client:Lite(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `as_domain` | `string` | Yes |  |
-| `as_name` | `string` | Yes |  |
-| `asn` | `string` | Yes |  |
-| `continent` | `string` | Yes |  |
-| `continent_code` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `country_code` | `string` | Yes |  |
-| `ip` | `string` | Yes |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`

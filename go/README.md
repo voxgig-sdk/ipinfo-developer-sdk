@@ -485,14 +485,6 @@ API path: `/plus/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
-| `"as_domain"` |  |
-| `"as_name"` |  |
-| `"asn"` |  |
-| `"continent"` |  |
-| `"continent_code"` |  |
-| `"country"` |  |
-| `"country_code"` |  |
-| `"ip"` |  |
 
 Operations: Load.
 
@@ -1143,19 +1135,6 @@ Create an instance: `lite := client.Lite(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `as_domain` | `string` |  |
-| `as_name` | `string` |  |
-| `asn` | `string` |  |
-| `continent` | `string` |  |
-| `continent_code` | `string` |  |
-| `country` | `string` |  |
-| `country_code` | `string` |  |
-| `ip` | `string` |  |
 
 #### Example: Load
 

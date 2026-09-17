@@ -248,27 +248,11 @@ class IpinfoPlusLoadMatch
 /** Lite entity data model. */
 class Lite
 {
-    public string $as_domain;
-    public string $as_name;
-    public string $asn;
-    public string $continent;
-    public string $continent_code;
-    public string $country;
-    public string $country_code;
-    public string $ip;
 }
 
 /** Request payload for Lite#load. */
 class LiteLoadMatch
 {
-    public ?string $as_domain = null;
-    public ?string $as_name = null;
-    public ?string $asn = null;
-    public ?string $continent = null;
-    public ?string $continent_code = null;
-    public ?string $country = null;
-    public ?string $country_code = null;
-    public ?string $ip = null;
 }
 
 /** Max entity data model. */

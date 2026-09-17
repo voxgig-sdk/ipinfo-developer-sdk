@@ -468,14 +468,6 @@ API path: `/plus/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
-| `as_domain` |  |
-| `as_name` |  |
-| `asn` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `ip` |  |
 
 Operations: Load.
 
@@ -1079,19 +1071,6 @@ Create an instance: `lite = client.Lite()`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `as_domain` | `str` |  |
-| `as_name` | `str` |  |
-| `asn` | `str` |  |
-| `continent` | `str` |  |
-| `continent_code` | `str` |  |
-| `country` | `str` |  |
-| `country_code` | `str` |  |
-| `ip` | `str` |  |
-
 #### Example: Load
 
 ```python
@@ -1665,6 +1644,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── ipinfodeveloper_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

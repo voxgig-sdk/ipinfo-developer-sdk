@@ -888,19 +888,6 @@ lite := client.Lite(nil)
 fmt.Println(lite.GetName()) // "lite"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `as_domain` | `string` | Yes |  |
-| `as_name` | `string` | Yes |  |
-| `asn` | `string` | Yes |  |
-| `continent` | `string` | Yes |  |
-| `continent_code` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `country_code` | `string` | Yes |  |
-| `ip` | `string` | Yes |  |
-
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`

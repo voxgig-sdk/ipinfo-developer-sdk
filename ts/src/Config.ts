@@ -132,90 +132,90 @@ class Config {
 
     entity: {
       
-      abuse: {
-      },
-
-      asn: {
-      },
-
-      carrier: {
-      },
-
-      company: {
-      },
-
-      core: {
-      },
-
-      domain: {
-      },
-
-      general: {
-      },
-
-      get_current_information: {
-      },
-
-      get_information_by_ip: {
-      },
-
-      ipinfo_core: {
-      },
-
-      ipinfo_lite: {
-      },
-
-      ipinfo_plus: {
-      },
-
-      lite: {
-      },
-
-      max: {
-      },
-
-      men: {
-      },
-
-      place: {
-      },
-
-      plus: {
-      },
-
-      privacy: {
-      },
-
-      privacy_extended: {
-      },
-
-      range: {
-      },
-
-      residential_proxy: {
-      },
-
-      single: {
-      },
-
-      whois_asn: {
-      },
-
-      whois_domain: {
-      },
-
-      whois_ip: {
-      },
-
-      whois_net_id: {
-      },
-
-      whois_org: {
-      },
-
-      whois_poc: {
-      },
-
+        abuse: {
+        },
+  
+        asn: {
+        },
+  
+        carrier: {
+        },
+  
+        company: {
+        },
+  
+        core: {
+        },
+  
+        domain: {
+        },
+  
+        general: {
+        },
+  
+        get_current_information: {
+        },
+  
+        get_information_by_ip: {
+        },
+  
+        ipinfo_core: {
+        },
+  
+        ipinfo_lite: {
+        },
+  
+        ipinfo_plus: {
+        },
+  
+        lite: {
+        },
+  
+        max: {
+        },
+  
+        men: {
+        },
+  
+        place: {
+        },
+  
+        plus: {
+        },
+  
+        privacy: {
+        },
+  
+        privacy_extended: {
+        },
+  
+        range: {
+        },
+  
+        residential_proxy: {
+        },
+  
+        single: {
+        },
+  
+        whois_asn: {
+        },
+  
+        whois_domain: {
+        },
+  
+        whois_ip: {
+        },
+  
+        whois_net_id: {
+        },
+  
+        whois_org: {
+        },
+  
+        whois_poc: {
+        },
+  
     }
   }
 
@@ -1548,48 +1548,7 @@ class Config {
       }
     },
     "lite": {
-      "fields": [
-        {
-          "name": "as_domain",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "as_name",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "asn",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "continent",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "continent_code",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "country",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "country_code",
-          "req": true,
-          "type": "`$STRING`"
-        },
-        {
-          "name": "ip",
-          "req": true,
-          "type": "`$STRING`"
-        }
-      ],
+      "fields": [],
       "name": "lite",
       "op": {
         "load": {

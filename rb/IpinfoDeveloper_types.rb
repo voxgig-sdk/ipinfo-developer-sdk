@@ -597,78 +597,12 @@ IpinfoPlusLoadMatch = Struct.new(
 )
 
 # Lite entity data model.
-#
-# @!attribute [rw] as_domain
-#   @return [String]
-#
-# @!attribute [rw] as_name
-#   @return [String]
-#
-# @!attribute [rw] asn
-#   @return [String]
-#
-# @!attribute [rw] continent
-#   @return [String]
-#
-# @!attribute [rw] continent_code
-#   @return [String]
-#
-# @!attribute [rw] country
-#   @return [String]
-#
-# @!attribute [rw] country_code
-#   @return [String]
-#
-# @!attribute [rw] ip
-#   @return [String]
-Lite = Struct.new(
-  :as_domain,
-  :as_name,
-  :asn,
-  :continent,
-  :continent_code,
-  :country,
-  :country_code,
-  :ip,
-  keyword_init: true
-)
+class Lite
+end
 
 # Request payload for Lite#load.
-#
-# @!attribute [rw] as_domain
-#   @return [String, nil]
-#
-# @!attribute [rw] as_name
-#   @return [String, nil]
-#
-# @!attribute [rw] asn
-#   @return [String, nil]
-#
-# @!attribute [rw] continent
-#   @return [String, nil]
-#
-# @!attribute [rw] continent_code
-#   @return [String, nil]
-#
-# @!attribute [rw] country
-#   @return [String, nil]
-#
-# @!attribute [rw] country_code
-#   @return [String, nil]
-#
-# @!attribute [rw] ip
-#   @return [String, nil]
-LiteLoadMatch = Struct.new(
-  :as_domain,
-  :as_name,
-  :asn,
-  :continent,
-  :continent_code,
-  :country,
-  :country_code,
-  :ip,
-  keyword_init: true
-)
+class LiteLoadMatch
+end
 
 # Max entity data model.
 #

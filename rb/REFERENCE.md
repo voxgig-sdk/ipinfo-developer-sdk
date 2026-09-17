@@ -895,19 +895,6 @@ Return the entity name.
 lite = client.Lite
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `as_domain` | `String` | Yes |  |
-| `as_name` | `String` | Yes |  |
-| `asn` | `String` | Yes |  |
-| `continent` | `String` | Yes |  |
-| `continent_code` | `String` | Yes |  |
-| `country` | `String` | Yes |  |
-| `country_code` | `String` | Yes |  |
-| `ip` | `String` | Yes |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`

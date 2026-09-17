@@ -453,14 +453,6 @@ API path: `/plus/{ip}/{field}`
 
 | Field | Description |
 | --- | --- |
-| `as_domain` |  |
-| `as_name` |  |
-| `asn` |  |
-| `continent` |  |
-| `continent_code` |  |
-| `country` |  |
-| `country_code` |  |
-| `ip` |  |
 
 Operations: Load.
 
@@ -1064,19 +1056,6 @@ Create an instance: `local lite = client:Lite(nil)`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `as_domain` | `string` |  |
-| `as_name` | `string` |  |
-| `asn` | `string` |  |
-| `continent` | `string` |  |
-| `continent_code` | `string` |  |
-| `country` | `string` |  |
-| `country_code` | `string` |  |
-| `ip` | `string` |  |
-
 #### Example: Load
 
 ```lua
@@ -1650,6 +1629,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── ipinfo-developer_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

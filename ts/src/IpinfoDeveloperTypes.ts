@@ -195,25 +195,9 @@ export interface IpinfoPlusLoadMatch {
 }
 
 export interface Lite {
-  as_domain: string
-  as_name: string
-  asn: string
-  continent: string
-  continent_code: string
-  country: string
-  country_code: string
-  ip: string
 }
 
 export interface LiteLoadMatch {
-  as_domain?: string
-  as_name?: string
-  asn?: string
-  continent?: string
-  continent_code?: string
-  country?: string
-  country_code?: string
-  ip?: string
 
   // Selects a custom action instead of the plain load:
   //   'me'

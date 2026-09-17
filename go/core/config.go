@@ -1444,48 +1444,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"lite": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "as_domain",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "as_name",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "asn",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "continent",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "continent_code",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "country",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "country_code",
-						"req": true,
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "ip",
-						"req": true,
-						"type": "`$STRING`",
-					},
-				},
+				"fields": []any{},
 				"name": "lite",
 				"op": map[string]any{
 					"load": map[string]any{

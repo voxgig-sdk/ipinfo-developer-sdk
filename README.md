@@ -105,12 +105,12 @@ local result, err = client:Domain():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
-| Python | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
-| PHP | `voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| Python | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| PHP | `voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ipinfo-developer-sdk/go` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
-| Lua | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/releases) |
+| Ruby | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| Lua | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ipinfo-developer-sdk/go-cli` | `go install github.com/voxgig-sdk/ipinfo-developer-sdk/go-cli/cmd/ipinfo-developer@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ipinfo-developer-sdk/go-mcp` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go-mcp@latest` |
 

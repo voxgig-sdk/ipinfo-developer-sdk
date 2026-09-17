@@ -1440,48 +1440,7 @@ local function make_config()
         },
       },
       ["lite"] = {
-        ["fields"] = {
-          {
-            ["name"] = "as_domain",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "as_name",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "asn",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "continent",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "continent_code",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "country",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "country_code",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "ip",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-          },
-        },
+        ["fields"] = {},
         ["name"] = "lite",
         ["op"] = {
           ["load"] = {

@@ -227,26 +227,10 @@ type IpinfoPlusLoadMatch struct {
 
 // Lite is the typed data model for the lite entity.
 type Lite struct {
-	AsDomain string `json:"as_domain"`
-	AsName string `json:"as_name"`
-	Asn string `json:"asn"`
-	Continent string `json:"continent"`
-	ContinentCode string `json:"continent_code"`
-	Country string `json:"country"`
-	CountryCode string `json:"country_code"`
-	Ip string `json:"ip"`
 }
 
 // LiteLoadMatch is the typed request payload for Lite.LoadTyped.
 type LiteLoadMatch struct {
-	AsDomain *string `json:"as_domain,omitempty"`
-	AsName *string `json:"as_name,omitempty"`
-	Asn *string `json:"asn,omitempty"`
-	Continent *string `json:"continent,omitempty"`
-	ContinentCode *string `json:"continent_code,omitempty"`
-	Country *string `json:"country,omitempty"`
-	CountryCode *string `json:"country_code,omitempty"`
-	Ip *string `json:"ip,omitempty"`
 }
 
 // Max is the typed data model for the max entity.
