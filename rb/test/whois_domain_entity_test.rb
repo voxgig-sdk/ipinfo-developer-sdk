@@ -62,7 +62,7 @@ def whois_domain_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["whois_domain01", "whois_domain02", "whois_domain03", "net01", "net02", "net03"],
+    ["whois_domain01", "whois_domain02", "whois_domain03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

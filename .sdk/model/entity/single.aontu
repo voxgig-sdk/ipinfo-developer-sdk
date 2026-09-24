@@ -1,0 +1,516 @@
+# Entity: single
+
+main: kit: entity: single: {
+
+  alias: field: {}
+
+  name: "single"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /{ip}/city"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/city"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "city"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/country"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/country"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "country"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/hostname"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/hostname"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "hostname"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/ip"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/ip"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/loc"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/loc"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "loc"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/org"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/org"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "org"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/postal"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/postal"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "postal"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/region"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/region"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "region"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /{ip}/timezone"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/timezone"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "timezone"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /city"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/city"
+          s: [
+            {
+              lit: "city"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /country"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/country"
+          s: [
+            {
+              lit: "country"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /hostname"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/hostname"
+          s: [
+            {
+              lit: "hostname"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /ip"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/ip"
+          s: [
+            {
+              lit: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /loc"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/loc"
+          s: [
+            {
+              lit: "loc"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /org"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/org"
+          s: [
+            {
+              lit: "org"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /postal"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/postal"
+          s: [
+            {
+              lit: "postal"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /region"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/region"
+          s: [
+            {
+              lit: "region"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /timezone"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/timezone"
+          s: [
+            {
+              lit: "timezone"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -1,0 +1,87 @@
+# Entity: residential_proxy
+
+main: kit: entity: residential_proxy: {
+
+  alias: field: {}
+
+  fields: {
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: true
+      sh: "The IPv4 or IPv6 address associated with a residential proxy"
+      t: "`$STRING`"
+    }
+    last_seen: {
+      fo: "date"
+      h: "Last Seen"
+      n: "last_seen"
+      r: true
+      sh: "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)"
+      t: "`$STRING`"
+    }
+    percent_days_seen: {
+      h: "Percent Days Seen"
+      n: "percent_days_seen"
+      r: true
+      sh: "The percentage of days the IP was active in the last 7-day period"
+      t: "`$INTEGER`"
+    }
+    service: {
+      h: "Service"
+      n: "service"
+      r: true
+      sh: "The name of the residential proxy service."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "residential_proxy"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /{ip}/resproxy"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/resproxy"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "resproxy"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WhoisAsnEntity = void 0;
 const IpinfoDeveloperEntityBase_1 = require("../IpinfoDeveloperEntityBase");
-// TODO: needs Entity superclass
 class WhoisAsnEntity extends IpinfoDeveloperEntityBase_1.IpinfoDeveloperEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

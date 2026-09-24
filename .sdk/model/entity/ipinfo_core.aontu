@@ -1,0 +1,143 @@
+# Entity: ipinfo_core
+
+main: kit: entity: ipinfo_core: {
+
+  alias: field: {}
+
+  fields: {
+    city: {
+      h: "City"
+      n: "city"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    key: {
+      h: "Key"
+      n: "key"
+      r: false
+      t: "`$STRING`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "ip"
+      "field"
+    ]
+    sep: "/"
+  }
+
+  name: "ipinfo_core"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /lookup/{ip}/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lookup/{ip}/{field}"
+          q: {
+            exist: [
+              "field"
+              "ip"
+            ]
+          }
+          s: [
+            {
+              lit: "lookup"
+            }
+            {
+              var: "ip"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /lookup/me/{field}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "field"
+                or: "field"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lookup/me/{field}"
+          q: {
+            exist: [
+              "field"
+            ]
+          }
+          s: [
+            {
+              lit: "lookup"
+            }
+            {
+              lit: "me"
+            }
+            {
+              var: "field"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

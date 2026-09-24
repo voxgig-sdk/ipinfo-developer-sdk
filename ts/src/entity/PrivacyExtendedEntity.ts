@@ -19,7 +19,6 @@ import type {
   PrivacyExtendedListMatch,
 } from '../IpinfoDeveloperTypes'
 
-// TODO: needs Entity superclass
 class PrivacyExtendedEntity extends IpinfoDeveloperEntityBase<PrivacyExtended> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {

@@ -74,7 +74,7 @@ def _ipinfo_plus_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["ipinfo_plus01", "ipinfo_plus02", "ipinfo_plus03", "me01", "me02", "me03", "plus01", "plus02", "plus03"],
+        ["ipinfo_plus01", "ipinfo_plus02", "ipinfo_plus03", "plus01", "plus02", "plus03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

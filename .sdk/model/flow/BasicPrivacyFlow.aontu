@@ -1,0 +1,32 @@
+# BasicPrivacyFlow
+
+main: kit: flow: BasicPrivacyFlow:
+{
+  entity: "privacy",
+  kind: "basic",
+  name: "BasicPrivacyFlow",
+  step: [
+    {
+      i: {
+        ref: "privacy_ref01",
+        srcdatavar: "privacy_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "privacy01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-privacy_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPrivacyFlow"
+}

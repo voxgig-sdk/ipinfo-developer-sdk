@@ -1,0 +1,32 @@
+# BasicIpinfoCoreFlow
+
+main: kit: flow: BasicIpinfoCoreFlow:
+{
+  entity: "ipinfo_core",
+  kind: "basic",
+  name: "BasicIpinfoCoreFlow",
+  step: [
+    {
+      i: {
+        ref: "ipinfo_core_ref01",
+        srcdatavar: "ipinfo_core_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "ipinfo_core01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ipinfo_core_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIpinfoCoreFlow"
+}

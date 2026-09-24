@@ -1,7 +1,7 @@
 // Typed models for the IpinfoDeveloper SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,12 +14,6 @@ import (
 
 // Abuse is the typed data model for the abuse entity.
 type Abuse struct {
-	Address *string `json:"address,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Network *string `json:"network,omitempty"`
-	Phone *string `json:"phone,omitempty"`
 }
 
 // AbuseLoadMatch is the typed request payload for Abuse.LoadTyped.
@@ -29,20 +23,6 @@ type AbuseLoadMatch struct {
 
 // Asn is the typed data model for the asn entity.
 type Asn struct {
-	Allocated *string `json:"allocated,omitempty"`
-	Asn string `json:"asn"`
-	Country *string `json:"country,omitempty"`
-	Domain string `json:"domain"`
-	Downstreams *[]any `json:"downstreams,omitempty"`
-	Name string `json:"name"`
-	NumIps *int `json:"num_ips,omitempty"`
-	Peers *[]any `json:"peers,omitempty"`
-	Prefixes *[]any `json:"prefixes,omitempty"`
-	Prefixes6 *[]any `json:"prefixes6,omitempty"`
-	Registry *string `json:"registry,omitempty"`
-	Route *string `json:"route,omitempty"`
-	Type string `json:"type"`
-	Upstreams *[]any `json:"upstreams,omitempty"`
 }
 
 // AsnListMatch is the typed request payload for Asn.ListTyped.
@@ -52,9 +32,6 @@ type AsnListMatch struct {
 
 // Carrier is the typed data model for the carrier entity.
 type Carrier struct {
-	Mcc string `json:"mcc"`
-	Mnc string `json:"mnc"`
-	Name string `json:"name"`
 }
 
 // CarrierLoadMatch is the typed request payload for Carrier.LoadTyped.
@@ -64,9 +41,6 @@ type CarrierLoadMatch struct {
 
 // Company is the typed data model for the company entity.
 type Company struct {
-	Domain string `json:"domain"`
-	Name string `json:"name"`
-	Type string `json:"type"`
 }
 
 // CompanyLoadMatch is the typed request payload for Company.LoadTyped.
@@ -76,15 +50,6 @@ type CompanyLoadMatch struct {
 
 // Core is the typed data model for the core entity.
 type Core struct {
-	As *map[string]any `json:"as,omitempty"`
-	Geo *map[string]any `json:"geo,omitempty"`
-	Hostname *string `json:"hostname,omitempty"`
-	Ip string `json:"ip"`
-	IsAnonymous *bool `json:"is_anonymous,omitempty"`
-	IsAnycast *bool `json:"is_anycast,omitempty"`
-	IsHosting *bool `json:"is_hosting,omitempty"`
-	IsMobile *bool `json:"is_mobile,omitempty"`
-	IsSatellite *bool `json:"is_satellite,omitempty"`
 }
 
 // CoreLoadMatch is the typed request payload for Core.LoadTyped.
@@ -94,11 +59,6 @@ type CoreLoadMatch struct {
 
 // Domain is the typed data model for the domain entity.
 type Domain struct {
-	Domains *[]any `json:"domains,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Ip *string `json:"ip,omitempty"`
-	Page *int `json:"page,omitempty"`
-	Total int `json:"total"`
 }
 
 // DomainLoadMatch is the typed request payload for Domain.LoadTyped.
@@ -110,10 +70,6 @@ type DomainLoadMatch struct {
 
 // General is the typed data model for the general entity.
 type General struct {
-	F8888 *map[string]any `json:"8_8_8_8,omitempty"`
-	F8888city *string `json:"8_8_8_8city,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Value *map[string]any `json:"value,omitempty"`
 }
 
 // GeneralCreateData is the typed request payload for General.CreateTyped.
@@ -126,21 +82,6 @@ type GeneralCreateData struct {
 
 // GetCurrentInformation is the typed data model for the get_current_information entity.
 type GetCurrentInformation struct {
-	Asn map[string]any `json:"asn"`
-	Bogon *bool `json:"bogon,omitempty"`
-	Carrier map[string]any `json:"carrier"`
-	City *string `json:"city,omitempty"`
-	Company map[string]any `json:"company"`
-	Country *string `json:"country,omitempty"`
-	Domains map[string]any `json:"domains"`
-	Hostname *string `json:"hostname,omitempty"`
-	Ip string `json:"ip"`
-	Loc *string `json:"loc,omitempty"`
-	Org *string `json:"org,omitempty"`
-	Postal *string `json:"postal,omitempty"`
-	Privacy map[string]any `json:"privacy"`
-	Region *string `json:"region,omitempty"`
-	Timezone *string `json:"timezone,omitempty"`
 }
 
 // GetCurrentInformationLoadMatch is the typed request payload for GetCurrentInformation.LoadTyped.
@@ -164,22 +105,6 @@ type GetCurrentInformationLoadMatch struct {
 
 // GetInformationByIp is the typed data model for the get_information_by_ip entity.
 type GetInformationByIp struct {
-	Asn map[string]any `json:"asn"`
-	Bogon *bool `json:"bogon,omitempty"`
-	Carrier map[string]any `json:"carrier"`
-	City *string `json:"city,omitempty"`
-	Company map[string]any `json:"company"`
-	Country *string `json:"country,omitempty"`
-	Domains map[string]any `json:"domains"`
-	Hostname *string `json:"hostname,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Ip string `json:"ip"`
-	Loc *string `json:"loc,omitempty"`
-	Org *string `json:"org,omitempty"`
-	Postal *string `json:"postal,omitempty"`
-	Privacy map[string]any `json:"privacy"`
-	Region *string `json:"region,omitempty"`
-	Timezone *string `json:"timezone,omitempty"`
 }
 
 // GetInformationByIpLoadMatch is the typed request payload for GetInformationByIp.LoadTyped.
@@ -189,10 +114,6 @@ type GetInformationByIpLoadMatch struct {
 
 // IpinfoCore is the typed data model for the ipinfo_core entity.
 type IpinfoCore struct {
-	City *string `json:"city,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Key *string `json:"key,omitempty"`
-	Region *string `json:"region,omitempty"`
 }
 
 // IpinfoCoreLoadMatch is the typed request payload for IpinfoCore.LoadTyped.
@@ -203,7 +124,6 @@ type IpinfoCoreLoadMatch struct {
 
 // IpinfoLite is the typed data model for the ipinfo_lite entity.
 type IpinfoLite struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // IpinfoLiteLoadMatch is the typed request payload for IpinfoLite.LoadTyped.
@@ -213,10 +133,6 @@ type IpinfoLiteLoadMatch struct {
 
 // IpinfoPlus is the typed data model for the ipinfo_plus entity.
 type IpinfoPlus struct {
-	City *string `json:"city,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Key *string `json:"key,omitempty"`
-	Region *string `json:"region,omitempty"`
 }
 
 // IpinfoPlusLoadMatch is the typed request payload for IpinfoPlus.LoadTyped.
@@ -235,18 +151,6 @@ type LiteLoadMatch struct {
 
 // Max is the typed data model for the max entity.
 type Max struct {
-	Anonymous map[string]any `json:"anonymous"`
-	As map[string]any `json:"as"`
-	Geo map[string]any `json:"geo"`
-	Hostname *string `json:"hostname,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Ip string `json:"ip"`
-	IsAnonymous *bool `json:"is_anonymous,omitempty"`
-	IsAnycast *bool `json:"is_anycast,omitempty"`
-	IsHosting *bool `json:"is_hosting,omitempty"`
-	IsMobile *bool `json:"is_mobile,omitempty"`
-	IsSatellite *bool `json:"is_satellite,omitempty"`
-	Mobile *map[string]any `json:"mobile,omitempty"`
 }
 
 // MaxLoadMatch is the typed request payload for Max.LoadTyped.
@@ -256,9 +160,6 @@ type MaxLoadMatch struct {
 
 // Men is the typed data model for the men entity.
 type Men struct {
-	Features map[string]any `json:"features"`
-	Requests map[string]any `json:"requests"`
-	Token string `json:"token"`
 }
 
 // MenLoadMatch is the typed request payload for Men.LoadTyped.
@@ -270,13 +171,6 @@ type MenLoadMatch struct {
 
 // Place is the typed data model for the place entity.
 type Place struct {
-	Category string `json:"category"`
-	Id *string `json:"id,omitempty"`
-	Ip string `json:"ip"`
-	Latitude float64 `json:"latitude"`
-	Longitude float64 `json:"longitude"`
-	Name string `json:"name"`
-	Ssid string `json:"ssid"`
 }
 
 // PlaceLoadMatch is the typed request payload for Place.LoadTyped.
@@ -286,17 +180,6 @@ type PlaceLoadMatch struct {
 
 // Plus is the typed data model for the plus entity.
 type Plus struct {
-	Anonymous *map[string]any `json:"anonymous,omitempty"`
-	As *map[string]any `json:"as,omitempty"`
-	Geo *map[string]any `json:"geo,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Ip string `json:"ip"`
-	IsAnonymous *bool `json:"is_anonymous,omitempty"`
-	IsAnycast *bool `json:"is_anycast,omitempty"`
-	IsHosting *bool `json:"is_hosting,omitempty"`
-	IsMobile *bool `json:"is_mobile,omitempty"`
-	IsSatellite *bool `json:"is_satellite,omitempty"`
-	Mobile *map[string]any `json:"mobile,omitempty"`
 }
 
 // PlusLoadMatch is the typed request payload for Plus.LoadTyped.
@@ -306,12 +189,6 @@ type PlusLoadMatch struct {
 
 // Privacy is the typed data model for the privacy entity.
 type Privacy struct {
-	Hosting bool `json:"hosting"`
-	Proxy bool `json:"proxy"`
-	Relay bool `json:"relay"`
-	Service string `json:"service"`
-	Tor bool `json:"tor"`
-	Vpn bool `json:"vpn"`
 }
 
 // PrivacyLoadMatch is the typed request payload for Privacy.LoadTyped.
@@ -321,22 +198,6 @@ type PrivacyLoadMatch struct {
 
 // PrivacyExtended is the typed data model for the privacy_extended entity.
 type PrivacyExtended struct {
-	Census *bool `json:"census,omitempty"`
-	CensusPorts *[]any `json:"census_ports,omitempty"`
-	Confidence *int `json:"confidence,omitempty"`
-	Coverage *float64 `json:"coverage,omitempty"`
-	DeviceActivity *bool `json:"device_activity,omitempty"`
-	FirstSeen *string `json:"first_seen,omitempty"`
-	Hosting bool `json:"hosting"`
-	Inferred *bool `json:"inferred,omitempty"`
-	LastSeen *string `json:"last_seen,omitempty"`
-	Proxy bool `json:"proxy"`
-	Relay bool `json:"relay"`
-	Service string `json:"service"`
-	Tor bool `json:"tor"`
-	Vpn bool `json:"vpn"`
-	VpnConfig *bool `json:"vpn_config,omitempty"`
-	Whois *bool `json:"whois,omitempty"`
 }
 
 // PrivacyExtendedListMatch is the typed request payload for PrivacyExtended.ListTyped.
@@ -346,11 +207,6 @@ type PrivacyExtendedListMatch struct {
 
 // Range is the typed data model for the range entity.
 type Range struct {
-	Domain string `json:"domain"`
-	Id *string `json:"id,omitempty"`
-	NumRanges string `json:"num_ranges"`
-	Ranges []any `json:"ranges"`
-	RedirectsTo string `json:"redirects_to"`
 }
 
 // RangeLoadMatch is the typed request payload for Range.LoadTyped.
@@ -360,10 +216,6 @@ type RangeLoadMatch struct {
 
 // ResidentialProxy is the typed data model for the residential_proxy entity.
 type ResidentialProxy struct {
-	Ip string `json:"ip"`
-	LastSeen string `json:"last_seen"`
-	PercentDaysSeen int `json:"percent_days_seen"`
-	Service string `json:"service"`
 }
 
 // ResidentialProxyLoadMatch is the typed request payload for ResidentialProxy.LoadTyped.
@@ -381,19 +233,6 @@ type SingleLoadMatch struct {
 
 // WhoisAsn is the typed data model for the whois_asn entity.
 type WhoisAsn struct {
-	Abuse *string `json:"abuse,omitempty"`
-	Admin *string `json:"admin,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Maintainer *string `json:"maintainer,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Org *string `json:"org,omitempty"`
-	Range *string `json:"range,omitempty"`
-	Raw *string `json:"raw,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Tech *string `json:"tech,omitempty"`
-	Updated *string `json:"updated,omitempty"`
 }
 
 // WhoisAsnListMatch is the typed request payload for WhoisAsn.ListTyped.
@@ -405,10 +244,6 @@ type WhoisAsnListMatch struct {
 
 // WhoisDomain is the typed data model for the whois_domain entity.
 type WhoisDomain struct {
-	Net *string `json:"net,omitempty"`
-	Page *int `json:"page,omitempty"`
-	Records *[]any `json:"records,omitempty"`
-	Total *int `json:"total,omitempty"`
 }
 
 // WhoisDomainLoadMatch is the typed request payload for WhoisDomain.LoadTyped.
@@ -420,10 +255,6 @@ type WhoisDomainLoadMatch struct {
 
 // WhoisIp is the typed data model for the whois_ip entity.
 type WhoisIp struct {
-	Net *string `json:"net,omitempty"`
-	Page *int `json:"page,omitempty"`
-	Records *[]any `json:"records,omitempty"`
-	Total *int `json:"total,omitempty"`
 }
 
 // WhoisIpLoadMatch is the typed request payload for WhoisIp.LoadTyped.
@@ -435,10 +266,6 @@ type WhoisIpLoadMatch struct {
 
 // WhoisNetId is the typed data model for the whois_net_id entity.
 type WhoisNetId struct {
-	Net *string `json:"net,omitempty"`
-	Page *int `json:"page,omitempty"`
-	Records *[]any `json:"records,omitempty"`
-	Total *int `json:"total,omitempty"`
 }
 
 // WhoisNetIdLoadMatch is the typed request payload for WhoisNetId.LoadTyped.
@@ -450,11 +277,6 @@ type WhoisNetIdLoadMatch struct {
 
 // WhoisOrg is the typed data model for the whois_org entity.
 type WhoisOrg struct {
-	Id *string `json:"id,omitempty"`
-	Org *string `json:"org,omitempty"`
-	Page *int `json:"page,omitempty"`
-	Records *[]any `json:"records,omitempty"`
-	Total *int `json:"total,omitempty"`
 }
 
 // WhoisOrgLoadMatch is the typed request payload for WhoisOrg.LoadTyped.
@@ -466,11 +288,6 @@ type WhoisOrgLoadMatch struct {
 
 // WhoisPoc is the typed data model for the whois_poc entity.
 type WhoisPoc struct {
-	Id *string `json:"id,omitempty"`
-	Page *int `json:"page,omitempty"`
-	Poc *string `json:"poc,omitempty"`
-	Records *[]any `json:"records,omitempty"`
-	Total *int `json:"total,omitempty"`
 }
 
 // WhoisPocLoadMatch is the typed request payload for WhoisPoc.LoadTyped.

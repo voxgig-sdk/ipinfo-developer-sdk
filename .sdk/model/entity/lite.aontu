@@ -1,0 +1,45 @@
+# Entity: lite
+
+main: kit: entity: lite: {
+
+  alias: field: {}
+
+  name: "lite"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /lite/me"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/lite/me"
+          q: {
+            "$action": "me"
+          }
+          s: [
+            {
+              lit: "lite"
+            }
+            {
+              lit: "me"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -74,7 +74,7 @@ function ipinfo_core_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["ipinfo_core01", "ipinfo_core02", "ipinfo_core03", "me01", "me02", "me03", "lookup01", "lookup02", "lookup03"] as $k) {
+    foreach (["ipinfo_core01", "ipinfo_core02", "ipinfo_core03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

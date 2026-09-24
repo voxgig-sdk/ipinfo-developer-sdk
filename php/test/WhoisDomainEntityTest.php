@@ -70,7 +70,7 @@ function whois_domain_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["whois_domain01", "whois_domain02", "whois_domain03", "net01", "net02", "net03"] as $k) {
+    foreach (["whois_domain01", "whois_domain02", "whois_domain03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

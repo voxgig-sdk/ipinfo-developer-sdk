@@ -70,7 +70,7 @@ def _core_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["core01", "core02", "core03", "lookup01", "lookup02", "lookup03"],
+        ["core01", "core02", "core03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

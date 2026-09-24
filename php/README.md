@@ -33,15 +33,15 @@ $client = new IpinfoDeveloperSDK([
 ]);
 ```
 
-### 3. Load a core
+### 3. Load an ipinfoplus
 
-Core is nested under ip, so provide the `ip`.
+IpinfoPlus is nested under field, so provide the `field`.
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the Core record (throws on error).
-    $core = $client->Core()->load(["ip" => "example_ip"]);
-    print_r($core->data_get());
+    // load() returns the ENTITY — call data_get() for the IpinfoPlus record (throws on error).
+    $ipinfoplus = $client->IpinfoPlus()->load(["field" => "example_field"]);
+    print_r($ipinfoplus->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }

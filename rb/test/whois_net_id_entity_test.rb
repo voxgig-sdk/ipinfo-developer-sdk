@@ -62,7 +62,7 @@ def whois_net_id_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["whois_net_id01", "whois_net_id02", "whois_net_id03", "net01", "net02", "net03"],
+    ["whois_net_id01", "whois_net_id02", "whois_net_id03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

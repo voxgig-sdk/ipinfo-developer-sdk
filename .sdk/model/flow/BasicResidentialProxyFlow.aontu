@@ -1,0 +1,32 @@
+# BasicResidentialProxyFlow
+
+main: kit: flow: BasicResidentialProxyFlow:
+{
+  entity: "residential_proxy",
+  kind: "basic",
+  name: "BasicResidentialProxyFlow",
+  step: [
+    {
+      i: {
+        ref: "residential_proxy_ref01",
+        srcdatavar: "residential_proxy_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "residential_proxy01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-residential_proxy_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicResidentialProxyFlow"
+}

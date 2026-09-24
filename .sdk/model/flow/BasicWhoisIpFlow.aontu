@@ -1,0 +1,32 @@
+# BasicWhoisIpFlow
+
+main: kit: flow: BasicWhoisIpFlow:
+{
+  entity: "whois_ip",
+  kind: "basic",
+  name: "BasicWhoisIpFlow",
+  step: [
+    {
+      i: {
+        ref: "whois_ip_ref01",
+        srcdatavar: "whois_ip_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "whois_ip01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whois_ip_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoisIpFlow"
+}

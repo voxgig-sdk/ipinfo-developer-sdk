@@ -1,0 +1,119 @@
+# Entity: whois_poc
+
+main: kit: entity: whois_poc: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    page: {
+      h: "Page"
+      n: "page"
+      r: false
+      t: "`$INTEGER`"
+    }
+    poc: {
+      h: "Poc"
+      n: "poc"
+      r: false
+      t: "`$STRING`"
+    }
+    records: {
+      h: "Records"
+      n: "records"
+      r: false
+      t: "`$ARRAY`"
+    }
+    total: {
+      h: "Total"
+      n: "total"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "whois_poc"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /whois/poc/{whoispoc}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "whoispoc"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "whoissource"
+                or: "whoissource"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/whois/poc/{whoispoc}"
+          q: {
+            exist: [
+              "id"
+              "page"
+              "whoissource"
+            ]
+          }
+          r: {
+            param: {
+              whoispoc: "id"
+            }
+          }
+          s: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "poc"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

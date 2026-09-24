@@ -130,26 +130,32 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "address",
+              "title" => "Address",
               "type" => "`$STRING`",
             },
             {
               "name" => "country",
+              "title" => "Country",
               "type" => "`$STRING`",
             },
             {
               "name" => "email",
+              "title" => "Email",
               "type" => "`$STRING`",
             },
             {
               "name" => "name",
+              "title" => "Name",
               "type" => "`$STRING`",
             },
             {
               "name" => "network",
+              "title" => "Network",
               "type" => "`$STRING`",
             },
             {
               "name" => "phone",
+              "title" => "Phone",
               "type" => "`$STRING`",
             },
           ],
@@ -160,17 +166,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/abuse",
@@ -182,19 +177,31 @@ module IpinfoDeveloperConfig
                       "lit" => "abuse",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "abuse",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "abuse",
-                  ],
                 },
               ],
             },
@@ -207,62 +214,76 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "allocated",
+              "title" => "Allocated",
               "type" => "`$STRING`",
             },
             {
               "name" => "asn",
-              "req" => true,
+              "title" => "Asn",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "country",
+              "title" => "Country",
               "type" => "`$STRING`",
             },
             {
               "name" => "domain",
-              "req" => true,
+              "title" => "Domain",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "downstreams",
+              "title" => "Downstreams",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "name",
-              "req" => true,
+              "title" => "Name",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "num_ips",
+              "title" => "Num Ips",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "peers",
+              "title" => "Peers",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "prefixes",
+              "title" => "Prefixes",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "prefixes6",
+              "title" => "Prefixes6",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "registry",
+              "title" => "Registry",
               "type" => "`$STRING`",
             },
             {
               "name" => "route",
+              "title" => "Route",
               "type" => "`$STRING`",
             },
             {
               "name" => "type",
-              "req" => true,
+              "title" => "Type",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "upstreams",
+              "title" => "Upstreams",
               "type" => "`$ARRAY`",
             },
           ],
@@ -273,17 +294,6 @@ module IpinfoDeveloperConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "asn",
-                        "orig" => "asn",
-                        "reqd" => true,
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/AS{asn}",
@@ -292,18 +302,30 @@ module IpinfoDeveloperConfig
                       "lit" => "AS{asn}",
                     },
                   ],
+                  "parts" => [
+                    "AS{asn}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "asn",
+                        "orig" => "asn",
+                        "type" => "`$INTEGER`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "asn",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "AS{asn}",
-                  ],
                 },
               ],
             },
@@ -316,18 +338,21 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "mcc",
-              "req" => true,
+              "title" => "Mcc",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "mnc",
-              "req" => true,
+              "title" => "Mnc",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "name",
-              "req" => true,
+              "title" => "Name",
               "type" => "`$STRING`",
+              "req" => true,
             },
           ],
           "name" => "carrier",
@@ -337,17 +362,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/carrier",
@@ -359,19 +373,31 @@ module IpinfoDeveloperConfig
                       "lit" => "carrier",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "carrier",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "carrier",
-                  ],
                 },
               ],
             },
@@ -384,18 +410,21 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "domain",
-              "req" => true,
+              "title" => "Domain",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "name",
-              "req" => true,
+              "title" => "Name",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "type",
-              "req" => true,
+              "title" => "Type",
               "type" => "`$STRING`",
+              "req" => true,
             },
           ],
           "name" => "company",
@@ -405,17 +434,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/company",
@@ -427,19 +445,31 @@ module IpinfoDeveloperConfig
                       "lit" => "company",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "company",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "company",
-                  ],
                 },
               ],
             },
@@ -452,39 +482,48 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "as",
+              "title" => "As",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "geo",
+              "title" => "Geo",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "hostname",
+              "title" => "Hostname",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
-              "req" => true,
+              "title" => "Ip",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "is_anonymous",
+              "title" => "Is Anonymous",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_anycast",
+              "title" => "Is Anycast",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_hosting",
+              "title" => "Is Hosting",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_mobile",
+              "title" => "Is Mobile",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_satellite",
+              "title" => "Is Satellite",
               "type" => "`$BOOLEAN`",
             },
           ],
@@ -495,17 +534,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/{ip}",
@@ -517,22 +545,33 @@ module IpinfoDeveloperConfig
                       "var" => "ip",
                     },
                   ],
+                  "parts" => [
+                    "lookup",
+                    "{ip}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "lookup",
-                    "{ip}",
-                  ],
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/me",
@@ -544,49 +583,52 @@ module IpinfoDeveloperConfig
                       "lit" => "me",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "lookup",
                     "me",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "lookup",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "domain" => {
           "fields" => [
             {
               "name" => "domains",
+              "title" => "Domains",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
+              "title" => "Ip",
               "type" => "`$STRING`",
             },
             {
               "name" => "page",
+              "title" => "Page",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "total",
-              "req" => true,
+              "title" => "Total",
               "type" => "`$INTEGER`",
+              "req" => true,
             },
           ],
           "id" => {
@@ -600,40 +642,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => 100,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/domains/{ip}",
-                  "rename" => {
-                    "param" => {
-                      "ip" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "domains",
@@ -642,6 +653,45 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "domains",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "ip" => "id",
+                    },
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 100,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
@@ -649,14 +699,6 @@ module IpinfoDeveloperConfig
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "domains",
-                    "{id}",
-                  ],
                 },
               ],
             },
@@ -669,18 +711,22 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "8_8_8_8",
+              "title" => "8 8 8 8",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "8_8_8_8city",
+              "title" => "8 8 8 8city",
               "type" => "`$STRING`",
             },
             {
               "name" => "summary",
+              "title" => "Summary",
               "type" => "`$STRING`",
             },
             {
               "name" => "value",
+              "title" => "Value",
               "type" => "`$OBJECT`",
             },
           ],
@@ -691,17 +737,6 @@ module IpinfoDeveloperConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "cli",
-                        "orig" => "cli",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/tools/map",
@@ -713,32 +748,33 @@ module IpinfoDeveloperConfig
                       "lit" => "map",
                     },
                   ],
+                  "parts" => [
+                    "tools",
+                    "map",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "cli",
+                        "orig" => "cli",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "cli",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "tools",
-                    "map",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "cli",
-                        "orig" => "cli",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/tools/summarize-ips",
@@ -750,22 +786,33 @@ module IpinfoDeveloperConfig
                       "lit" => "summarize-ips",
                     },
                   ],
+                  "parts" => [
+                    "tools",
+                    "summarize-ips",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "cli",
+                        "orig" => "cli",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "cli",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "tools",
-                    "summarize-ips",
-                  ],
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/batch",
@@ -774,14 +821,16 @@ module IpinfoDeveloperConfig
                       "lit" => "batch",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "batch",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "batch",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -794,68 +843,83 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "asn",
-              "req" => true,
+              "title" => "Asn",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "bogon",
+              "title" => "Bogon",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "carrier",
-              "req" => true,
+              "title" => "Carrier",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "city",
+              "title" => "City",
               "type" => "`$STRING`",
             },
             {
               "name" => "company",
-              "req" => true,
+              "title" => "Company",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "country",
+              "title" => "Country",
               "type" => "`$STRING`",
             },
             {
               "name" => "domains",
-              "req" => true,
+              "title" => "Domains",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "hostname",
+              "title" => "Hostname",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
-              "req" => true,
+              "title" => "Ip",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "loc",
+              "title" => "Loc",
               "type" => "`$STRING`",
             },
             {
               "name" => "org",
+              "title" => "Org",
               "type" => "`$STRING`",
             },
             {
               "name" => "postal",
+              "title" => "Postal",
               "type" => "`$STRING`",
             },
             {
               "name" => "privacy",
-              "req" => true,
+              "title" => "Privacy",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "region",
+              "title" => "Region",
               "type" => "`$STRING`",
             },
             {
               "name" => "timezone",
+              "title" => "Timezone",
               "type" => "`$STRING`",
             },
           ],
@@ -866,17 +930,18 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
                   "segments" => [],
-                  "select" => {},
+                  "parts" => [],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -889,72 +954,88 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "asn",
-              "req" => true,
+              "title" => "Asn",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "bogon",
+              "title" => "Bogon",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "carrier",
-              "req" => true,
+              "title" => "Carrier",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "city",
+              "title" => "City",
               "type" => "`$STRING`",
             },
             {
               "name" => "company",
-              "req" => true,
+              "title" => "Company",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "country",
+              "title" => "Country",
               "type" => "`$STRING`",
             },
             {
               "name" => "domains",
-              "req" => true,
+              "title" => "Domains",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "hostname",
+              "title" => "Hostname",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
-              "req" => true,
+              "title" => "Ip",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "loc",
+              "title" => "Loc",
               "type" => "`$STRING`",
             },
             {
               "name" => "org",
+              "title" => "Org",
               "type" => "`$STRING`",
             },
             {
               "name" => "postal",
+              "title" => "Postal",
               "type" => "`$STRING`",
             },
             {
               "name" => "privacy",
-              "req" => true,
+              "title" => "Privacy",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "region",
+              "title" => "Region",
               "type" => "`$STRING`",
             },
             {
               "name" => "timezone",
+              "title" => "Timezone",
               "type" => "`$STRING`",
             },
           ],
@@ -969,42 +1050,42 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}",
-                  "rename" => {
-                    "param" => {
-                      "ip" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "ip" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -1017,18 +1098,22 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "city",
+              "title" => "City",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "key",
+              "title" => "Key",
               "type" => "`$STRING`",
             },
             {
               "name" => "region",
+              "title" => "Region",
               "type" => "`$STRING`",
             },
           ],
@@ -1048,24 +1133,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "field",
-                        "orig" => "field",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/{ip}/{field}",
@@ -1080,34 +1147,42 @@ module IpinfoDeveloperConfig
                       "var" => "field",
                     },
                   ],
+                  "parts" => [
+                    "lookup",
+                    "{ip}",
+                    "{field}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "field",
+                        "orig" => "field",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "field",
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "lookup",
-                    "{ip}",
-                    "{field}",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "field",
-                        "orig" => "field",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lookup/me/{field}",
@@ -1122,39 +1197,45 @@ module IpinfoDeveloperConfig
                       "var" => "field",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "field",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "lookup",
                     "me",
                     "{field}",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "field",
+                        "orig" => "field",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "field",
+                    ],
+                  },
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "me",
-              ],
-              [
-                "lookup",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "ipinfo_lite" => {
           "fields" => [
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
           ],
@@ -1169,24 +1250,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "field",
-                        "orig" => "field",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/{ip}/{field}",
@@ -1201,34 +1264,42 @@ module IpinfoDeveloperConfig
                       "var" => "field",
                     },
                   ],
+                  "parts" => [
+                    "lite",
+                    "{ip}",
+                    "{field}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "field",
+                        "orig" => "field",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "field",
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "lite",
-                    "{ip}",
-                    "{field}",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "field",
-                        "orig" => "field",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/me/{field}",
@@ -1243,41 +1314,37 @@ module IpinfoDeveloperConfig
                       "var" => "field",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "field",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "lite",
                     "me",
                     "{field}",
                   ],
-                },
-                {
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "args" => {
                     "params" => [
                       {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "ip",
-                        "reqd" => true,
+                        "name" => "field",
+                        "orig" => "field",
                         "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
                       },
                     ],
                   },
+                  "select" => {
+                    "exist" => [
+                      "field",
+                    ],
+                  },
+                },
+                {
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/{ip}",
-                  "rename" => {
-                    "param" => {
-                      "ip" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "lite",
@@ -1286,19 +1353,35 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "lite",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "ip" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "lite",
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -1306,10 +1389,7 @@ module IpinfoDeveloperConfig
           "relations" => {
             "ancestors" => [
               [
-                "me",
-              ],
-              [
-                "lite",
+                "$.main.kit.entity.lite",
               ],
             ],
           },
@@ -1318,18 +1398,22 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "city",
+              "title" => "City",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "key",
+              "title" => "Key",
               "type" => "`$STRING`",
             },
             {
               "name" => "region",
+              "title" => "Region",
               "type" => "`$STRING`",
             },
           ],
@@ -1349,24 +1433,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "field",
-                        "orig" => "field",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/{ip}/{field}",
@@ -1381,34 +1447,42 @@ module IpinfoDeveloperConfig
                       "var" => "field",
                     },
                   ],
+                  "parts" => [
+                    "plus",
+                    "{ip}",
+                    "{field}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "field",
+                        "orig" => "field",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "field",
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "plus",
-                    "{ip}",
-                    "{field}",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "field",
-                        "orig" => "field",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/me/{field}",
@@ -1423,20 +1497,32 @@ module IpinfoDeveloperConfig
                       "var" => "field",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "field",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "plus",
                     "me",
                     "{field}",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "field",
+                        "orig" => "field",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "field",
+                    ],
+                  },
                 },
               ],
             },
@@ -1444,10 +1530,7 @@ module IpinfoDeveloperConfig
           "relations" => {
             "ancestors" => [
               [
-                "me",
-              ],
-              [
-                "plus",
+                "$.main.kit.entity.plus",
               ],
             ],
           },
@@ -1461,7 +1544,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lite/me",
@@ -1473,17 +1555,19 @@ module IpinfoDeveloperConfig
                       "lit" => "me",
                     },
                   ],
-                  "select" => {
-                    "$action" => "me",
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "lite",
                     "me",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {
+                    "$action" => "me",
+                  },
                 },
               ],
             },
@@ -1496,54 +1580,66 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "anonymous",
-              "req" => true,
+              "title" => "Anonymous",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "as",
-              "req" => true,
+              "title" => "As",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "geo",
-              "req" => true,
+              "title" => "Geo",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "hostname",
+              "title" => "Hostname",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
-              "req" => true,
+              "title" => "Ip",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "is_anonymous",
+              "title" => "Is Anonymous",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_anycast",
+              "title" => "Is Anycast",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_hosting",
+              "title" => "Is Hosting",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_mobile",
+              "title" => "Is Mobile",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_satellite",
+              "title" => "Is Satellite",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "mobile",
+              "title" => "Mobile",
               "type" => "`$OBJECT`",
             },
           ],
@@ -1558,25 +1654,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/max/{ip}",
-                  "rename" => {
-                    "param" => {
-                      "ip" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "max",
@@ -1585,19 +1665,35 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "max",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "ip" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "max",
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -1610,18 +1706,21 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "features",
-              "req" => true,
+              "title" => "Features",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "requests",
-              "req" => true,
+              "title" => "Requests",
               "type" => "`$OBJECT`",
+              "req" => true,
             },
             {
               "name" => "token",
-              "req" => true,
+              "title" => "Token",
               "type" => "`$STRING`",
+              "req" => true,
             },
           ],
           "name" => "men",
@@ -1631,7 +1730,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/me",
@@ -1640,14 +1738,16 @@ module IpinfoDeveloperConfig
                       "lit" => "me",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "me",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "me",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -1660,37 +1760,44 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "category",
-              "req" => true,
+              "title" => "Category",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
-              "req" => true,
+              "title" => "Ip",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "latitude",
-              "req" => true,
+              "title" => "Latitude",
               "type" => "`$NUMBER`",
+              "req" => true,
             },
             {
               "name" => "longitude",
-              "req" => true,
+              "title" => "Longitude",
               "type" => "`$NUMBER`",
+              "req" => true,
             },
             {
               "name" => "name",
-              "req" => true,
+              "title" => "Name",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "ssid",
-              "req" => true,
+              "title" => "Ssid",
               "type" => "`$STRING`",
+              "req" => true,
             },
           ],
           "id" => {
@@ -1704,25 +1811,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/places/{ip}",
-                  "rename" => {
-                    "param" => {
-                      "ip" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "places",
@@ -1731,19 +1822,35 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "places",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "ip" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "places",
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -1756,47 +1863,58 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "anonymous",
+              "title" => "Anonymous",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "as",
+              "title" => "As",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "geo",
+              "title" => "Geo",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "ip",
-              "req" => true,
+              "title" => "Ip",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "is_anonymous",
+              "title" => "Is Anonymous",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_anycast",
+              "title" => "Is Anycast",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_hosting",
+              "title" => "Is Hosting",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_mobile",
+              "title" => "Is Mobile",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "is_satellite",
+              "title" => "Is Satellite",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "mobile",
+              "title" => "Mobile",
               "type" => "`$OBJECT`",
             },
           ],
@@ -1811,25 +1929,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/{ip}",
-                  "rename" => {
-                    "param" => {
-                      "ip" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "plus",
@@ -1838,22 +1940,37 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "plus",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "ip" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "plus",
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/plus/me",
@@ -1865,17 +1982,19 @@ module IpinfoDeveloperConfig
                       "lit" => "me",
                     },
                   ],
-                  "select" => {
-                    "$action" => "me",
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "plus",
                     "me",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {
+                    "$action" => "me",
+                  },
                 },
               ],
             },
@@ -1888,33 +2007,39 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "hosting",
-              "req" => true,
+              "title" => "Hosting",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "proxy",
-              "req" => true,
+              "title" => "Proxy",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "relay",
-              "req" => true,
+              "title" => "Relay",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "service",
-              "req" => true,
+              "title" => "Service",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "tor",
-              "req" => true,
+              "title" => "Tor",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "vpn",
-              "req" => true,
+              "title" => "Vpn",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
           ],
           "name" => "privacy",
@@ -1924,17 +2049,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/privacy",
@@ -1946,19 +2060,31 @@ module IpinfoDeveloperConfig
                       "lit" => "privacy",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "privacy",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "privacy",
-                  ],
                 },
               ],
             },
@@ -1971,91 +2097,107 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "census",
-              "short" => "Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software.",
+              "title" => "Census",
               "type" => "`$BOOLEAN`",
+              "short" => "Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software.",
             },
             {
               "name" => "census_ports",
-              "short" => "The ports we've gotten positive results for when running our VPN detection census",
+              "title" => "Census Ports",
               "type" => "`$ARRAY`",
+              "short" => "The ports we've gotten positive results for when running our VPN detection census",
             },
             {
               "name" => "confidence",
-              "short" => "The level of confidence attributed to the best source associated with this range.",
+              "title" => "Confidence",
               "type" => "`$INTEGER`",
+              "short" => "The level of confidence attributed to the best source associated with this range.",
             },
             {
               "name" => "coverage",
-              "short" => "For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on.",
+              "title" => "Coverage",
               "type" => "`$NUMBER`",
+              "short" => "For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on.",
             },
             {
               "name" => "device_activity",
-              "short" => "Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)",
+              "title" => "Device Activity",
               "type" => "`$BOOLEAN`",
+              "short" => "Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)",
             },
             {
-              "format" => "date",
               "name" => "first_seen",
-              "short" => "Date when the activity on an anonymous IP address was first observed.",
+              "title" => "First Seen",
               "type" => "`$STRING`",
+              "short" => "Date when the activity on an anonymous IP address was first observed.",
+              "format" => "date",
             },
             {
               "name" => "hosting",
+              "title" => "Hosting",
+              "type" => "`$BOOLEAN`",
               "req" => true,
               "short" => "Indicates a hosting/cloud service/data center IP address",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "inferred",
-              "short" => "Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs",
+              "title" => "Inferred",
               "type" => "`$BOOLEAN`",
+              "short" => "Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs",
             },
             {
-              "format" => "date",
               "name" => "last_seen",
-              "short" => "Date when the activity on an anonymous IP address was last/recently observed.",
+              "title" => "Last Seen",
               "type" => "`$STRING`",
+              "short" => "Date when the activity on an anonymous IP address was last/recently observed.",
+              "format" => "date",
             },
             {
               "name" => "proxy",
+              "title" => "Proxy",
+              "type" => "`$BOOLEAN`",
               "req" => true,
               "short" => "Indicates an open web proxy IP address",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "relay",
+              "title" => "Relay",
+              "type" => "`$BOOLEAN`",
               "req" => true,
               "short" => "Indicates a location-preserving anonymous relay service",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "service",
+              "title" => "Service",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names",
-              "type" => "`$STRING`",
             },
             {
               "name" => "tor",
+              "title" => "Tor",
+              "type" => "`$BOOLEAN`",
               "req" => true,
               "short" => "Indicates a Tor (The Onion Router) exit node IP address",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "vpn",
+              "title" => "Vpn",
+              "type" => "`$BOOLEAN`",
               "req" => true,
               "short" => "Indicates Virtual Private Network (VPN) service exit node IP address",
-              "type" => "`$BOOLEAN`",
             },
             {
               "name" => "vpn_config",
-              "short" => "Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs",
+              "title" => "Vpn Config",
               "type" => "`$BOOLEAN`",
+              "short" => "Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs",
             },
             {
               "name" => "whois",
-              "short" => "Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers",
+              "title" => "Whois",
               "type" => "`$BOOLEAN`",
+              "short" => "Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers",
             },
           ],
           "name" => "privacy_extended",
@@ -2065,17 +2207,6 @@ module IpinfoDeveloperConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/privacy_extended",
@@ -2087,19 +2218,31 @@ module IpinfoDeveloperConfig
                       "lit" => "privacy_extended",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "privacy_extended",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.census_ports`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.census_ports`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "privacy_extended",
-                  ],
                 },
               ],
             },
@@ -2112,27 +2255,32 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "domain",
-              "req" => true,
+              "title" => "Domain",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "num_ranges",
-              "req" => true,
+              "title" => "Num Ranges",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "ranges",
-              "req" => true,
+              "title" => "Ranges",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
             {
               "name" => "redirects_to",
-              "req" => true,
+              "title" => "Redirects To",
               "type" => "`$STRING`",
+              "req" => true,
             },
           ],
           "id" => {
@@ -2146,25 +2294,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "domain",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ranges/{domain}",
-                  "rename" => {
-                    "param" => {
-                      "domain" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "ranges",
@@ -2173,19 +2305,35 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "parts" => [
+                    "ranges",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "domain" => "id",
+                    },
                   },
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "ranges",
-                    "{id}",
-                  ],
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "domain",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
                 },
               ],
             },
@@ -2198,28 +2346,32 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "ip",
+              "title" => "Ip",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The IPv4 or IPv6 address associated with a residential proxy",
-              "type" => "`$STRING`",
             },
             {
-              "format" => "date",
               "name" => "last_seen",
+              "title" => "Last Seen",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)",
-              "type" => "`$STRING`",
+              "format" => "date",
             },
             {
               "name" => "percent_days_seen",
+              "title" => "Percent Days Seen",
+              "type" => "`$INTEGER`",
               "req" => true,
               "short" => "The percentage of days the IP was active in the last 7-day period",
-              "type" => "`$INTEGER`",
             },
             {
               "name" => "service",
+              "title" => "Service",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The name of the residential proxy service.",
-              "type" => "`$STRING`",
             },
           ],
           "name" => "residential_proxy",
@@ -2229,17 +2381,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/resproxy",
@@ -2251,19 +2392,31 @@ module IpinfoDeveloperConfig
                       "lit" => "resproxy",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "resproxy",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "resproxy",
-                  ],
                 },
               ],
             },
@@ -2281,17 +2434,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/city",
@@ -2303,32 +2445,33 @@ module IpinfoDeveloperConfig
                       "lit" => "city",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "city",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "city",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/country",
@@ -2340,32 +2483,33 @@ module IpinfoDeveloperConfig
                       "lit" => "country",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "country",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "country",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/hostname",
@@ -2377,32 +2521,33 @@ module IpinfoDeveloperConfig
                       "lit" => "hostname",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "hostname",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "hostname",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/ip",
@@ -2414,32 +2559,33 @@ module IpinfoDeveloperConfig
                       "lit" => "ip",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "ip",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "ip",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/loc",
@@ -2451,32 +2597,33 @@ module IpinfoDeveloperConfig
                       "lit" => "loc",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "loc",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "loc",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/org",
@@ -2488,32 +2635,33 @@ module IpinfoDeveloperConfig
                       "lit" => "org",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "org",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "org",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/postal",
@@ -2525,32 +2673,33 @@ module IpinfoDeveloperConfig
                       "lit" => "postal",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "postal",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "postal",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/region",
@@ -2562,32 +2711,33 @@ module IpinfoDeveloperConfig
                       "lit" => "region",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "region",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "region",
-                  ],
                 },
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "ip",
-                        "orig" => "ip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}/timezone",
@@ -2599,22 +2749,33 @@ module IpinfoDeveloperConfig
                       "lit" => "timezone",
                     },
                   ],
+                  "parts" => [
+                    "{ip}",
+                    "timezone",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "ip",
+                        "orig" => "ip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "ip",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "{ip}",
-                    "timezone",
-                  ],
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/city",
@@ -2623,17 +2784,18 @@ module IpinfoDeveloperConfig
                       "lit" => "city",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "city",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "city",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/country",
@@ -2642,17 +2804,18 @@ module IpinfoDeveloperConfig
                       "lit" => "country",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "country",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "country",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/hostname",
@@ -2661,17 +2824,18 @@ module IpinfoDeveloperConfig
                       "lit" => "hostname",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "hostname",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "hostname",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ip",
@@ -2680,17 +2844,18 @@ module IpinfoDeveloperConfig
                       "lit" => "ip",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "ip",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "ip",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/loc",
@@ -2699,17 +2864,18 @@ module IpinfoDeveloperConfig
                       "lit" => "loc",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "loc",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "loc",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/org",
@@ -2718,17 +2884,18 @@ module IpinfoDeveloperConfig
                       "lit" => "org",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "org",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "org",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/postal",
@@ -2737,17 +2904,18 @@ module IpinfoDeveloperConfig
                       "lit" => "postal",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "postal",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "postal",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/region",
@@ -2756,17 +2924,18 @@ module IpinfoDeveloperConfig
                       "lit" => "region",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "region",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "region",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/timezone",
@@ -2775,14 +2944,16 @@ module IpinfoDeveloperConfig
                       "lit" => "timezone",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "timezone",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "timezone",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -2795,56 +2966,69 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "abuse",
+              "title" => "Abuse",
               "type" => "`$STRING`",
             },
             {
               "name" => "admin",
+              "title" => "Admin",
               "type" => "`$STRING`",
             },
             {
               "name" => "country",
+              "title" => "Country",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "maintainer",
+              "title" => "Maintainer",
               "type" => "`$STRING`",
             },
             {
               "name" => "name",
+              "title" => "Name",
               "type" => "`$STRING`",
             },
             {
               "name" => "org",
+              "title" => "Org",
               "type" => "`$STRING`",
             },
             {
               "name" => "range",
+              "title" => "Range",
               "type" => "`$STRING`",
             },
             {
               "name" => "raw",
+              "title" => "Raw",
               "type" => "`$STRING`",
             },
             {
               "name" => "source",
+              "title" => "Source",
               "type" => "`$STRING`",
             },
             {
               "name" => "status",
+              "title" => "Status",
               "type" => "`$STRING`",
             },
             {
               "name" => "tech",
+              "title" => "Tech",
               "type" => "`$STRING`",
             },
             {
-              "format" => "date",
               "name" => "updated",
+              "title" => "Updated",
               "type" => "`$STRING`",
+              "format" => "date",
             },
           ],
           "id" => {
@@ -2858,31 +3042,6 @@ module IpinfoDeveloperConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "asn",
-                        "orig" => "asn",
-                        "reqd" => true,
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "whoissource",
-                        "orig" => "whoissource",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/AS{asn}",
@@ -2897,6 +3056,41 @@ module IpinfoDeveloperConfig
                       "lit" => "AS{asn}",
                     },
                   ],
+                  "parts" => [
+                    "whois",
+                    "net",
+                    "AS{asn}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.records`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "asn",
+                        "orig" => "asn",
+                        "type" => "`$INTEGER`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "whoissource",
+                        "orig" => "whoissource",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "asn",
@@ -2904,15 +3098,6 @@ module IpinfoDeveloperConfig
                       "whoissource",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.records`",
-                  },
-                  "parts" => [
-                    "whois",
-                    "net",
-                    "AS{asn}",
-                  ],
                 },
               ],
             },
@@ -2925,18 +3110,22 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "net",
+              "title" => "Net",
               "type" => "`$STRING`",
             },
             {
               "name" => "page",
+              "title" => "Page",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "records",
+              "title" => "Records",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "total",
+              "title" => "Total",
               "type" => "`$INTEGER`",
             },
           ],
@@ -2947,31 +3136,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "domain",
-                        "orig" => "domain",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "whoissource",
-                        "orig" => "whoissource",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/{domain}",
@@ -2986,6 +3150,41 @@ module IpinfoDeveloperConfig
                       "var" => "domain",
                     },
                   ],
+                  "parts" => [
+                    "whois",
+                    "net",
+                    "{domain}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "domain",
+                        "orig" => "domain",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "whoissource",
+                        "orig" => "whoissource",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "domain",
@@ -2993,43 +3192,34 @@ module IpinfoDeveloperConfig
                       "whoissource",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "whois",
-                    "net",
-                    "{domain}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "net",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "whois_ip" => {
           "fields" => [
             {
               "name" => "net",
+              "title" => "Net",
               "type" => "`$STRING`",
             },
             {
               "name" => "page",
+              "title" => "Page",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "records",
+              "title" => "Records",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "total",
+              "title" => "Total",
               "type" => "`$INTEGER`",
             },
           ],
@@ -3040,31 +3230,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "whoisip",
-                        "orig" => "whoisip",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "whoissource",
-                        "orig" => "whoissource",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/{whoisip}",
@@ -3079,6 +3244,41 @@ module IpinfoDeveloperConfig
                       "var" => "whoisip",
                     },
                   ],
+                  "parts" => [
+                    "whois",
+                    "net",
+                    "{whoisip}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "whoisip",
+                        "orig" => "whoisip",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "whoissource",
+                        "orig" => "whoissource",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "page",
@@ -3086,43 +3286,34 @@ module IpinfoDeveloperConfig
                       "whoissource",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "whois",
-                    "net",
-                    "{whoisip}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "net",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "whois_net_id" => {
           "fields" => [
             {
               "name" => "net",
+              "title" => "Net",
               "type" => "`$STRING`",
             },
             {
               "name" => "page",
+              "title" => "Page",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "records",
+              "title" => "Records",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "total",
+              "title" => "Total",
               "type" => "`$INTEGER`",
             },
           ],
@@ -3133,31 +3324,6 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "whoisnetid",
-                        "orig" => "whoisnetid",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "whoissource",
-                        "orig" => "whoissource",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/net/{whoisnetid}",
@@ -3172,6 +3338,41 @@ module IpinfoDeveloperConfig
                       "var" => "whoisnetid",
                     },
                   ],
+                  "parts" => [
+                    "whois",
+                    "net",
+                    "{whoisnetid}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "whoisnetid",
+                        "orig" => "whoisnetid",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "whoissource",
+                        "orig" => "whoissource",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "page",
@@ -3179,47 +3380,39 @@ module IpinfoDeveloperConfig
                       "whoissource",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "whois",
-                    "net",
-                    "{whoisnetid}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "net",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "whois_org" => {
           "fields" => [
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "org",
+              "title" => "Org",
               "type" => "`$STRING`",
             },
             {
               "name" => "page",
+              "title" => "Page",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "records",
+              "title" => "Records",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "total",
+              "title" => "Total",
               "type" => "`$INTEGER`",
             },
           ],
@@ -3234,39 +3427,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "whoisorgid",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "whoissource",
-                        "orig" => "whoissource",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/org/{whoisorgid}",
-                  "rename" => {
-                    "param" => {
-                      "whoisorgid" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "whois",
@@ -3278,6 +3441,45 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "whois",
+                    "org",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "whoisorgid" => "id",
+                    },
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "whoisorgid",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "whoissource",
+                        "orig" => "whoissource",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
@@ -3285,15 +3487,6 @@ module IpinfoDeveloperConfig
                       "whoissource",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "whois",
-                    "org",
-                    "{id}",
-                  ],
                 },
               ],
             },
@@ -3306,22 +3499,27 @@ module IpinfoDeveloperConfig
           "fields" => [
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "page",
+              "title" => "Page",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "poc",
+              "title" => "Poc",
               "type" => "`$STRING`",
             },
             {
               "name" => "records",
+              "title" => "Records",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "total",
+              "title" => "Total",
               "type" => "`$INTEGER`",
             },
           ],
@@ -3336,39 +3534,9 @@ module IpinfoDeveloperConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "whoispoc",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "whoissource",
-                        "orig" => "whoissource",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois/poc/{whoispoc}",
-                  "rename" => {
-                    "param" => {
-                      "whoispoc" => "id",
-                    },
-                  },
                   "segments" => [
                     {
                       "lit" => "whois",
@@ -3380,6 +3548,45 @@ module IpinfoDeveloperConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "whois",
+                    "poc",
+                    "{id}",
+                  ],
+                  "rename" => {
+                    "param" => {
+                      "whoispoc" => "id",
+                    },
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "whoispoc",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "whoissource",
+                        "orig" => "whoissource",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
@@ -3387,15 +3594,6 @@ module IpinfoDeveloperConfig
                       "whoissource",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "whois",
-                    "poc",
-                    "{id}",
-                  ],
                 },
               ],
             },

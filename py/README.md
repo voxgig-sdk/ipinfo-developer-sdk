@@ -39,15 +39,15 @@ client = IpinfoDeveloperSDK({
 })
 ```
 
-### 3. Load a core
+### 3. Load an ipinfoplus
 
-Core is nested under ip, so provide the `ip`.
+IpinfoPlus is nested under field, so provide the `field`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    core = client.Core().load({"ip": "example_ip"})
-    print(core)
+    ipinfoplus = client.IpinfoPlus().load({"field": "example_field"})
+    print(ipinfoplus)
 except Exception as err:
     print(f"load failed: {err}")
 ```

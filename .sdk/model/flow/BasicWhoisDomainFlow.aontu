@@ -1,0 +1,32 @@
+# BasicWhoisDomainFlow
+
+main: kit: flow: BasicWhoisDomainFlow:
+{
+  entity: "whois_domain",
+  kind: "basic",
+  name: "BasicWhoisDomainFlow",
+  step: [
+    {
+      i: {
+        ref: "whois_domain_ref01",
+        srcdatavar: "whois_domain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "whois_domain01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whois_domain_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoisDomainFlow"
+}

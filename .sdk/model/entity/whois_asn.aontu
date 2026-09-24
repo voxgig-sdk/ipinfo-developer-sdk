@@ -1,0 +1,163 @@
+# Entity: whois_asn
+
+main: kit: entity: whois_asn: {
+
+  alias: field: {}
+
+  fields: {
+    abuse: {
+      h: "Abuse"
+      n: "abuse"
+      r: false
+      t: "`$STRING`"
+    }
+    admin: {
+      h: "Admin"
+      n: "admin"
+      r: false
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    maintainer: {
+      h: "Maintainer"
+      n: "maintainer"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    org: {
+      h: "Org"
+      n: "org"
+      r: false
+      t: "`$STRING`"
+    }
+    range: {
+      h: "Range"
+      n: "range"
+      r: false
+      t: "`$STRING`"
+    }
+    raw: {
+      h: "Raw"
+      n: "raw"
+      r: false
+      t: "`$STRING`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      t: "`$STRING`"
+    }
+    tech: {
+      h: "Tech"
+      n: "tech"
+      r: false
+      t: "`$STRING`"
+    }
+    updated: {
+      fo: "date"
+      h: "Updated"
+      n: "updated"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "whois_asn"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /whois/net/AS{asn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "asn"
+                or: "asn"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "whoissource"
+                or: "whoissource"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/whois/net/AS{asn}"
+          q: {
+            exist: [
+              "asn"
+              "page"
+              "whoissource"
+            ]
+          }
+          s: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "net"
+            }
+            {
+              lit: "AS{asn}"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.records`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -70,7 +70,7 @@ def _whois_ip_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["whois_ip01", "whois_ip02", "whois_ip03", "net01", "net02", "net03"],
+        ["whois_ip01", "whois_ip02", "whois_ip03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

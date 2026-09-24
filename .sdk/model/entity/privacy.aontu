@@ -1,0 +1,94 @@
+# Entity: privacy
+
+main: kit: entity: privacy: {
+
+  alias: field: {}
+
+  fields: {
+    hosting: {
+      h: "Hosting"
+      n: "hosting"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    proxy: {
+      h: "Proxy"
+      n: "proxy"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    relay: {
+      h: "Relay"
+      n: "relay"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    service: {
+      h: "Service"
+      n: "service"
+      r: true
+      t: "`$STRING`"
+    }
+    tor: {
+      h: "Tor"
+      n: "tor"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    vpn: {
+      h: "Vpn"
+      n: "vpn"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "privacy"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /{ip}/privacy"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/privacy"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "privacy"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,139 @@
+# Entity: asn
+
+main: kit: entity: asn: {
+
+  alias: field: {}
+
+  fields: {
+    allocated: {
+      h: "Allocated"
+      n: "allocated"
+      r: false
+      t: "`$STRING`"
+    }
+    asn: {
+      h: "Asn"
+      n: "asn"
+      r: true
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      t: "`$STRING`"
+    }
+    domain: {
+      h: "Domain"
+      n: "domain"
+      r: true
+      t: "`$STRING`"
+    }
+    downstreams: {
+      h: "Downstreams"
+      n: "downstreams"
+      r: false
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    num_ips: {
+      h: "Num Ips"
+      n: "num_ips"
+      r: false
+      t: "`$INTEGER`"
+    }
+    peers: {
+      h: "Peers"
+      n: "peers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    prefixes: {
+      h: "Prefixes"
+      n: "prefixes"
+      r: false
+      t: "`$ARRAY`"
+    }
+    prefixes6: {
+      h: "Prefixes6"
+      n: "prefixes6"
+      r: false
+      t: "`$ARRAY`"
+    }
+    registry: {
+      h: "Registry"
+      n: "registry"
+      r: false
+      t: "`$STRING`"
+    }
+    route: {
+      h: "Route"
+      n: "route"
+      r: false
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      t: "`$STRING`"
+    }
+    upstreams: {
+      h: "Upstreams"
+      n: "upstreams"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "asn"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /AS{asn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "asn"
+                or: "asn"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/AS{asn}"
+          q: {
+            exist: [
+              "asn"
+            ]
+          }
+          s: [
+            {
+              lit: "AS{asn}"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,124 @@
+# Entity: get_current_information
+
+main: kit: entity: get_current_information: {
+
+  alias: field: {}
+
+  fields: {
+    asn: {
+      h: "Asn"
+      n: "asn"
+      r: true
+      t: "`$OBJECT`"
+    }
+    bogon: {
+      h: "Bogon"
+      n: "bogon"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    carrier: {
+      h: "Carrier"
+      n: "carrier"
+      r: true
+      t: "`$OBJECT`"
+    }
+    city: {
+      h: "City"
+      n: "city"
+      r: false
+      t: "`$STRING`"
+    }
+    company: {
+      h: "Company"
+      n: "company"
+      r: true
+      t: "`$OBJECT`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      t: "`$STRING`"
+    }
+    domains: {
+      h: "Domains"
+      n: "domains"
+      r: true
+      t: "`$OBJECT`"
+    }
+    hostname: {
+      h: "Hostname"
+      n: "hostname"
+      r: false
+      t: "`$STRING`"
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: true
+      t: "`$STRING`"
+    }
+    loc: {
+      h: "Loc"
+      n: "loc"
+      r: false
+      t: "`$STRING`"
+    }
+    org: {
+      h: "Org"
+      n: "org"
+      r: false
+      t: "`$STRING`"
+    }
+    postal: {
+      h: "Postal"
+      n: "postal"
+      r: false
+      t: "`$STRING`"
+    }
+    privacy: {
+      h: "Privacy"
+      n: "privacy"
+      r: true
+      t: "`$OBJECT`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      t: "`$STRING`"
+    }
+    timezone: {
+      h: "Timezone"
+      n: "timezone"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "get_current_information"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/"
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

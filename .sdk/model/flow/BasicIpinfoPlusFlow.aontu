@@ -1,0 +1,32 @@
+# BasicIpinfoPlusFlow
+
+main: kit: flow: BasicIpinfoPlusFlow:
+{
+  entity: "ipinfo_plus",
+  kind: "basic",
+  name: "BasicIpinfoPlusFlow",
+  step: [
+    {
+      i: {
+        ref: "ipinfo_plus_ref01",
+        srcdatavar: "ipinfo_plus_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "ipinfo_plus01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ipinfo_plus_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIpinfoPlusFlow"
+}

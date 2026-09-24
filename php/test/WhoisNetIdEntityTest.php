@@ -70,7 +70,7 @@ function whois_net_id_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["whois_net_id01", "whois_net_id02", "whois_net_id03", "net01", "net02", "net03"] as $k) {
+    foreach (["whois_net_id01", "whois_net_id02", "whois_net_id03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

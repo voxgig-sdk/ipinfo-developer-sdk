@@ -1,0 +1,158 @@
+# Entity: plus
+
+main: kit: entity: plus: {
+
+  alias: field: {}
+
+  fields: {
+    anonymous: {
+      h: "Anonymous"
+      n: "anonymous"
+      r: false
+      t: "`$OBJECT`"
+    }
+    as: {
+      h: "As"
+      n: "as"
+      r: false
+      t: "`$OBJECT`"
+    }
+    geo: {
+      h: "Geo"
+      n: "geo"
+      r: false
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: true
+      t: "`$STRING`"
+    }
+    is_anonymous: {
+      h: "Is Anonymous"
+      n: "is_anonymous"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_anycast: {
+      h: "Is Anycast"
+      n: "is_anycast"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_hosting: {
+      h: "Is Hosting"
+      n: "is_hosting"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_mobile: {
+      h: "Is Mobile"
+      n: "is_mobile"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_satellite: {
+      h: "Is Satellite"
+      n: "is_satellite"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    mobile: {
+      h: "Mobile"
+      n: "mobile"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "plus"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /plus/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/plus/{ip}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              ip: "id"
+            }
+          }
+          s: [
+            {
+              lit: "plus"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /plus/me"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/plus/me"
+          q: {
+            "$action": "me"
+          }
+          s: [
+            {
+              lit: "plus"
+            }
+            {
+              lit: "me"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -146,26 +146,32 @@ def make_config():
         "fields": [
           {
             "name": "address",
+            "title": "Address",
             "type": "`$STRING`",
           },
           {
             "name": "country",
+            "title": "Country",
             "type": "`$STRING`",
           },
           {
             "name": "email",
+            "title": "Email",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "network",
+            "title": "Network",
             "type": "`$STRING`",
           },
           {
             "name": "phone",
+            "title": "Phone",
             "type": "`$STRING`",
           },
         ],
@@ -176,17 +182,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/abuse",
@@ -198,19 +193,31 @@ def make_config():
                     "lit": "abuse",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "abuse",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "abuse",
-                ],
               },
             ],
           },
@@ -223,62 +230,76 @@ def make_config():
         "fields": [
           {
             "name": "allocated",
+            "title": "Allocated",
             "type": "`$STRING`",
           },
           {
             "name": "asn",
-            "req": True,
+            "title": "Asn",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "country",
+            "title": "Country",
             "type": "`$STRING`",
           },
           {
             "name": "domain",
-            "req": True,
+            "title": "Domain",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "downstreams",
+            "title": "Downstreams",
             "type": "`$ARRAY`",
           },
           {
             "name": "name",
-            "req": True,
+            "title": "Name",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "num_ips",
+            "title": "Num Ips",
             "type": "`$INTEGER`",
           },
           {
             "name": "peers",
+            "title": "Peers",
             "type": "`$ARRAY`",
           },
           {
             "name": "prefixes",
+            "title": "Prefixes",
             "type": "`$ARRAY`",
           },
           {
             "name": "prefixes6",
+            "title": "Prefixes6",
             "type": "`$ARRAY`",
           },
           {
             "name": "registry",
+            "title": "Registry",
             "type": "`$STRING`",
           },
           {
             "name": "route",
+            "title": "Route",
             "type": "`$STRING`",
           },
           {
             "name": "type",
-            "req": True,
+            "title": "Type",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "upstreams",
+            "title": "Upstreams",
             "type": "`$ARRAY`",
           },
         ],
@@ -289,17 +310,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "asn",
-                      "orig": "asn",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/AS{asn}",
@@ -308,18 +318,30 @@ def make_config():
                     "lit": "AS{asn}",
                   },
                 ],
+                "parts": [
+                  "AS{asn}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "asn",
+                      "orig": "asn",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "asn",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "AS{asn}",
-                ],
               },
             ],
           },
@@ -332,18 +354,21 @@ def make_config():
         "fields": [
           {
             "name": "mcc",
-            "req": True,
+            "title": "Mcc",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "mnc",
-            "req": True,
+            "title": "Mnc",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "name",
-            "req": True,
+            "title": "Name",
             "type": "`$STRING`",
+            "req": True,
           },
         ],
         "name": "carrier",
@@ -353,17 +378,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/carrier",
@@ -375,19 +389,31 @@ def make_config():
                     "lit": "carrier",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "carrier",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "carrier",
-                ],
               },
             ],
           },
@@ -400,18 +426,21 @@ def make_config():
         "fields": [
           {
             "name": "domain",
-            "req": True,
+            "title": "Domain",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "name",
-            "req": True,
+            "title": "Name",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "type",
-            "req": True,
+            "title": "Type",
             "type": "`$STRING`",
+            "req": True,
           },
         ],
         "name": "company",
@@ -421,17 +450,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/company",
@@ -443,19 +461,31 @@ def make_config():
                     "lit": "company",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "company",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "company",
-                ],
               },
             ],
           },
@@ -468,39 +498,48 @@ def make_config():
         "fields": [
           {
             "name": "as",
+            "title": "As",
             "type": "`$OBJECT`",
           },
           {
             "name": "geo",
+            "title": "Geo",
             "type": "`$OBJECT`",
           },
           {
             "name": "hostname",
+            "title": "Hostname",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
-            "req": True,
+            "title": "Ip",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "is_anonymous",
+            "title": "Is Anonymous",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_anycast",
+            "title": "Is Anycast",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_hosting",
+            "title": "Is Hosting",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_mobile",
+            "title": "Is Mobile",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_satellite",
+            "title": "Is Satellite",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -511,17 +550,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lookup/{ip}",
@@ -533,22 +561,33 @@ def make_config():
                     "var": "ip",
                   },
                 ],
+                "parts": [
+                  "lookup",
+                  "{ip}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lookup",
-                  "{ip}",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lookup/me",
@@ -560,49 +599,52 @@ def make_config():
                     "lit": "me",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "lookup",
                   "me",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "lookup",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "domain": {
         "fields": [
           {
             "name": "domains",
+            "title": "Domains",
             "type": "`$ARRAY`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
+            "title": "Ip",
             "type": "`$STRING`",
           },
           {
             "name": "page",
+            "title": "Page",
             "type": "`$INTEGER`",
           },
           {
             "name": "total",
-            "req": True,
+            "title": "Total",
             "type": "`$INTEGER`",
+            "req": True,
           },
         ],
         "id": {
@@ -616,40 +658,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": 100,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/domains/{ip}",
-                "rename": {
-                  "param": {
-                    "ip": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "domains",
@@ -658,6 +669,45 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "domains",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "ip": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 100,
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -665,14 +715,6 @@ def make_config():
                     "page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "domains",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -685,18 +727,22 @@ def make_config():
         "fields": [
           {
             "name": "8_8_8_8",
+            "title": "8 8 8 8",
             "type": "`$OBJECT`",
           },
           {
             "name": "8_8_8_8city",
+            "title": "8 8 8 8city",
             "type": "`$STRING`",
           },
           {
             "name": "summary",
+            "title": "Summary",
             "type": "`$STRING`",
           },
           {
             "name": "value",
+            "title": "Value",
             "type": "`$OBJECT`",
           },
         ],
@@ -707,17 +753,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "cli",
-                      "orig": "cli",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/tools/map",
@@ -729,32 +764,33 @@ def make_config():
                     "lit": "map",
                   },
                 ],
+                "parts": [
+                  "tools",
+                  "map",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cli",
+                      "orig": "cli",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "cli",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "tools",
-                  "map",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "cli",
-                      "orig": "cli",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/tools/summarize-ips",
@@ -766,22 +802,33 @@ def make_config():
                     "lit": "summarize-ips",
                   },
                 ],
+                "parts": [
+                  "tools",
+                  "summarize-ips",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cli",
+                      "orig": "cli",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "cli",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "tools",
-                  "summarize-ips",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/batch",
@@ -790,14 +837,16 @@ def make_config():
                     "lit": "batch",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "batch",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "batch",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -810,68 +859,83 @@ def make_config():
         "fields": [
           {
             "name": "asn",
-            "req": True,
+            "title": "Asn",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "bogon",
+            "title": "Bogon",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "carrier",
-            "req": True,
+            "title": "Carrier",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "city",
+            "title": "City",
             "type": "`$STRING`",
           },
           {
             "name": "company",
-            "req": True,
+            "title": "Company",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "country",
+            "title": "Country",
             "type": "`$STRING`",
           },
           {
             "name": "domains",
-            "req": True,
+            "title": "Domains",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "hostname",
+            "title": "Hostname",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
-            "req": True,
+            "title": "Ip",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "loc",
+            "title": "Loc",
             "type": "`$STRING`",
           },
           {
             "name": "org",
+            "title": "Org",
             "type": "`$STRING`",
           },
           {
             "name": "postal",
+            "title": "Postal",
             "type": "`$STRING`",
           },
           {
             "name": "privacy",
-            "req": True,
+            "title": "Privacy",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "region",
+            "title": "Region",
             "type": "`$STRING`",
           },
           {
             "name": "timezone",
+            "title": "Timezone",
             "type": "`$STRING`",
           },
         ],
@@ -882,17 +946,18 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/",
                 "segments": [],
-                "select": {},
+                "parts": [],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -905,72 +970,88 @@ def make_config():
         "fields": [
           {
             "name": "asn",
-            "req": True,
+            "title": "Asn",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "bogon",
+            "title": "Bogon",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "carrier",
-            "req": True,
+            "title": "Carrier",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "city",
+            "title": "City",
             "type": "`$STRING`",
           },
           {
             "name": "company",
-            "req": True,
+            "title": "Company",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "country",
+            "title": "Country",
             "type": "`$STRING`",
           },
           {
             "name": "domains",
-            "req": True,
+            "title": "Domains",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "hostname",
+            "title": "Hostname",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
-            "req": True,
+            "title": "Ip",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "loc",
+            "title": "Loc",
             "type": "`$STRING`",
           },
           {
             "name": "org",
+            "title": "Org",
             "type": "`$STRING`",
           },
           {
             "name": "postal",
+            "title": "Postal",
             "type": "`$STRING`",
           },
           {
             "name": "privacy",
-            "req": True,
+            "title": "Privacy",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "region",
+            "title": "Region",
             "type": "`$STRING`",
           },
           {
             "name": "timezone",
+            "title": "Timezone",
             "type": "`$STRING`",
           },
         ],
@@ -985,42 +1066,42 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}",
-                "rename": {
-                  "param": {
-                    "ip": "id",
-                  },
-                },
                 "segments": [
                   {
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "ip": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1033,18 +1114,22 @@ def make_config():
         "fields": [
           {
             "name": "city",
+            "title": "City",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "key",
+            "title": "Key",
             "type": "`$STRING`",
           },
           {
             "name": "region",
+            "title": "Region",
             "type": "`$STRING`",
           },
         ],
@@ -1064,24 +1149,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lookup/{ip}/{field}",
@@ -1096,34 +1163,42 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "lookup",
+                  "{ip}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lookup",
-                  "{ip}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lookup/me/{field}",
@@ -1138,39 +1213,45 @@ def make_config():
                     "var": "field",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "field",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "lookup",
                   "me",
                   "{field}",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "field",
+                  ],
+                },
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "me",
-            ],
-            [
-              "lookup",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "ipinfo_lite": {
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -1185,24 +1266,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lite/{ip}/{field}",
@@ -1217,34 +1280,42 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "lite",
+                  "{ip}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "lite",
-                  "{ip}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lite/me/{field}",
@@ -1259,41 +1330,37 @@ def make_config():
                     "var": "field",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "field",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "lite",
                   "me",
                   "{field}",
                 ],
-              },
-              {
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "params": [
                     {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "ip",
-                      "reqd": True,
+                      "name": "field",
+                      "orig": "field",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "field",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lite/{ip}",
-                "rename": {
-                  "param": {
-                    "ip": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "lite",
@@ -1302,19 +1369,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "lite",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "ip": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "lite",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1322,10 +1405,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "me",
-            ],
-            [
-              "lite",
+              "$.main.kit.entity.lite",
             ],
           ],
         },
@@ -1334,18 +1414,22 @@ def make_config():
         "fields": [
           {
             "name": "city",
+            "title": "City",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "key",
+            "title": "Key",
             "type": "`$STRING`",
           },
           {
             "name": "region",
+            "title": "Region",
             "type": "`$STRING`",
           },
         ],
@@ -1365,24 +1449,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/plus/{ip}/{field}",
@@ -1397,34 +1463,42 @@ def make_config():
                     "var": "field",
                   },
                 ],
+                "parts": [
+                  "plus",
+                  "{ip}",
+                  "{field}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "field",
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "plus",
-                  "{ip}",
-                  "{field}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "field",
-                      "orig": "field",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/plus/me/{field}",
@@ -1439,20 +1513,32 @@ def make_config():
                     "var": "field",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "field",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "plus",
                   "me",
                   "{field}",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "field",
+                      "orig": "field",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "field",
+                  ],
+                },
               },
             ],
           },
@@ -1460,10 +1546,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "me",
-            ],
-            [
-              "plus",
+              "$.main.kit.entity.plus",
             ],
           ],
         },
@@ -1477,7 +1560,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lite/me",
@@ -1489,17 +1571,19 @@ def make_config():
                     "lit": "me",
                   },
                 ],
-                "select": {
-                  "$action": "me",
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "lite",
                   "me",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {
+                  "$action": "me",
+                },
               },
             ],
           },
@@ -1512,54 +1596,66 @@ def make_config():
         "fields": [
           {
             "name": "anonymous",
-            "req": True,
+            "title": "Anonymous",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "as",
-            "req": True,
+            "title": "As",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "geo",
-            "req": True,
+            "title": "Geo",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "hostname",
+            "title": "Hostname",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
-            "req": True,
+            "title": "Ip",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "is_anonymous",
+            "title": "Is Anonymous",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_anycast",
+            "title": "Is Anycast",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_hosting",
+            "title": "Is Hosting",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_mobile",
+            "title": "Is Mobile",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_satellite",
+            "title": "Is Satellite",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "mobile",
+            "title": "Mobile",
             "type": "`$OBJECT`",
           },
         ],
@@ -1574,25 +1670,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/max/{ip}",
-                "rename": {
-                  "param": {
-                    "ip": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "max",
@@ -1601,19 +1681,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "max",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "ip": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "max",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1626,18 +1722,21 @@ def make_config():
         "fields": [
           {
             "name": "features",
-            "req": True,
+            "title": "Features",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "requests",
-            "req": True,
+            "title": "Requests",
             "type": "`$OBJECT`",
+            "req": True,
           },
           {
             "name": "token",
-            "req": True,
+            "title": "Token",
             "type": "`$STRING`",
+            "req": True,
           },
         ],
         "name": "men",
@@ -1647,7 +1746,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/me",
@@ -1656,14 +1754,16 @@ def make_config():
                     "lit": "me",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "me",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "me",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -1676,37 +1776,44 @@ def make_config():
         "fields": [
           {
             "name": "category",
-            "req": True,
+            "title": "Category",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
-            "req": True,
+            "title": "Ip",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "latitude",
-            "req": True,
+            "title": "Latitude",
             "type": "`$NUMBER`",
+            "req": True,
           },
           {
             "name": "longitude",
-            "req": True,
+            "title": "Longitude",
             "type": "`$NUMBER`",
+            "req": True,
           },
           {
             "name": "name",
-            "req": True,
+            "title": "Name",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "ssid",
-            "req": True,
+            "title": "Ssid",
             "type": "`$STRING`",
+            "req": True,
           },
         ],
         "id": {
@@ -1720,25 +1827,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/places/{ip}",
-                "rename": {
-                  "param": {
-                    "ip": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "places",
@@ -1747,19 +1838,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "places",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "ip": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "places",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1772,47 +1879,58 @@ def make_config():
         "fields": [
           {
             "name": "anonymous",
+            "title": "Anonymous",
             "type": "`$OBJECT`",
           },
           {
             "name": "as",
+            "title": "As",
             "type": "`$OBJECT`",
           },
           {
             "name": "geo",
+            "title": "Geo",
             "type": "`$OBJECT`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "ip",
-            "req": True,
+            "title": "Ip",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "is_anonymous",
+            "title": "Is Anonymous",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_anycast",
+            "title": "Is Anycast",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_hosting",
+            "title": "Is Hosting",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_mobile",
+            "title": "Is Mobile",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_satellite",
+            "title": "Is Satellite",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "mobile",
+            "title": "Mobile",
             "type": "`$OBJECT`",
           },
         ],
@@ -1827,25 +1945,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/plus/{ip}",
-                "rename": {
-                  "param": {
-                    "ip": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "plus",
@@ -1854,22 +1956,37 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "plus",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "ip": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "plus",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/plus/me",
@@ -1881,17 +1998,19 @@ def make_config():
                     "lit": "me",
                   },
                 ],
-                "select": {
-                  "$action": "me",
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "plus",
                   "me",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {
+                  "$action": "me",
+                },
               },
             ],
           },
@@ -1904,33 +2023,39 @@ def make_config():
         "fields": [
           {
             "name": "hosting",
-            "req": True,
+            "title": "Hosting",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "proxy",
-            "req": True,
+            "title": "Proxy",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "relay",
-            "req": True,
+            "title": "Relay",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "service",
-            "req": True,
+            "title": "Service",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "tor",
-            "req": True,
+            "title": "Tor",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "vpn",
-            "req": True,
+            "title": "Vpn",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
         ],
         "name": "privacy",
@@ -1940,17 +2065,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/privacy",
@@ -1962,19 +2076,31 @@ def make_config():
                     "lit": "privacy",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "privacy",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "privacy",
-                ],
               },
             ],
           },
@@ -1987,91 +2113,107 @@ def make_config():
         "fields": [
           {
             "name": "census",
-            "short": "Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software.",
+            "title": "Census",
             "type": "`$BOOLEAN`",
+            "short": "Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software.",
           },
           {
             "name": "census_ports",
-            "short": "The ports we've gotten positive results for when running our VPN detection census",
+            "title": "Census Ports",
             "type": "`$ARRAY`",
+            "short": "The ports we've gotten positive results for when running our VPN detection census",
           },
           {
             "name": "confidence",
-            "short": "The level of confidence attributed to the best source associated with this range.",
+            "title": "Confidence",
             "type": "`$INTEGER`",
+            "short": "The level of confidence attributed to the best source associated with this range.",
           },
           {
             "name": "coverage",
-            "short": "For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on.",
+            "title": "Coverage",
             "type": "`$NUMBER`",
+            "short": "For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on.",
           },
           {
             "name": "device_activity",
-            "short": "Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)",
+            "title": "Device Activity",
             "type": "`$BOOLEAN`",
+            "short": "Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)",
           },
           {
-            "format": "date",
             "name": "first_seen",
-            "short": "Date when the activity on an anonymous IP address was first observed.",
+            "title": "First Seen",
             "type": "`$STRING`",
+            "short": "Date when the activity on an anonymous IP address was first observed.",
+            "format": "date",
           },
           {
             "name": "hosting",
+            "title": "Hosting",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Indicates a hosting/cloud service/data center IP address",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "inferred",
-            "short": "Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs",
+            "title": "Inferred",
             "type": "`$BOOLEAN`",
+            "short": "Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs",
           },
           {
-            "format": "date",
             "name": "last_seen",
-            "short": "Date when the activity on an anonymous IP address was last/recently observed.",
+            "title": "Last Seen",
             "type": "`$STRING`",
+            "short": "Date when the activity on an anonymous IP address was last/recently observed.",
+            "format": "date",
           },
           {
             "name": "proxy",
+            "title": "Proxy",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Indicates an open web proxy IP address",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "relay",
+            "title": "Relay",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Indicates a location-preserving anonymous relay service",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "service",
+            "title": "Service",
+            "type": "`$STRING`",
             "req": True,
             "short": "Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names",
-            "type": "`$STRING`",
           },
           {
             "name": "tor",
+            "title": "Tor",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Indicates a Tor (The Onion Router) exit node IP address",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "vpn",
+            "title": "Vpn",
+            "type": "`$BOOLEAN`",
             "req": True,
             "short": "Indicates Virtual Private Network (VPN) service exit node IP address",
-            "type": "`$BOOLEAN`",
           },
           {
             "name": "vpn_config",
-            "short": "Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs",
+            "title": "Vpn Config",
             "type": "`$BOOLEAN`",
+            "short": "Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs",
           },
           {
             "name": "whois",
-            "short": "Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers",
+            "title": "Whois",
             "type": "`$BOOLEAN`",
+            "short": "Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers",
           },
         ],
         "name": "privacy_extended",
@@ -2081,17 +2223,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/privacy_extended",
@@ -2103,19 +2234,31 @@ def make_config():
                     "lit": "privacy_extended",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "privacy_extended",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.census_ports`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.census_ports`",
-                },
-                "parts": [
-                  "{ip}",
-                  "privacy_extended",
-                ],
               },
             ],
           },
@@ -2128,27 +2271,32 @@ def make_config():
         "fields": [
           {
             "name": "domain",
-            "req": True,
+            "title": "Domain",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "num_ranges",
-            "req": True,
+            "title": "Num Ranges",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "ranges",
-            "req": True,
+            "title": "Ranges",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "redirects_to",
-            "req": True,
+            "title": "Redirects To",
             "type": "`$STRING`",
+            "req": True,
           },
         ],
         "id": {
@@ -2162,25 +2310,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "domain",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ranges/{domain}",
-                "rename": {
-                  "param": {
-                    "domain": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "ranges",
@@ -2189,19 +2321,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "ranges",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "domain": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "ranges",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "domain",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -2214,28 +2362,32 @@ def make_config():
         "fields": [
           {
             "name": "ip",
+            "title": "Ip",
+            "type": "`$STRING`",
             "req": True,
             "short": "The IPv4 or IPv6 address associated with a residential proxy",
-            "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "last_seen",
+            "title": "Last Seen",
+            "type": "`$STRING`",
             "req": True,
             "short": "The last recorded date when the residential proxy IP was active (YYYY-MM-DD, UTC)",
-            "type": "`$STRING`",
+            "format": "date",
           },
           {
             "name": "percent_days_seen",
+            "title": "Percent Days Seen",
+            "type": "`$INTEGER`",
             "req": True,
             "short": "The percentage of days the IP was active in the last 7-day period",
-            "type": "`$INTEGER`",
           },
           {
             "name": "service",
+            "title": "Service",
+            "type": "`$STRING`",
             "req": True,
             "short": "The name of the residential proxy service.",
-            "type": "`$STRING`",
           },
         ],
         "name": "residential_proxy",
@@ -2245,17 +2397,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/resproxy",
@@ -2267,19 +2408,31 @@ def make_config():
                     "lit": "resproxy",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "resproxy",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "resproxy",
-                ],
               },
             ],
           },
@@ -2297,17 +2450,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/city",
@@ -2319,32 +2461,33 @@ def make_config():
                     "lit": "city",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "city",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "city",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/country",
@@ -2356,32 +2499,33 @@ def make_config():
                     "lit": "country",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "country",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "country",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/hostname",
@@ -2393,32 +2537,33 @@ def make_config():
                     "lit": "hostname",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "hostname",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "hostname",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/ip",
@@ -2430,32 +2575,33 @@ def make_config():
                     "lit": "ip",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "ip",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "ip",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/loc",
@@ -2467,32 +2613,33 @@ def make_config():
                     "lit": "loc",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "loc",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "loc",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/org",
@@ -2504,32 +2651,33 @@ def make_config():
                     "lit": "org",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "org",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "org",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/postal",
@@ -2541,32 +2689,33 @@ def make_config():
                     "lit": "postal",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "postal",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "postal",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/region",
@@ -2578,32 +2727,33 @@ def make_config():
                     "lit": "region",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "region",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "region",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "ip",
-                      "orig": "ip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{ip}/timezone",
@@ -2615,22 +2765,33 @@ def make_config():
                     "lit": "timezone",
                   },
                 ],
+                "parts": [
+                  "{ip}",
+                  "timezone",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "ip",
+                      "orig": "ip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "ip",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "{ip}",
-                  "timezone",
-                ],
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/city",
@@ -2639,17 +2800,18 @@ def make_config():
                     "lit": "city",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "city",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "city",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/country",
@@ -2658,17 +2820,18 @@ def make_config():
                     "lit": "country",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "country",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "country",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/hostname",
@@ -2677,17 +2840,18 @@ def make_config():
                     "lit": "hostname",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "hostname",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "hostname",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ip",
@@ -2696,17 +2860,18 @@ def make_config():
                     "lit": "ip",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "ip",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "ip",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/loc",
@@ -2715,17 +2880,18 @@ def make_config():
                     "lit": "loc",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "loc",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "loc",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/org",
@@ -2734,17 +2900,18 @@ def make_config():
                     "lit": "org",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "org",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "org",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/postal",
@@ -2753,17 +2920,18 @@ def make_config():
                     "lit": "postal",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "postal",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "postal",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/region",
@@ -2772,17 +2940,18 @@ def make_config():
                     "lit": "region",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "region",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "region",
-                ],
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/timezone",
@@ -2791,14 +2960,16 @@ def make_config():
                     "lit": "timezone",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "timezone",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "timezone",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -2811,56 +2982,69 @@ def make_config():
         "fields": [
           {
             "name": "abuse",
+            "title": "Abuse",
             "type": "`$STRING`",
           },
           {
             "name": "admin",
+            "title": "Admin",
             "type": "`$STRING`",
           },
           {
             "name": "country",
+            "title": "Country",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "maintainer",
+            "title": "Maintainer",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "title": "Name",
             "type": "`$STRING`",
           },
           {
             "name": "org",
+            "title": "Org",
             "type": "`$STRING`",
           },
           {
             "name": "range",
+            "title": "Range",
             "type": "`$STRING`",
           },
           {
             "name": "raw",
+            "title": "Raw",
             "type": "`$STRING`",
           },
           {
             "name": "source",
+            "title": "Source",
             "type": "`$STRING`",
           },
           {
             "name": "status",
+            "title": "Status",
             "type": "`$STRING`",
           },
           {
             "name": "tech",
+            "title": "Tech",
             "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "updated",
+            "title": "Updated",
             "type": "`$STRING`",
+            "format": "date",
           },
         ],
         "id": {
@@ -2874,31 +3058,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "asn",
-                      "orig": "asn",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "whoissource",
-                      "orig": "whoissource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois/net/AS{asn}",
@@ -2913,6 +3072,41 @@ def make_config():
                     "lit": "AS{asn}",
                   },
                 ],
+                "parts": [
+                  "whois",
+                  "net",
+                  "AS{asn}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.records`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "asn",
+                      "orig": "asn",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "whoissource",
+                      "orig": "whoissource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "asn",
@@ -2920,15 +3114,6 @@ def make_config():
                     "whoissource",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.records`",
-                },
-                "parts": [
-                  "whois",
-                  "net",
-                  "AS{asn}",
-                ],
               },
             ],
           },
@@ -2941,18 +3126,22 @@ def make_config():
         "fields": [
           {
             "name": "net",
+            "title": "Net",
             "type": "`$STRING`",
           },
           {
             "name": "page",
+            "title": "Page",
             "type": "`$INTEGER`",
           },
           {
             "name": "records",
+            "title": "Records",
             "type": "`$ARRAY`",
           },
           {
             "name": "total",
+            "title": "Total",
             "type": "`$INTEGER`",
           },
         ],
@@ -2963,31 +3152,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "domain",
-                      "orig": "domain",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "whoissource",
-                      "orig": "whoissource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois/net/{domain}",
@@ -3002,6 +3166,41 @@ def make_config():
                     "var": "domain",
                   },
                 ],
+                "parts": [
+                  "whois",
+                  "net",
+                  "{domain}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "domain",
+                      "orig": "domain",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "whoissource",
+                      "orig": "whoissource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "domain",
@@ -3009,43 +3208,34 @@ def make_config():
                     "whoissource",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "whois",
-                  "net",
-                  "{domain}",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "net",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "whois_ip": {
         "fields": [
           {
             "name": "net",
+            "title": "Net",
             "type": "`$STRING`",
           },
           {
             "name": "page",
+            "title": "Page",
             "type": "`$INTEGER`",
           },
           {
             "name": "records",
+            "title": "Records",
             "type": "`$ARRAY`",
           },
           {
             "name": "total",
+            "title": "Total",
             "type": "`$INTEGER`",
           },
         ],
@@ -3056,31 +3246,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "whoisip",
-                      "orig": "whoisip",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "whoissource",
-                      "orig": "whoissource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois/net/{whoisip}",
@@ -3095,6 +3260,41 @@ def make_config():
                     "var": "whoisip",
                   },
                 ],
+                "parts": [
+                  "whois",
+                  "net",
+                  "{whoisip}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "whoisip",
+                      "orig": "whoisip",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "whoissource",
+                      "orig": "whoissource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "page",
@@ -3102,43 +3302,34 @@ def make_config():
                     "whoissource",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "whois",
-                  "net",
-                  "{whoisip}",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "net",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "whois_net_id": {
         "fields": [
           {
             "name": "net",
+            "title": "Net",
             "type": "`$STRING`",
           },
           {
             "name": "page",
+            "title": "Page",
             "type": "`$INTEGER`",
           },
           {
             "name": "records",
+            "title": "Records",
             "type": "`$ARRAY`",
           },
           {
             "name": "total",
+            "title": "Total",
             "type": "`$INTEGER`",
           },
         ],
@@ -3149,31 +3340,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "whoisnetid",
-                      "orig": "whoisnetid",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "whoissource",
-                      "orig": "whoissource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois/net/{whoisnetid}",
@@ -3188,6 +3354,41 @@ def make_config():
                     "var": "whoisnetid",
                   },
                 ],
+                "parts": [
+                  "whois",
+                  "net",
+                  "{whoisnetid}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "whoisnetid",
+                      "orig": "whoisnetid",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "whoissource",
+                      "orig": "whoissource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "page",
@@ -3195,47 +3396,39 @@ def make_config():
                     "whoissource",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "whois",
-                  "net",
-                  "{whoisnetid}",
-                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "net",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "whois_org": {
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "org",
+            "title": "Org",
             "type": "`$STRING`",
           },
           {
             "name": "page",
+            "title": "Page",
             "type": "`$INTEGER`",
           },
           {
             "name": "records",
+            "title": "Records",
             "type": "`$ARRAY`",
           },
           {
             "name": "total",
+            "title": "Total",
             "type": "`$INTEGER`",
           },
         ],
@@ -3250,39 +3443,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "whoisorgid",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "whoissource",
-                      "orig": "whoissource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois/org/{whoisorgid}",
-                "rename": {
-                  "param": {
-                    "whoisorgid": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "whois",
@@ -3294,6 +3457,45 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "whois",
+                  "org",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "whoisorgid": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "whoisorgid",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "whoissource",
+                      "orig": "whoissource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -3301,15 +3503,6 @@ def make_config():
                     "whoissource",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "whois",
-                  "org",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -3322,22 +3515,27 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "page",
+            "title": "Page",
             "type": "`$INTEGER`",
           },
           {
             "name": "poc",
+            "title": "Poc",
             "type": "`$STRING`",
           },
           {
             "name": "records",
+            "title": "Records",
             "type": "`$ARRAY`",
           },
           {
             "name": "total",
+            "title": "Total",
             "type": "`$INTEGER`",
           },
         ],
@@ -3352,39 +3550,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "whoispoc",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "whoissource",
-                      "orig": "whoissource",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois/poc/{whoispoc}",
-                "rename": {
-                  "param": {
-                    "whoispoc": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "whois",
@@ -3396,6 +3564,45 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "whois",
+                  "poc",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "whoispoc": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "whoispoc",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "whoissource",
+                      "orig": "whoissource",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
@@ -3403,15 +3610,6 @@ def make_config():
                     "whoissource",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "whois",
-                  "poc",
-                  "{id}",
-                ],
               },
             ],
           },

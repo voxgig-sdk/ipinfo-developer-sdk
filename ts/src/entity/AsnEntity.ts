@@ -19,7 +19,6 @@ import type {
   AsnListMatch,
 } from '../IpinfoDeveloperTypes'
 
-// TODO: needs Entity superclass
 class AsnEntity extends IpinfoDeveloperEntityBase<Asn> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {

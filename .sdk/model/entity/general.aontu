@@ -1,0 +1,139 @@
+# Entity: general
+
+main: kit: entity: general: {
+
+  alias: field: {}
+
+  fields: {
+    "8_8_8_8": {
+      h: "8 8 8 8"
+      n: "8_8_8_8"
+      r: false
+      t: "`$OBJECT`"
+    }
+    "8_8_8_8city": {
+      h: "8 8 8 8city"
+      n: "8_8_8_8city"
+      r: false
+      t: "`$STRING`"
+    }
+    summary: {
+      h: "Summary"
+      n: "summary"
+      r: false
+      t: "`$STRING`"
+    }
+    value: {
+      h: "Value"
+      n: "value"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "general"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /tools/map"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "cli"
+                or: "cli"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tools/map"
+          q: {
+            exist: [
+              "cli"
+            ]
+          }
+          s: [
+            {
+              lit: "tools"
+            }
+            {
+              lit: "map"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tools/summarize-ips"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "cli"
+                or: "cli"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tools/summarize-ips"
+          q: {
+            exist: [
+              "cli"
+            ]
+          }
+          s: [
+            {
+              lit: "tools"
+            }
+            {
+              lit: "summarize-ips"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /batch"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/batch"
+          s: [
+            {
+              lit: "batch"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -66,7 +66,7 @@ def ipinfo_lite_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["ipinfo_lite01", "ipinfo_lite02", "ipinfo_lite03", "me01", "me02", "me03", "lite01", "lite02", "lite03"],
+    ["ipinfo_lite01", "ipinfo_lite02", "ipinfo_lite03", "lite01", "lite02", "lite03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

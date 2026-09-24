@@ -1,0 +1,26 @@
+# BasicWhoisAsnFlow
+
+main: kit: flow: BasicWhoisAsnFlow:
+{
+  entity: "whois_asn",
+  kind: "basic",
+  name: "BasicWhoisAsnFlow",
+  step: [
+    {
+      m: {
+        asn: "asn01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "whois_asn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoisAsnFlow"
+}

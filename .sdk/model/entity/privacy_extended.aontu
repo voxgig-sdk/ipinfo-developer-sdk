@@ -1,0 +1,172 @@
+# Entity: privacy_extended
+
+main: kit: entity: privacy_extended: {
+
+  alias: field: {}
+
+  fields: {
+    census: {
+      h: "Census"
+      n: "census"
+      r: false
+      sh: "Ranges where we've observed VPN software/ports on; we run scans on ports and protocols commonly associated with VPN software."
+      t: "`$BOOLEAN`"
+    }
+    census_ports: {
+      h: "Census Ports"
+      n: "census_ports"
+      r: false
+      sh: "The ports we've gotten positive results for when running our VPN detection census"
+      t: "`$ARRAY`"
+    }
+    confidence: {
+      h: "Confidence"
+      n: "confidence"
+      r: false
+      sh: "The level of confidence attributed to the best source associated with this range."
+      t: "`$INTEGER`"
+    }
+    coverage: {
+      h: "Coverage"
+      n: "coverage"
+      r: false
+      sh: "For inferred ranges, represents the proportion of the range (in IP count) that we saw direct evidence of VPN activity on."
+      t: "`$NUMBER`"
+    }
+    device_activity: {
+      h: "Device Activity"
+      n: "device_activity"
+      r: false
+      sh: "Ranges on which we've observed device activity compatible with VPN usage (outside of known infrastructure area; simultaneous use around a large area; pingable and/or associated with hosting providers)"
+      t: "`$BOOLEAN`"
+    }
+    first_seen: {
+      fo: "date"
+      h: "First Seen"
+      n: "first_seen"
+      r: false
+      sh: "Date when the activity on an anonymous IP address was first observed."
+      t: "`$STRING`"
+    }
+    hosting: {
+      h: "Hosting"
+      n: "hosting"
+      r: true
+      sh: "Indicates a hosting/cloud service/data center IP address"
+      t: "`$BOOLEAN`"
+    }
+    inferred: {
+      h: "Inferred"
+      n: "inferred"
+      r: false
+      sh: "Whether the range associated with the record is the result of direct observation or inference based on neighboring IPs"
+      t: "`$BOOLEAN`"
+    }
+    last_seen: {
+      fo: "date"
+      h: "Last Seen"
+      n: "last_seen"
+      r: false
+      sh: "Date when the activity on an anonymous IP address was last/recently observed."
+      t: "`$STRING`"
+    }
+    proxy: {
+      h: "Proxy"
+      n: "proxy"
+      r: true
+      sh: "Indicates an open web proxy IP address"
+      t: "`$BOOLEAN`"
+    }
+    relay: {
+      h: "Relay"
+      n: "relay"
+      r: true
+      sh: "Indicates a location-preserving anonymous relay service"
+      t: "`$BOOLEAN`"
+    }
+    service: {
+      h: "Service"
+      n: "service"
+      r: true
+      sh: "Name of the privacy service provider - includes VPN, Proxy, and Relay service provider names"
+      t: "`$STRING`"
+    }
+    tor: {
+      h: "Tor"
+      n: "tor"
+      r: true
+      sh: "Indicates a Tor (The Onion Router) exit node IP address"
+      t: "`$BOOLEAN`"
+    }
+    vpn: {
+      h: "Vpn"
+      n: "vpn"
+      r: true
+      sh: "Indicates Virtual Private Network (VPN) service exit node IP address"
+      t: "`$BOOLEAN`"
+    }
+    vpn_config: {
+      h: "Vpn Config"
+      n: "vpn_config"
+      r: false
+      sh: "Ranges where we confirmed VPN activity by directly running VPN software from almost 200 different providers and collecting exit IPs"
+      t: "`$BOOLEAN`"
+    }
+    whois: {
+      h: "Whois"
+      n: "whois"
+      r: false
+      sh: "Ranges where we've observed VPN software/ports on AND have a WHOIS association with either VPNs in general or specific VPN providers"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "privacy_extended"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{ip}/privacy_extended"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ip}/privacy_extended"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              var: "ip"
+            }
+            {
+              lit: "privacy_extended"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.census_ports`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,7 +19,6 @@ import type {
   WhoisAsnListMatch,
 } from '../IpinfoDeveloperTypes'
 
-// TODO: needs Entity superclass
 class WhoisAsnEntity extends IpinfoDeveloperEntityBase<WhoisAsn> {
 
   constructor(client: IpinfoDeveloperSDK, entopts: any) {

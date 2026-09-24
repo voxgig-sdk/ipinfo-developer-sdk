@@ -70,7 +70,7 @@ function core_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["core01", "core02", "core03", "lookup01", "lookup02", "lookup03"] as $k) {
+    foreach (["core01", "core02", "core03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

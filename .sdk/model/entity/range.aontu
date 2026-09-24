@@ -1,0 +1,98 @@
+# Entity: range
+
+main: kit: entity: range: {
+
+  alias: field: {}
+
+  fields: {
+    domain: {
+      h: "Domain"
+      n: "domain"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    num_ranges: {
+      h: "Num Ranges"
+      n: "num_ranges"
+      r: true
+      t: "`$STRING`"
+    }
+    ranges: {
+      h: "Ranges"
+      n: "ranges"
+      r: true
+      t: "`$ARRAY`"
+    }
+    redirects_to: {
+      h: "Redirects To"
+      n: "redirects_to"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "range"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /ranges/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ranges/{domain}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              domain: "id"
+            }
+          }
+          s: [
+            {
+              lit: "ranges"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

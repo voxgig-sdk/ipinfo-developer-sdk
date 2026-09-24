@@ -1,0 +1,57 @@
+# Entity: men
+
+main: kit: entity: men: {
+
+  alias: field: {}
+
+  fields: {
+    features: {
+      h: "Features"
+      n: "features"
+      r: true
+      t: "`$OBJECT`"
+    }
+    requests: {
+      h: "Requests"
+      n: "requests"
+      r: true
+      t: "`$OBJECT`"
+    }
+    token: {
+      h: "Token"
+      n: "token"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "men"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /me"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/me"
+          s: [
+            {
+              lit: "me"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

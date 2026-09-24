@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -127,11 +127,11 @@ const client = new IpinfoDeveloperSDK({
 })
 
 
-// Load a specific core (returns a Core)
-const core = await client.Core().load({
-  ip: 'example_ip',
+// Load a specific ipinfoplus (returns a IpinfoPlus)
+const ipinfoplus = await client.IpinfoPlus().load({
+  field: 'example_field',
 })
-console.log(core)
+console.log(ipinfoplus)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -248,14 +248,14 @@ client := sdk.NewIpinfoDeveloperSDK(map[string]any{
 })
 
 
-// Load a specific core
-core, err := client.Core(nil).Load(
-    map[string]any{"ip": "example_ip"}, nil,
+// Load a specific ipinfoplus
+ipinfoPlus, err := client.IpinfoPlus(nil).Load(
+    map[string]any{"field": "example_field"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(core)
+fmt.Println(ipinfoPlus)
 ```
 
 ### Ruby

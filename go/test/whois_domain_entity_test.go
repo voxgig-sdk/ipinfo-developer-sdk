@@ -98,7 +98,7 @@ func whois_domainBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"whois_domain01", "whois_domain02", "whois_domain03", "net01", "net02", "net03"},
+		[]any{"whois_domain01", "whois_domain02", "whois_domain03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

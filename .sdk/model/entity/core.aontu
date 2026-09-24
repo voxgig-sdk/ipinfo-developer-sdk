@@ -1,0 +1,133 @@
+# Entity: core
+
+main: kit: entity: core: {
+
+  alias: field: {}
+
+  fields: {
+    as: {
+      h: "As"
+      n: "as"
+      r: false
+      t: "`$OBJECT`"
+    }
+    geo: {
+      h: "Geo"
+      n: "geo"
+      r: false
+      t: "`$OBJECT`"
+    }
+    hostname: {
+      h: "Hostname"
+      n: "hostname"
+      r: false
+      t: "`$STRING`"
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: true
+      t: "`$STRING`"
+    }
+    is_anonymous: {
+      h: "Is Anonymous"
+      n: "is_anonymous"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_anycast: {
+      h: "Is Anycast"
+      n: "is_anycast"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_hosting: {
+      h: "Is Hosting"
+      n: "is_hosting"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_mobile: {
+      h: "Is Mobile"
+      n: "is_mobile"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    is_satellite: {
+      h: "Is Satellite"
+      n: "is_satellite"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "core"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /lookup/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/lookup/{ip}"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              lit: "lookup"
+            }
+            {
+              var: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /lookup/me"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/lookup/me"
+          s: [
+            {
+              lit: "lookup"
+            }
+            {
+              lit: "me"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

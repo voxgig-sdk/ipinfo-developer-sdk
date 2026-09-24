@@ -1,0 +1,103 @@
+# Entity: whois_net_id
+
+main: kit: entity: whois_net_id: {
+
+  alias: field: {}
+
+  fields: {
+    net: {
+      h: "Net"
+      n: "net"
+      r: false
+      t: "`$STRING`"
+    }
+    page: {
+      h: "Page"
+      n: "page"
+      r: false
+      t: "`$INTEGER`"
+    }
+    records: {
+      h: "Records"
+      n: "records"
+      r: false
+      t: "`$ARRAY`"
+    }
+    total: {
+      h: "Total"
+      n: "total"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "whois_net_id"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /whois/net/{whoisnetid}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "whoisnetid"
+                or: "whoisnetid"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "whoissource"
+                or: "whoissource"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/whois/net/{whoisnetid}"
+          q: {
+            exist: [
+              "page"
+              "whoisnetid"
+              "whoissource"
+            ]
+          }
+          s: [
+            {
+              lit: "whois"
+            }
+            {
+              lit: "net"
+            }
+            {
+              var: "whoisnetid"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
