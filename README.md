@@ -106,11 +106,11 @@ local result, err = client:Domain():load({ id = "test01" })
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
-| Python | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
-| PHP | `voxgig-sdk/ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| Python | `voxgig-sdk-ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| PHP | `voxgig-sdk/ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ipinfo-developer-sdk/go` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
-| Lua | `voxgig-sdk-ipinfo-developer` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| Ruby | `voxgig-sdk-ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
+| Lua | `voxgig-sdk-ipinfo-developer-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ipinfo-developer-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ipinfo-developer-sdk/go-cli` | `go install github.com/voxgig-sdk/ipinfo-developer-sdk/go-cli/cmd/ipinfo-developer@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ipinfo-developer-sdk/go-mcp` | `go get github.com/voxgig-sdk/ipinfo-developer-sdk/go-mcp@latest` |
 
@@ -387,10 +387,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
